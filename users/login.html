@@ -18,6 +18,8 @@
   <!-- End Global Mandatory Styles -->
   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/forms/theme-checkbox-radio.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/forms/switches.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/scrollspyNav.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/alert.css' %}">
   {% endblock %}
 </head>
 <body>
@@ -39,7 +41,16 @@
         <div class="form-container">
           <div class="form-content">
             {% if error %}
-            <p class="alert alert-danger">{{ error }}</p>
+            <div class="alert alert-arrow-left alert-icon-left alert-light-danger mb-4" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+              <strong>Oops..!</strong> {{error}}.
+          </div>
             {% endif %}
             <img class="img-login" src="{% static 'assets/img/others/logo.png' %}" alt="logo" width="300">
             <form class="text-left" method="POST">
@@ -51,7 +62,7 @@
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
-                  <input id="username" name="username" type="text" class="form-control" placeholder="Ingrese su usuario">
+                  <input id="username" name="username" type="text" class="form-control" placeholder="Ingrese su usuario" required>
                 </div>
                 <div id="password-field" class="field-wrapper input mb-2">
                   <div class="d-flex justify-content-between">
@@ -61,7 +72,7 @@
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                   </svg>
-                  <input id="password" name="password" type="password" class="form-control" placeholder="Ingrese su Contraseña">
+                  <input id="password" name="password" type="password" class="form-control" placeholder="Ingrese su Contraseña" required>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="toggle-password" class="feather feather-eye">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                     <circle cx="12" cy="12" r="3"></circle>
@@ -75,14 +86,16 @@
                 <p class="signup-link"><a href="http://www.segursat.com">Segursat S.A.C</a></p>
               </div>
             </form>
+            <button id="toast-btn" class="btn btn-primary">Open Toast</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  {% block script_content %}
-    <script src="{% static 'assets/js/loader.js' %}"></script>
-    <script src="{% static 'assets/js/authentication/form-2.js' %}"></script>
-  {% endblock %}
+  <script src="{% static 'assets/js/libs/jquery-3.1.1.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'assets/js/loader.js' %}"></script>
+  <script src="{% static 'assets/js/authentication/form-2.js' %}"></script>
 </body>
 </html>
