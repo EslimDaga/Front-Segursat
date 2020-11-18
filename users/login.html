@@ -38,6 +38,9 @@
       <div class="form-form-wrap">
         <div class="form-container">
           <div class="form-content">
+            {% if error %}
+            <p class="alert alert-danger">{{ error }}</p>
+            {% endif %}
             <img class="img-login" src="{% static 'assets/img/others/logo.png' %}" alt="logo" width="300">
             <form class="text-left" method="POST">
               {% csrf_token %}

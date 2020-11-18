@@ -2,20 +2,16 @@
 {% load static %}
 {% block head_content %}
   <title>Usuarios - Segursat GPS</title>
-  <link rel="icon" type="image/x-icon" href="{% static 'assets/img/others/favicon.png' %}"/>
-  <link href="{% static 'assets/css/loader.css' %}" rel="stylesheet" type="text/css" />
-  <script src="{% static 'assets/js/loader.js' %}"></script>
-  <!-- Begin Global Mandatory Styles -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'assets/css/plugins.css' %}" rel="stylesheet" type="text/css" />
-  <!-- End Global Mandatory Styles -->
   <!-- Begin Page Level Custom Styles -->
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
-  <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/miscellaneous.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/breadcrumb.css' %}"/>
+  <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
@@ -26,9 +22,9 @@
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
           <nav class="breadcrumb-two" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-                <li class="breadcrumb-item active"><a href="reports.html">Usuarios</a></li>
-                <li class="breadcrumb-item"></li>
+              <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+              <li class="breadcrumb-item active"><a href="reports.html">Usuarios</a></li>
+              <li class="breadcrumb-item"></li>
             </ol>
           </nav>
         </div>
@@ -55,6 +51,8 @@
                     <td>{{profile.user.last_login}}</td>
                     {% if profile.is_active == True %}
                     <td><span class="badge badge-success"> Activo </span></td>
+                    {% else %}
+                    <td><span class="badge badge-success"> Inactivo </span></td>
                     {% endif %}
                     <td>
                       <div class="btn-group">
@@ -91,6 +89,7 @@
         </p>
       </div>
     </div>
+    {% include 'includes/profile.html' %}
   </div>  
 {% endblock %}
 {% block script_content %}
@@ -101,6 +100,7 @@
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
   <script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
   <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+  <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
   <script>
       $('#html5-extension').DataTable( {
         dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
