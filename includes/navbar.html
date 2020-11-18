@@ -1,4 +1,14 @@
 {% load static %}
+{% block head_content %}
+  <title>Usuarios - Segursat GPS</title>
+  <!-- Begin Page Level Custom Styles -->
+  <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+  <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+  <!-- End Page Level Custom Styles -->
+{% endblock %}
 <!-- Begin NavBar -->
 <div class="header-container fixed-top">
   <header class="header navbar navbar-expand-sm">
@@ -168,3 +178,4 @@
   </header>
 </div>
 <!-- End NavBar -->
+{% include 'includes/profile.html' %}
