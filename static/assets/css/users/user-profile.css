@@ -86,7 +86,8 @@
       color: #1b55e2;
       fill: rgba(27, 85, 226, 0.239216); }
     .user-profile .widget-content-area .user-info-list ul.contacts-block ul.list-inline {
-      margin: 27px auto; }
+      margin: 27px auto; 
+      text-align: center;}
       .user-profile .widget-content-area .user-info-list ul.contacts-block ul.list-inline div.social-icon {
         border: 2px solid #e0e6ed;
         border-radius: 50%;
