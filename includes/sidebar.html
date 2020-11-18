@@ -43,10 +43,22 @@
         </a>
       </li>
       <li class="menu">
+        <a href="reports.html" aria-expanded="false" class="dropdown-toggle">
+          <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
+              <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>Reportes</span>
+          </div>
+        </a>
+      </li>
+      <li class="menu">
         <a href="#fleet" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-            <span>Flota</span>
+            <span>Unidades</span>
           </div>
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
@@ -59,22 +71,19 @@
             <a href="{% url 'units' %}"> Unidades </a>
           </li>
           <li>
-            <a href="groups.html"> Grupos de Unidades </a>
-          </li>
-          <li>
-            <a href="{% url 'drivers' %}"> Conductores </a>
+            <a href="groups.html"> Grupos </a>
           </li>
         </ul>
       </li>
       <li class="menu">
-        <a href="reports.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="{% url 'drivers' %}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
               <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
               <line x1="12" y1="8" x2="12" y2="12"></line>
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
-            <span>Reportes</span>
+            <span>Conductores</span>
           </div>
         </a>
       </li>
