@@ -215,7 +215,8 @@ body {
       min-width: auto;
       margin: 0 auto; }
     .form-form .form-container .form-content {
-      border-radius: 15px; } }
+      border-radius: 15px; 
+      margin: 5px;} }
 
 @media (max-width: 575px) {
   .form-form .form-form-wrap form .field-wrapper.toggle-pass {
