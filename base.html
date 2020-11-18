@@ -5,6 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/others/favicon.png' %}"/>
+    <link href="{% static 'assets/css/loader.css' %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'assets/js/loader.js' %}"></script>
+    <!-- Begin Global Mandatory Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/plugins.css' %}" rel="stylesheet" type="text/css" />
+    <!-- End Global Mandatory Styles -->
     {% block head_content %}{% endblock %}
   </head>
 <body class="sidebar-noneoverflow">
@@ -28,6 +36,7 @@
     <!-- End Content Area -->
   </div>
   <!-- End Main Container -->
+  <!-- Begin Global Mandatory Scripts -->
   <script src="{% static 'assets/js/libs/jquery-3.1.1.min.js' %}"></script>
   <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
@@ -39,7 +48,10 @@
     });
   </script>
   <script src="{% static 'assets/js/custom.js' %}"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
   <!-- End Global Mandatory Scripts -->
   {% block script_content %}{% endblock %}
+
 </body>
 </html>
