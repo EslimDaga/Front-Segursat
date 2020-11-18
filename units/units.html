@@ -4,7 +4,7 @@
   <title>Unidades - Segursat GPS</title>
   <!-- Begin Page Level Custom Styles -->
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' }%">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
   <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
@@ -19,11 +19,58 @@
       <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
         <nav class="breadcrumb-two" aria-label="breadcrumb">
           <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-              <li class="breadcrumb-item active"><a href="units.html">Unidades</a></li>
-              <li class="breadcrumb-item"></li>
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="units.html">Unidades</a></li>
+            <li class="breadcrumb-item"></li>
           </ol>
         </nav>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+          <div class="table-responsive mb-4 mt-4">
+            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Unique ID</th>
+                  <th>Ultimo Reporte</th>
+                  <th>Ultima Modificacion</th>
+                  <th>Fecha de Creacion</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for unit in units %}
+                <tr>
+                  <td>{{unit.name}}</td>
+                  <td>{{unit.device}}</td>
+                  {% if unit.device.modified < unit.created %}
+                  <td>Sin Reportar</td>
+                  {% else %}
+                  <td>{{unit.device.modified}}</td>
+                  {% endif %}
+                  <td>{{unit.modified}}</td>
+                  <td>{{unit.created}}</td>
+                  <td>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+                      <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuReference24">
+                        <a class="dropdown-item" href="#"><i class="fas fa-pencil-alt" style="padding-right: 15px;"></i>Editar</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-trash-alt" style="padding-right: 15px;"></i>Eliminar</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -44,12 +91,12 @@
 {% endblock %}
 {% block script_content %}
 <!-- Begin Page Level Custom Scripts -->
-<script src="plugins/table/datatable/datatables.js"></script>
+<script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
 <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
-<script src="plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
-<script src="plugins/table/datatable/button-ext/jszip.min.js"></script>
-<script src="plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
-<script src="plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
 <script>
     $('#html5-extension').DataTable( {
       dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
