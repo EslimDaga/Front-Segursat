@@ -5,8 +5,8 @@
       <figure class="user-cover-image"></figure>
       <div class="user-info">
         <img src="{% static 'assets/img/others/perfil.png' %}" alt="avatar">
-        <h6 class="">Eslim Daga</h6>
-        <p class="">Sectorista</p>
+        <h6 class="">{{user.username}}</h6>
+        <p class="">{{user.first_name}}</p>
       </div>
     </div>
     <div class="shadow-bottom"></div>
@@ -56,13 +56,13 @@
         </a>
         <ul class="collapse submenu list-unstyled" id="fleet" data-parent="#accordionExample">
           <li>
-            <a href="units.html"> Unidades </a>
+            <a href="{% url 'units' %}"> Unidades </a>
           </li>
           <li>
-            <a href="groups.html"> Grupos </a>
+            <a href="groups.html"> Grupos de Unidades </a>
           </li>
           <li>
-            <a href="drivers.html"> Conductores </a>
+            <a href="{% url 'drivers' %}"> Conductores </a>
           </li>
         </ul>
       </li>
