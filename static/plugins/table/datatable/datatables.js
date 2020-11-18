@@ -11396,7 +11396,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "No hay datos disponibles en la tabla",
 	
 	
 			/**
@@ -11428,7 +11428,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "Mostrando _START_ de _END_ de _TOTAL_ entradas",
 	
 	
 			/**
@@ -11449,7 +11449,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Mostrando 0 de 0 de 0 entradas",
 	
 	
 			/**
