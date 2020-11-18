@@ -78,12 +78,24 @@
       <li class="menu">
         <a href="{% url 'drivers' %}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
-              <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
-              <line x1="12" y1="8" x2="12" y2="12"></line>
-              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
             </svg>
             <span>Conductores</span>
+          </div>
+        </a>
+      </li>
+      <li class="menu">
+        <a href="{% url 'geofences' %}" aria-expanded="false" class="dropdown-toggle">
+          <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crop">
+              <path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path>
+              <path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path>
+            </svg>
+            <span>Geocercas</span>
           </div>
         </a>
       </li>
