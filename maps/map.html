@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_content %}
+  <title>Mapa - Segursat GPS</title>
+  <!-- Begin Page Level Custom Styles -->
+  <link href="{% static 'plugins/widgets-map/css/style.css' %}" rel="stylesheet">
+  <!-- End Global Mandatory Styles -->
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+  <style>
+    .map {
+    width: 100%;
+    height: 100%; }
+  </style>
+  <!-- End Page Level Custom Styles -->
+{% endblock %}
+{% block container %}
+<div id="content" class="main-content">
+  <div id="map" class="map"></div>
+  <!-- Begin Right Bar -->
+  <div id="map-controls">
+    <div>
+      <div class="btn-group-vertical" role="group">
+        <button type="button" class="btn" onclick="app.mapFull();">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </button>
+      </div>
+    </div>
+    <div id="map-controls-layers">
+      <div class="btn-group-vertical" role="group" data-toggle="buttons">
+        <label class="btn active">
+          <input id="clusterDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('clusterDevice', this.checked);">
+          <span class="icon group-devices"></span>
+        </label>
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Ajustar objetos">
+          <input id="fitBounds" type="checkbox" autocomplete="off" onchange="app.devices.toggleFitBounds(this.checked);">
+          <span class="icon fitBounds"></span>
+        </label>
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Objectos">
+          <input id="showDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('showDevice', this.checked);">
+          <span class="icon devices"></span>
+        </label>
+        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Geocercas">
+          <input id="showGeofences" type="checkbox" autocomplete="off" onchange="app.changeSetting('showGeofences', this.checked);">
+          <span class="icon geofences"></span>
+        </label>
+        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Rutas">
+          <input id="showRoutes" type="checkbox" autocomplete="off" onchange="app.changeSetting('showRoutes', this.checked);">
+          <span class="icon routes"></span>
+        </label>
+        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="POI">
+          <input id="showPoi" type="checkbox" autocomplete="off" onchange="app.changeSetting('showPoi', this.checked);">
+          <span class="icon poi"></span>
+        </label>
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar nombres">
+          <input id="showNames" type="checkbox" autocomplete="off" onchange="app.changeSetting('showNames', this.checked);">
+          <span class="icon show-name"></span>
+        </label>
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar cruz">
+          <input id="showTail" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTail', this.checked);">
+          <span class="icon show-tail"></span>
+        </label>
+        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tráfico en vivo">
+          <input id="showTraffic" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTraffic', this.checked);">
+          <span class="icon traffic"></span>
+        </label>
+      </div>
+    </div>
+    <div id="history-control-layers" style="display: none;">
+      <div class="btn-group-vertical" role="group" data-toggle="buttons">
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Route">
+          <input id="showHistoryRoute" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryRoute', this.checked);">
+          <span class="icon routes"></span>
+        </label>
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Arrows">
+          <input id="showHistoryArrow" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryArrow', this.checked);">
+          <span class="icon device"></span>
+        </label>
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Stops">
+          <input id="showHistoryStop" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryStop', this.checked);">
+          <span class="icon parking"></span>
+        </label>
+        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Events">
+          <input id="showHistoryEvent" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryEvent', this.checked);">
+          <span class="icon event"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <!-- End Right Bar -->
+  <!-- Begin Bottom Bar -->
+  <div id="bottombar" style="padding-left: 300px; z-index: 997;">
+    <div id="widgets" data-device-id="1347">
+      <a class="btn-collapse" onclick="app.changeSetting('toggleWidgets');"><i></i></a>
+      <div class="widgets-content">
+        <div class="widget widget-device">
+          <div class="widget-heading">
+            <div class="widget-title">
+              <div class="widget-actions">
+                <span data-device="status" style="background-color: yellow" title="ACK">ACK</span> <span data-device="status-text">ACK</span>
+              </div>
+              <i class="icon device"></i>
+              <span data-device="name">BMW M5</span>
+            </div>
+          </div>
+          <div class="widget-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>Dirección:</td>
+                  <td class="">
+                    <span class="pull-right p-relative"><span data-device="preview"><a href="https://www.google.com/maps/place/SEGURSAT+SAC/@-12.095299,-77.059699,15z" target="_blank" class="btn btn-xs btn-default"><i class="fas fa-eye"></i></a></span></span>
+                    <span data-device="address" data-lat="19.250127" data-lng="-98.870827">Av. Juan de Aliaga 427, Magdalena del Mar 15076</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tiempo:</td>
+                  <td><span data-device="time">2020-11-09 15:03:39</span></td>
+                </tr>
+                <tr>
+                  <td>Tiempo de Parada:</td>
+                  <td><span data-device="stop_duration">4min 3s</span></td>
+                </tr>
+                <tr>
+                  <td>Conductor:</td>
+                  <td><span data-device="driver">Roger Carlos</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="widget widget-sensors">
+          <div class="widget-heading">
+            <div class="widget-title"><i class="icon sensors"></i> Sensores</div>
+          </div>
+          <div class="widget-body">
+            <div data-device="sensors">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><i class="icon gsm gsm-2"></i>RSSI</td>
+                    <td>30 %</td>
+                  </tr>
+                  <tr>
+                    <td><i class="icon door"></i>Bloqueo</td>
+                    <td>Apagado</td>
+                  </tr>
+                  <tr>
+                    <td><i class="icon acc"></i>Carga</td>
+                    <td>Encendido</td>
+                  </tr>
+                  <tr>
+                    <td><i class="icon gsm gsm-2"></i>GSM</td>
+                    <td>40 %</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><i class="icon battery battery-1"></i>Batería</td>
+                    <td>6 %</td>
+                  </tr>
+                  <tr>
+                    <td><i class="icon ignition"></i>Encendido</td>
+                    <td>Apagado</td>
+                  </tr>
+                  <tr>
+                    <td><i class="icon satellites"></i>Satelites</td>
+                    <td>11</td>
+                  </tr>
+                  <tr>
+                    <td><i class="icon speed"></i>Velocidad</td>
+                    <td>0 kph</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="widget-empty">
+              <a href="javascript:" class="btn btn-default" data-url="" data-modal="sonsors_create" type="button">
+              <i class="icon add"></i> Add sensor
+                </a>
+            </div>
+          </div>
+        </div>
+        <div class="widget widget-streetview">
+          <div class="widget-heading">
+            <div class="widget-title">
+              <i class="icon streetview"></i> Street view
+            </div>
+          </div>
+          <div class="widget-body">
+            <span data-device="streetview" data-size="290x125"><a href="http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=19.25013,-98.87083&amp;cbp=11,96,0,0,0" target="_blank"><img alt="Street view" src="https://demo.gpswox.com/streetview.jpg?size=290x125&amp;location=19.25013,-98.87083&amp;heading=96"></a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Bottom Bar -->
+</div>
+{% endblock %}
+{% block script_content %}
+  <script>
+    var map = L.map('map').setView([-12.1021887,-77.0665742], 17);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: ''
+    }).addTo(map);
+
+    var greenIcon = L.icon({
+      iconUrl: "{% static 'assets/img/markers/camion.png' %}",
+      iconSize:     [40, 40],
+      shadowSize:   [50, 64],
+      iconAnchor:   [22, 94],
+      shadowAnchor: [4, 62],
+      popupAnchor:  [-3, -76]
+    });
+
+    L.marker([-12.1021887,-77.0665742], {icon: greenIcon}).addTo(map).bindPopup("ANO-765");
+  </script>
+  <script src="{% static 'plugins/widgets-map/js/core.js' %}"></script>
+  <script src="{% static 'plugins/widgets-map/js/app.js' %}"></script>
+{% endblock%}
