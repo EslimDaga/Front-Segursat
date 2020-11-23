@@ -5,8 +5,12 @@
   <!-- Begin Page Level Custom Styles -->
   <link href="{% static 'plugins/widgets-map/css/style.css' %}" rel="stylesheet">
   <!-- End Global Mandatory Styles -->
-  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <style>
     .map {
@@ -202,26 +206,28 @@
 {% endblock %}
 {% block script_content %}
   <script>
-    var map = L.map('map').setView([-12.1021887,-77.0665742], 17);
-
-    let openStreetMap = L.tileLayer(
+    map = L.map('map',{
+      center: [-12.1021887,-77.0665742],
+      zoom: 16,
+    });
+    const openStreetMap = L.tileLayer(
       'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       {
         attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
         maxZoom: 19,
       }
     );
-    let googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
       attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
       maxZoom: 20,
       subdomains:['mt0','mt1','mt2','mt3']
     });
-    let googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
       attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
       maxZoom: 20,
       subdomains:['mt0','mt1','mt2','mt3']
     });
-    let baseLayers = {
+    const baseLayers = {
       'Open Street Maps': openStreetMap,
       'Google Street Maps': googleStreetsMap,
       'Google Hybrid Maps': googleHybridMap
@@ -229,8 +235,7 @@
     let overlays = {};
     L.control.layers(baseLayers,overlays).addTo(map);
     baseLayers['Google Street Maps'].addTo(map);
-
-    var greenIcon = L.icon({
+    const icon = L.icon({
       iconUrl: "{% static 'assets/img/markers/icon.svg' %}",
       iconSize:     [40, 40],
       shadowSize:   [50, 64],
@@ -238,8 +243,16 @@
       shadowAnchor: [4, 62],
       popupAnchor:  [-3, -76]
     });
-
-    L.marker([-12.1021887,-77.0665742], {icon: greenIcon}).addTo(map).bindPopup("ANO-765");
+    marker = new L.marker(
+      [-12.1021887,-77.0665742],
+      /*
+      {
+        icon: icon,
+        title: "prueba"
+      }
+      */
+    )
+    .addTo(map)
   </script>
   <script src="{% static 'plugins/widgets-map/js/core.js' %}"></script>
   <script src="{% static 'plugins/widgets-map/js/app.js' %}"></script>
