@@ -55,7 +55,7 @@
         </a>
       </li>
       <li class="menu">
-        <a href="{% url 'units' %}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <a href="#units" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             <span>Unidades</span>
@@ -100,7 +100,7 @@
         </a>
       </li>
       <li class="menu">
-        <a href="alerts.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="{% url 'alerts' %}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle">
               <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
@@ -112,12 +112,25 @@
         </a>
       </li>
       <li class="menu">
-        <a href="checkpoint.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="#checkpoint" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <div class="">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crosshair"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
-            <span>Checkpoint</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <span>Control de Paradas</span>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
           </div>
         </a>
+        <ul class="collapse submenu list-unstyled" id="checkpoint" data-parent="#accordionExample">
+          <li>
+            <a href="#"> Ultimos </a>
+          </li>
+          <li>
+            <a href="#"> Historial </a>
+          </li>
+        </ul>
       </li>
       <li class="menu">
         <a href="{% url 'users' %}" aria-expanded="true" class="dropdown-toggle">
