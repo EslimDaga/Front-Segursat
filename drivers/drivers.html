@@ -16,10 +16,11 @@
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
+  {% include "drivers/modal.html" %}
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <div class="row layout-top-spacing">
-        <div class="col-xl-6 col-lg-12 col-sm-12  layout-spacing">
+        <div class="col-xl-6 col-lg-6 col-sm-6  layout-spacing">
           <nav class="breadcrumb-two" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
@@ -28,9 +29,9 @@
             </ol>
           </nav>
         </div>
-        <div class="col-xl-6 col-lg-12 col-sm-12">
+        <div class="col-xl-6 col-lg-6 col-sm-6">
           <div class="d-flex flex-row-reverse bd-highlight">
-            <button class="btn btn-primary btn-rounded">
+            <button id="create-driver" class="btn btn-primary btn-rounded">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="8.5" cy="7" r="4"></circle>
@@ -58,7 +59,7 @@
                 <tbody>
                   {% for driver in drivers %}
                   <tr>
-                    <td>{{driver.dni}}</td>
+                    <td>{{driver.id}}</td>
                     <td>{{driver.lastname}}</td>
                     <td>{{driver.firstname}}</td>
                     <td>{{driver.modified}}</td>
@@ -119,6 +120,15 @@
         "lengthMenu": [7, 10, 20, 50],
         "pageLength": 7
       });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $("#create-driver").modalForm({
+        formURL: "{% url 'create-driver' %}",
+        modalID: "#create-modal"
+      });
+    });
+    console.log('Las nalgas de sheyla');
   </script>
   <!-- End Page Level Custom Scripts -->
 {% endblock%}
