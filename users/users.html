@@ -16,11 +16,11 @@
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-  {% include "users/modal.html" %}
+  {% include "users/user-create-modal.html" %}
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <div class="row layout-top-spacing">
-        <div class="col-xl-6 col-lg-12 col-sm-12  layout-spacing">
+        <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing">
           <nav class="breadcrumb-two" aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
@@ -29,7 +29,7 @@
             </ol>
           </nav>
         </div>
-        <div class="col-xl-6 col-lg-12 col-sm-12">
+        <div class="col-xl-6 col-lg-6 col-sm-6">
           <div class="d-flex flex-row-reverse bd-highlight">
             <button id="create-user" class="btn btn-primary btn-rounded">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus">
@@ -51,7 +51,7 @@
                     <th>Usuario</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
-                    <th>Ultimo Login</th>
+                    <th>Ultimo inicio de sesión</th>
                     <th>Estado</th>
                     <th>Acción</th>
                   </tr>
@@ -62,11 +62,11 @@
                     <td>{{profile.user.username}}</td>
                     <td>{{profile.user.last_name}}</td>
                     <td>{{profile.user.first_name}}</td>
-                    <td>{{profile.user.last_login}}</td>
-                    {% if profile.is_active == True %}
+                    <td>{% if profile.user.last_login %}{{profile.user.last_login}}{% else %}No se ha iniciado sesión{% endif %}</td>
+                    {% if profile.user.is_active == True %}
                     <td><span class="badge badge-success"> Activo </span></td>
                     {% else %}
-                    <td><span class="badge badge-success"> Inactivo </span></td>
+                    <td><span class="badge badge-danger"> Inactivo </span></td>
                     {% endif %}
                     <td>
                       <div class="btn-group">
@@ -126,12 +126,14 @@
       });
   </script>
   <script>
-    $(document).ready(function() {
-      $("#create-user").modalForm({
-        formURL: "{% url 'create-user' %}",
-        modalID: "#create-modal"
-      });
+    document.getElementById("create-user").addEventListener("click", () => {
+      $("#user_create_modal").modal("show");
     });
   </script>
+  {% if form.errors %}
+  <script>
+    $("#user_create_modal").modal("show");
+  </script>
+  {% endif %}
   <!-- End Page Level Custom Scripts -->
 {% endblock%}
