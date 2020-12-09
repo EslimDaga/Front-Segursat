@@ -60,16 +60,16 @@
                 <tbody>
                   {% for trigger in triggers %}
                   <tr>
-                    <td>{{trigger.name}}</td>
-                    <td>{{trigger.description}}</td>
-                    <td>{{trigger.modified}}</td>
-                    <td>{{trigger.created}}</td>
+                    <td class="text-center">{{trigger.name}}</td>
+                    <td class="text-center">{{trigger.description}}</td>
+                    <td class="text-center">{{trigger.modified}}</td>
+                    <td class="text-center">{{trigger.created}}</td>
                     {% if trigger.is_active == True %}
-                    <td><span class="badge badge-success"> Activo </span></td>
+                    <td class="text-center"><span class="badge badge-success"> Activo </span></td>
                     {% else %}
-                    <td><span class="badge badge-danger"> Inactivo </span></td>
+                    <td class="text-center"><span class="badge badge-danger"> Inactivo </span></td>
                     {% endif %}
-                    <td>
+                    <td class="text-center">
                       <div class="btn-group">
                         <button type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
                         <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
