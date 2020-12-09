@@ -8,15 +8,18 @@
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
   <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
+  <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'plugins/leaflet/css/leaflet.css' %}"/>
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
 <!-- Begin Content Area -->
+{% include "geofences/geofence-create-modal.html" %}
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-      <div class="col-xl-6 col-lg-12 col-sm-12  layout-spacing">
+      <div class="col-xl-6 col-lg-6 col-sm-6  layout-spacing">
         <nav class="breadcrumb-two" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
@@ -25,9 +28,9 @@
           </ol>
         </nav>
       </div>
-      <div class="col-xl-6 col-lg-12 col-sm-12">
+      <div class="col-xl-6 col-lg-6 col-sm-6">
         <div class="d-flex flex-row-reverse bd-highlight">
-          <button class="btn btn-primary btn-rounded">
+          <button id="create-geofence" class="btn btn-primary btn-rounded">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crop">
               <path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path>
               <path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path>
@@ -89,6 +92,8 @@
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/leaflet-draw/js/leaflet-draw.js' %}"></script>
+<link rel="stylesheet" href="{% static 'plugins/leaflet-draw/css/leaflet.draw-src.css' %}"/>
 <script>
     $('#html5-extension').DataTable( {
       dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -111,5 +116,78 @@
       "pageLength": 7
     });
 </script>
+<script>
+  renderMap = () => {
+    map = L.map('map',{
+      center: [-12.1021887,-77.0665742],
+      zoom: 16,
+    });
+    const openStreetMap = L.tileLayer(
+      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+        maxZoom: 19,
+      }
+    );
+    const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+      attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+      maxZoom: 20,
+      subdomains:['mt0','mt1','mt2','mt3']
+    });
+    const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+      attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+      maxZoom: 20,
+      subdomains:['mt0','mt1','mt2','mt3']
+    });
+    const baseLayers = {
+      'Open Street Maps': openStreetMap,
+      'Google Street Maps': googleStreetsMap,
+      'Google Hybrid Maps': googleHybridMap
+    };
+    const overlays = {};
+    L.control.layers(baseLayers,overlays).addTo(map);
+    baseLayers['Google Street Maps'].addTo(map);
+    const drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
+    const drawControl = new L.Control.Draw({
+      draw: {
+        polyline: false,
+        marker: false,
+        circle: false,
+        polygon: {
+          allowIntersection: false,
+          showArea: true
+        }
+      },
+      edit: {
+        featureGroup: drawnItems,
+        poly: {
+          allowIntersection: false
+        }
+      }
+    });
+    map.addControl(drawControl);
+    map.on(L.Draw.Event.CREATED, function (event) {
+      document.getElementById("id_geojson").value = "";
+      drawnItems.addLayer(event.layer);
+      geojson = JSON.stringify(drawnItems.toGeoJSON());
+      document.getElementById("id_geojson").value = geojson;
+    });
+  }
+</script>
+<script>
+  document.getElementById("create-geofence").addEventListener("click", () => {
+    document.getElementById("map_container").innerHTML = `<div id="map" style="height:100%;width:100%;"></div>`;
+    $("#geofence_create_modal").modal("show");
+    setTimeout(renderMap,500);
+  });
+</script>
+{% if form.errors %}
+<script>
+  document.getElementById("map_container").innerHTML = `<div id="map" style="height:100%;width:100%;"></div>`;
+  $("#geofence_create_modal").modal("show");
+  setTimeout(renderMap,500);
+</script>
+{% endif %}
 <!-- End Page Level Custom Scripts -->
 {% endblock%}
