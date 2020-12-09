@@ -16,7 +16,7 @@
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-  {% include "drivers/modal.html" %}
+  {% include "drivers/driver-create-modal.html" %}
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <div class="row layout-top-spacing">
@@ -122,12 +122,14 @@
       });
   </script>
   <script>
-    $(document).ready(function() {
-      $("#create-driver").modalForm({
-        formURL: "{% url 'create-driver' %}",
-        modalID: "#create-modal"
-      });
+    document.getElementById("create-driver").addEventListener("click", () => {
+      $("#driver_create_modal").modal("show");
     });
   </script>
-  <!-- End Page Level Custom Scripts -->
+  {% if form.errors %}
+  <script>
+    $("#driver_create_modal").modal("show");
+  </script>
+  {% endif %}
+<!-- End Page Level Custom Scripts -->
 {% endblock%}
