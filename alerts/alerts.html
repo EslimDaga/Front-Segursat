@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_content %}
+  <title>Ultimas Alertas - Segursat GPS</title>
+  <!-- Begin Page Level Custom Styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/miscellaneous.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/breadcrumb.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/forms/theme-checkbox-radio.css' %}"/>
+  <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/tables/table-basic.css' %}" rel="stylesheet" type="text/css" />
+  <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+  <!-- End Page Level Custom Styles -->
+{% endblock %}
+{% block container %}
+  {% include "alerts/trigger-create-modal.html" %}
+  <div id="content" class="main-content">
+    <div class="layout-px-spacing">
+      <div class="row layout-top-spacing">
+        <div class="col-xl-6 col-lg-6 col-sm-6  layout-spacing">
+          <nav class="breadcrumb-two" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+              <li class="breadcrumb-item active"><a href="{% url 'alerts' %}">Ultimas Alertas</a></li>
+              <li class="breadcrumb-item"></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-sm-6">
+          <div class="d-flex flex-row-reverse bd-highlight">
+            <button class="btn btn-primary btn-rounded">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </button>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+          <div class="widget-content widget-content-area br-6">
+            <div class="table-responsive mb-4 mt-4">
+              <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+                <thead>
+                  <tr>
+                    <th class="text-center">Unidad</th>
+                    <th class="text-center">Tipo de Alerta</th>
+                    <th class="text-center">Prioridad</th>
+                    <th class="text-center">Fecha de Creación</th>
+                    <th class="text-center">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for alert in alerts %}
+                  <tr>
+                    <td class="text-center">{{alert.unit_name}}</td>
+                    <td class="text-center">{{alert.alert_type}}</td>
+                    {% if alert.alert_priority == "V" %}
+                    <td class="text-center"><span class="badge badge-danger"> Muy alta </span></td>
+                    {% else %}
+                    <td class="text-center"><span class="badge badge-info"> Baja </span></td>
+                    {% endif %}
+                    <td class="text-center">{{alert.created}}</td>
+                    <td class="text-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include 'includes/footer.html' %}
+  </div>  
+{% endblock %}
+{% block script_content %}
+
+  <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+{% endblock%}
