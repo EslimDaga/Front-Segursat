@@ -48,27 +48,27 @@
               <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
                 <thead>
                   <tr>
-                    <th>Usuario</th>
-                    <th>Apellidos</th>
-                    <th>Nombres</th>
-                    <th>Ultimo inicio de sesión</th>
-                    <th>Estado</th>
-                    <th>Acción</th>
+                    <th class="text-center">Usuario</th>
+                    <th class="text-center">Apellidos</th>
+                    <th class="text-center">Nombres</th>
+                    <th class="text-center">Ultimo inicio de sesión</th>
+                    <th class="text-center">Estado</th>
+                    <th class="text-center">Acción</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for profile in profiles %}
                   <tr>
-                    <td>{{profile.user.username}}</td>
-                    <td>{{profile.user.last_name}}</td>
-                    <td>{{profile.user.first_name}}</td>
-                    <td>{% if profile.user.last_login %}{{profile.user.last_login}}{% else %}No se ha iniciado sesión{% endif %}</td>
+                    <td class="text-center">{{profile.user.username}}</td>
+                    <td class="text-center">{{profile.user.last_name}}</td>
+                    <td class="text-center">{{profile.user.first_name}}</td>
+                    <td class="text-center">{% if profile.user.last_login %}{{profile.user.last_login}}{% else %}No se ha iniciado sesión{% endif %}</td>
                     {% if profile.user.is_active == True %}
-                    <td><span class="badge badge-success"> Activo </span></td>
+                    <td class="text-center"><span class="badge badge-success"> Activo </span></td>
                     {% else %}
-                    <td><span class="badge badge-danger"> Inactivo </span></td>
+                    <td class="text-center"><span class="badge badge-danger"> Inactivo </span></td>
                     {% endif %}
-                    <td>
+                    <td class="text-center">
                       <div class="btn-group">
                         <button type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
                         <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
