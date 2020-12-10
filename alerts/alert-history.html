@@ -54,17 +54,6 @@
             <button class="btn btn-primary responsive-button" onclick="getSearchAlert()" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
           </div>
         </div>
-        <script>
-          const getSearchAlert = async() => {
-            let getDate = document.getElementById("basicFlatpickr").value;
-            let getUnit = document.getElementById("unit_name").value;
-            const url = `/web/api/alerts/alert-search/${getDate}/${getUnit}/`
-            const response = await fetch(url);
-            const alert = await response.json();
-            console.log(alert);
-            return alert;
-          }
-        </script>
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
           <div class="widget-content widget-content-area br-6">
             <div class="table-responsive mb-4 mt-4">
@@ -114,7 +103,6 @@
     </div>
     {% include 'includes/footer.html' %}
   </div>
-  
 {% endblock %}
 {% block script_content %}
   <!-- Begin Page Level Custom Scripts -->
@@ -157,6 +145,17 @@
         "lengthMenu": [7, 10, 20, 50],
         "pageLength": 7
       });
+  </script>
+  <script>
+    const getSearchAlert = async() => {
+      let getDate = document.getElementById("basicFlatpickr").value;
+      let getUnit = document.getElementById("unit_name").value;
+      const url = `/web/api/alerts/alert-search/${getDate}/${getUnit}/`
+      const response = await fetch(url);
+      const alert = await response.json();
+      console.log(alert);
+      return alert;
+    }
   </script>
 <!-- End Page Level Custom Scripts -->
 {% endblock%}
