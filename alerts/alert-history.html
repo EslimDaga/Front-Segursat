@@ -17,6 +17,10 @@
   <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/promise-polyfill.js' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
@@ -51,7 +55,7 @@
         </div>
         <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
           <div class="">
-            <button class="btn btn-primary responsive-button" onclick="getSearchAlert()" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+            <button class="btn btn-primary responsive-button" onclick="alertSearch()" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
           </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
@@ -115,6 +119,8 @@
   <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
   <script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
   <script src="{% static 'plugins/select2/select2.min.js' %}"></script>
+  <script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+  <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
   <script>
     var f1 = flatpickr(document.getElementById('basicFlatpickr'));
   </script>
@@ -125,7 +131,50 @@
     });
   </script>
   <script>
-      $('#html5-extension').DataTable( {
+      
+  </script>
+  <script>
+    const getAlertSearch = async(alertDate,unitName) => {
+      const url = `/web/api/alerts/alert-search/${alertDate}/${unitName}/`
+      const response = await fetch(url);
+      const alerts = await response.json();
+      console.log(alerts);
+      const alertsArray = alerts.map( alert => {
+        const table = document.getElementById("html5-extension").getElementsByTagName('tbody')[0];
+        const row = table.insertRow(0);
+        const cell0 = row.insertCell(0);
+        const cell1 = row.insertCell(1);
+        const cell2 = row.insertCell(2);
+        const cell3 = row.insertCell(3);
+        const cell4 = row.insertCell(4);
+
+        cell0.className = "text-center";
+        cell1.className = "text-center";
+        cell2.className = "text-center";
+        cell3.className = "text-center";
+        cell4.className = "text-center";
+
+        cell0.innerHTML = alert.unit_name;
+        cell1.innerHTML = alert.alert_type;
+        cell2.innerHTML = alert.alert_priority;
+        cell3.innerHTML = alert.datetime;
+        cell4.innerHTML = `
+          <div class="btn-group">
+            <button type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+            <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuReference24">
+              <a class="dropdown-item" href="#"><i class="fas fa-pencil-alt" style="padding-right: 15px;"></i>Editar</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-trash-alt" style="padding-right: 15px;"></i>Eliminar</a>
+            </div>
+          </div>
+        `;
+      });
+      const table = $('#html5-extension').DataTable({
+        destroy: true,
         dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
         buttons: {
           buttons: [
@@ -145,16 +194,28 @@
         "lengthMenu": [7, 10, 20, 50],
         "pageLength": 7
       });
-  </script>
-  <script>
-    const getSearchAlert = async() => {
-      let getDate = document.getElementById("basicFlatpickr").value;
-      let getUnit = document.getElementById("unit_name").value;
-      const url = `/web/api/alerts/alert-search/${getDate}/${getUnit}/`
-      const response = await fetch(url);
-      const alert = await response.json();
-      console.log(alert);
-      return alert;
+    }
+
+    const alertSearch = async() => {
+      let alertDate = document.getElementById("basicFlatpickr").value;
+      let unitName = document.getElementById("unit_name").value
+      if(alertDate === ""){
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Seleccione una fecha',
+          padding: '2em'
+        })
+      }else if(unitName === ""){
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Seleccione una unidad',
+          padding: '2em'
+        })
+      }else{
+        await getAlertSearch(alertDate,unitName);
+      }
     }
   </script>
 <!-- End Page Level Custom Scripts -->
