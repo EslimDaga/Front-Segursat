@@ -77,6 +77,10 @@ code {
 #container.fixed-header {
   margin-top: 56px; }
 
+.container-map-all{
+  position: relative;
+}
+
 #content {
   width: 50%;
   flex-grow: 8;
