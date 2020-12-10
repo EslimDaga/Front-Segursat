@@ -16,6 +16,7 @@
   <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
@@ -46,28 +47,38 @@
             </button>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-sm-6 pb-4">
+        <div class="col-xl-6 col-lg-6 col-sm-6 pb-2">
           <div class="d-flex flex-row-reverse bd-highlight">
-            <input id="basicFlatpickr" value="2019-09-04" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date.." readonly="readonly">
+            <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha" readonly="readonly">
           </div>
         </div>
-        <div class="col-xl-3 col-lg-6 col-sm-6 pb-4">
+        <div class="col-xl-3 col-lg-6 col-sm-6 pb-2">
           <div class="">
-            <select class="placeholder js-states form-control">
-              <option>Buscar...</option>
-              <option value="one">First</option>
-              <option value="two">Second</option>
-              <option value="three">Third</option>
-              <option value="four">Fourth</option>
-              <option value="five">Fifth</option>
+            <select class="placeholder js-states form-control" id="unit_name">
+              <option value="all">Todos</option>
+              {% for unit in units%}
+              <option value="{{unit.name}}">{{unit.name}}</option>
+              {% endfor %}
             </select>
           </div>
         </div>
-        <div class="col-xl-3 col-lg-6 col-sm-6 pb-4">
+        <div class="col-xl-3 col-lg-6 col-sm-6 pb-2">
           <div class="">
-            <button class="btn btn-primary">Buscar</button>
+            <button class="btn btn-primary" onclick="getSearchAlert()">Buscar</button>
           </div>
         </div>
+        
+        <script>
+          const getSearchAlert = async() => {
+            let getDate = document.getElementById("basicFlatpickr").value;
+            let getUnit = document.getElementById("unit_name").value;
+            const url = `/web/api/alerts/alert-search/${getDate}/${getUnit}/`
+            const response = await fetch(url);
+            const alert = await response.json();
+            console.log(alert);
+            return alert;
+          }
+        </script>
         <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
           <div class="widget-content widget-content-area br-6">
             <div class="table-responsive mb-4 mt-4">
@@ -116,7 +127,8 @@
       </div>
     </div>
     {% include 'includes/footer.html' %}
-  </div>  
+  </div>
+  
 {% endblock %}
 {% block script_content %}
   <!-- Begin Page Level Custom Scripts -->
