@@ -23,186 +23,520 @@
 <div id="content" class="main-content container-map-all" >
   <div class="widget-constent-area">
     <div class="map" id="map"></div>
+    <div id="sidebar-map" style="padding-bottom: 0px;">
+      <a class="btn-collapse" onclick="app.changeSetting('toggleSidebar');"><i></i></a>
+      <div class="sidebar-map-content">
+        <ul class="nav nav-pills">
+          <li role="presentation" class="nav-item active">
+            <a href="#objects_tab" type="button" data-toggle="tab">Objetos</a>
+          </li>
+          <li role="presentation" class="nav-item">
+            <a href="#events_tab" type="button" data-toggle="tab">Eventos</a>
+          </li>
+          <li role="presentation" class="nav-item">
+            <a href="#history_tab" type="button" data-toggle="tab">Historicos</a>
+          </li>
+          <li role="presentation" class="hidden"><a href="#alerts_tab" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#geofencing_tab" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#geofencing_create" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#geofencing_edit" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#routes_tab" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#routes_create" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#routes_edit" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#map_icons_tab" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#map_icons_create" data-toggle="tab"></a></li>
+          <li role="presentation" class="hidden"><a href="#map_icons_edit" data-toggle="tab"></a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="objects_tab">
+            <div class="tab-pane-header">
+              <div class="form">
+                <div class="input-group">
+                  <div class="form-group search">
+                    <input class="form-control" placeholder="Buscar" autocomplete="off" name="search" type="text">
+                  </div>
+                  <span class="input-group-btn"></span>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane-body" style="height: 602px;">
+              <div id="ajax-items" style="position: relative;">
+                <div>
+                  <div class="group" data-toggle="multiCheckbox">
+                    <div class="group-heading">
+                      <div class="checkbox">
+                        <input type="checkbox" data-toggle="checkbox" value="0">
+                        <label></label>
+                      </div>
+                      <div class="group-title " data-toggle="collapse" data-target="#device-group-0" data-parent="#objects_tab" aria-expanded="true" aria-controls="device-group-0">
+                          Sin Grupo <span class="count">2</span>
+                      </div>
+                      <div class="btn-group">
+                        <i class="btn icon options"></i>
+                      </div>
+                    </div>
+                    <div id="device-group-0" class="group-collapse collapse in" data-id="0" role="tabpanel" aria-expanded="true">
+                      <div class="group-body">
+                        <ul class="group-list">
+                          <li data-device-id="1341">
+                            <div class="checkbox">
+                              <input type="checkbox" name="items[1341]" value="1341" checked="&quot;checked&quot;" onchange="app.devices.active('1341', this.checked);">
+                              <label></label>
+                            </div>
+                            <div class="name" onclick="app.devices.select(1341);">
+                              <span data-device="name">Citroen Jumper</span>
+                              <span data-device="time">2020-11-03 18:46:21</span>
+                            </div>
+                            <div class="details">
+                              <span data-device="speed">0 kph</span>
+                              <span data-device="status" style="background-color: yellow" title="ACK">ack</span>
+                              <div class="btn-group dropleft droparrow" data-position="fixed">
+                                <i class="btn icon options" data-toggle="dropdown" data-position="fixed" aria-haspopup="true" aria-expanded="false"></i>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'last_hour');">
+                                      <span class="icon last-hour"></span>
+                                      <span class="text">Mostrar Historial (ultima hora)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'today');">
+                                      <span class="icon today"></span>
+                                      <span class="text">Mostrar Historial (hoy)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'yesterday');">
+                                      <span class="icon yesterday"></span>
+                                      <span class="text">Mostrar Historial (ayer)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" data-url="https://demo.gpswox.com/devices/follow_map/1341" data-id="1341" onclick="app.devices.follow(1341);" data-name="Follow (Citroen Jumper)">
+                                      <span class="icon follow"></span>
+                                      <span class="text">Seguir</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                          <li data-device-id="1346">
+                            <div class="checkbox">
+                              <input type="checkbox" name="items[1346]" value="1346" checked="&quot;checked&quot;" onchange="app.devices.active('1346', this.checked);">
+                              <label></label>
+                            </div>
+                            <div class="name" onclick="app.devices.select(1346);">
+                              <span data-device="name">Toyota Prius</span>
+                              <span data-device="time">2020-11-03 18:45:57</span>
+                            </div>
+                            <div class="details">
+                              <span data-device="speed">0 kph</span>
+                              <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                              <span data-device="status" style="background-color: yellow" title="Engine">engine</span>
+                              <div class="btn-group dropleft droparrow" data-position="fixed">
+                                <i class="btn icon options" data-toggle="dropdown" data-position="fixed" aria-haspopup="true" aria-expanded="false"></i>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'last_hour');">
+                                      <span class="icon last-hour"></span>
+                                      <span class="text">Mostrar Historial (ultima hora)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'today');">
+                                      <span class="icon today"></span>
+                                      <span class="text">Mostrar Historial (hoy)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'yesterday');">
+                                      <span class="icon yesterday"></span>
+                                      <span class="text">Mostrar Historial (ayer)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" data-url="https://demo.gpswox.com/devices/follow_map/1341" data-id="1341" onclick="app.devices.follow(1341);" data-name="Follow (Citroen Jumper)">
+                                      <span class="icon follow"></span>
+                                      <span class="text">Seguir</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="group" data-toggle="multiCheckbox">
+                    <div class="group-heading">
+                      <div class="checkbox">
+                        <input type="checkbox" data-toggle="checkbox" value="402">
+                        <label></label>
+                      </div>
+                      <div class="group-title collapsed" data-toggle="collapse" data-target="#device-group-402" data-parent="#objects_tab" aria-expanded="false" aria-controls="device-group-402">
+                        Solgas <span class="count">1</span>
+                      </div>
+                      <div class="btn-group">
+                        <i class="btn icon options"></i>
+                      </div>
+                    </div>
+                    <div id="device-group-402" class="group-collapse collapse " data-id="402" role="tabpanel" aria-expanded="false">
+                      <div class="group-body">
+                        <ul class="group-list">
+                          <li data-device-id="1346">
+                            <div class="checkbox">
+                              <input type="checkbox" name="items[1346]" value="1346" checked="&quot;checked&quot;" onchange="app.devices.active('1346', this.checked);">
+                              <label></label>
+                            </div>
+                            <div class="name" onclick="app.devices.select(1346);">
+                              <span data-device="name">Toyota Prius</span>
+                              <span data-device="time">2020-11-03 18:45:57</span>
+                            </div>
+                            <div class="details">
+                              <span data-device="speed">0 kph</span>
+                              <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                              <span data-device="status" style="background-color: yellow" title="Engine">engine</span>
+                              <div class="btn-group dropleft droparrow" data-position="fixed">
+                                <i class="btn icon options" data-toggle="dropdown" data-position="fixed" aria-haspopup="true" aria-expanded="false"></i>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'last_hour');">
+                                      <span class="icon last-hour"></span>
+                                      <span class="text">Mostrar Historial (ultima hora)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'today');">
+                                      <span class="icon today"></span>
+                                      <span class="text">Mostrar Historial (hoy)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" class="object_show_history" onclick="app.history.device('1341', 'yesterday');">
+                                      <span class="icon yesterday"></span>
+                                      <span class="text">Mostrar Historial (ayer)</span>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a href="javascript:" data-url="https://demo.gpswox.com/devices/follow_map/1341" data-id="1341" onclick="app.devices.follow(1341);" data-name="Follow (Citroen Jumper)">
+                                      <span class="icon follow"></span>
+                                      <span class="text">Seguir</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="events_tab">
+            <div class="tab-pane-header">
+            <div class="form">
+              <div class="input-group">
+                <div class="form-group search">
+                  <input class="form-control" id="events_search_field" placeholder="Buscar" autocomplete="off" name="search" type="text">
+                </div>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">
+                    <i class="icon lookup"></i>
+                  </button>
+                  <button class="btn btn-default" type="button">
+                    <i class="icon remove-all"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            </div>
+            <div class="tab-pane-body">
+            <table class="table table-list">
+              <thead>
+                <tr>
+                  <th>Tiempo</th>
+                  <th>Objecto</th>
+                  <th>Evento</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="ajax-events" style="position: relative;"></tbody>
+            </table>
+            </div>
+          </div>
+          <div class="tab-pane" id="history_tab">
+            <div class="tab-pane-header">
+              <div id="history-form" class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">Dispositivo:</label>
+                  <div class="col-xs-9">
+                    <div class="btn-group bootstrap-select form-control devices_list">
+                      <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="BMW M5">
+                        <span class="filter-option pull-left">BMW M5</span>&nbsp;
+                        <span class="bs-caret">
+                          <span class="caret"></span>
+                        </span>
+                      </button>
+                      <div class="dropdown-menu open" role="combobox">
+                        <div class="bs-searchbox">
+                          <input type="text" class="form-control" autocomplete="off" role="textbox" aria-label="Search">
+                        </div>
+                        <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                          <li data-original-index="0" class="selected">
+                            <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true">
+                              <span class="  check-mark"></span>
+                              <span class="text">BMW M5</span>
+                            </a>
+                          </li>
+                          <li data-original-index="1">
+                            <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                              <span class="  check-mark"></span>
+                              <span class="text">Citroen Jumper</span>
+                            </a>
+                          </li>
+                          <li data-original-index="2">
+                            <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                              <span class="  check-mark"></span>
+                              <span class="text">DAF FA</span>
+                            </a>
+                          </li>
+                          <li data-original-index="3">
+                            <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                              <span class="  check-mark"></span>
+                              <span class="text">Ford Transit</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">Desde:</label>
+                  <div class="col-xs-9">
+                    <div class="input-group">
+                      <input class="datepicker form-control" name="from_date" type="text" value="2020-11-03">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-3 control-label">Hasta:</label>
+                  <div class="col-xs-9">
+                    <div class="input-group">
+                      <input class="datepicker form-control" name="to_date" type="text" value="2020-11-03">
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group">
+                  <button class="btn btn-primary btn-block" type="button" onclick="app.history.get()">Mostrar Historico</button>
+                  <span class="input-group-btn">
+                    <div class="btn-group dropdown">
+                      <button class="btn btn-default" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon history-export"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="javascript:" onclick="app.history.export( 'gsr' )">Exportar a GSR</a></li>
+                        <li><a href="javascript:" onclick="app.history.export( 'kml' )">Exportar a KML</a></li>
+                        <li><a href="javascript:" onclick="app.history.export( 'gpx' )">Exportar a GPX</a></li>
+                        <li><a href="javascript:" onclick="app.history.export( 'csv' )">Exportar a CSV</a></li>
+                      </ul>
+                    </div>
+                    <button class="btn btn-default" type="button" onclick="app.history.clear()">
+                      <i class="icon history-clean"></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map-controls">
+      <div>
+        <div class="btn-group-vertical" role="group">
+          <button type="button" class="btn" onclick="app.mapFull();">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </button>
+        </div>
+      </div>
+      <div id="map-controls-layers">
+        <div class="btn-group-vertical" role="group" data-toggle="buttons">
+          <label class="btn active">
+            <input id="clusterDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('clusterDevice', this.checked);">
+            <span class="icon group-devices"></span>
+          </label>
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Ajustar objetos">
+            <input id="fitBounds" type="checkbox" autocomplete="off" onchange="app.devices.toggleFitBounds(this.checked);">
+            <span class="icon fitBounds"></span>
+          </label>
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Objectos">
+            <input id="showDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('showDevice', this.checked);">
+            <span class="icon devices"></span>
+          </label>
+          <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Geocercas">
+            <input id="showGeofences" type="checkbox" autocomplete="off" onchange="app.changeSetting('showGeofences', this.checked);">
+            <span class="icon geofences"></span>
+          </label>
+          <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Rutas">
+            <input id="showRoutes" type="checkbox" autocomplete="off" onchange="app.changeSetting('showRoutes', this.checked);">
+            <span class="icon routes"></span>
+          </label>
+          <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="POI">
+            <input id="showPoi" type="checkbox" autocomplete="off" onchange="app.changeSetting('showPoi', this.checked);">
+            <span class="icon poi"></span>
+          </label>
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar nombres">
+            <input id="showNames" type="checkbox" autocomplete="off" onchange="app.changeSetting('showNames', this.checked);">
+            <span class="icon show-name"></span>
+          </label>
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar cruz">
+            <input id="showTail" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTail', this.checked);">
+            <span class="icon show-tail"></span>
+          </label>
+          <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tráfico en vivo">
+            <input id="showTraffic" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTraffic', this.checked);">
+            <span class="icon traffic"></span>
+          </label>
+        </div>
+      </div>
+      <div id="history-control-layers" style="display: none;">
+        <div class="btn-group-vertical" role="group" data-toggle="buttons">
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Route">
+            <input id="showHistoryRoute" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryRoute', this.checked);">
+            <span class="icon routes"></span>
+          </label>
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Arrows">
+            <input id="showHistoryArrow" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryArrow', this.checked);">
+            <span class="icon device"></span>
+          </label>
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Stops">
+            <input id="showHistoryStop" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryStop', this.checked);">
+            <span class="icon parking"></span>
+          </label>
+          <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Events">
+            <input id="showHistoryEvent" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryEvent', this.checked);">
+            <span class="icon event"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <!-- End Right Bar -->
+    <!-- Begin Bottom Bar -->
+    <div id="bottombar" style="padding-left: 300px; z-index: 997;">
+      <div id="widgets" data-device-id="1347">
+        <a class="btn-collapse" onclick="app.changeSetting('toggleWidgets');"><i style="color: white;"></i></a>
+        <div class="widgets-content">
+          <div class="widget widget-device">
+            <div class="widget-heading">
+              <div class="widget-title">
+                <div class="widget-actions">
+                  <span data-device="status" style="background-color: yellow" title="ACK">ACK</span> <span data-device="status-text">ACK</span>
+                </div>
+                <i class="icon device"></i>
+                <span data-device="name">BMW M5</span>
+              </div>
+            </div>
+            <div class="widget-body">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>Dirección:</td>
+                    <td class="">
+                      <span class="pull-right p-relative"><span data-device="preview"><a href="https://www.google.com/maps/place/SEGURSAT+SAC/@-12.095299,-77.059699,15z" target="_blank" class="btn btn-xs btn-default"><i class="fas fa-eye"></i></a></span></span>
+                      <span data-device="address" data-lat="19.250127" data-lng="-98.870827">Av. Juan de Aliaga 427, Magdalena del Mar 15076</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tiempo:</td>
+                    <td><span data-device="time">2020-11-09 15:03:39</span></td>
+                  </tr>
+                  <tr>
+                    <td>Tiempo de Parada:</td>
+                    <td><span data-device="stop_duration">4min 3s</span></td>
+                  </tr>
+                  <tr>
+                    <td>Conductor:</td>
+                    <td><span data-device="driver">Roger Carlos</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="widget widget-sensors">
+            <div class="widget-heading">
+              <div class="widget-title"><i class="icon sensors"></i> Sensores</div>
+            </div>
+            <div class="widget-body">
+              <div data-device="sensors">
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td><i class="icon gsm gsm-2"></i>RSSI</td>
+                      <td>30 %</td>
+                    </tr>
+                    <tr>
+                      <td><i class="icon door"></i>Bloqueo</td>
+                      <td>Apagado</td>
+                    </tr>
+                    <tr>
+                      <td><i class="icon acc"></i>Carga</td>
+                      <td>Encendido</td>
+                    </tr>
+                    <tr>
+                      <td><i class="icon gsm gsm-2"></i>GSM</td>
+                      <td>40 %</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td><i class="icon battery battery-1"></i>Batería</td>
+                      <td>6 %</td>
+                    </tr>
+                    <tr>
+                      <td><i class="icon ignition"></i>Encendido</td>
+                      <td>Apagado</td>
+                    </tr>
+                    <tr>
+                      <td><i class="icon satellites"></i>Satelites</td>
+                      <td>11</td>
+                    </tr>
+                    <tr>
+                      <td><i class="icon speed"></i>Velocidad</td>
+                      <td>0 kph</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="widget-empty">
+                <a href="javascript:" class="btn btn-default" data-url="" data-modal="sonsors_create" type="button">
+                <i class="icon add"></i> Add sensor
+                  </a>
+              </div>
+            </div>
+          </div>
+          <div class="widget widget-streetview">
+            <div class="widget-heading">
+              <div class="widget-title">
+                <i class="icon streetview"></i> Street view
+              </div>
+            </div>
+            <div class="widget-body">
+              <span data-device="streetview" data-size="290x125"><a href="http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=19.25013,-98.87083&amp;cbp=11,96,0,0,0" target="_blank"><img alt="Street view" src="https://demo.gpswox.com/streetview.jpg?size=290x125&amp;location=19.25013,-98.87083&amp;heading=96"></a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Begin Right Bar -->
-  <div id="map-controls">
-    <div>
-      <div class="btn-group-vertical" role="group">
-        <button type="button" class="btn" onclick="app.mapFull();">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </button>
-      </div>
-    </div>
-    <div id="map-controls-layers">
-      <div class="btn-group-vertical" role="group" data-toggle="buttons">
-        <label class="btn active">
-          <input id="clusterDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('clusterDevice', this.checked);">
-          <span class="icon group-devices"></span>
-        </label>
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Ajustar objetos">
-          <input id="fitBounds" type="checkbox" autocomplete="off" onchange="app.devices.toggleFitBounds(this.checked);">
-          <span class="icon fitBounds"></span>
-        </label>
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Objectos">
-          <input id="showDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('showDevice', this.checked);">
-          <span class="icon devices"></span>
-        </label>
-        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Geocercas">
-          <input id="showGeofences" type="checkbox" autocomplete="off" onchange="app.changeSetting('showGeofences', this.checked);">
-          <span class="icon geofences"></span>
-        </label>
-        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Rutas">
-          <input id="showRoutes" type="checkbox" autocomplete="off" onchange="app.changeSetting('showRoutes', this.checked);">
-          <span class="icon routes"></span>
-        </label>
-        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="POI">
-          <input id="showPoi" type="checkbox" autocomplete="off" onchange="app.changeSetting('showPoi', this.checked);">
-          <span class="icon poi"></span>
-        </label>
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar nombres">
-          <input id="showNames" type="checkbox" autocomplete="off" onchange="app.changeSetting('showNames', this.checked);">
-          <span class="icon show-name"></span>
-        </label>
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar cruz">
-          <input id="showTail" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTail', this.checked);">
-          <span class="icon show-tail"></span>
-        </label>
-        <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tráfico en vivo">
-          <input id="showTraffic" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTraffic', this.checked);">
-          <span class="icon traffic"></span>
-        </label>
-      </div>
-    </div>
-    <div id="history-control-layers" style="display: none;">
-      <div class="btn-group-vertical" role="group" data-toggle="buttons">
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Route">
-          <input id="showHistoryRoute" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryRoute', this.checked);">
-          <span class="icon routes"></span>
-        </label>
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Arrows">
-          <input id="showHistoryArrow" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryArrow', this.checked);">
-          <span class="icon device"></span>
-        </label>
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Stops">
-          <input id="showHistoryStop" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryStop', this.checked);">
-          <span class="icon parking"></span>
-        </label>
-        <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Events">
-          <input id="showHistoryEvent" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryEvent', this.checked);">
-          <span class="icon event"></span>
-        </label>
-      </div>
-    </div>
-  </div>
-  <!-- End Right Bar -->
-  <!-- Begin Bottom Bar -->
-  <div id="bottombar" style="padding-left: 300px; z-index: 997;">
-    <div id="widgets" data-device-id="1347">
-      <a class="btn-collapse" onclick="app.changeSetting('toggleWidgets');"><i style="color: white;"></i></a>
-      <div class="widgets-content">
-        <div class="widget widget-device">
-          <div class="widget-heading">
-            <div class="widget-title">
-              <div class="widget-actions">
-                <span data-device="status" style="background-color: yellow" title="ACK">ACK</span> <span data-device="status-text">ACK</span>
-              </div>
-              <i class="icon device"></i>
-              <span data-device="name">BMW M5</span>
-            </div>
-          </div>
-          <div class="widget-body">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>Dirección:</td>
-                  <td class="">
-                    <span class="pull-right p-relative"><span data-device="preview"><a href="https://www.google.com/maps/place/SEGURSAT+SAC/@-12.095299,-77.059699,15z" target="_blank" class="btn btn-xs btn-default"><i class="fas fa-eye"></i></a></span></span>
-                    <span data-device="address" data-lat="19.250127" data-lng="-98.870827">Av. Juan de Aliaga 427, Magdalena del Mar 15076</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Tiempo:</td>
-                  <td><span data-device="time">2020-11-09 15:03:39</span></td>
-                </tr>
-                <tr>
-                  <td>Tiempo de Parada:</td>
-                  <td><span data-device="stop_duration">4min 3s</span></td>
-                </tr>
-                <tr>
-                  <td>Conductor:</td>
-                  <td><span data-device="driver">Roger Carlos</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="widget widget-sensors">
-          <div class="widget-heading">
-            <div class="widget-title"><i class="icon sensors"></i> Sensores</div>
-          </div>
-          <div class="widget-body">
-            <div data-device="sensors">
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td><i class="icon gsm gsm-2"></i>RSSI</td>
-                    <td>30 %</td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon door"></i>Bloqueo</td>
-                    <td>Apagado</td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon acc"></i>Carga</td>
-                    <td>Encendido</td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon gsm gsm-2"></i>GSM</td>
-                    <td>40 %</td>
-                  </tr>
-                </tbody>
-              </table>
-              <table class="table">
-                <tbody>
-                  <tr>
-                    <td><i class="icon battery battery-1"></i>Batería</td>
-                    <td>6 %</td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon ignition"></i>Encendido</td>
-                    <td>Apagado</td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon satellites"></i>Satelites</td>
-                    <td>11</td>
-                  </tr>
-                  <tr>
-                    <td><i class="icon speed"></i>Velocidad</td>
-                    <td>0 kph</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="widget-empty">
-              <a href="javascript:" class="btn btn-default" data-url="" data-modal="sonsors_create" type="button">
-              <i class="icon add"></i> Add sensor
-                </a>
-            </div>
-          </div>
-        </div>
-        <div class="widget widget-streetview">
-          <div class="widget-heading">
-            <div class="widget-title">
-              <i class="icon streetview"></i> Street view
-            </div>
-          </div>
-          <div class="widget-body">
-            <span data-device="streetview" data-size="290x125"><a href="http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=19.25013,-98.87083&amp;cbp=11,96,0,0,0" target="_blank"><img alt="Street view" src="https://demo.gpswox.com/streetview.jpg?size=290x125&amp;location=19.25013,-98.87083&amp;heading=96"></a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- End Bottom Bar -->
 </div>
 {% endblock %}
