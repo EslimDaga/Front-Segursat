@@ -2067,3 +2067,23 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
 
 .position-relative {
   position: relative; }
+
+/*--------Buttons line--------*/
+@media screen and (max-width: 575px){
+  .responsive-header-menu-breadcum{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 575px){
+  .responsive-header-menu{
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 991px){
+  .responsive-button{
+    width: 100%;
+    height: 45.39px;
+  }
+}
