@@ -5,14 +5,11 @@
   <!-- Begin Page Level Custom Styles -->
   <link href="{% static 'plugins/widgets-map/css/style.css' %}" rel="stylesheet">
   <!-- End Global Mandatory Styles -->
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-  crossorigin=""></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-  crossorigin=""/>
+  <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'plugins/leaflet/css/leaflet.css' %}">
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <link href="{% static 'assets/css/components/tabs-accordian/custom-tabs.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
   <style>
     .map {
     width: 100%;
@@ -41,12 +38,16 @@
         <div class="tab-content" id="justify-pills-tabContent">
           <div class="tab-pane fade show active" id="justify-pills-home" role="tabpanel" aria-labelledby="justify-pills-home-tab">
             <div class="col-md-12 pt-3">
-              <p class="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
+              <div class="input-group mb-4">
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="notification" aria-describedby="basic-addon2">
+              </div>
+              <div class="col-md-12">
+                <div class="list-group ">
+                  <a href="javascript:void(0);" class="list-group-item list-group-item-action">Unidad 1</a>
+                  <a href="javascript:void(0);" class="list-group-item list-group-item-action active">Unidad 2</a>
+                  <a href="javascript:void(0);" class="list-group-item list-group-item-action">Unidad 3</a>
+                </div>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="justify-pills-profile" role="tabpanel" aria-labelledby="justify-pills-profile-tab">
@@ -260,7 +261,7 @@
 {% block script_content %}
   <script>
     map = L.map('map',{
-      center: [-12.1021887,-77.0665742],
+      center: [-12.105049,-77.027134],
       zoom: 16,
     });
     const openStreetMap = L.tileLayer(
@@ -297,13 +298,13 @@
           DEMO001
         </div>
         <div class="map-label-content">
-          <img id="DEMO001CustomMarker" src="/static/img/vehicle.png" width="26" height="48"/>
+          <img id="DEMO001CustomMarker" src="/static/assets/img/markers/vehicle.png" width="26" height="48"/>
         </div>
       </div>
       `
     });
     marker = new L.marker(
-      [-12.1021887,-77.0665742],
+      [-12.105049, -77.027134],
       {
         icon: icon,
         title: "DEMO001",
