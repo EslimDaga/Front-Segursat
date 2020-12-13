@@ -1,0 +1,59 @@
+/* marker code */
+
+/*Wraperclass for the divicon*/
+.map-label {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+/*Wrap the content of the divicon (text) in this class*/
+.map-label-title {
+    position: absolute;
+    width: 100px;
+    bottom: 35px;left: -50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color:white;border-radius:5px;border-width:2px;border-style:solid;border-color:#444;font-weight:bold;
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+}
+.map-label-content {
+    order: 1;
+    position: relative;
+    left: -50%;
+    bottom: -24px;
+    background-color: transparent;
+    white-space: nowrap;
+}
+/*Add this arrow*/
+.map-label-arrow {
+    order: 2;
+    width: 0px; height: 0px; left: 50%;
+    border-style: solid;
+    border-color: #444 transparent transparent transparent;
+    border-width: 10px 6px 0 6px; /*[first number is height, second/fourth are rigth/left width]*/
+    margin-left: -6px;
+}
+    
+/*Instance classes*/
+.map-label.inactive {
+    opacity: 0.5;
+}
+    
+.map-label.redborder > .map-label-content {
+    border-color: #e00;
+}
+.map-label.redborder > .map-label-arrow {
+    border-top-color: #e00;
+}
+    
+.map-label.redbackground > .map-label-content {
+    white-space: default;
+    color: #fff;
+    background-color: #e00;
+}
+/* end marker code */
