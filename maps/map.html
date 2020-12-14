@@ -10,10 +10,20 @@
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <link href="{% static 'assets/css/components/tabs-accordian/custom-tabs.css' %}" rel="stylesheet">
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/elements/search.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet">
   <style>
     .map {
-    width: 100%;
-    height: 100% }
+      width: 100%;
+      height: 100%
+    }
+
+    .list-group-item:hover{
+      background-color: #1b55e2;
+      color: white;
+    }
   </style>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
@@ -26,27 +36,236 @@
       <div class="sidebar-map-content">
         <ul class="nav nav-pills mb-3 mt-3 nav-fill" id="justify-pills-tab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="justify-pills-home-tab" data-toggle="pill" href="#justify-pills-home" role="tab" aria-controls="justify-pills-home" aria-selected="true">Objetos</a>
+            <a class="nav-link active" id="justify-pills-home-tab" data-toggle="pill" href="#justify-pills-home" role="tab" aria-controls="justify-pills-home" aria-selected="true" style="height: 45px; padding-top: 15%;">Objetos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="justify-pills-profile-tab" data-toggle="pill" href="#justify-pills-profile" role="tab" aria-controls="justify-pills-profile" aria-selected="false">Eventos</a>
+            <a class="nav-link" id="justify-pills-profile-tab" data-toggle="pill" href="#justify-pills-profile" role="tab" aria-controls="justify-pills-profile" aria-selected="false" style="height: 45px; padding-top: 15%;">Eventos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="justify-pills-contact-tab" data-toggle="pill" href="#justify-pills-contact" role="tab" aria-controls="justify-pills-contact" aria-selected="false">Historicos</a>
+            <a class="nav-link" id="justify-pills-contact-tab" data-toggle="pill" href="#justify-pills-contact" role="tab" aria-controls="justify-pills-contact" aria-selected="false" style="height: 45px; padding-top: 15%;">Historicos</a>
           </li>
         </ul>
-        <div class="tab-content" id="justify-pills-tabContent">
+        <div class="tab-content">
           <div class="tab-pane fade show active" id="justify-pills-home" role="tabpanel" aria-labelledby="justify-pills-home-tab">
-            <div class="col-md-12 pt-3">
+            <div class="tab-pane-header">
               <div class="input-group mb-4">
-                <input type="text" class="form-control" placeholder="Buscar" aria-label="notification" aria-describedby="basic-addon2">
-              </div>
-              <div class="col-md-12">
-                <div class="list-group ">
-                  <a href="javascript:void(0);" class="list-group-item list-group-item-action">Unidad 1</a>
-                  <a href="javascript:void(0);" class="list-group-item list-group-item-action active">Unidad 2</a>
-                  <a href="javascript:void(0);" class="list-group-item list-group-item-action">Unidad 3</a>
+                <input type="search" class="form-control" id="input-search"  placeholder="Buscar unidad">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" id="auto-unblock">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                  </button>
                 </div>
+              </div>
+            </div>
+            <div class="tab-pane-body" style="height: 602px;">
+              <div id="ajax-items" style="position: relative;">
+                <div class="searchable-container">
+                  <div class="">
+                    <div class="">
+                      <div class="searchable-items"  id="a-u-reload">
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">ANO-198</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">25 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">A7K-846</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">60 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">APK-756</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-danger">
+                              <div class="details">
+                                <span data-device="speed">0 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: red" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">D3E-869</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-warning">
+                              <div class="details">
+                                <span data-device="speed">10 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: yellow" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">AHN-772</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-warning">
+                              <div class="details">
+                                <span data-device="speed">0 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: yellow" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">F4J-998</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-danger">
+                              <div class="details">
+                                <span data-device="speed">0 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: red" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">D3E-869</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">71 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">D3E-869</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">71 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">D3E-869</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">71 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">D3E-869</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">71 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">D3E-869</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">71 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">D3E-869</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-primary">
+                              <div class="details">
+                                <span data-device="speed">71 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: green" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">B6I-985</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-warning">
+                              <div class="details">
+                                <span data-device="speed">8 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: yellow" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="items">
+                          <div class="user-name">
+                            <p class="">F4J-998</p>
+                          </div>
+                          <div class="user-status">
+                            <span class="badge badge-danger">
+                              <div class="details">
+                                <span data-device="speed">0 kph</span>
+                                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                                <span data-device="status" style="background-color: red" title="Engine">engine</span>
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
               </div>
             </div>
           </div>
@@ -314,4 +533,8 @@
   </script>
   <script src="{% static 'plugins/widgets-map/js/core.js' %}"></script>
   <script src="{% static 'plugins/widgets-map/js/app.js' %}"></script>
+  <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+  <script src="{% static 'plugins/blockui/jquery.blockUI.min.js' %}"></script>
+  <script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
+  <script src="{% static 'assets/js/elements/custom-search.js' %}"></script>
 {% endblock%}
