@@ -1,0 +1,69 @@
+<div id="map-controls">
+  <div>
+    <div class="btn-group-vertical" role="group">
+      <button type="button" class="btn" onclick="app.mapFull();">
+        <i class="fas fa-expand-arrows-alt"></i>
+      </button>
+    </div>
+  </div>
+  <div id="map-controls-layers">
+    <div class="btn-group-vertical" role="group" data-toggle="buttons">
+      <label class="btn active">
+        <input id="clusterDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('clusterDevice', this.checked);">
+        <span class="icon group-devices"></span>
+      </label>
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Ajustar objetos">
+        <input id="fitBounds" type="checkbox" autocomplete="off" onchange="app.devices.toggleFitBounds(this.checked);">
+        <span class="icon fitBounds"></span>
+      </label>
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Objectos">
+        <input id="showDevice" type="checkbox" autocomplete="off" onchange="app.changeSetting('showDevice', this.checked);">
+        <span class="icon devices"></span>
+      </label>
+      <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Geocercas">
+        <input id="showGeofences" type="checkbox" autocomplete="off" onchange="app.changeSetting('showGeofences', this.checked);">
+        <span class="icon geofences"></span>
+      </label>
+      <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Rutas">
+        <input id="showRoutes" type="checkbox" autocomplete="off" onchange="app.changeSetting('showRoutes', this.checked);">
+        <span class="icon routes"></span>
+      </label>
+      <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="POI">
+        <input id="showPoi" type="checkbox" autocomplete="off" onchange="app.changeSetting('showPoi', this.checked);">
+        <span class="icon poi"></span>
+      </label>
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar nombres">
+        <input id="showNames" type="checkbox" autocomplete="off" onchange="app.changeSetting('showNames', this.checked);">
+        <span class="icon show-name"></span>
+      </label>
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Mostrar cruz">
+        <input id="showTail" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTail', this.checked);">
+        <span class="icon show-tail"></span>
+      </label>
+      <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tráfico en vivo">
+        <input id="showTraffic" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTraffic', this.checked);">
+        <span class="icon traffic"></span>
+      </label>
+    </div>
+  </div>
+  <div id="history-control-layers" style="display: none;">
+    <div class="btn-group-vertical" role="group" data-toggle="buttons">
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Route">
+        <input id="showHistoryRoute" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryRoute', this.checked);">
+        <span class="icon routes"></span>
+      </label>
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Arrows">
+        <input id="showHistoryArrow" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryArrow', this.checked);">
+        <span class="icon device"></span>
+      </label>
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Stops">
+        <input id="showHistoryStop" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryStop', this.checked);">
+        <span class="icon parking"></span>
+      </label>
+      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Events">
+        <input id="showHistoryEvent" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryEvent', this.checked);">
+        <span class="icon event"></span>
+      </label>
+    </div>
+  </div>
+</div>
