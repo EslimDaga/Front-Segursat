@@ -50,6 +50,7 @@
   <script src="{% static 'plugins/blockui/jquery.blockUI.min.js' %}"></script>
   <script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
   <!-- <script src="{% static 'assets/js/elements/custom-search.js' %}"></script> -->
+  <script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
   <script>
     $('#input-search').on('keyup', function() {
       var rex = new RegExp($(this).val(), 'i');
@@ -108,8 +109,85 @@
       {
         icon: icon,
         title: "DEMO001",
+        rotationAngle: 1,
       }
     )
     .addTo(map);
+  </script>
+  <script>
+    //let units;
+    const getUnits = async () => {
+      const url = `/web/api/units/get-units/`
+      const response = await fetch(url);
+      const units = await response.json();
+      return units;
+    }
+    const getUnit = async (name) => {
+      const url = `/web/api/units/get-unit/${name}/`;
+      const response = await fetch(url);
+      const unit = await response.json();
+      return unit;
+    }
+    const renderUnitsInSidebar = async() => {
+      units = await getUnits();
+      let unitList = "";
+      for (let i = 0; i < units.length; i++) {
+        const unit =
+        `
+          <div onclick="unitSelect('${units[i].name}')" class="items">
+            <div class="user-name">
+              <p class="">${units[i].name}</p>
+            </div>
+            <div class="user-status">
+              <span class="badge badge-primary">
+                <div class="details">
+                  <span data-device="speed">${units[i].device.last_speed} kph</span>
+                  <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
+                  <span data-device="status" style="background-color: green" title="Online">online</span>
+                </div>
+              </span>
+            </div>
+          </div>
+        `;
+        unitList += unit;
+      }
+      document.getElementById("unit-list").innerHTML = unitList;
+    }
+    /*
+    const unitSearch = (name) => {
+      let result = -1;
+      for (let i=0; i < units.length; i++) {
+        if (units[i].name == name) {
+          result = i;
+          break;
+        }
+      }
+      return result;
+    }
+    */
+    const unitSelect = async (unitName) => {
+      const unit = await getUnit(unitName);
+      document.getElementById("unitNameSelect").innerHTML = unitName;
+      map.panTo([unit.device.last_latitude,unit.device.last_longitude]);
+      marker.setLatLng([unit.device.last_latitude,unit.device.last_longitude])
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    renderUnitsInSidebar();
+
   </script>
 {% endblock%}
