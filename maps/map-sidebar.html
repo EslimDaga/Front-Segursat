@@ -34,7 +34,6 @@
               <div class="">
                 <div class="" id="a-u-reload">
                   <div class="searchable-items" id="unit-list">
-                    
                   </div>
                 </div>
               </div>
@@ -78,44 +77,3 @@
     </div>
   </div>
 </div>
-<script>
-  const getUnits = async() => {
-    const url = `/web/api/units/get-units/`
-    const response = await fetch(url);
-    const units = await response.json();
-    return units;
-  }
-
-  const renderUnits = async() => {
-    units = await getUnits();
-    let unitList = "";
-    for (let i = 0; i < units.length; i++) {
-      const unit =
-      `
-        <div onclick="unitSelect(${units[i].name})" class="items">
-          <div class="user-name">
-            <p class="">${units[i].name}</p>
-          </div>
-          <div class="user-status">
-            <span class="badge badge-primary">
-              <div class="details">
-                <span data-device="speed">${units[i].device.last_speed} kph</span>
-                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
-                <span data-device="status" style="background-color: green" title="Online">online</span>
-              </div>
-            </span>
-          </div>
-        </div>
-      `;
-      unitList += unit;
-    }
-    document.getElementById("unit-list").innerHTML = unitList;
-  }
-
-  renderUnits();
-
-  //Get Unit Click
-  const unitSelect = (unit) => {
-    console.log(`${unit}`);
-  }
-</script>
