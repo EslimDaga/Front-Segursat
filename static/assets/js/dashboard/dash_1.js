@@ -40,7 +40,7 @@ var d_2options1 = {
         }
     }],
     series: [{
-        name: 'Sales',
+        name: 'Alertas',
         data: [44, 55, 41, 67, 22, 43, 21]
     },{
         name: 'Last Week',
@@ -224,7 +224,7 @@ var options1 = {
   }]
   },
   subtitle: {
-    text: 'Total Profit',
+    text: 'Unidades',
     align: 'left',
     margin: 0,
     offsetX: -10,
@@ -236,7 +236,7 @@ var options1 = {
     }
   },
   title: {
-    text: '$10,840',
+    text: '10,840',
     align: 'left',
     margin: 0,
     offsetX: -10,
@@ -254,10 +254,10 @@ var options1 = {
       lineCap: 'square'
   },
   series: [{
-      name: 'Income',
+      name: 'Agregados',
       data: [16800, 16800, 15500, 17800, 15500, 17000, 19000, 16000, 15000, 17000, 14000, 17000]
   }, {
-      name: 'Expenses',
+      name: 'Retirados',
       data: [16500, 17500, 16200, 17300, 16000, 19500, 16000, 17000, 16000, 19000, 18000, 19000]
   }],
   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -438,7 +438,7 @@ var options = {
       width: 25,
     },
     series: [985, 737, 270],
-    labels: ['Apparel', 'Electronic', 'Others'],
+    labels: ['Batería', 'Velocidad', 'Otros'],
     responsive: [{
         breakpoint: 1599,
         options: {
