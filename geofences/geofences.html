@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head_content %}
-  <title>Unidades - Segursat GPS</title>
+  <title>Geocercas - Segursat GPS</title>
   <!-- Begin Page Level Custom Styles -->
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
@@ -60,14 +60,13 @@
                   <td class="text-center">{{geofence.created}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button disabled type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+                      <button onclick="renderGeofence({{geofence.id}})" type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
                       <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
                           <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                       </button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuReference24">
-                        <a class="dropdown-item" href="#"><i class="fas fa-pencil-alt" style="padding-right: 15px;"></i>Editar</a>
                         <a class="dropdown-item" href="{% url 'delete-geofence' geofence.id %}"><i class="fas fa-trash-alt" style="padding-right: 15px;"></i>Eliminar</a>
                       </div>
                     </div>
@@ -81,7 +80,8 @@
       </div>
     </div>
   </div>
-  {% include 'includes/footer.html' %}
+  {% include 'geofences/geofence-render-modal.html' %}
+  <!-- {% include 'includes/footer.html' %} -->
 </div>
 <!-- End Content Area -->
 {% endblock %}
@@ -190,5 +190,54 @@
   setTimeout(renderMap,500);
 </script>
 {% endif %}
+<script>
+  const getGeofence = async (id) => {
+    const url = `/web/api/geofences/get-geofence/${id}/`;
+    const response = await fetch(url);
+    const geofence = await response.json();
+    return geofence;
+  }
+  const renderGeofence  = async (id) => {
+    const geofence = await getGeofence(id);
+    document.getElementById("map_container2").innerHTML = `<div id="map2" style="height:100%;width:100%;"></div>`;
+    document.getElementById("geofence_name").innerHTML = `${geofence.name}`
+    $("#geofence_render_modal").modal("show");
+    setTimeout(() => {
+      const map2 = L.map('map2',{
+        center: [-12.1021887,-77.0665742],
+        zoom: 16,
+      });
+      const openStreetMap = L.tileLayer(
+        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+          maxZoom: 19,
+        }
+      );
+      const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+        attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+      });
+      const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+        attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+      });
+      const baseLayers = {
+        'Open Street Maps': openStreetMap,
+        'Google Street Maps': googleStreetsMap,
+        'Google Hybrid Maps': googleHybridMap
+      };
+      const overlays = {};
+      L.control.layers(baseLayers,overlays).addTo(map2);
+      baseLayers['Google Street Maps'].addTo(map2);
+
+      const polygon = L.geoJSON(geofence.geojson).addTo(map2);
+      console.log(polygon.getBounds())
+      //map2.fitBounds(polygon.getBounds());
+    },500);
+  }
+</script>
 <!-- End Page Level Custom Scripts -->
 {% endblock%}
