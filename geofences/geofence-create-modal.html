@@ -13,7 +13,7 @@
           </div>
           <div class="modal-body">
             <div class="container">
-              <div class="row">  
+              <div class="row">
                 <div class="col-sm-8">
                   <div id="map_container" style="height:700px;width:100%;">
                     <div id="map" style="height:100%;;width:100%;"></div>
@@ -32,7 +32,6 @@
                     {% if field.value %}
                     {% render_field field class="form-control is-valid" placeholder=field.label %}
                     {% else %}
-        
                     {% if field.name == "geojson" %}
                     {% render_field field class="form-control" style="height : 445px" placeholder=field.label %}
                     {% else %}
