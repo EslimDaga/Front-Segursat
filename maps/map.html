@@ -14,6 +14,7 @@
   <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
   <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/elements/tooltip.css' %}" rel="stylesheet" type="text/css" />
   <style>
     .map {
       width: 100%;
@@ -46,6 +47,7 @@
 {% block script_content %}
   <script src="{% static 'plugins/widgets-map/js/core.js' %}"></script>
   <script src="{% static 'plugins/widgets-map/js/app.js' %}"></script>
+  <script src="{% static 'assets/js/elements/tooltip.js' %}"></script>
   <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
   <script src="{% static 'plugins/blockui/jquery.blockUI.min.js' %}"></script>
   <script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
@@ -75,6 +77,7 @@
       wsURI = `ws://${domain}:${port}/ws/locations/{{user.profile.account}}/`;
       return wsURI;
     }
+    // websocket
     const connect = () => {
       wsURI = getWSURI();
       ws = new WebSocket(wsURI);
@@ -83,7 +86,6 @@
       };
       ws.onmessage = function(e) {
         newLocation = JSON.parse(e.data).message;
-        console.log(newLocation);
         mapView.updateMarkerPosition(
           newLocation['unit_name'],
           [
@@ -96,7 +98,7 @@
       ws.onclose = function(e) {
         console.log('Socket is closed. Reconnect will be attempted in 5 second.', e.reason);
         setTimeout(function() {
-          connect();
+          exampleModal();
         }, 5000);
       };
       ws.onerror = function(err) {
