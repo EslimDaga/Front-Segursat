@@ -945,7 +945,7 @@ code {
     position: relative;
     transition: all .2s ease-in-out; }
   #sidebar ul.menu-categories li.menu:not(.active) > .dropdown-toggle[aria-expanded="true"] {
-    background: #445ede; }
+    background: #898d9e; }
   #sidebar ul.menu-categories li.menu:not(.active) > .dropdown-toggle:not([aria-expanded="true"]):hover svg:not(.feather-chevron-right), #sidebar ul.menu-categories li.menu:not(.active) > .dropdown-toggle:hover svg:not(.feather-chevron-right) {
     margin-right: 30px; }
   #sidebar ul.menu-categories li.menu > .dropdown-toggle svg.feather-chevron-right {
