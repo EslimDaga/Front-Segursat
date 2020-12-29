@@ -1,3 +1,15 @@
+{% load static %}
+{% block head_content %}
+  <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/noUiSlider/nouislider.min.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/noUiSlider/custom-nouiSlider.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/bootstrap-range-Slider/bootstrap-slider.css' %}" rel="stylesheet">
+{% endblock %}
+
 <div id="map-controls">
   <div>
     <div class="btn-group-vertical" role="group">
@@ -24,10 +36,10 @@
         <input id="showGeofences" type="checkbox" autocomplete="off" onchange="app.changeSetting('showGeofences', this.checked);">
         <span class="icon geofences"></span>
       </label>
-      <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Rutas">
+      <!-- <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Rutas">
         <input id="showRoutes" type="checkbox" autocomplete="off" onchange="app.changeSetting('showRoutes', this.checked);">
         <span class="icon routes"></span>
-      </label>
+      </label> -->
       <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="POI">
         <input id="showPoi" type="checkbox" autocomplete="off" onchange="app.changeSetting('showPoi', this.checked);">
         <span class="icon poi"></span>
@@ -43,6 +55,10 @@
       <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tráfico en vivo">
         <input id="showTraffic" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTraffic', this.checked);">
         <span class="icon traffic"></span>
+      </label>
+      <label class="btn" data-toggle="modal" data-target="#exampleModal" data-placement="left" title="" data-original-title="Recorrido">
+        <input type="checkbox" autocomplete="off" onchange="app.changeSetting('show-tail', this.checked);">
+        <span class="icon routes"></span>
       </label>
     </div>
   </div>
@@ -67,3 +83,33 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Recorrido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          x
+        </button>
+      </div>
+      <div class="modal-body">
+        <input id="dateTimeFlatpickr" value="2019-09-19 12:00" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date..">
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block script_content %}
+  <script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js' %}"></script>
+  <script>
+    var f2 = flatpickr(document.getElementById('dateTimeFlatpickr'), {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+    });
+  </script>
+{% endblock%}
