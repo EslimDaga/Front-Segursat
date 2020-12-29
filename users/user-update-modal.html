@@ -1,0 +1,55 @@
+{% for profile in profiles %}
+<div class="modal fade" id="{{profile.user.username}}_profile_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog mt-5">
+    <div class="modal-content">
+      {% load static %}
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Usuario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Nombre de usuario</label>
+            <input type="text" class="form-control" value="{{profile.user.username}}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="">Nombres</label>
+            <input type="text" class="form-control" value="{{profile.user.first_name}}">
+          </div>
+          <div class="form-group">
+            <label for="">Apellidos</label>
+            <input type="text" class="form-control" value="{{profile.user.last_name}}">
+          </div>
+          <div class="form-group">
+            <label for="">Contraseña</label>
+            <input type="password" class="form-control" placeholder="Ingrese nueva contraseña">
+          </div>
+          <div class="form-group">
+            <label for="">Confirmar Contraseña</label>
+            <input type="password" class="form-control" placeholder="Repita su nueva contraseña">
+          </div>
+          <div class="form-group">
+            <div class="n-chk">
+              <label class="new-control new-checkbox checkbox-primary">
+                <input type="checkbox" class="new-control-input" {% if profile.user.is_active %} checked {% endif %}>
+                <span class="new-control-indicator"></span>Estado
+              </label>
+          </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="submit-btn btn btn-primary">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  console.log('unit{{unit.id}}')
+</script>
+{% endfor %}

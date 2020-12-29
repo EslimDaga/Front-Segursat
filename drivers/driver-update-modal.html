@@ -1,0 +1,39 @@
+{% for driver in drivers %}
+<div class="modal fade" id="driver{{driver.id}}_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog mt-5">
+    <div class="modal-content">
+      {% load static %}
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">Conductor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Dni</label>
+            <input type="text" class="form-control" value="{{driver.id}}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="">Nombres</label>
+            <input type="text" class="form-control" value="{{driver.firstname}}">
+          </div>
+          <div class="form-group">
+            <label for="">Apellidos</label>
+            <input type="text" class="form-control" value="{{driver.lastname}}">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="submit-btn btn btn-primary">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  console.log('unit{{unit.id}}')
+</script>
+{% endfor %}

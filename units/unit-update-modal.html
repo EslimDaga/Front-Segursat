@@ -1,0 +1,83 @@
+<!-- <div class="modal fade" id="unit_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tittleUnitName">--</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          x
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="">Identificador Unico</label>
+          <input type="text" class="form-control" id="uniqueId" readonly>
+        </div>
+        <div class="form-group">
+          <label for="">Imei del Equipo</label>
+          <input type="text" class="form-control" id="imeiUnit" readonly>
+        </div>
+        <div class="form-group">
+          <label for="">Número de telefono del SIM</label>
+          <input type="text" class="form-control" id="sim_phonenumber">
+        </div>
+        <div class="form-group">
+          <label for="">Identificador del SIM</label>
+          <input type="text" class="form-control" id="sim_iccid">
+        </div>
+        <div class="form-group">
+          <label for="">Placa de la unidad</label>
+          <input type="text" class="form-control" id="nameUnit">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+{% for unit in units %}
+<div class="modal fade" id="unit{{unit.id}}_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog mt-5">
+    <div class="modal-content">
+      {% load static %}
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">{{unit.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="">Identificador Unico</label>
+            <input type="text" class="form-control" value="{{unit.device.uniqueid}}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="">Imei del Equipo</label>
+            <input type="text" class="form-control" value="{{unit.device.imei}}" readonly>
+          </div>
+          <div class="form-group">
+            <label for="">Número de telefono del SIM</label>
+            <input type="text" class="form-control" value="{{unit.device.sim_phonenumber}}">
+          </div>
+          <div class="form-group">
+            <label for="">Identificador del SIM</label>
+            <input type="text" class="form-control" value="{{unit.device.sim_iccid}}">
+          </div>
+          <div class="form-group">
+            <label for="">Placa de la unidad</label>
+            <input type="text" class="form-control" value="{{unit.name}}">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="submit-btn btn btn-primary">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endfor %}
