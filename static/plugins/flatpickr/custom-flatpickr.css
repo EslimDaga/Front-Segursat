@@ -1,85 +1,166 @@
-/*
-	===============================
-			@Import	Function
-	===============================
-*/
-/*
-	===============================
-			@Import	Mixins
-	===============================
-*/
-.flatpickr-calendar {
-  width: 336.875px;
-  padding: 15px;
-  -webkit-box-shadow: 2px 5px 17px 0 rgba(31, 45, 61, 0.1);
-  box-shadow: 2px 5px 17px 0 rgba(31, 45, 61, 0.1);
-  border: 1px solid #bfc9d4; }
-  .flatpickr-calendar.open {
-    display: inline-block;
-    z-index: 900; }
-  .flatpickr-calendar.arrowTop:before {
-    border-bottom-color: #ebedf2; }
-  .flatpickr-calendar:before {
-    border-width: 9px; }
-  .flatpickr-calendar:after {
-    border-width: 0px; }
-
-.flatpickr-months .flatpickr-prev-month, .flatpickr-months .flatpickr-next-month {
-  top: 8%;
-  padding: 5px 13px;
-  background: #fbfbfb;
-  border-radius: 4px;
-  height: 40px; }
-
-.flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
-  fill: #1b55e2; }
-
-.flatpickr-day.today {
-  border-color: #1b55e2;
-  color: #1b55e2;
-  font-weight: 700; }
-
-.flatpickr-current-month .flatpickr-monthDropdown-months {
-  height: auto;
-  border: 1px solid #bfc9d4;
-  color: #3b3f5c;
-  font-size: 15px;
-  padding: 12px 16px;
-  letter-spacing: 1px;
-  font-weight: 700; }
-
-.flatpickr-current-month input.cur-year {
-  height: auto;
-  border: 1px solid #bfc9d4;
-  border-left: none;
-  color: #3b3f5c;
-  font-size: 15px;
-  padding: 13px 12px;
-  letter-spacing: 1px;
-  font-weight: 700; }
-
-.flatpickr-months .flatpickr-month {
-  height: 76px; }
-
-.flatpickr-day.flatpickr-disabled {
-  cursor: not-allowed;
-  color: #e0e6ed; }
-  .flatpickr-day.flatpickr-disabled:hover {
-    cursor: not-allowed;
-    color: #e0e6ed; }
-
-span.flatpickr-weekday {
-  color: #888ea8; }
-
-.flatpickr-day {
-  color: #3b3f5c;
-  font-weight: 700; }
-  .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
-    background: #1b55e2;
-    color: #fff;
-    border-color: #1b55e2;
-    font-weight: 500; }
-
-@supports (-webkit-overflow-scrolling: touch) {
-  .form-control {
-    height: auto; } }
+Virtual fleet for slim\BUCKLEY	PUERTO TALARA		10h 56m
+Virtual fleet for slim\BUCKLEY	CAMPO LOBITOS		4h 3m
+Virtual fleet for slim\BUCKLEY	Flotante LO		2h 48m
+Virtual fleet for slim\BUCKLEY	LO9		9m
+Virtual fleet for slim\BUCKLEY	H		5m
+Virtual fleet for slim\BUCKLEY	LO8		1h 38m
+Virtual fleet for slim\BUCKLEY	LO3		28m
+Virtual fleet for slim\BUCKLEY	LO4		47m
+Virtual fleet for slim\BUCKLEY	LO6		1h 18m
+Virtual fleet for slim\BUCKLEY	LO7		1h 23m
+Virtual fleet for slim\BUCKLEY	A8		4m
+Virtual fleet for slim\BUCKLEY	CC		8m
+Virtual fleet for slim\BUCKLEY	LO12		0m
+Virtual fleet for slim\CHIMERA	CAMPO PEA NEGRA		2h 0m
+Virtual fleet for slim\CHIMERA	CAMPO LOBITOS		4h 43m
+Virtual fleet for slim\CHIMERA	PUERTO TALARA		10h 58m
+Virtual fleet for slim\CHIMERA	LO13		59m
+Virtual fleet for slim\CHIMERA	LO7		59m
+Virtual fleet for slim\CHIMERA	LO18		1h 0m
+Virtual fleet for slim\CHIMERA	LO10		1h 0m
+Virtual fleet for slim\CHIMERA	Flotante LO		1h 0m
+Virtual fleet for slim\CHIMERA	Flotante PN		0m
+Virtual fleet for slim\CHIP II	Flotante PN		3h 49m
+Virtual fleet for slim\CHIP II	CAMPO PEA NEGRA		2h 52m
+Virtual fleet for slim\CHIP II	PN7		11m
+Virtual fleet for slim\CHIP II	BB		3m
+Virtual fleet for slim\CHIP II	DD		8m
+Virtual fleet for slim\CHIP II	NN		1h 12m
+Virtual fleet for slim\CHIP II	GG		1h 46m
+Virtual fleet for slim\CHIP II	UU		10m
+Virtual fleet for slim\CHIP II	PN5		8m
+Virtual fleet for slim\CHIP II	SS		5m
+Virtual fleet for slim\CHIP II	FF		4m
+Virtual fleet for slim\CHIP II	M		4m
+Virtual fleet for slim\CHIP II	R		19m
+Virtual fleet for slim\CHIP II	A2		6m
+Virtual fleet for slim\CHIP II	TT		16m
+Virtual fleet for slim\CHIP II	PN14		8m
+Virtual fleet for slim\CHIP II	PN4		11m
+Virtual fleet for slim\CHIP II	LL		41m
+Virtual fleet for slim\CHIP II	KK		0m
+Virtual fleet for slim\CHIRIBAY	CAMPO PEA NEGRA		16h 32m
+Virtual fleet for slim\CHIRIBAY	KK		1m
+Virtual fleet for slim\CHIRIBAY	PN1		7h 17m
+Virtual fleet for slim\CHIRIBAY	LL		1m
+Virtual fleet for slim\D.VICTOR	PUERTO TALARA		22h 59m
+Virtual fleet for slim\DONALD R	Flotante LO		6h 48m
+Virtual fleet for slim\DONALD R	CAMPO LOBITOS		5h 53m
+Virtual fleet for slim\DONALD R	LO8		11m
+Virtual fleet for slim\DONALD R	H		9m
+Virtual fleet for slim\DONALD R	LO9		8m
+Virtual fleet for slim\DONALD R	ZZ		1h 20m
+Virtual fleet for slim\DONALD R	LO19		2m
+Virtual fleet for slim\DONALD R	LO16		32m
+Virtual fleet for slim\DONALD R	LO18		39m
+Virtual fleet for slim\DONALD R	LO13		20m
+Virtual fleet for slim\DONALD R	LO14		25m
+Virtual fleet for slim\DONALD R	LO10		2h 49m
+Virtual fleet for slim\DONALD R	U		1m
+Virtual fleet for slim\DONALD R	LO7		3m
+Virtual fleet for slim\DONALD R	LO11		7m
+Virtual fleet for slim\DONALD R	LO4		6m
+Virtual fleet for slim\DONALD R	LO3		2m
+Virtual fleet for slim\ELIZABET	PN3		23h 4m
+Virtual fleet for slim\ELIZABET	CAMPO PEA NEGRA		53m
+Virtual fleet for slim\HIPPO	Mc Donald		23h 52m
+Virtual fleet for slim\IRIS	Flotante PN		11h 23m
+Virtual fleet for slim\IRIS	CAMPO PEA NEGRA		4h 54m
+Virtual fleet for slim\IRIS	PN11		13m
+Virtual fleet for slim\IRIS	DD		13m
+Virtual fleet for slim\IRIS	GG		6m
+Virtual fleet for slim\IRIS	NN		11m
+Virtual fleet for slim\IRIS	R		6m
+Virtual fleet for slim\IRIS	HH		1h 18m
+Virtual fleet for slim\IRIS	Z		20m
+Virtual fleet for slim\IRIS	KK		42m
+Virtual fleet for slim\IRIS	PN7		34m
+Virtual fleet for slim\IRIS	OO		28m
+Virtual fleet for slim\IRIS	PN8		28m
+Virtual fleet for slim\IRIS	LL		7m
+Virtual fleet for slim\IRIS	PN1		20m
+Virtual fleet for slim\IRIS	PN3		1h 31m
+Virtual fleet for slim\IRIS	PN9		13m
+Virtual fleet for slim\IRIS	PN2		20m
+Virtual fleet for slim\IRIS	BB		16m
+Virtual fleet for slim\KELLEY	CAMPO SAN PEDRO		15h 59m
+Virtual fleet for slim\KELLEY	SP1-A		2h 0m
+Virtual fleet for slim\KELLEY	SP1		2h 0m
+Virtual fleet for slim\KELLEY	ES1		2h 0m
+Virtual fleet for slim\MISS D	PUERTO TALARA		21m
+Virtual fleet for slim\MR MATT	PUERTO TALARA		23h 18m
+Virtual fleet for slim\MR MATT	Mc Donald		36m
+Virtual fleet for slim\MR MATT	Rio Amazonas		2m
+Virtual fleet for slim\NEPTUNO	PUERTO TALARA		12h 57m
+Virtual fleet for slim\NEPTUNO	CAMPO LOBITOS		1h 31m
+Virtual fleet for slim\NEPTUNO	PP		1m
+Virtual fleet for slim\NEPTUNO	VV		0m
+Virtual fleet for slim\NEPTUNO	CAMPO PEA NEGRA		3h 50m
+Virtual fleet for slim\NEPTUNO	PN3		25m
+Virtual fleet for slim\NEPTUNO	PN7		28m
+Virtual fleet for slim\NEPTUNO	Flotante PN		14m
+Virtual fleet for slim\NEPTUNO	PN1		9m
+Virtual fleet for slim\NEPTUNO	A2		12m
+Virtual fleet for slim\NEPTUNO	R		1h 13m
+Virtual fleet for slim\NEPTUNO	YY		55m
+Virtual fleet for slim\NEPTUNO	M		1m
+Virtual fleet for slim\NEPTUNO	PN5		7m
+Virtual fleet for slim\NEPTUNO	NN		9m
+Virtual fleet for slim\NEPTUNO	DD		0m
+Virtual fleet for slim\NEPTUNO	PN11		1h 33m
+Virtual fleet for slim\NEPTUNO	BB		2m
+Virtual fleet for slim\OLYMPIC	PUERTO TALARA		20h 33m
+Virtual fleet for slim\OLYMPIC	Rio Amazonas		18m
+Virtual fleet for slim\OLYMPIC	CAMPO LOBITOS		1h 42m
+Virtual fleet for slim\OLYMPIC	PP		1m
+Virtual fleet for slim\OLYMPIC	LO19		1m
+Virtual fleet for slim\OLYMPIC	Flotante LO		13m
+Virtual fleet for slim\OLYMPIC	CAMPO PEA NEGRA		31m
+Virtual fleet for slim\OLYMPIC	Flotante PN		30m
+Virtual fleet for slim\PARIÑAS	PUERTO TALARA		23h 50m
+Virtual fleet for slim\PARIÑAS	Tortuga		1m
+Virtual fleet for slim\ROSLYN	CAMPO PROVIDENCIA		4h 20m
+Virtual fleet for slim\ROSLYN	PG		3h 37m
+Virtual fleet for slim\ROSLYN	PUERTO TALARA		3h 11m
+Virtual fleet for slim\ROSLYN	Rio Amazonas		19m
+Virtual fleet for slim\ROSLYN	PV15		55m
+Virtual fleet for slim\ROSLYN	CAMPO LITORAL		1h 48m
+Virtual fleet for slim\ROSLYN	LT12		3h 11m
+Virtual fleet for slim\ROSLYN	3B		19m
+Virtual fleet for slim\ROSLYN	LT1		22m
+Virtual fleet for slim\ROSLYN	LT6		4h 34m
+Virtual fleet for slim\ROSLYN	4D		12m
+Virtual fleet for slim\ROSLYN	3C		6m
+Virtual fleet for slim\ROSLYN	LT11		6m
+Virtual fleet for slim\ROSLYN	LT2		14m
+Virtual fleet for slim\ROSLYN	LT3		15m
+Virtual fleet for slim\ROSLYN	Mc Donald		2m
+Virtual fleet for slim\ROSLYN	PV14		5m
+Virtual fleet for slim\ROSLYN	PVX8		10m
+Virtual fleet for slim\SHEYLA	CAMPO LITORAL		3h 11m
+Virtual fleet for slim\SHEYLA	LT12		3h 44m
+Virtual fleet for slim\SHEYLA	CAMPO PROVIDENCIA		2h 15m
+Virtual fleet for slim\SHEYLA	PV15		11m
+Virtual fleet for slim\SHEYLA	PG		6h 12m
+Virtual fleet for slim\SHEYLA	PV14		14m
+Virtual fleet for slim\SHEYLA	PVX8		16m
+Virtual fleet for slim\SHEYLA	PUERTO TALARA		38m
+Virtual fleet for slim\SHEYLA	Rio Amazonas		14m
+Virtual fleet for slim\SHEYLA	3J		5m
+Virtual fleet for slim\SHEYLA	LT1		23m
+Virtual fleet for slim\SHEYLA	LT4		51m
+Virtual fleet for slim\SHEYLA	LT2		2h 0m
+Virtual fleet for slim\SHEYLA	LT6		16m
+Virtual fleet for slim\SHEYLA	4D		25m
+Virtual fleet for slim\SHEYLA	3B		2h 16m
+Virtual fleet for slim\SHEYLA	LT3		23m
+Virtual fleet for slim\SHEYLA	LT11		7m
+Virtual fleet for slim\SHEYLA	3C		5m
+Virtual fleet for slim\SKOOKUM	PUERTO TALARA		17h 0m
+Virtual fleet for slim\SKOOKUM	Mc Donald		5h 0m
+Virtual fleet for slim\SOPHIA C	Rio Amazonas		22h 0m
+Virtual fleet for slim\SOPHIA C	PUERTO TALARA		1h 0m
+Virtual fleet for slim\ZULUF	CAMPO LOBITOS		14h 54m
+Virtual fleet for slim\ZULUF	LO18		3h 22m
+Virtual fleet for slim\ZULUF	CC		4h 53m
+Virtual fleet for slim\ZULUF	CAMPO PEA NEGRA		44msssASz<awD

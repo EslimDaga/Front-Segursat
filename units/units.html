@@ -13,6 +13,9 @@
   <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -100,6 +103,8 @@
 <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
 <script src="{% static 'plugins/treeview/custom-jstree.js' %}"></script>
 <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+  <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script>
     $('#html5-extension').DataTable( {
       dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -126,37 +131,70 @@
   document.getElementById("create-unit").addEventListener("click", () => {
     $("#unit_create_modal").modal("show");
   });
+
   $('#unit_create_modal').on('hidden.bs.modal', () => {
     document.getElementById("id_uniqueid").value = "";
+    document.getElementById("id_uniqueid").classList.remove("is-valid");
+    document.getElementById("id_uniqueid").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_uniqueid").remove();
+    } catch (error) {
+      //nada
+    }
     document.getElementById("id_imei").value = "";
+    document.getElementById("id_imei").classList.remove("is-valid");
+    document.getElementById("id_imei").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_imei").remove();
+    } catch (error) {
+      //nada
+    }
     document.getElementById("id_sim_phonenumber").value = "";
+    document.getElementById("id_sim_phonenumber").classList.remove("is-valid");
+    document.getElementById("id_sim_phonenumber").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_sim_phonenumber").remove();
+    } catch (error) {
+      //nada
+    }
     document.getElementById("id_sim_iccid").value = "";
+    document.getElementById("id_sim_iccid").classList.remove("is-valid");
+    document.getElementById("id_sim_iccid").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_sim_iccid").remove();
+    } catch (error) {
+      //nada
+    }
     document.getElementById("id_unit_name").value = "";
+    document.getElementById("id_unit_name").classList.remove("is-valid");
+    document.getElementById("id_unit_name").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_unit_name").remove();
+    } catch (error) {
+      //nada
+    }
   })
+
 </script>
-{% if form.errors %}
+{% if create_form.errors %}
 <script>
   $("#unit_create_modal").modal("show");
 </script>
 {% endif %}
+{% if update_form.errors %}
 <script>
-  const getUnit = async (unitName) => {
-    const url = `/web/api/units/get-unit/${unitName}/`;
-    const response = await fetch(url);
-    const unit = await response.json();
-    return unit;
-  }
-
-  const renderUnitInformation = async (unitName) => {
-    const unit = await getUnit(unitName);
-    document.getElementById("tittleUnitName").innerHTML = `${unit.name}`;
-    document.getElementById("uniqueId").value = `${unit.device.uniqueid}`;
-    document.getElementById("imeiUnit").value = `${unit.device.imei}`;
-    document.getElementById("sim_phonenumber").value = `${unit.device.sim_phonenumber}`;
-    document.getElementById("sim_iccid").value = `${unit.device.sim_iccid}`;
-    document.getElementById("nameUnit").value = `${unit.name}`;
-    $("#unit_update_modal").modal("show");
-  }
+  $("#{{modal_id}}").modal("show");
 </script>
+{% endif %}
+{% if success %}
+<script>
+  swal({
+    type : "success",
+    title : "Operacion exitosa",
+    text : "{{ success }}",
+    padding : "2em"
+  })
+</script>
+{% endif %}
 <!-- End Page Level Custom Scripts -->
 {% endblock%}

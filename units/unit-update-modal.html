@@ -1,48 +1,53 @@
-<!-- <div class="modal fade" id="unit_update_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="tittleUnitName">--</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          x
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="">Identificador Unico</label>
-          <input type="text" class="form-control" id="uniqueId" readonly>
-        </div>
-        <div class="form-group">
-          <label for="">Imei del Equipo</label>
-          <input type="text" class="form-control" id="imeiUnit" readonly>
-        </div>
-        <div class="form-group">
-          <label for="">Número de telefono del SIM</label>
-          <input type="text" class="form-control" id="sim_phonenumber">
-        </div>
-        <div class="form-group">
-          <label for="">Identificador del SIM</label>
-          <input type="text" class="form-control" id="sim_iccid">
-        </div>
-        <div class="form-group">
-          <label for="">Placa de la unidad</label>
-          <input type="text" class="form-control" id="nameUnit">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div> -->
+{% load static %}
+{% load widget_tweaks %}
 
 {% for unit in units %}
+{% if modal_unit_id == unit.id %}
 <div class="modal fade" id="unit{{unit.id}}_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog mt-5">
     <div class="modal-content">
       {% load static %}
-      <form method="post" action="">
+      <form method="post" action="{% url 'update-unit' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">{{unit.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {% for field in update_form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% if field.errors %}
+            {% render_field field class="form-control is-invalid" placeholder=field.label %}
+            {% for error in field.errors %}
+            <p class="help-block text-danger">(*) {{ error }}</p>
+            {% endfor %}
+            {% else %}
+            {% if field.value %}
+            {% render_field field class="form-control is-valid" placeholder=field.label %}
+            {% else %}
+            {% render_field field class="form-control" placeholder=field.label %}
+            {% endif %}
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="submit-btn btn btn-primary">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="modal fade" id="unit{{unit.id}}_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog mt-5">
+    <div class="modal-content">
+      {% load static %}
+      <form method="post" action="{% url 'update-unit' %}">
         {% csrf_token %}
         <div class="modal-header">
           <h5 class="modal-title">{{unit.name}}</h5>
@@ -53,23 +58,23 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="">Identificador Unico</label>
-            <input type="text" class="form-control" value="{{unit.device.uniqueid}}" readonly>
+            <input type="text" class="form-control" name="uniqueid" value="{{unit.device.uniqueid}}" readonly>
           </div>
           <div class="form-group">
             <label for="">Imei del Equipo</label>
-            <input type="text" class="form-control" value="{{unit.device.imei}}" readonly>
+            <input type="text" class="form-control" name="imei" value="{{unit.device.imei}}" readonly>
           </div>
           <div class="form-group">
             <label for="">Número de telefono del SIM</label>
-            <input type="text" class="form-control" value="{{unit.device.sim_phonenumber}}">
+            <input type="text" class="form-control" name="sim_phonenumber" value="{{unit.device.sim_phonenumber}}">
           </div>
           <div class="form-group">
             <label for="">Identificador del SIM</label>
-            <input type="text" class="form-control" value="{{unit.device.sim_iccid}}">
+            <input type="text" class="form-control" name="sim_iccid" value="{{unit.device.sim_iccid}}">
           </div>
           <div class="form-group">
             <label for="">Placa de la unidad</label>
-            <input type="text" class="form-control" value="{{unit.name}}">
+            <input type="text" class="form-control" name="unit_name" value="{{unit.name}}">
           </div>
         </div>
         <div class="modal-footer">
@@ -80,4 +85,5 @@
     </div>
   </div>
 </div>
+{% endif %}
 {% endfor %}

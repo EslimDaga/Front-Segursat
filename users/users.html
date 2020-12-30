@@ -134,24 +134,5 @@
     $("#user_create_modal").modal("show");
   </script>
   {% endif %}
-  <script>
-    const getUser = async (id) => {
-      const url = `/web/api/users/get-user/${id}/`;
-      const response = await fetch(url);
-      const driver = await response.json();
-      return driver;
-    }
-
-    const renderDriverInformation = async (unitName) => {
-      const unit = await getUnit(unitName);
-      document.getElementById("tittleUnitName").innerHTML = `${unit.name}`;
-      document.getElementById("uniqueId").value = `${unit.device.uniqueid}`;
-      document.getElementById("imeiUnit").value = `${unit.device.imei}`;
-      document.getElementById("sim_phonenumber").value = `${unit.device.sim_phonenumber}`;
-      document.getElementById("sim_iccid").value = `${unit.device.sim_iccid}`;
-      document.getElementById("nameUnit").value = `${unit.name}`;
-      $("#driver_update_modal").modal("show");
-    }
-  </script>
   <!-- End Page Level Custom Scripts -->
 {% endblock%}
