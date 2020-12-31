@@ -3,7 +3,7 @@
     <div class="modal-content">
       {% load static %}
       {% load widget_tweaks %}
-      <form method="post" action="{% url 'create-unit' %}" aria-expanded="true">
+      <form method="post" action="{% url 'units' %}" aria-expanded="true">
         {% csrf_token %}
         <div class="modal-header">
           <h5 class="modal-title">Crear nueva unidad</h5>
@@ -29,6 +29,7 @@
             {% endif %}
           </div>
           {% endfor %}
+          <input type="hidden" name="form_type" value="create_form">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
