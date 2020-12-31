@@ -7,7 +7,7 @@
   <div class="modal-dialog mt-5">
     <div class="modal-content">
       {% load static %}
-      <form method="post" action="{% url 'update-unit' %}">
+      <form method="post" action="{% url 'units' %}">
         {% csrf_token %}
         <div class="modal-header">
           <h5 class="modal-title">{{unit.name}}</h5>
@@ -33,6 +33,7 @@
             {% endif %}
           </div>
           {% endfor %}
+          <input type="hidden" name="form_type" value="update_form">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -47,7 +48,7 @@
   <div class="modal-dialog mt-5">
     <div class="modal-content">
       {% load static %}
-      <form method="post" action="{% url 'update-unit' %}">
+      <form method="post" action="{% url 'units' %}">
         {% csrf_token %}
         <div class="modal-header">
           <h5 class="modal-title">{{unit.name}}</h5>
@@ -76,6 +77,7 @@
             <label for="">Placa de la unidad</label>
             <input type="text" class="form-control" name="unit_name" value="{{unit.name}}">
           </div>
+          <input type="hidden" name="form_type" value="update_form">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
