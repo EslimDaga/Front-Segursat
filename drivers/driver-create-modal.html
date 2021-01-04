@@ -12,7 +12,7 @@
               </button>
             </div>
             <div class="modal-body">
-              {% for field in form %}
+              {% for field in create_form %}
               <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                 {% if field.errors %}
@@ -29,6 +29,7 @@
                 {% endif %}
               </div>
               {% endfor %}
+              <input type="hidden" name="form_type" value="create_form">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
