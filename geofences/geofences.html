@@ -249,8 +249,19 @@
       baseLayers['Google Street Maps'].addTo(map2);
 
       const polygon = L.geoJSON(geofence.geojson).addTo(map2);
-      console.log(polygon.getBounds())
-      //map2.fitBounds(polygon.getBounds());
+      map2.fitBounds(
+        L.latLngBounds(
+          L.latLng(
+            polygon.getBounds()._northEast.lat,
+            polygon.getBounds()._northEast.lng
+          ),
+          L.latLng(
+            polygon.getBounds()._southWest.lat,
+            polygon.getBounds()._southWest.lng
+          )
+        )
+      );
+      
     },500);
   }
 </script>
