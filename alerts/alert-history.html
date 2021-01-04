@@ -105,7 +105,7 @@
       allowClear: true
     });
   </script>
-  <!-- <script>
+  <script>
     $('#html5-extension').DataTable({
       destroy: true,
       dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -127,13 +127,14 @@
       "lengthMenu": [7, 10, 20, 50],
       "pageLength": 7
     });
-  </script> -->
+  </script>
   <script>
     const getAlertSearch = async(alertDate,unitName) => {
       const url = `/web/api/alerts/alert-search/${alertDate}/${unitName}/`
       const response = await fetch(url);
       const alerts = await response.json();
       console.log(alerts);
+      $('#html5-extension').DataTable().clear().destroy();
       const alertsArray = alerts.map( alert => {
         const table = document.getElementById("html5-extension").getElementsByTagName('tbody')[0];
         const row = table.insertRow(0);
