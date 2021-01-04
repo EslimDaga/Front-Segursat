@@ -14,16 +14,17 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="">Dni</label>
-            <input type="text" class="form-control" value="{{driver.id}}" readonly>
+            <input type="text" class="form-control" name="id" value="{{driver.id}}" readonly>
           </div>
           <div class="form-group">
             <label for="">Nombres</label>
-            <input type="text" class="form-control" value="{{driver.firstname}}">
+            <input type="text" class="form-control" name="firstname" value="{{driver.firstname}}">
           </div>
           <div class="form-group">
             <label for="">Apellidos</label>
-            <input type="text" class="form-control" value="{{driver.lastname}}">
+            <input type="text" class="form-control" name="lastname" value="{{driver.lastname}}">
           </div>
+          <input type="hidden" name="form_type" value="update_form">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
