@@ -13,6 +13,9 @@
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -95,6 +98,8 @@
 <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet-draw/js/leaflet-draw.js' %}"></script>
 <link rel="stylesheet" href="{% static 'plugins/leaflet-draw/css/leaflet.draw-src.css' %}"/>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script>
     $('#html5-extension').DataTable( {
       dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -190,6 +195,16 @@
   setTimeout(renderMap,500);
 </script>
 {% endif %}
+{% if success %}
+  <script>
+    swal({
+      type : "success",
+      title : "Operacion exitosa",
+      text : "{{ success }}",
+      padding : "2em"
+    })
+  </script>
+  {% endif %}
 <script>
   const getGeofence = async (id) => {
     const url = `/web/api/geofences/get-geofence/${id}/`;
