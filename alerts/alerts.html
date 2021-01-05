@@ -210,7 +210,7 @@
       const response = await fetch(url);
       const alert = await response.json()
       $("#checkAlert").modal("show");
-      /* console.log(alert); */
+      console.log(alert);
       document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
       document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
       document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
