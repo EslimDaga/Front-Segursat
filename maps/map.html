@@ -10,11 +10,13 @@
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <link href="{% static 'assets/css/components/tabs-accordian/custom-tabs.css' %}" rel="stylesheet">
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
+  ¸
   <link href="{% static 'assets/css/elements/search.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
   <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/elements/tooltip.css' %}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
   <style>
     .map {
       width: 100%;
@@ -54,6 +56,7 @@
   <!-- <script src="{% static 'assets/js/elements/custom-search.js' %}"></script> -->
   <script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
   <script src="{% static 'assets/js/maps/MapView.js' %}"></script>
+  <script src="{% static 'plugins/select2/select2.min.js' %}"></script>
   <script>
     $('#input-search').on('keyup', function() {
       var rex = new RegExp($(this).val(), 'i');
@@ -107,6 +110,11 @@
       };
     }
     connect();
-
+  </script>
+  <script>
+    $(".placeholder").select2({
+      placeholder: "Make a Selection",
+      allowClear: true
+    });
   </script>
 {% endblock%}
