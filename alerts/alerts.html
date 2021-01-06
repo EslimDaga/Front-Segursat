@@ -141,51 +141,51 @@
                     <div class="transactions-list">
                       <div class="t-item">
                         <div class="t-company-name">
+                          <div class="t-name">
+                            <h4>Descripción</h4>
+                            <p class="text-primary"><strong id="alert_type"></strong></p>
+                          </div>
+                        </div>
+                        <div class="t-rate rate-dec">
                           <div class="t-icon">
                             <div class="icon">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                             </div>
                           </div>
-                          <div class="t-name">
-                            <h4>Descripción</h4>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <p class="text-primary"><strong id="alert_type"></strong></p>
                         </div>
                       </div>
                     </div>
                     <div class="transactions-list">
                       <div class="t-item">
                         <div class="t-company-name">
+                          <div class="t-name">
+                            <h4>Prioridad</h4>
+                            <p class="text-primary"><strong id="alert_priority"></strong></p>
+                          </div>
+                        </div>
+                        <div class="t-rate rate-dec">
                           <div class="t-icon">
                             <div class="icon">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
                             </div>
                           </div>
-                          <div class="t-name">
-                            <h4>Prioridad</h4>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <p class="text-primary"><strong id="alert_priority"></strong></p>
                         </div>
                       </div>
                     </div>
                     <div class="transactions-list">
                       <div class="t-item">
                         <div class="t-company-name">
+                          <div class="t-name">
+                            <h4>Fecha</h4>
+                            <p class="text-primary"><strong id="datetime"></strong></p>
+                          </div>
+                        </div>
+                        <div class="t-rate rate-dec">
                           <div class="t-icon">
                             <div class="icon">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                             </div>
                           </div>
-                          <div class="t-name">
-                            <h4>Fecha</h4>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <p class="text-primary"><strong id="datetime"></strong></p>
                         </div>
                       </div>
                     </div>
@@ -200,7 +200,7 @@
         </div>
       </div>
     </div>
-  </div> 
+  </div>
 {% endblock %}
 {% block script_content %}
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
