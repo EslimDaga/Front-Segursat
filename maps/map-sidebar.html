@@ -7,7 +7,7 @@
         <a class="nav-link active" id="justify-pills-home-tab" data-toggle="pill" href="#justify-pills-home" role="tab" aria-controls="justify-pills-home" aria-selected="true" style="height: 45px; padding-top: 9%;">Objetos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" id="justify-pills-profile-tab" data-toggle="pill" href="#justify-pills-profile" role="tab" aria-controls="justify-pills-profile" aria-selected="false" style="height: 45px; padding-top: 9%;">Eventos</a>
+        <a class="nav-link" id="justify-pills-profile-tab" data-toggle="pill" href="#justify-pills-profile" role="tab" aria-controls="justify-pills-profile" aria-selected="false" style="height: 45px; padding-top: 9%;">Recorrido</a>
       </li>
     </ul>
     <div class="tab-content">
@@ -15,14 +15,6 @@
         <div class="tab-pane-header">
           <div class="input-group mb-4">
             <input type="search" class="form-control" id="input-search"  placeholder="Buscar unidad">
-            <div class="input-group-append">
-              <button class="btn btn-primary" id="auto-unblock">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
         <div class="tab-pane-body" style="height: 602px;">
@@ -40,23 +32,22 @@
       </div>
       <div class="tab-pane fade" id="justify-pills-profile" role="tabpanel" aria-labelledby="justify-pills-profile-tab">
         <div class="col-md-12 pt-3">
-          <div class="media">
-            <img class="mr-3" src="{% static 'assets/img/others/perfil.png' %}" alt="Generic placeholder image">
-            <div class="media-body">
-              <ul class="product">
-                <li><a href="#myanmar" class="active">Myanmar</a></li>
-                <li><a href="#madagascar">Madagascar</a></li>
-                <li><a href="#usa">United States of America</a></li>
-                <li><a href="#ethiopia">Ethiopia</a></li>
-                <li><a href="#brazil">Brazil</a></li>
-                <li><a href="#australia">Australia</a></li>
-                <li><a href="#china">China</a></li>
-                <li><a href="#kenya">Kenya</a></li>
-                <li><a href="#canada">Canada</a></li>
-                </ul>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-          </div>
+          <label for="">Desde</label>
+          <input type="date" name="" class="form-control" id=""><br>
+          <label for="">Hasta</label>
+          <input type="date" name="" class="form-control" id=""><br>
+          <label for="">Unidades</label>
+          <select class="placeholder js-states form-control" id="unit_name">
+            <option value="all">Todos</option>
+            <option value="all">Todos</option>
+            <option value="all">Todos</option>
+            <option value="all">Todos</option>
+            <option value="all">Todos</option>
+            <option value="all">Todos</option>
+            {% for unit in units%}
+            <option value="{{unit.name}}">{{unit.name}}</option>
+            {% endfor %}
+          </select>
         </div>
       </div>
     </div>
