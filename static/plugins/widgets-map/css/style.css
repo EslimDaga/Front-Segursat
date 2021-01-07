@@ -8,7 +8,8 @@ html{
     -webkit-text-size-adjust:100%
 }
 body{
-    margin:0
+    margin:0;
+    overflow: hidden;
 }
 article,aside,details,figcaption,figure,footer,hgroup,main,menu,nav-map,section,summary{
     display:block
