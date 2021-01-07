@@ -18,7 +18,13 @@ class MapView {
     const unit = await response.json();
     return unit;
   }
-  renderUnitsInSidebar = (units) => {
+  getLocationHistory = async (unitName) => {
+    const url = `/web/api/locations/get-location-history/${unitName}/`
+    const response = await fetch(url);
+    const locationHistory = await response.json();
+    return locationHistory;
+  }
+  renderUnitsInUnitTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
       const unit =
@@ -41,6 +47,45 @@ class MapView {
       unitList += unit;
     }
     document.getElementById("unit-list").innerHTML = unitList;
+  }
+  renderUnitsInUnitTabTravel = (units) => {
+    let unitList = "";
+    for (let i = 0; i < units.length; i++) {
+      const unit =
+      `
+        <option>${units[i].name}</option>
+      `;
+      unitList += unit;
+    }
+    document.getElementById("unit-list-travel").innerHTML = unitList;
+  }
+  renderUnitMarkers = (units) => {
+    for (let i = 0; i < units.length; i++) {
+      const icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+          </div>
+        </div>
+        `
+      });
+      this.markers.push(
+        new L.marker(
+          [units[i].device.last_latitude,units[i].device.last_longitude],
+          {
+            icon: icon,
+            title: units[i].name,
+            rotationAngle: units[i].device.last_angle
+          }
+        ).bindTooltip(`${units[i].name}`, {
+          permanent: true,
+          direction : "top",
+          offset: L.point({x: 0, y: -30})
+        }).addTo(this.map)
+      );
+    }
   }
   renderMap = (units) => {
     this.map = L.map('map',{
@@ -72,33 +117,7 @@ class MapView {
     let overlays = {};
     L.control.layers(baseLayers,overlays).addTo(this.map);
     baseLayers['Google Street Maps'].addTo(this.map);
-
-    for (let i = 0; i < units.length; i++) {
-      const icon = L.divIcon({
-        iconSize:null,
-        html:`
-        <div class="map-label">
-          <div class="map-label-content">
-            <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
-          </div>
-        </div>
-        `
-      });
-      this.markers.push(
-        new L.marker(
-          [units[i].device.last_latitude,units[i].device.last_longitude],
-          {
-            icon: icon,
-            title: units[i].name,
-            rotationAngle: units[i].device.last_angle
-          }
-        ).bindTooltip(`${units[i].name}`, {
-          permanent: true,
-          direction : "top",
-          offset: L.point({x: 0, y: -30})
-        }).addTo(this.map)
-      );
-    }
+    this.renderUnitMarkers(units);
   }
 
   searchUnitMarker = (unitName) => {
@@ -130,8 +149,8 @@ class MapView {
     document.getElementById("rssi").innerHTML = `${unit.device.last_attributes.rssi}`;
     document.getElementById("battery").innerHTML = `${unit.device.last_attributes.battery}`;
     document.getElementById("address_link").innerHTML = `<a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
-    <i class="fas fa-eye"></i>
-  </a>`
+      <i class="fas fa-eye"></i>
+    </a>`
     document.getElementById("address").innerHTML = `${unit.device.last_address}`;
   }
 
@@ -148,11 +167,63 @@ class MapView {
     }
   }
 
+  drawLocationHistory = async (unitName) => {
+    const locationHistory = await this.getLocationHistory(unitName);
+    let route = [];
+    let markers = [];
+    for (let i=0;i<locationHistory.length;i++) {
+      route.push([locationHistory[i].latitude, locationHistory[i].longitude]);
+      const icon = L.divIcon({
+        iconSize:null,
+        html:`<div class="map-label"><div class="map-label-content">
+        <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png" width="36" height="36"/>
+        </div><div class="map-label-arrow"></div></div>`
+      });
+      markers.push(
+        new L.marker(
+          [locationHistory[i].latitude,locationHistory[i].longitude],
+          {
+            icon: icon
+          }
+        )
+        .addTo(this.map)
+      )
+    }
+    const path = L.polyline.antPath(route, {
+      "dashArray": [
+        10,
+        20
+      ],
+      "weight": 5,
+      "color": "#0000FF",
+      "pulseColor": "#FFFFFF",
+      delay: 1000
+    }).addTo(this.map);
+  }
+
+  cleanMap = () => {
+    for (let i=0;i<this.markers.length;i++) {
+      this.map.removeLayer(this.markers[i]);
+    }
+  }
+
+  openUnitTab = async () => {
+    this.cleanMap();
+    const units = await this.getUnits();
+    this.units = units;
+    this.renderUnitMarkers(units);
+  }
+
+  openHistoryTab = () => {
+    this.cleanMap();
+  }
+
   run = async () => {
     const units = await this.getUnits();
     this.units = units;
-    this.renderUnitsInSidebar(units);
+    this.renderUnitsInUnitTab(units);
     this.renderMap(units);
+    this.renderUnitsInUnitTabTravel(units);
   }
 
 }
