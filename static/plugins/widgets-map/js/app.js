@@ -48,7 +48,7 @@ function addListField(t, e) {
 function addListColorField(t, e) {
     j_listview++;
     var i = $("<tr></tr>");
-    i.append('<td><input class="form-control" name="columns[' + e + "][color][" + j_listview + '][from]" type="text" value="0"></td>'), i.append('<td><input class="form-control" name="columns[' + e + "][color][" + j_listview + '][to]" type="text" value="0"></td>'), i.append('<td><input class="form-control colorpicker" name="columns[' + e + "][color][" + j_listview + '][color]" type="text" value="#000000"></td>'), i.append('<td><a role="button" href="javascript:" onClick="removeListField(this, \'tr\');"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a></td>'), $(t).closest("table").append(i), $(".colorpicker").colorpicker()
+    i.append('<td><input class="form-control-map" name="columns[' + e + "][color][" + j_listview + '][from]" type="text" value="0"></td>'), i.append('<td><input class="form-control-map" name="columns[' + e + "][color][" + j_listview + '][to]" type="text" value="0"></td>'), i.append('<td><input class="form-control-map colorpicker" name="columns[' + e + "][color][" + j_listview + '][color]" type="text" value="#000000"></td>'), i.append('<td><a role="button" href="javascript:" onClick="removeListField(this, \'tr\');"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a></td>'), $(t).closest("table").append(i), $(".colorpicker").colorpicker()
 }
 
 function HistoryGraph() {
@@ -549,7 +549,7 @@ function History() {
             var n = "";
             $.each(t.other_arr, function(t, e) {
                 n += e + "<br>"
-            }), i += "<tr><th></th><td>" + n + "</td></tr>", i += "</tbody></table></div>", i += '<div class="text-centers"><i class="btn icon ico-options-h" data-toggle="collapse" data-target="#history-point-params"></i></div>', i += "</div>"
+            }), i += "<tr><th></th><td>" + n + "</td></tr>", i += "</tbody></table></div>", i += '<div class="text-center"><i class="btn icon ico-options-h" data-toggle="collapse" data-target="#history-point-params"></i></div>', i += "</div>"
         }
         var o = "";
         return o += '<div class="popup-content" data-history-id="' + t.position_id + '">', o += '   <div class="popup-header">' + e + '<div class="popup-title"></div></div>', o += '   <div class="popup-body">' + i + "</div>", o += "</div>"
@@ -12395,11 +12395,11 @@ function initComponents(t) {
         autoclose: !0,
         weekStart: void 0 !== app.settings.weekStart ? app.settings.weekStart : 0,
         language: app.lang.iso
-    }), $("select.form-controls.multiexpand", $container).selectpicker({
+    }), $("select.form-control-map.multiexpand", $container).selectpicker({
         iconBase: "",
         tickIcon: "",
         size: !1
-    }), $("select.form-controls", $container).selectpicker({
+    }), $("select.form-control-map", $container).selectpicker({
         doneButton: !0,
         iconBase: "",
         tickIcon: ""
@@ -12945,7 +12945,7 @@ function Device(t) {
             e = n.sensorData(e), r += "<tr><th>" + e.name + ":</th><td>" + e.text + "</td></tr>"
         }), a.expiration_date && (r += "<tr><th>" + window.lang.expiration_date + ":</th><td>" + n.dataDOM("expiration_date") + "</td></tr>"), r += "</tbody></table>", r += '<div id="device-side-params" class="collapse"><table class="table table-condensed"><tbody>', r += "<tr><th>" + window.lang.position + ":</th><td>" + n.dataDOM("position") + "</td></tr>", r += "<tr><th>" + window.lang.speed + ":</th><td>" + n.dataDOM("speed") + "</td></tr>", r += "<tr><th>" + window.lang.altitude + ":</th><td>" + n.dataDOM("altitude") + "</td></tr>", r += "<tr><th>" + window.lang.angle + ":</th><td>" + n.dataDOM("angle") + "</td></tr>", r += "<tr><th>" + window.lang.driver + ":</th><td>" + n.dataDOM("driver") + "</td></tr>", r += "<tr><th>" + window.lang.model + ":</th><td>" + n.dataDOM("device_model") + "</td></tr>", r += "<tr><th>" + window.lang.plate + ":</th><td>" + n.dataDOM("plate_number") + "</td></tr>", r += "<tr><th>" + window.lang.protocol + ":</th><td>" + n.dataDOM("protocol") + "</td></tr>", a.services && $.each(a.services, function(t, e) {
             r += "<tr><th>" + e.name + ":</th><td>" + e.value + "</td></tr>"
-        }), r += "</tbody></table></div>", r += '<div class="text-centers"><i class="btn icon ico-options-h" data-toggle="collapse" data-target="#device-side-params"></i></div>', r += "</div>";
+        }), r += "</tbody></table></div>", r += '<div class="text-center"><i class="btn icon ico-options-h" data-toggle="collapse" data-target="#device-side-params"></i></div>', r += "</div>";
         var c = "";
         c += '<div class="popup-content" data-device-id="' + a.id + '"><div class="tab-content">', c += '<div role="tabpanel" class="tab-pane active" id="gps-device-parameters-view">', c += '   <div class="popup-header">' + t + '<div class="popup-title">' + n.dataDOM("name") + "</div></div>", c += '   <div class="popup-body"><div class="tab-content">' + r + i + "</div></div>", c += "</div>", c += '<div role="tabpanel" class="tab-pane" id="gps-device-street-view-large">', c += '   <div class="popup-header">' + e + '<div class="popup-title">' + window.lang.streetview + "</div></div>", c += o, c += "</div>", c += "</div></div>", s = L.popup({
             className: "leaflet-popup-device",
