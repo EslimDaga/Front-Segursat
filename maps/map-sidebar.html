@@ -4,10 +4,10 @@
   <div class="sidebar-map-content">
     <ul class="nav nav-pills mb-3 mt-3 nav-fill" id="justify-pills-tab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="justify-pills-home-tab" data-toggle="pill" href="#justify-pills-home" role="tab" aria-controls="justify-pills-home" aria-selected="true" style="height: 45px; padding-top: 9%;">Objetos</a>
+        <a class="nav-link active" id="justify-pills-home-tab" data-toggle="pill" href="#justify-pills-home" role="tab" aria-controls="justify-pills-home" aria-selected="true" style="height: 45px; padding-top: 9%;" onclick="mapView.openUnitTab();">Objetos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="justify-pills-profile-tab" data-toggle="pill" href="#justify-pills-profile" role="tab" aria-controls="justify-pills-profile" aria-selected="false" style="height: 45px; padding-top: 9%;">Recorrido</a>
+        <a class="nav-link" id="justify-pills-profile-tab" data-toggle="pill" href="#justify-pills-profile" role="tab" aria-controls="justify-pills-profile" aria-selected="false" style="height: 45px; padding-top: 9%;" onclick="mapView.openHistoryTab();">Recorrido</a>
       </li>
     </ul>
     <div class="tab-content">
@@ -36,18 +36,11 @@
           <input type="date" name="" class="form-control" id=""><br>
           <label for="">Hasta</label>
           <input type="date" name="" class="form-control" id=""><br>
-          <label for="">Unidades</label>
-          <select class="placeholder js-states form-control" id="unit_name">
-            <option value="all">Todos</option>
-            <option value="all">Todos</option>
-            <option value="all">Todos</option>
-            <option value="all">Todos</option>
-            <option value="all">Todos</option>
-            <option value="all">Todos</option>
-            {% for unit in units%}
-            <option value="{{unit.name}}">{{unit.name}}</option>
-            {% endfor %}
-          </select>
+          <label for="">Unidades</label><br>
+          <select class="placeholder js-states form-control" id="unit-list-travel">
+            <option value="all">Seleccionar unidad</option>
+          </select><br>
+          <button class="btn btn-primary btn-block pb-2">Buscar</button>
         </div>
       </div>
     </div>
