@@ -53,11 +53,47 @@ class MapView {
     for (let i = 0; i < units.length; i++) {
       const unit =
       `
-        <option>${units[i].name}</option>
+        <option value="${units[i].name}">${units[i].name}</option>
       `;
       unitList += unit;
     }
     document.getElementById("unit-list-travel").innerHTML = unitList;
+  }
+  searchHistory = () => {
+    const date_from = document.getElementById("date_from").value;
+    const date_to = document.getElementById("date_to").value;
+    const unit = document.getElementById("unit-list-travel").value;
+
+    if (date_from === "") {
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Seleccione una fecha',
+        padding: '2em'
+      })
+    }else{
+      console.log(date_from);
+    }
+    if (date_to === "") {
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Seleccione una fecha',
+        padding: '2em'
+      })
+    }else{
+      console.log(date_to);
+    }
+    if (unit === "") {
+      swal({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Seleccione una unidad',
+        padding: '2em'
+      })
+    }else{
+      console.log(unit);
+    }
   }
   renderUnitMarkers = (units) => {
     for (let i = 0; i < units.length; i++) {
