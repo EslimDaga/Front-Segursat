@@ -401,9 +401,9 @@ if (function(t, e) {
                 }, n.find.CLASS = i.getElementsByClassName && function(t, e) {
                     if (void 0 !== e.getElementsByClassName && g) return e.getElementsByClassName(t)
                 }, v = [], m = [], (i.qsa = Q.test(p.querySelectorAll)) && (lt(function(t) {
-                    f.appendChild(t).innerHTML = "<a id='" + w + "'></a><select id='" + w + "-\r\\' msallowcapture=''><option selected=''></option></select>", t.querySelectorAll("[msallowcapture^='']").length && m.push("[*^$]=" + F + "*(?:''|\"\")"), t.querySelectorAll("[selected]").length || m.push("\\[" + F + "*(?:value|" + E + ")"), t.querySelectorAll("[id~=" + w + "-]").length || m.push("~="), t.querySelectorAll(":checked").length || m.push(":checked"), t.querySelectorAll("a#" + w + "+*").length || m.push(".#.+[+~]")
+                    f.appendChild(t).innerHTML = "<a id='" + w + "'></a><selects id='" + w + "-\r\\' msallowcapture=''><option selected=''></option></selects>", t.querySelectorAll("[msallowcapture^='']").length && m.push("[*^$]=" + F + "*(?:''|\"\")"), t.querySelectorAll("[selected]").length || m.push("\\[" + F + "*(?:value|" + E + ")"), t.querySelectorAll("[id~=" + w + "-]").length || m.push("~="), t.querySelectorAll(":checked").length || m.push(":checked"), t.querySelectorAll("a#" + w + "+*").length || m.push(".#.+[+~]")
                 }), lt(function(t) {
-                    t.innerHTML = "<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";
+                    t.innerHTML = "<a href='' disabled='disabled'></a><selects disabled='disabled'><option/></selects>";
                     var e = p.createElement("input");
                     e.setAttribute("type", "hidden"), t.appendChild(e).setAttribute("name", "D"), t.querySelectorAll("[name=d]").length && m.push("name" + F + "*[*^$|!~]?="), 2 !== t.querySelectorAll(":enabled").length && m.push(":enabled", ":disabled"), f.appendChild(t).disabled = !0, 2 !== t.querySelectorAll(":disabled").length && m.push(":enabled", ":disabled"), t.querySelectorAll("*,:x"), m.push(",.*:")
                 })), (i.matchesSelector = Q.test(y = f.matches || f.webkitMatchesSelector || f.mozMatchesSelector || f.oMatchesSelector || f.msMatchesSelector)) && lt(function(t) {
@@ -1447,7 +1447,7 @@ if (function(t, e) {
         rt = /<([a-z][^\/\0>\x20\t\r\n\f]+)/i,
         lt = /^$|\/(?:java|ecma)script/i,
         ht = {
-            option: [1, "<select multiple='multiple'>", "</select>"],
+            option: [1, "<selects multiple='multiple'>", "</selects>"],
             thead: [1, "<table>", "</table>"],
             col: [2, "<table><colgroup>", "</colgroup></table>"],
             tr: [2, "<table><tbody>", "</tbody></table>"],
@@ -6354,7 +6354,7 @@ i.VERSION = "3.3.7", i.DEFAULTS = {
     }, this), 0)
 }, i.prototype.toggle = function() {
     var t = !0,
-        e = this.$element.closest('[data-toggle="buttons"]');
+        e = this.$element.closest('[data-toggle-map="buttons"]');
     if (e.length) {
         var i = this.$element.find("input");
         "radio" == i.prop("type") ? (i.prop("checked") && (t = !1), e.find(".active").removeClass("active"), this.$element.addClass("active")) : "checkbox" == i.prop("type") && (i.prop("checked") !== this.$element.hasClass("active") && (t = !1), this.$element.toggleClass("active")), i.prop("checked", this.$element.hasClass("active")), t && i.trigger("change")
@@ -6363,10 +6363,10 @@ i.VERSION = "3.3.7", i.DEFAULTS = {
 var n = t.fn.button;
 t.fn.button = e, t.fn.button.Constructor = i, t.fn.button.noConflict = function() {
     return t.fn.button = n, this
-}, t(document).on("click.bs.button.data-api", '[data-toggle^="button"]', function(i) {
+}, t(document).on("click.bs.button.data-api", '[data-toggle-map^="button"]', function(i) {
     var n = t(i.target).closest(".btn");
     e.call(n, "toggle"), t(i.target).is('input[type="radio"], input[type="checkbox"]') || (i.preventDefault(), n.is("input,button") ? n.trigger("focus") : n.find("input:visible,button:visible").first().trigger("focus"))
-}).on("focus.bs.button.data-api blur.bs.button.data-api", '[data-toggle^="button"]', function(e) {
+}).on("focus.bs.button.data-api blur.bs.button.data-api", '[data-toggle-map^="button"]', function(e) {
     t(e.target).closest(".btn").toggleClass("focus", /^focus(in)?$/.test(e.type))
 })
 }(jQuery),
@@ -6491,7 +6491,7 @@ function i(e) {
     })
 }
 var n = function(e, i) {
-    this.$element = t(e), this.options = t.extend({}, n.DEFAULTS, i), this.$trigger = t('[data-toggle="collapse"][href="#' + e.id + '"],[data-toggle="collapse"][data-target="#' + e.id + '"]'), this.transitioning = null, this.options.parent ? this.$parent = this.getParent() : this.addAriaAndCollapsedClass(this.$element, this.$trigger), this.options.toggle && this.toggle()
+    this.$element = t(e), this.options = t.extend({}, n.DEFAULTS, i), this.$trigger = t('[data-toggle-map="collapse"][href="#' + e.id + '"],[data-toggle-map="collapse"][data-target="#' + e.id + '"]'), this.transitioning = null, this.options.parent ? this.$parent = this.getParent() : this.addAriaAndCollapsedClass(this.$element, this.$trigger), this.options.toggle && this.toggle()
 };
 n.VERSION = "3.3.7", n.TRANSITION_DURATION = 350, n.DEFAULTS = {
     toggle: !0
@@ -6530,7 +6530,7 @@ n.VERSION = "3.3.7", n.TRANSITION_DURATION = 350, n.DEFAULTS = {
 }, n.prototype.toggle = function() {
     this[this.$element.hasClass("in") ? "hide" : "show"]()
 }, n.prototype.getParent = function() {
-    return t(this.options.parent).find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]').each(t.proxy(function(i, n) {
+    return t(this.options.parent).find('[data-toggle-map="collapse"][data-parent="' + this.options.parent + '"]').each(t.proxy(function(i, n) {
         var s = t(n);
         this.addAriaAndCollapsedClass(e(s), s)
     }, this)).end()
@@ -6541,7 +6541,7 @@ n.VERSION = "3.3.7", n.TRANSITION_DURATION = 350, n.DEFAULTS = {
 var s = t.fn.collapse;
 t.fn.collapse = i, t.fn.collapse.Constructor = n, t.fn.collapse.noConflict = function() {
     return t.fn.collapse = s, this
-}, t(document).on("click.bs.collapse.data-api", '[data-toggle="collapse"]', function(n) {
+}, t(document).on("click.bs.collapse.data-api", '[data-toggle-map="collapse"]', function(n) {
     var s = t(this);
     s.attr("data-target") || n.preventDefault();
     var o = e(s),
@@ -6566,13 +6566,13 @@ function i(i) {
             o = {
                 relatedTarget: this
             };
-        s.hasClass("open") && (i && "click" == i.type && /input|textarea/i.test(i.target.tagName) && t.contains(s[0], i.target) || (s.trigger(i = t.Event("hide.bs.dropdown", o)), i.isDefaultPrevented() || (n.attr("aria-expanded", "false"), s.removeClass("open").trigger(t.Event("hidden.bs.dropdown", o)))))
+        s.hasClass("open") && (i && "click" == i.type && /input|textarea/i.test(i.target.tagName) && t.contains(s[0], i.target) || (s.trigger(i = t.Event("hide.bs.dropdown-map", o)), i.isDefaultPrevented() || (n.attr("aria-expanded", "false"), s.removeClass("open").trigger(t.Event("hidden.bs.dropdown-map", o)))))
     }))
 }
-var n = ".dropdown-backdrop",
-    s = '[data-toggle="dropdown"]',
+var n = ".dropdown-map-backdrop",
+    s = '[data-toggle-map="dropdown-map"]',
     o = function(e) {
-        t(e).on("click.bs.dropdown", this.toggle)
+        t(e).on("click.bs.dropdown-map", this.toggle)
     };
 o.VERSION = "3.3.7", o.prototype.toggle = function(n) {
     var s = t(this);
@@ -6580,12 +6580,12 @@ o.VERSION = "3.3.7", o.prototype.toggle = function(n) {
         var o = e(s),
             a = o.hasClass("open");
         if (i(), !a) {
-            "ontouchstart" in document.documentElement && !o.closest(".navbar-nav").length && t(document.createElement("div")).addClass("dropdown-backdrop").insertAfter(t(this)).on("click", i);
+            "ontouchstart" in document.documentElement && !o.closest(".navbar-nav").length && t(document.createElement("div")).addClass("dropdown-map-backdrop").insertAfter(t(this)).on("click", i);
             var r = {
                 relatedTarget: this
             };
-            if (o.trigger(n = t.Event("show.bs.dropdown", r)), n.isDefaultPrevented()) return;
-            s.trigger("focus").attr("aria-expanded", "true"), o.toggleClass("open").trigger(t.Event("shown.bs.dropdown", r))
+            if (o.trigger(n = t.Event("show.bs.dropdown-map", r)), n.isDefaultPrevented()) return;
+            s.trigger("focus").attr("aria-expanded", "true"), o.toggleClass("open").trigger(t.Event("shown.bs.dropdown-map", r))
         }
         return !1
     }
@@ -6596,7 +6596,7 @@ o.VERSION = "3.3.7", o.prototype.toggle = function(n) {
             var o = e(n),
                 a = o.hasClass("open");
             if (!a && 27 != i.which || a && 27 == i.which) return 27 == i.which && o.find(s).trigger("focus"), n.trigger("click");
-            var r = o.find(".dropdown-menu li:not(.disabled):visible a");
+            var r = o.find(".dropdown-menu-map li:not(.disabled):visible a");
             if (r.length) {
                 var l = r.index(i.target);
                 38 == i.which && l > 0 && l--, 40 == i.which && l < r.length - 1 && l++, ~l || (l = 0), r.eq(l).trigger("focus")
@@ -6608,14 +6608,14 @@ var a = t.fn.dropdown;
 t.fn.dropdown = function(e) {
     return this.each(function() {
         var i = t(this),
-            n = i.data("bs.dropdown");
-        n || i.data("bs.dropdown", n = new o(this)), "string" == typeof e && n[e].call(i)
+            n = i.data("bs.dropdown-map");
+        n || i.data("bs.dropdown-map", n = new o(this)), "string" == typeof e && n[e].call(i)
     })
 }, t.fn.dropdown.Constructor = o, t.fn.dropdown.noConflict = function() {
     return t.fn.dropdown = a, this
-}, t(document).on("click.bs.dropdown.data-api", i).on("click.bs.dropdown.data-api", ".dropdown form", function(t) {
+}, t(document).on("click.bs.dropdown-map.data-api", i).on("click.bs.dropdown-map.data-api", ".dropdown-map form", function(t) {
     t.stopPropagation()
-}).on("click.bs.dropdown.data-api", s, o.prototype.toggle).on("keydown.bs.dropdown.data-api", s, o.prototype.keydown).on("keydown.bs.dropdown.data-api", ".dropdown-menu", o.prototype.keydown)
+}).on("click.bs.dropdown-map.data-api", s, o.prototype.toggle).on("keydown.bs.dropdown-map.data-api", s, o.prototype.keydown).on("keydown.bs.dropdown-map.data-api", ".dropdown-menu-map", o.prototype.keydown)
 }(jQuery),
 function(t) {
 "use strict";
@@ -6727,7 +6727,7 @@ i.VERSION = "3.3.7", i.TRANSITION_DURATION = 300, i.BACKDROP_TRANSITION_DURATION
 var n = t.fn.modal;
 t.fn.modal = e, t.fn.modal.Constructor = i, t.fn.modal.noConflict = function() {
     return t.fn.modal = n, this
-}, t(document).on("click.bs.modal.data-api", '[data-toggle="modal"]', function(i) {
+}, t(document).on("click.bs.modal.data-api", '[data-toggle-map="modal"]', function(i) {
     var n = t(this),
         s = n.attr("href"),
         o = t(n.attr("data-target") || s && s.replace(/.*(?=#[^\s]+$)/, "")),
@@ -7064,7 +7064,7 @@ e.VERSION = "3.3.7", e.DEFAULTS = {
     this.activeTarget = e, this.clear();
     var i = this.selector + '[data-target="' + e + '"],' + this.selector + '[href="' + e + '"]',
         n = t(i).parents("li").addClass("active");
-    n.parent(".dropdown-menu").length && (n = n.closest("li.dropdown").addClass("active")), n.trigger("activate.bs.scrollspy")
+    n.parent(".dropdown-menu-map").length && (n = n.closest("li.dropdown-map").addClass("active")), n.trigger("activate.bs.scrollspy")
 }, e.prototype.clear = function() {
     t(this.selector).parentsUntil(this.options.target, ".active").removeClass("active")
 };
@@ -7093,7 +7093,7 @@ var i = function(e) {
 };
 i.VERSION = "3.3.7", i.TRANSITION_DURATION = 150, i.prototype.show = function() {
     var e = this.element,
-        i = e.closest("ul:not(.dropdown-menu)"),
+        i = e.closest("ul:not(.dropdown-menu-map)"),
         n = e.data("target");
     if (n || (n = (n = e.attr("href")) && n.replace(/.*(?=#[^\s]*$)/, "")), !e.parent("li").hasClass("active")) {
         var s = i.find(".active:last a"),
@@ -7118,7 +7118,7 @@ i.VERSION = "3.3.7", i.TRANSITION_DURATION = 150, i.prototype.show = function() 
     }
 }, i.prototype.activate = function(e, n, s) {
     function o() {
-        a.removeClass("active").find("> .dropdown-menu > .active").removeClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !1), e.addClass("active").find('[data-toggle="tab"]').attr("aria-expanded", !0), r ? (e[0].offsetWidth, e.addClass("in")) : e.removeClass("fade"), e.parent(".dropdown-menu").length && e.closest("li.dropdown").addClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !0), s && s()
+        a.removeClass("active").find("> .dropdown-menu-map > .active").removeClass("active").end().find('[data-toggle-map="tab"]').attr("aria-expanded", !1), e.addClass("active").find('[data-toggle-map="tab"]').attr("aria-expanded", !0), r ? (e[0].offsetWidth, e.addClass("in")) : e.removeClass("fade"), e.parent(".dropdown-menu-map").length && e.closest("li.dropdown-map").addClass("active").end().find('[data-toggle-map="tab"]').attr("aria-expanded", !0), s && s()
     }
     var a = n.find("> .active"),
         r = s && t.support.transition && (a.length && a.hasClass("fade") || !!n.find("> .fade").length);
@@ -7131,7 +7131,7 @@ t.fn.tab = e, t.fn.tab.Constructor = i, t.fn.tab.noConflict = function() {
 var s = function(i) {
     i.preventDefault(), e.call(t(this), "show")
 };
-t(document).on("click.bs.tab.data-api", '[data-toggle="tab"]', s).on("click.bs.tab.data-api", '[data-toggle="pill"]', s)
+t(document).on("click.bs.tab.data-api", '[data-toggle-map="tab"]', s).on("click.bs.tab.data-api", '[data-toggle-map="pill"]', s)
 }(jQuery),
 function(t) {
 "use strict";
@@ -7369,14 +7369,14 @@ function u(e) {
     var o = this.each(function() {
         var e = t(this);
         if (e.is("select")) {
-            var o = e.data("selectpicker"),
+            var o = e.data("selectpickerMap"),
                 a = "object" == typeof s && s;
             if (o) {
                 if (a)
                     for (var r in a) a.hasOwnProperty(r) && (o.options[r] = a[r])
             } else {
-                var l = t.extend({}, d.DEFAULTS, t.fn.selectpicker.defaults || {}, e.data(), a);
-                l.template = t.extend({}, d.DEFAULTS.template, t.fn.selectpicker.defaults ? t.fn.selectpicker.defaults.template : {}, e.data().template, a.template), e.data("selectpicker", o = new d(this, l))
+                var l = t.extend({}, d.DEFAULTS, t.fn.selectpickerMap.defaults || {}, e.data(), a);
+                l.template = t.extend({}, d.DEFAULTS.template, t.fn.selectpickerMap.defaults ? t.fn.selectpickerMap.defaults.template : {}, e.data().template, a.template), e.data("selectpickerMap", o = new d(this, l))
             }
             "string" == typeof s && (i = o[s] instanceof Function ? o[s].apply(o, n) : o.options[s])
         }
@@ -7432,19 +7432,19 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
     init: function() {
         var e = this,
             i = this.$element.attr("id");
-        this.$element.addClass("bs-select-hidden"), this.liObj = {}, this.multiple = this.$element.prop("multiple"), this.autofocus = this.$element.prop("autofocus"), this.$newElement = this.createView(), this.$element.after(this.$newElement).appendTo(this.$newElement), this.$button = this.$newElement.children("button"), this.$menu = this.$newElement.children(".dropdown-menu"), this.$menuInner = this.$menu.children(".inner"), this.$searchbox = this.$menu.find("input"), this.checking = !1, this.$element.removeClass("bs-select-hidden"), !0 === this.options.dropdownAlignRight && this.$menu.addClass("dropdown-menu-right"), void 0 !== i && (this.$button.attr("data-id", i), t('label[for="' + i + '"]').click(function(t) {
+        this.$element.addClass("bs-select-hidden"), this.liObj = {}, this.multiple = this.$element.prop("multiple"), this.autofocus = this.$element.prop("autofocus"), this.$newElement = this.createView(), this.$element.after(this.$newElement).appendTo(this.$newElement), this.$button = this.$newElement.children("button"), this.$menu = this.$newElement.children(".dropdown-menu-map"), this.$menuInner = this.$menu.children(".inner"), this.$searchbox = this.$menu.find("input"), this.checking = !1, this.$element.removeClass("bs-select-hidden"), !0 === this.options.dropdownAlignRight && this.$menu.addClass("dropdown-menu-map-right"), void 0 !== i && (this.$button.attr("data-id", i), t('label[for="' + i + '"]').click(function(t) {
             t.preventDefault(), e.$button.focus()
         })), this.checkDisabled(), this.clickListener(), this.options.liveSearch && this.liveSearchListener(), this.render(), this.setStyle(), this.setWidth(), this.options.container && this.selectPosition(), this.$menu.data("this", this), this.$newElement.data("this", this), this.options.mobile && this.mobile(), this.$newElement.on({
-            "hide.bs.dropdown": function(t) {
+            "hide.bs.dropdown-map": function(t) {
                 e.$menuInner.attr("aria-expanded", !1), e.$element.trigger("hide.bs.select", t)
             },
-            "hidden.bs.dropdown": function(t) {
+            "hidden.bs.dropdown-map": function(t) {
                 e.$element.trigger("hidden.bs.select", t)
             },
-            "show.bs.dropdown": function(t) {
+            "show.bs.dropdown-map": function(t) {
                 e.$menuInner.attr("aria-expanded", !0), e.$element.trigger("show.bs.select", t)
             },
-            "shown.bs.dropdown": function(t) {
+            "shown.bs.dropdown-map": function(t) {
                 e.$element.trigger("shown.bs.select", t)
             }
         }), e.$element[0].hasAttribute("required") && this.$element.on("invalid", function() {
@@ -7526,7 +7526,7 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
                         n += 1;
                         var D = y[0].label,
                             C = void 0 !== y.data("subtext") ? '<small class="text-muted">' + y.data("subtext") + "</small>" : "";
-                        D = (y.data("icon") ? '<span class="' + e.options.iconBase + " " + y.data("icon") + '"></span> ' : "") + '<span class="text">' + h(D) + C + "</span>", 0 !== s && i.length > 0 && (o++, i.push(a("", null, "divider", n + "div"))), o++, D = '<div class="checkbox-inline"><input type="checkbox"><label></label></div>' + D, i.push(a(D, null, "dropdown-header" + k, n))
+                        D = (y.data("icon") ? '<span class="' + e.options.iconBase + " " + y.data("icon") + '"></span> ' : "") + '<span class="text">' + h(D) + C + "</span>", 0 !== s && i.length > 0 && (o++, i.push(a("", null, "divider", n + "div"))), o++, D = '<div class="checkbox-inline"><input type="checkbox"><label></label></div>' + D, i.push(a(D, null, "dropdown-map-header" + k, n))
                     }
                     if (e.options.hideDisabled && x) return void o--;
                     i.push(a(l(f, "opt " + u + k, p, g), s, "", n))
@@ -7574,7 +7574,7 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
         void 0 == this.options.title && (this.options.title = this.$element.attr("title")), "static" == this.options.selectedTextFormat && (a = this.options.title), a || (a = void 0 !== this.options.title ? this.options.title : this.options.noneSelectedText), this.$button.attr("title", c(t.trim(a.replace(/<[^>]*>?/g, "")))), this.$button.children(".filter-option").html(a), this.$element.trigger("rendered.bs.select")
     },
     setStyle: function(t, e) {
-        this.$element.attr("class") && this.$newElement.addClass(this.$element.attr("class").replace(/selectpicker|mobile-device|bs-select-hidden|validate\[.*\]/gi, ""));
+        this.$element.attr("class") && this.$newElement.addClass(this.$element.attr("class").replace(/selectpickerMap|mobile-device|bs-select-hidden|validate\[.*\]/gi, ""));
         var i = t || this.options.style;
         "add" == e ? this.$button.addClass(i) : "remove" == e ? this.$button.removeClass(i) : (this.$button.removeClass(this.options.style), this.$button.addClass(i))
     },
@@ -7591,7 +7591,7 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
                 c = this.options.liveSearch ? document.createElement("div") : null,
                 d = this.options.actionsBox && this.multiple && this.$menu.find(".bs-actionsbox").length > 0 ? this.$menu.find(".bs-actionsbox")[0].cloneNode(!0) : null,
                 u = this.options.doneButton && this.multiple && this.$menu.find(".bs-donebutton").length > 0 ? this.$menu.find(".bs-donebutton")[0].cloneNode(!0) : null;
-            if (l.className = "text", i.className = this.$menu[0].parentNode.className + " open", n.className = "dropdown-menu open", s.className = "dropdown-menu inner", o.className = "divider", l.appendChild(document.createTextNode("Inner text")), r.appendChild(l), a.appendChild(r), s.appendChild(a), s.appendChild(o), h && n.appendChild(h), c) {
+            if (l.className = "text", i.className = this.$menu[0].parentNode.className + " open", n.className = "dropdown-menu-map open", s.className = "dropdown-menu-map inner", o.className = "divider", l.appendChild(document.createTextNode("Inner text")), r.appendChild(l), a.appendChild(r), s.appendChild(a), s.appendChild(o), h && n.appendChild(h), c) {
                 var p = document.createElement("input");
                 c.className = "bs-searchbox", p.className = "form-control", c.appendChild(p), n.appendChild(c)
             }
@@ -7661,7 +7661,7 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
                         w = h.$menuInner[0].getElementsByTagName("li"),
                         k = Array.prototype.filter ? Array.prototype.filter.call(w, p("hidden", !1)) : h.$lis.not(".hidden"),
                         C = Array.prototype.filter ? Array.prototype.filter.call(k, p("dropdown-header", !0)) : k.filter(".dropdown-header");
-                    D(), e = a - S.vert, i = l - S.horiz, h.options.container ? (c.data("height") || c.data("height", c.height()), n = c.data("height"), c.data("width") || c.data("width", c.width()), s = c.data("width")) : (n = c.height(), s = c.width()), h.options.dropupAuto && h.$newElement.toggleClass("dropup", o > a && e - S.vert < n), h.$newElement.hasClass("dropup") && (e = o - S.vert), "auto" === h.options.dropdownAlignRight && c.toggleClass("dropdown-menu-right", r > l && i - S.horiz < s - f), u = k.length + C.length > 3 ? 3 * g + S.vert - 2 : 0, c.css({
+                    D(), e = a - S.vert, i = l - S.horiz, h.options.container ? (c.data("height") || c.data("height", c.height()), n = c.data("height"), c.data("width") || c.data("width", c.width()), s = c.data("width")) : (n = c.height(), s = c.width()), h.options.dropupAuto && h.$newElement.toggleClass("dropup", o > a && e - S.vert < n), h.$newElement.hasClass("dropup") && (e = o - S.vert), "auto" === h.options.dropdownAlignRight && c.toggleClass("dropdown-menu-map-right", r > l && i - S.horiz < s - f), u = k.length + C.length > 3 ? 3 * g + S.vert - 2 : 0, c.css({
                         "max-height": e + "px",
                         overflow: "hidden",
                         "min-height": u + m + v + y + b + "px"
@@ -7692,7 +7692,7 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
             this.$menu.css("min-width", "0");
             var t = this.$menu.parent().clone().appendTo("body"),
                 e = this.options.container ? this.$newElement.clone().appendTo("body") : t,
-                i = t.children(".dropdown-menu").outerWidth(),
+                i = t.children(".dropdown-menu-map").outerWidth(),
                 n = e.css("width", "auto").children("button").outerWidth();
             t.remove(), e.remove(), this.$newElement.css("width", Math.max(i, n) + "px")
         } else "fit" === this.options.width ? (this.$menu.css("min-width", ""), this.$newElement.css("width", "").addClass("fit-width")) : this.options.width ? (this.$menu.css("min-width", ""), this.$newElement.css("width", this.options.width)) : (this.$menu.css("min-width", ""), this.$newElement.css("width", ""));
@@ -7811,10 +7811,10 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
                 } else h.prop("selected", !1), c.prop("selected", !0), e.$menuInner.find(".selected").removeClass("selected").find("a").attr("aria-selected", !1), e.setSelected(s, !0);
                 l && (o != e.$element.val() && e.multiple || r != e.$element.prop("selectedIndex") && !e.multiple) && (a = [s, c.prop("selected"), d], e.$element.triggerNative("change"))
             }
-        }), this.$menuInner.on("change", "li.dropdown-header input", function() {
+        }), this.$menuInner.on("change", "li.dropdown-map-header input", function() {
             if (e.multiple) {
                 e.findLis();
-                for (var i = t(this).closest(".dropdown-header").data("optgroup"), n = e.$element.find("option"), s = e.$lis.not(".divider, .dropdown-header, .disabled, .hidden").filter("[data-optgroup=" + i + "]"), o = [], a = t(this).prop("checked"), r = 0; r < s.length; r++) {
+                for (var i = t(this).closest(".dropdown-map-header").data("optgroup"), n = e.$element.find("option"), s = e.$lis.not(".divider, .dropdown-map-header, .disabled, .hidden").filter("[data-optgroup=" + i + "]"), o = [], a = t(this).prop("checked"), r = 0; r < s.length; r++) {
                     var l = s[r].getAttribute("data-original-index");
                     o[o.length] = n.eq(l)[0]
                 }
@@ -7835,22 +7835,22 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
     liveSearchListener: function() {
         var e = this,
             i = t('<li class="no-results"></li>');
-        this.$button.on("click.dropdown.data-api", function() {
+        this.$button.on("click.dropdown-map.data-api", function() {
             e.$menuInner.find(".active").removeClass("active"), e.$searchbox.val() && (e.$searchbox.val(""), e.$lis.not(".is-hidden").removeClass("hidden"), i.parent().length && i.remove()), e.multiple || e.$menuInner.find(".selected").addClass("active"), setTimeout(function() {
                 e.$searchbox.focus()
             }, 10)
-        }), this.$searchbox.on("click.dropdown.data-api focus.dropdown.data-api touchend.dropdown.data-api", function(t) {
+        }), this.$searchbox.on("click.dropdown-map.data-api focus.dropdown-map.data-api touchend.dropdown-map.data-api", function(t) {
             t.stopPropagation()
         }), this.$searchbox.on("input propertychange", function() {
             if (e.$lis.not(".is-hidden").removeClass("hidden"), e.$lis.filter(".active").removeClass("active"), i.remove(), e.$searchbox.val()) {
-                var n, s = e.$lis.not(".is-hidden, .divider, .dropdown-header");
+                var n, s = e.$lis.not(".is-hidden, .divider, .dropdown-map-header");
                 if ((n = e.options.liveSearchNormalize ? s.not(":a" + e._searchStyle() + '("' + r(e.$searchbox.val()) + '")') : s.not(":" + e._searchStyle() + '("' + e.$searchbox.val() + '")')).length === s.length) i.html(e.options.noneResultsText.replace("{0}", '"' + h(e.$searchbox.val()) + '"')), e.$menuInner.append(i), e.$lis.addClass("hidden");
                 else {
                     n.addClass("hidden");
                     var o, a = e.$lis.not(".hidden");
                     a.each(function(e) {
                         var i = t(this);
-                        i.hasClass("divider") ? void 0 === o ? i.addClass("hidden") : (o && o.addClass("hidden"), o = i) : i.hasClass("dropdown-header") && a.eq(e + 1).data("optgroup") !== i.data("optgroup") ? i.addClass("hidden") : o = null
+                        i.hasClass("divider") ? void 0 === o ? i.addClass("hidden") : (o && o.addClass("hidden"), o = i) : i.hasClass("dropdown-map-header") && a.eq(e + 1).data("optgroup") !== i.data("optgroup") ? i.addClass("hidden") : o = null
                     }), o && o.addClass("hidden"), s.not(".hidden").first().addClass("active"), e.$menuInner.scrollTop(0)
                 }
             }
@@ -7872,7 +7872,7 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
         if (this.multiple) {
             void 0 === e && (e = !0), this.findLis();
             var i = this.$element.find("option"),
-                n = this.$lis.not(".divider, .dropdown-header, .disabled, .hidden"),
+                n = this.$lis.not(".divider, .dropdown-map-header, .disabled, .hidden"),
                 s = n.length,
                 o = [];
             if (e) {
@@ -7898,7 +7898,7 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
     keydown: function(e) {
         var i, n, s, o, a = t(this),
             r = (a.is("input") ? a.parent().parent() : a.parent()).data("this"),
-            l = ":not(.disabled, .hidden, .dropdown-header, .divider)",
+            l = ":not(.disabled, .hidden, .dropdown-map-header, .divider)",
             h = {
                 32: " ",
                 48: "0",
@@ -7984,16 +7984,16 @@ d.VERSION = "1.12.2", d.DEFAULTS = {
         this.$newElement.remove(), this.$element.remove()
     },
     destroy: function() {
-        this.$newElement.before(this.$element).remove(), this.$bsContainer ? this.$bsContainer.remove() : this.$menu.remove(), this.$element.off(".bs.select").removeData("selectpicker").removeClass("bs-select-hidden selectpicker")
+        this.$newElement.before(this.$element).remove(), this.$bsContainer ? this.$bsContainer.remove() : this.$menu.remove(), this.$element.off(".bs.select").removeData("selectpickerMap").removeClass("bs-select-hidden selectpickerMap")
     }
 };
-var p = t.fn.selectpicker;
-t.fn.selectpicker = u, t.fn.selectpicker.Constructor = d, t.fn.selectpicker.noConflict = function() {
-    return t.fn.selectpicker = p, this
-}, t(document).data("keycount", 0).on("keydown.bs.select", '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="listbox"], .bs-searchbox input', d.prototype.keydown).on("focusin.modal", '.bootstrap-select [data-toggle=dropdown], .bootstrap-select [role="listbox"], .bs-searchbox input', function(t) {
+var p = t.fn.selectpickerMap;
+t.fn.selectpickerMap = u, t.fn.selectpickerMap.Constructor = d, t.fn.selectpickerMap.noConflict = function() {
+    return t.fn.selectpickerMap = p, this
+}, t(document).data("keycount", 0).on("keydown.bs.select", '.bootstrap-select-map [data-toggle-map=dropdown-map], .bootstrap-select-map [role="listboxMap"], .bs-searchbox input', d.prototype.keydown).on("focusin.modal", '.bootstrap-select-map [data-toggle-map=dropdown-map], .bootstrap-select-map [role="listboxMap"], .bs-searchbox input', function(t) {
     t.stopPropagation()
 }), t(window).on("load.bs.select.data-api", function() {
-    t(".selectpicker").each(function() {
+    t(".selectpickerMap").each(function() {
         var e = t(this);
         u.call(e, e.data())
     })
@@ -8002,7 +8002,7 @@ t.fn.selectpicker = u, t.fn.selectpicker.Constructor = d, t.fn.selectpicker.noCo
 function(t, e) {
 var i = function(i, n) {
     var s, o, a = this;
-    n = n || {}, this.$element = t(i), this.options = t.extend(!0, {}, t.fn.ajaxSelectPicker.defaults, n), this.LOG_ERROR = 1, this.LOG_WARNING = 2, this.LOG_INFO = 3, this.LOG_DEBUG = 4, this.lastRequest = !1, this.previousQuery = "", this.query = "", this.request = !1;
+    n = n || {}, this.$element = t(i), this.options = t.extend(!0, {}, t.fn.ajaxselectpickerMap.defaults, n), this.LOG_ERROR = 1, this.LOG_WARNING = 2, this.LOG_INFO = 3, this.LOG_DEBUG = 4, this.lastRequest = !1, this.previousQuery = "", this.query = "", this.request = !1;
     var r = [{
         from: "ajaxResultsPreHook",
         to: "preprocessData"
@@ -8072,9 +8072,9 @@ var i = function(i, n) {
         }
         this.options = t.extend(!0, {}, this.options, u), this.log(this.LOG_DEBUG, "Merged in the data attribute options: ", u, this.options)
     }
-    if (this.selectpicker = l.selectpicker, !this.selectpicker) return this.log(this.LOG_ERROR, "Cannot instantiate an AjaxBootstrapSelect instance without selectpicker first being initialized!"), null;
+    if (this.selectpickerMap = l.selectpickerMap, !this.selectpickerMap) return this.log(this.LOG_ERROR, "Cannot instantiate an AjaxBootstrapSelect instance without selectpickerMap first being initialized!"), null;
     if (!this.options.ajax.url) return this.log(this.LOG_ERROR, 'Option "ajax.url" must be set! Options:', this.options), null;
-    if (this.locale = t.extend(!0, {}, t.fn.ajaxSelectPicker.locale), this.options.langCode = this.options.langCode || e.navigator.userLanguage || e.navigator.language || "en", !this.locale[this.options.langCode]) {
+    if (this.locale = t.extend(!0, {}, t.fn.ajaxselectpickerMap.locale), this.options.langCode = this.options.langCode || e.navigator.userLanguage || e.navigator.language || "en", !this.locale[this.options.langCode]) {
         var b = this.options.langCode;
         this.options.langCode = "en";
         var w = b.split("-");
@@ -8094,10 +8094,10 @@ var i = function(i, n) {
 };
 i.prototype.init = function() {
     var i, n = this;
-    this.options.preserveSelected && this.selectpicker.$menu.off("click", ".actions-btn").on("click", ".actions-btn", function(e) {
-        n.selectpicker.options.liveSearch ? n.selectpicker.$searchbox.focus() : n.selectpicker.$button.focus(), e.preventDefault(), e.stopPropagation(), t(this).is(".bs-select-all") ? (null === n.selectpicker.$lis && (n.selectpicker.$lis = n.selectpicker.$menu.find("li")), n.$element.find("option:enabled").prop("selected", !0), t(n.selectpicker.$lis).not(".disabled").addClass("selected"), n.selectpicker.render()) : (null === n.selectpicker.$lis && (n.selectpicker.$lis = n.selectpicker.$menu.find("li")), n.$element.find("option:enabled").prop("selected", !1), t(n.selectpicker.$lis).not(".disabled").removeClass("selected"), n.selectpicker.render()), n.selectpicker.$element.change()
-    }), this.selectpicker.$searchbox.attr("placeholder", this.t("searchPlaceholder")).off("input propertychange"), this.selectpicker.$searchbox.on(this.options.bindEvent, function(s) {
-        var o = n.selectpicker.$searchbox.val();
+    this.options.preserveSelected && this.selectpickerMap.$menu.off("click", ".actions-btn").on("click", ".actions-btn", function(e) {
+        n.selectpickerMap.options.liveSearch ? n.selectpickerMap.$searchbox.focus() : n.selectpickerMap.$button.focus(), e.preventDefault(), e.stopPropagation(), t(this).is(".bs-select-all") ? (null === n.selectpickerMap.$lis && (n.selectpickerMap.$lis = n.selectpickerMap.$menu.find("li")), n.$element.find("option:enabled").prop("selected", !0), t(n.selectpickerMap.$lis).not(".disabled").addClass("selected"), n.selectpickerMap.render()) : (null === n.selectpickerMap.$lis && (n.selectpickerMap.$lis = n.selectpickerMap.$menu.find("li")), n.$element.find("option:enabled").prop("selected", !1), t(n.selectpickerMap.$lis).not(".disabled").removeClass("selected"), n.selectpickerMap.render()), n.selectpickerMap.$element.change()
+    }), this.selectpickerMap.$searchbox.attr("placeholder", this.t("searchPlaceholder")).off("input propertychange"), this.selectpickerMap.$searchbox.on(this.options.bindEvent, function(s) {
+        var o = n.selectpickerMap.$searchbox.val();
         if (n.log(n.LOG_DEBUG, 'Bind event fired: "' + n.options.bindEvent + '", keyCode:', s.keyCode, s), n.options.cache || (n.options.ignoredKeys[13] = "enter"), n.options.ignoredKeys[s.keyCode]) n.log(n.LOG_DEBUG, "Key ignored.");
         else if (clearTimeout(i), o.length || (n.options.clearOnEmpty && n.list.destroy(), n.options.emptyRequest)) {
             if (n.previousQuery = n.query, n.query = o, n.options.cache && 13 !== s.keyCode) {
@@ -8164,9 +8164,9 @@ i.prototype.init = function() {
 }, e.AjaxBootstrapSelect = e.AjaxBootstrapSelect || i;
 var n = function(e) {
     var i = this;
-    this.$status = t(e.options.templates.status).hide().appendTo(e.selectpicker.$menu);
+    this.$status = t(e.options.templates.status).hide().appendTo(e.selectpickerMap.$menu);
     var n = e.t("statusInitialized");
-    n && n.length && this.setStatus(n), this.cache = {}, this.plugin = e, this.selected = [], this.title = null, this.selectedTextFormat = e.selectpicker.options.selectedTextFormat;
+    n && n.length && this.setStatus(n), this.cache = {}, this.plugin = e, this.selected = [], this.title = null, this.selectedTextFormat = e.selectpickerMap.options.selectedTextFormat;
     var s = [];
     e.$element.find("option").each(function() {
         var i = t(this),
@@ -8181,7 +8181,7 @@ var n = function(e) {
         })
     }), this.cacheSet("", s), e.options.preserveSelected && (i.selected = s, e.$element.on("change.abs.preserveSelected", function(n) {
         var s = e.$element.find(":selected");
-        i.selected = [], e.selectpicker.multiple || (s = s.last()), s.each(function() {
+        i.selected = [], e.selectpickerMap.multiple || (s = s.last()), s.each(function() {
             var e = t(this),
                 n = e.attr("value");
             i.selected.push({
@@ -8197,14 +8197,14 @@ var n = function(e) {
 };
 n.prototype.build = function(e) {
     var i, n, s = e.length,
-        o = t("<select/>"),
+        o = t("<selects/>"),
         a = t("<optgroup/>").attr("label", this.plugin.t("currentlySelected"));
     for (this.plugin.log(this.plugin.LOG_DEBUG, "Building the select list options from data:", e), n = 0; n < s; n++) {
         var r = e[n],
             l = t("<option/>").appendTo(r.preserved ? a : o);
         if (r.hasOwnProperty("divider")) l.attr("data-divider", "true");
         else
-            for (i in l.val(r.value).text(r.text), r.class.length && l.attr("class", r.class), r.disabled && l.attr("disabled", !0), r.selected && !this.plugin.selectpicker.multiple && o.find(":selected").prop("selected", !1), r.selected && l.attr("selected", !0), r.data) r.data.hasOwnProperty(i) && l.attr("data-" + i, r.data[i])
+            for (i in l.val(r.value).text(r.text), r.class.length && l.attr("class", r.class), r.disabled && l.attr("disabled", !0), r.selected && !this.plugin.selectpickerMap.multiple && o.find(":selected").prop("selected", !1), r.selected && l.attr("selected", !0), r.data) r.data.hasOwnProperty(i) && l.attr("data-" + i, r.data[i])
     }
     a.find("option").length && a["before" === this.plugin.options.preserveSelectedPosition ? "prependTo" : "appendTo"](o);
     var h = o.html();
@@ -8217,9 +8217,9 @@ n.prototype.build = function(e) {
 }, n.prototype.destroy = function() {
     this.replaceOptions(), this.plugin.list.setStatus(), this.plugin.log(this.plugin.LOG_DEBUG, "Destroyed select list.")
 }, n.prototype.refresh = function(t) {
-    this.plugin.selectpicker.$menu.css("minHeight", 0), this.plugin.selectpicker.$menu.find("> .inner").css("minHeight", 0);
+    this.plugin.selectpickerMap.$menu.css("minHeight", 0), this.plugin.selectpickerMap.$menu.find("> .inner").css("minHeight", 0);
     var e = this.plugin.t("emptyTitle");
-    !this.plugin.$element.find("option").length && e && e.length ? this.setTitle(e) : this.title && this.restoreTitle(), this.plugin.selectpicker.refresh(), this.plugin.selectpicker.findLis(), t && (this.plugin.log(this.plugin.LOG_DEBUG, "Triggering Change"), this.plugin.$element.trigger("change.$")), this.plugin.log(this.plugin.LOG_DEBUG, "Refreshed select list.")
+    !this.plugin.$element.find("option").length && e && e.length ? this.setTitle(e) : this.title && this.restoreTitle(), this.plugin.selectpickerMap.refresh(), this.plugin.selectpickerMap.findLis(), t && (this.plugin.log(this.plugin.LOG_DEBUG, "Triggering Change"), this.plugin.$element.trigger("change.$")), this.plugin.log(this.plugin.LOG_DEBUG, "Refreshed select list.")
 }, n.prototype.replaceOptions = function(t) {
     var e, i, n, s = "",
         o = [],
@@ -8234,9 +8234,9 @@ n.prototype.build = function(e) {
     var t = this.plugin.list.cacheGet(this.plugin.previousQuery);
     return t && this.plugin.list.replaceOptions(t) && this.plugin.log(this.plugin.LOG_DEBUG, "Restored select list to the previous query: ", this.plugin.previousQuery), this.plugin.log(this.plugin.LOG_DEBUG, "Unable to restore select list to the previous query:", this.plugin.previousQuery), !1
 }, n.prototype.restoreTitle = function() {
-    this.plugin.request || (this.plugin.selectpicker.options.selectedTextFormat = this.selectedTextFormat, this.title ? this.plugin.$element.attr("title", this.title) : this.plugin.$element.removeAttr("title"), this.title = null)
+    this.plugin.request || (this.plugin.selectpickerMap.options.selectedTextFormat = this.selectedTextFormat, this.title ? this.plugin.$element.attr("title", this.title) : this.plugin.$element.removeAttr("title"), this.title = null)
 }, n.prototype.setTitle = function(t) {
-    this.plugin.request || (this.title = this.plugin.$element.attr("title"), this.plugin.selectpicker.options.selectedTextFormat = "static", this.plugin.$element.attr("title", t))
+    this.plugin.request || (this.title = this.plugin.$element.attr("title"), this.plugin.selectpickerMap.options.selectedTextFormat = "static", this.plugin.$element.attr("title", t))
 }, n.prototype.setStatus = function(t) {
     (t = t || "").length ? this.$status.html(t).show() : this.$status.html("").hide()
 }, e.AjaxBootstrapSelectList = e.AjaxBootstrapSelectList || n;
@@ -8292,11 +8292,11 @@ s.prototype.beforeSend = function(t) {
     if (!t.isArray(e) && !t.isPlainObject(e)) return this.plugin.log(this.plugin.LOG_ERROR, "Request did not return a JSON Array or Object.", e), void this.plugin.list.destroy();
     var s = this.process(e);
     this.plugin.list.replaceOptions(s)
-}, e.AjaxBootstrapSelectRequest = e.AjaxBootstrapSelectRequest || s, t.fn.ajaxSelectPicker = function(i) {
+}, e.AjaxBootstrapSelectRequest = e.AjaxBootstrapSelectRequest || s, t.fn.ajaxselectpickerMap = function(i) {
     return this.each(function() {
         t(this).data("AjaxBootstrapSelect") || t(this).data("AjaxBootstrapSelect", new e.AjaxBootstrapSelect(this, i))
     })
-}, t.fn.ajaxSelectPicker.locale = {}, t.fn.ajaxSelectPicker.defaults = {
+}, t.fn.ajaxselectpickerMap.locale = {}, t.fn.ajaxselectpickerMap.defaults = {
     ajax: {
         url: null,
         type: "POST",
@@ -8334,7 +8334,7 @@ s.prototype.beforeSend = function(t) {
     templates: {
         status: '<div class="status"></div>'
     }
-}, t.fn.ajaxSelectPicker.locale["en-US"] = {
+}, t.fn.ajaxselectpickerMap.locale["en-US"] = {
     currentlySelected: "Currently Selected",
     emptyTitle: "Select and begin typing",
     errorText: "Unable to retrieve results",
@@ -8342,7 +8342,7 @@ s.prototype.beforeSend = function(t) {
     statusInitialized: "Start typing a search query",
     statusNoResults: "No Results",
     statusSearching: "Searching..."
-}, t.fn.ajaxSelectPicker.locale.en = t.fn.ajaxSelectPicker.locale["en-US"]
+}, t.fn.ajaxselectpickerMap.locale.en = t.fn.ajaxselectpickerMap.locale["en-US"]
 }(jQuery, window),
 function(t) {
 "function" == typeof define && define.amd ? define(["jquery"], t) : t("object" == typeof exports ? require("jquery") : jQuery)
@@ -8405,7 +8405,7 @@ var r = function() {
         }
     }(),
     l = function(e, i) {
-        t.data(e, "datepicker", this), this._process_options(i), this.dates = new r, this.viewDate = this.o.defaultViewDate, this.focusDate = null, this.element = t(e), this.isInput = this.element.is("input"), this.inputField = this.isInput ? this.element : this.element.find("input"), this.component = !!this.element.hasClass("date") && this.element.find(".add-on, .input-group-addon, .btn"), this.component && 0 === this.component.length && (this.component = !1), this.isInline = !this.component && this.element.is("div"), this.picker = t(g.template), this._check_template(this.o.templates.leftArrow) && this.picker.find(".prev").html(this.o.templates.leftArrow), this._check_template(this.o.templates.rightArrow) && this.picker.find(".next").html(this.o.templates.rightArrow), this._buildEvents(), this._attachEvents(), this.isInline ? this.picker.addClass("datepicker-inline").appendTo(this.element) : this.picker.addClass("datepicker-dropdown dropdown-menu"), this.o.rtl && this.picker.addClass("datepicker-rtl"), this.o.calendarWeeks && this.picker.find(".datepicker-days .datepicker-switch, thead .datepicker-title, tfoot .today, tfoot .clear").attr("colspan", function(t, e) {
+        t.data(e, "datepicker", this), this._process_options(i), this.dates = new r, this.viewDate = this.o.defaultViewDate, this.focusDate = null, this.element = t(e), this.isInput = this.element.is("input"), this.inputField = this.isInput ? this.element : this.element.find("input"), this.component = !!this.element.hasClass("date") && this.element.find(".add-on, .input-group-addon, .btn"), this.component && 0 === this.component.length && (this.component = !1), this.isInline = !this.component && this.element.is("div"), this.picker = t(g.template), this._check_template(this.o.templates.leftArrow) && this.picker.find(".prev").html(this.o.templates.leftArrow), this._check_template(this.o.templates.rightArrow) && this.picker.find(".next").html(this.o.templates.rightArrow), this._buildEvents(), this._attachEvents(), this.isInline ? this.picker.addClass("datepicker-inline").appendTo(this.element) : this.picker.addClass("datepicker-dropdown-map dropdown-menu-map"), this.o.rtl && this.picker.addClass("datepicker-rtl"), this.o.calendarWeeks && this.picker.find(".datepicker-days .datepicker-switch, thead .datepicker-title, tfoot .today, tfoot .clear").attr("colspan", function(t, e) {
             return Number(e) + 1
         }), this._process_options({
             startDate: this._o.startDate,
@@ -9996,7 +9996,7 @@ function(t) {
                 mousedown: t.proxy(this.mousedown, this)
             }), this.wheelViewModeNavigation && (t.fn.mousewheel ? this.picker.on({
                 mousewheel: t.proxy(this.mousewheel, this)
-            }) : console.log("Mouse Wheel event is not supported. Please include the jQuery Mouse Wheel plugin before enabling this option")), this.isInline ? this.picker.addClass("datetimepicker-inline") : this.picker.addClass("datetimepicker-dropdown-" + this.pickerPosition + " dropdown-menu"), this.isRTL) {
+            }) : console.log("Mouse Wheel event is not supported. Please include the jQuery Mouse Wheel plugin before enabling this option")), this.isInline ? this.picker.addClass("datetimepicker-inline") : this.picker.addClass("datetimepicker-dropdown-map" + this.pickerPosition + " dropdown-menu-map"), this.isRTL) {
             this.picker.addClass("datetimepicker-rtl");
             var l = 3 === this.bootcssVer ? ".prev span, .next span" : ".prev i, .next i";
             this.picker.find(l).toggleClass(this.icons.leftArrow + " " + this.icons.rightArrow)
@@ -11433,7 +11433,7 @@ function(t, e) {
                     callTop: !1
                 }
             },
-            template: '<div class="colorpicker dropdown-menu"><div class="colorpicker-saturation"><i><b></b></i></div><div class="colorpicker-hue"><i></i></div><div class="colorpicker-alpha"><i></i></div><div class="colorpicker-color"><div /></div><div class="colorpicker-selectors"></div></div>',
+            template: '<div class="colorpicker dropdown-menu-map"><div class="colorpicker-saturation"><i><b></b></i></div><div class="colorpicker-hue"><i></i></div><div class="colorpicker-alpha"><i></i></div><div class="colorpicker-color"><div /></div><div class="colorpicker-selectors"></div></div>',
             align: "right",
             customClass: null,
             colorSelectors: null
@@ -11769,7 +11769,7 @@ function(t) {
         spinner: '<div class="loading-spinner" style="width: 200px; margin-left: -100px;"><div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div></div>',
         backdropTemplate: '<div class="modal-backdrop" />'
     }, t.fn.modal.Constructor = e, t(function() {
-        t(document).off("click.modal").on("click.modal.data-api", '[data-toggle="modal"]', function(e) {
+        t(document).off("click.modal").on("click.modal.data-api", '[data-toggle-map="modal"]', function(e) {
             var i = t(this),
                 n = i.attr("href"),
                 s = t(i.attr("data-target") || n && n.replace(/.*(?=#[^\s]+$)/, "")),
@@ -13147,7 +13147,7 @@ function(t, e, i) {
         }
 
         function lt(t) {
-            for (var e = t.oClasses, i = t.sTableId, s = t.aLengthMenu, o = (a = n.isArray(s[0])) ? s[0] : s, a = (s = a ? s[1] : s, n("<select/>", {
+            for (var e = t.oClasses, i = t.sTableId, s = t.aLengthMenu, o = (a = n.isArray(s[0])) ? s[0] : s, a = (s = a ? s[1] : s, n("<selects/>", {
                     name: i + "_length",
                     "aria-controls": i,
                     class: e.sLengthSelect
@@ -18009,17 +18009,6 @@ function formBuilder(t, e, i) {
         case "text":
             s.append('<textarea class="form-control" name="' + n.name + '">' + o + "</textarea>");
             break;
-        case "select":
-            var a = $('<select class="form-control" name="' + n.name + '"></select> ');
-            $.each(n.options, function(t, e) {
-                a.append('<option value="' + e.id + '">' + e.title + "</option>")
-            }), s.append(a), a.val(o).selectpicker();
-            break;
-        case "multiselect":
-            a = $('<select class="form-control multiexpand" name="' + n.name + '" multiple="multiple" data-live-search="true" data-actions-box="true"></select> ');
-            $.each(n.options, function(t, e) {
-                a.append('<option value="' + e.id + '">' + e.title + "</option>")
-            }), s.append(a), a.val(o).selectpicker()
     }
     n.description && s.append("<small>" + n.description + "</small>");
     var r = $('<div class="col-sm-12"></div>');
@@ -18189,7 +18178,7 @@ parseErrors: function(t, e) {
 },
 parseWarnings: function(t, e) {
     var i = e.find(".alert-warning");
-    i.length < 1 ? (e.find(".modal-body").append('<div class="alert alert-warning main-alert" role="alert" style="display: none;">\n   <div id="warnings_accordion" role="tablist" aria-multiselectable="true" hidden>\n      <a class="icon ico-arrow-down pull-right" role="button" data-toggle="collapse" data-parent="#warnings_accordion" href="#collapse_warnings" aria-controls="collapse_warnings"></a>\n      <div id="collapse_warnings" class="collapse out" role="tabpanel" hidden></div>\n   </div>\n</div>'), i = e.find(".alert-warning")) : (i.children().not("#warnings_accordion").remove(), i.find("#collapse_warnings").empty()), $.each(t, function(t, n) {
+    i.length < 1 ? (e.find(".modal-body").append('<div class="alert alert-warning main-alert" role="alert" style="display: none;">\n   <div id="warnings_accordion" role="tablist" aria-multiselectable="true" hidden>\n      <a class="icon ico-arrow-down pull-right" role="button" data-toggle-map="collapse" data-parent="#warnings_accordion" href="#collapse_warnings" aria-controls="collapse_warnings"></a>\n      <div id="collapse_warnings" class="collapse out" role="tabpanel" hidden></div>\n   </div>\n</div>'), i = e.find(".alert-warning")) : (i.children().not("#warnings_accordion").remove(), i.find("#collapse_warnings").empty()), $.each(t, function(t, n) {
         3 == t && (i = e.find("#collapse_warnings"), e.find("#warnings_accordion").show()), i.append($("<span class='warning'>" + n + "<br></span>"))
     })
 },
@@ -18407,7 +18396,7 @@ function(t) {
     "use strict";
     t.multiCheckbox = function(e, i) {
         var n, s, o = {
-                item: t(e).find('[data-toggle="checkbox"]')
+                item: t(e).find('[data-toggle-map="checkbox"]')
             },
             a = this;
         t(e);
