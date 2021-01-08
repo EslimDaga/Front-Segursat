@@ -33,14 +33,16 @@
       <div class="tab-pane fade" id="justify-pills-profile" role="tabpanel" aria-labelledby="justify-pills-profile-tab">
         <div class="col-md-12 pt-3">
           <label for="">Desde</label>
-          <input type="date" name="" class="form-control" id=""><br>
+          <input type="date" name="" class="form-control" id="date_from"><br>
           <label for="">Hasta</label>
-          <input type="date" name="" class="form-control" id=""><br>
+          <input type="date" name="" class="form-control" id="date_to"><br>
           <label for="">Unidades</label><br>
-          <select class="placeholder js-states form-control" id="unit-list-travel">
-            <option value="all">Seleccionar unidad</option>
-          </select><br>
-          <button class="btn btn-primary btn-block pb-2">Buscar</button>
+          <select class="form-control" id="unit-list-travel" data-live-search="true">
+
+          </select>
+          <br>
+          <br>
+          <button onclick="mapView.searchHistory()" class="btn btn-primary btn-block pb-2">Buscar</button>
         </div>
       </div>
     </div>
