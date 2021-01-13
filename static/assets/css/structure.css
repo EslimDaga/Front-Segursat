@@ -545,7 +545,7 @@ code {
       display: block;
       border: 1px solid #25d5e4; }
   .navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu {
-    min-width: 17rem;
+    min-width: 25rem;
     right: -5px;
     left: auto; }
     .navbar .navbar-item .nav-item.dropdown.notification-dropdown .dropdown-menu .dropdown-item {
@@ -725,7 +725,7 @@ code {
 
 .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu {
   z-index: 9999;
-  max-width: 13rem;
+  max-width: 17rem;
   padding: 0 11px;
   top: 60px;
   left: -140px; }
