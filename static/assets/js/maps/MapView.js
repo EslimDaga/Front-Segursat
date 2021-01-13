@@ -4,6 +4,8 @@ class MapView {
     this.map;
     this.units = [];
     this.markers = [];
+    this.historyMarkers = [];
+    this.historyPaths = [];
   }
 
   getUnits = async () => {
@@ -48,7 +50,7 @@ class MapView {
     }
     document.getElementById("unit-list").innerHTML = unitList;
   }
-  renderUnitsInUnitTabTravel = (units) => {
+  renderUnitsInHistoryTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
       const unit =
@@ -57,7 +59,7 @@ class MapView {
       `;
       unitList += unit;
     }
-    document.getElementById("unit-list-travel").innerHTML = unitList;
+    document.getElementById("history-units").innerHTML = unitList;
   }
   searchHistory = () => {
     const date_from = document.getElementById("date_from").value;
@@ -203,19 +205,19 @@ class MapView {
     }
   }
 
-  drawLocationHistory = async (unitName) => {
+  drawLocationHistory = async (unitName,historyDateFrom,historyDateTo) => {
     const locationHistory = await this.getLocationHistory(unitName);
     let route = [];
-    let markers = [];
     for (let i=0;i<locationHistory.length;i++) {
       route.push([locationHistory[i].latitude, locationHistory[i].longitude]);
+      //const index = this.historyPaths.length - 1
       const icon = L.divIcon({
         iconSize:null,
         html:`<div class="map-label"><div class="map-label-content">
         <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png" width="36" height="36"/>
         </div><div class="map-label-arrow"></div></div>`
       });
-      markers.push(
+      this.historyMarkers.push(
         new L.marker(
           [locationHistory[i].latitude,locationHistory[i].longitude],
           {
@@ -225,21 +227,31 @@ class MapView {
         .addTo(this.map)
       )
     }
-    const path = L.polyline.antPath(route, {
-      "dashArray": [
-        10,
-        20
-      ],
-      "weight": 5,
-      "color": "#0000FF",
-      "pulseColor": "#FFFFFF",
-      delay: 1000
-    }).addTo(this.map);
+    this.historyPaths.push(
+      L.polyline.antPath(route, {
+        "dashArray": [
+          10,
+          20
+        ],
+        "weight": 5,
+        "color": "#0000FF",
+        "pulseColor": "#FFFFFF",
+        delay: 1000
+      }).addTo(this.map)
+    );
+    const index = this.historyPaths.length - 1
+    this.map.fitBounds(this.historyPaths[index].getBounds());
   }
 
   cleanMap = () => {
     for (let i=0;i<this.markers.length;i++) {
       this.map.removeLayer(this.markers[i]);
+    }
+    for (let i=0;i<this.historyMarkers.length;i++) {
+      this.map.removeLayer(this.historyMarkers[i]);
+    }
+    for (let i=0;i<this.historyPaths.length;i++) {
+      this.map.removeLayer(this.historyPaths[i]);
     }
   }
 
@@ -259,7 +271,7 @@ class MapView {
     this.units = units;
     this.renderUnitsInUnitTab(units);
     this.renderMap(units);
-    this.renderUnitsInUnitTabTravel(units);
+    this.renderUnitsInHistoryTab(units);
   }
 
 }
