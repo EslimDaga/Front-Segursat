@@ -120,4 +120,40 @@
   <script>
     /* $('select').selectpicker("refresh"); */
   </script>
+  <script>
+    document.getElementById("history-btn").addEventListener("click", function() {
+      const historyDateFrom = document.getElementById("history-date-from").value;
+      const historyDateTo = document.getElementById("history-date-to").value;
+      const historyUnits =  document.getElementById("history-units").value;
+
+      if (historyDateFrom === "") {
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Seleccione una fecha inicial valida',
+          padding: '2em'
+        })
+      }
+
+      if (historyDateTo === "") {
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Seleccione una fecha final valida',
+          padding: '2em'
+        })
+      }
+
+      if (historyUnits === "") {
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Seleccione una unidad',
+          padding: '2em'
+        })
+      }
+
+      mapView.drawLocationHistory('PRUEBA_JAMES');
+    });
+  </script>
 {% endblock%}
