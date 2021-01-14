@@ -182,7 +182,7 @@ class MapView {
     console.log(unit);
     //
     document.getElementById("unitNameSelect").innerHTML = unitName;
-    document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' target="_blank"><img alt="Street view" src="https://iadpi.com.ar/wp-content/uploads/2019/05/google-street-696x355.jpg"></a>`;
+    /* document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' target="_blank"><img alt="Street view" src="https://iadpi.com.ar/wp-content/uploads/2019/05/google-street-696x355.jpg"></a>`; */
     document.getElementById("speed").innerHTML = `${unit.device.last_speed} km/h`;
     document.getElementById("rssi").innerHTML = `${unit.device.last_attributes.rssi}`;
     document.getElementById("battery").innerHTML = `${unit.device.last_attributes.battery}`;
@@ -206,26 +206,57 @@ class MapView {
   }
 
   drawLocationHistory = async (unitName,historyDateFrom,historyDateTo) => {
+    this.cleanMap()
     const locationHistory = await this.getLocationHistory(unitName);
     let route = [];
     for (let i=0;i<locationHistory.length;i++) {
       route.push([locationHistory[i].latitude, locationHistory[i].longitude]);
-      //const index = this.historyPaths.length - 1
-      const icon = L.divIcon({
-        iconSize:null,
-        html:`<div class="map-label"><div class="map-label-content">
-        <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-a5485b563efc4511e0cd8bd04ad0fe9e.png" width="36" height="36"/>
-        </div><div class="map-label-arrow"></div></div>`
-      });
-      this.historyMarkers.push(
-        new L.marker(
-          [locationHistory[i].latitude,locationHistory[i].longitude],
-          {
-            icon: icon
-          }
+      if (i == locationHistory.length-1) {
+        const icon = L.divIcon({
+          iconSize:null,
+          html:`
+          <div class="map-label">
+            <div class="map-label-content">
+              <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+            </div>
+          </div>
+          `
+        });
+        this.historyMarkers.push(
+          new L.marker(
+            [locationHistory[i].latitude,locationHistory[i].longitude],
+            {
+              icon: icon,
+              title: locationHistory[i].unit_name,
+              rotationAngle: locationHistory[i].angle
+            }
+          ).bindTooltip(`${locationHistory[i].unit_name}`, {
+            permanent: true,
+            direction : "top",
+            offset: L.point({x: 0, y: -30})
+          })
+          .addTo(this.map)
+          .setZIndexOffset(1000)
+        );
+      }
+      else {
+        const icon = new L.Icon.Default();
+        icon.options.shadowSize = [0,0];
+        this.historyMarkers.push(
+          new L.marker(
+            [locationHistory[i].latitude,locationHistory[i].longitude],
+            {
+              icon: icon,
+            }
+          )
+          .addTo(this.map)
+          .setZIndexOffset(100)
+          .bindTooltip(`${locationHistory[i].speed} Km/h`,{
+            direction : "top"
+          })
         )
-        .addTo(this.map)
-      )
+      }
+      
     }
     this.historyPaths.push(
       L.polyline.antPath(route, {
@@ -239,20 +270,22 @@ class MapView {
         delay: 1000
       }).addTo(this.map)
     );
-    const index = this.historyPaths.length - 1
-    this.map.fitBounds(this.historyPaths[index].getBounds());
+    this.map.fitBounds(this.historyPaths[this.historyPaths.length-1].getBounds());
   }
 
   cleanMap = () => {
     for (let i=0;i<this.markers.length;i++) {
       this.map.removeLayer(this.markers[i]);
     }
+    this.markers = [];
     for (let i=0;i<this.historyMarkers.length;i++) {
       this.map.removeLayer(this.historyMarkers[i]);
     }
+    this.historyMarkers = [];
     for (let i=0;i<this.historyPaths.length;i++) {
       this.map.removeLayer(this.historyPaths[i]);
     }
+    this.historyPaths = [];
   }
 
   openUnitTab = async () => {
