@@ -5,6 +5,9 @@
   <!-- Begin Page Level Plugins/Custom -->
   <link href="{% static 'plugins/apex/apexcharts.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'assets/css/dashboard/dash_1.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/dashboard/dash_2.css' %}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="http://sas.segursat.com:8080/static/assets/libs/chartist/dist/chartist.min.css">
+
   <!-- End Page Level Plugins/Custon -->
 {% endblock %}
 {% block container %}
@@ -12,36 +15,100 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-      <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-        <div class="widget widget-chart-one">
-          <div class="widget-heading">
-            <h5 class="">Reporte de unidades</h5>
-            <ul class="tabs tab-pills">
-              <li>
-                <a href="javascript:void(0);" id="tb_1" class="tabmenu">Por mes</a>
-              </li>
-            </ul>
-          </div>
+      <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget widget-card-four">
           <div class="widget-content">
-            <div class="tabs tab-content">
-              <div id="content_1" class="tabcontent">
-                <div id="revenueMonthly"></div>
+            <div class="w-content">
+              <div class="w-info">
+                  <h6 class="value">2</h6>
+                  <p class="">Unidades Registradas</p>
               </div>
+              <div class="">
+                <div class="w-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 57%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+      <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget widget-card-four">
+          <div class="widget-content">
+            <div class="w-content">
+              <div class="w-info">
+                  <h6 class="value">2</h6>
+                  <p class="">Unidades Reportando
+                  </p>
+              </div>
+              <div class="">
+                <div class="w-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 57%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget widget-card-four">
+          <div class="widget-content">
+            <div class="w-content">
+              <div class="w-info">
+                  <h6 class="value">2</h6>
+                  <p class="">Unidades sin Reportar</p>
+              </div>
+              <div class="">
+                <div class="w-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 57%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget widget-card-four">
+          <div class="widget-content">
+            <div class="w-content">
+              <div class="w-info">
+                  <h6 class="value">2</h6>
+                  <p class="">Unidades en Movimiento</p>
+              </div>
+              <div class="">
+                <div class="w-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                </div>
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 57%" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
         <div class="widget widget-chart-two">
           <div class="widget-heading">
             <h5 class="">Reporte de Alertas</h5>
           </div>
           <div class="widget-content">
-            <div id="chart-2" class=""></div>
+            <div class="w-chart">
+              <canvas id="chart1" height="150"></canvas>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
         <div class="widget-two">
           <div class="widget-content">
             <div class="w-numeric-value">
@@ -54,84 +121,7 @@
               </div>
             </div>
             <div class="w-chart">
-              <div id="daily-sales"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-        <div class="widget-three">
-          <div class="widget-heading">
-            <h5 class="">Resumen</h5>
-          </div>
-          <div class="widget-content">
-            <div class="order-summary">
-              <div class="summary-list">
-                <div class="w-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-                </div>
-                <div class="w-summary-details">
-                  <div class="w-summary-info">
-                    <h6>Reportes</h6>
-                    <p class="summary-count">92,600</p>
-                  </div>
-                  <div class="w-summary-stats">
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-secondary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="summary-list">
-                <div class="w-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                </div>
-                <div class="w-summary-details">
-                  <div class="w-summary-info">
-                    <h6>Usuarios</h6>
-                    <p class="summary-count">37,515</p>
-                  </div>
-                  <div class="w-summary-stats">
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="summary-list">
-                <div class="w-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                </div>
-                <div class="w-summary-details">
-                  <div class="w-summary-info">
-                    <h6>Alertas</h6>
-                    <p class="summary-count">$55,085</p>
-                  </div>
-                  <div class="w-summary-stats">
-                    <div class="progress">
-                      <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12 layout-spacing">
-        <div class="widget-one widget">
-          <div class="widget-content">
-            <div class="w-numeric-value">
-              <div class="w-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-              </div>
-              <div class="w-content">
-                <span class="w-value">3,192</span>
-                <span class="w-numeric-title">Total de Ordenes</span>
-              </div>
-            </div>
-            <div class="w-chart">
-              <div id="total-orders"></div>
+              <canvas id="chart2" height="150"></canvas>
             </div>
           </div>
         </div>
@@ -146,5 +136,45 @@
 <!-- Begin Page Level Plugin/Custon -->
 <script src="{% static 'plugins/apex/apexcharts.min.js' %}"></script>
 <script src="{% static 'assets/js/dashboard/dash_1.js' %}"></script>
+<script src="http://sas.segursat.com:8080/static/assets/libs/chart.js/dist/Chart.min.js"></script>
+<script>
+  // Pie chart 1
+  new Chart(document.getElementById("chart1"), {
+      type: 'pie',
+      data: {
+        labels: ["Pánico", "Batería", "Velocidad", "Otros"],
+        datasets: [{
+          label: "Alertas (unidades)",
+          backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
+          data: [12,20,30,40]
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Grafico del porcentaje de alertas producidas para esta cuenta'
+        }
+      }
+    });
+
+  // Pie chart 2
+  new Chart(document.getElementById("chart2"), {
+      type: 'pie',
+      data: {
+        labels: ["Pánico", "Batería", "Velocidad", "Otros"],
+        datasets: [{
+          label: "Alertas (unidades)",
+          backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
+          data: [12,20,30,40]
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Grafico del porcentaje de alertas producidas para esta cuenta'
+        }
+      }
+    });
+</script>
 <!-- Begin Page Level Plugin/Custom Scripts -->
 {% endblock%}
