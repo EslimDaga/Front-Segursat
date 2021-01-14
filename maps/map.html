@@ -95,6 +95,7 @@
       };
       ws.onmessage = function(e) {
         newLocation = JSON.parse(e.data).message;
+        console.log(newLocation);
         mapView.updateMarkerPosition(
           newLocation['unit_name'],
           [
