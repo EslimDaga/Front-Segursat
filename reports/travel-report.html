@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_content %}
+  <title>Reporte de Viajes - Segursat GPS</title>
+  <!-- Begin Page Level Custom Styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+  <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
+  <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+  <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
+  <!-- End Page Level Custom Styles -->
+{% endblock %}
+{% block container %}
+{% include "units/unit-create-modal.html" %}
+<!-- Begin Content Area -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+      <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing responsive-header-menu-breadcum">
+        <nav class="breadcrumb-two" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'units' %}">Reporte de Viajes</a></li>
+            <li class="breadcrumb-item"></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Inicial" readonly="readonly">
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Final" readonly="readonly">
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
+        <div class="">
+          <select class="placeholder js-states form-control" id="unit_name">
+            <option value="all">Todos</option>
+            {% for unit in units%}
+            <option value="{{unit.name}}">{{unit.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
+        <div class="">
+          <button class="btn btn-primary responsive-button" onclick="alertSearch()" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+        </div>
+      </div>
+      <!-- <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <button id="create-unit" class="btn btn-primary btn-rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </button>
+        </div>
+      </div> -->
+      <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+          <div class="table-responsive mb-4 mt-4">
+            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th class="text-center">Unidad</th>
+                  <th class="text-center">Hora de inicio</th>
+                  <th class="text-center">Odómetro inicial</th>
+                  <th class="text-center">Dirección de inicio</th>
+                  <th class="text-center">Hora de fin</th>
+                  <th class="text-center">Odómetro final</th>
+                  <th class="text-center">Dirección de fin</th>
+                  <th class="text-center">Distancia</th>
+                  <th class="text-center">Velocidad promedio</th>
+                  <th class="text-center">Velocidad máxima</th>
+                  <th class="text-center">Duración</th>
+                  <th class="text-center">Combustible utilizado</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'units/unit-update-modal.html' %}
+  {% include 'includes/footer.html' %}
+</div>
+<!-- End Content Area -->
+{% endblock %}
+{% block script_content %}
+<!-- Begin Page Level Custom Scripts -->
+<script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
+<!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+<script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/treeview/custom-jstree.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
+<script src="{% static 'plugins/select2/select2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script>
+    $('#html5-extension').DataTable( {
+      dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+      buttons: {
+        buttons: [
+          { extend: 'copy', className: 'btn' },
+          { extend: 'excel', className: 'btn' },
+          { extend: 'print', className: 'btn' }
+        ]
+      },
+      "oLanguage": {
+        "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+        "sInfo": "Mostrando página _PAGE_ de _PAGES_",
+        "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+        "sSearchPlaceholder": "Buscar...",
+        "sLengthMenu": "Results :  _MENU_",
+      },
+      "stripeClasses": [],
+      "lengthMenu": [7, 10, 20, 50],
+      "pageLength": 7
+    });
+</script>
+<script>
+  var f1 = flatpickr(document.getElementById('basicFlatpickr'));
+</script>
+<script>
+  $(".placeholder").select2({
+    placeholder: "Buscar por Placa",
+    allowClear: true
+  });
+</script>
+{% endblock%}
