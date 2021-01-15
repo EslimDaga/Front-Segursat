@@ -134,27 +134,24 @@
           text: 'Seleccione una fecha inicial valida',
           padding: '2em'
         })
-      }
-
-      if (historyDateTo === "") {
+      }else if (historyDateTo === "") {
         swal({
           type: 'error',
           title: 'Oops...',
           text: 'Seleccione una fecha final valida',
           padding: '2em'
         })
-      }
-
-      if (historyUnits === "") {
+      }else if (historyUnits === "") {
         swal({
           type: 'error',
           title: 'Oops...',
           text: 'Seleccione una unidad',
           padding: '2em'
         })
+      }else{
+        mapView.drawLocationHistory('PRUEBA_JAMES');
       }
 
-      mapView.drawLocationHistory('PRUEBA_JAMES');
     });
   </script>
 {% endblock%}
