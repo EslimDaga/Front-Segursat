@@ -125,7 +125,7 @@
     document.getElementById("history-btn").addEventListener("click", function() {
       const historyDateFrom = document.getElementById("history-date-from").value;
       const historyDateTo = document.getElementById("history-date-to").value;
-      const historyUnits =  document.getElementById("history-units").value;
+      const historyUnit =  document.getElementById("history-units").value;
 
       if (historyDateFrom === "") {
         swal({
@@ -141,7 +141,7 @@
           text: 'Seleccione una fecha final valida',
           padding: '2em'
         })
-      }else if (historyUnits === "") {
+      }else if (historyUnit === "") {
         swal({
           type: 'error',
           title: 'Oops...',
@@ -149,7 +149,7 @@
           padding: '2em'
         })
       }else{
-        mapView.drawLocationHistory('PRUEBA_JAMES');
+        mapView.drawLocationHistory(historyUnit);
       }
 
     });
