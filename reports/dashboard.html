@@ -83,6 +83,36 @@
           </div>
         </div>
       </div>
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget widget-chart-two">
+          <div class="widget-heading">
+            <h5 class="">Unidades Reportando</h5>
+          </div>
+          <div class="widget-content">
+            <div class="w-chart">
+              <canvas id="chart1" height="150"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget-two">
+          <div class="widget-content">
+            <div class="w-numeric-value">
+              <div class="w-content">
+                <span class="w-value">Unidades en Movimiento</span>
+                <span class="w-numeric-title">Ir a las columnas para obtener detalles.</span>
+              </div>
+              <div class="w-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              </div>
+            </div>
+            <div class="w-chart">
+              <canvas id="chart2" height="150"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 col-12 layout-spacing">
         <div class="widget widget-card-four">
           <div class="widget-content">
@@ -159,7 +189,7 @@
           </div>
           <div class="widget-content">
             <div class="w-chart">
-              <canvas id="chart1" height="150"></canvas>
+              <canvas id="chart3" height="150"></canvas>
             </div>
           </div>
         </div>
@@ -177,7 +207,7 @@
               </div>
             </div>
             <div class="w-chart">
-              <canvas id="chart2" height="150"></canvas>
+              <canvas id="chart4" height="150"></canvas>
             </div>
           </div>
         </div>
@@ -207,13 +237,52 @@
       options: {
         title: {
           display: true,
-          text: 'Grafico del porcentaje de alertas producidas para esta cuenta'
+          text: 'Grafico del porcentaje de unidades reportando para esta cuenta'
         }
       }
     });
 
   // Pie chart 2
   new Chart(document.getElementById("chart2"), {
+      type: 'pie',
+      data: {
+        labels: ["Pánico", "Batería", "Velocidad", "Otros"],
+        datasets: [{
+          label: "Alertas (unidades)",
+          backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
+          data: [12,20,30,40]
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Grafico del porcentaje de alertas producidas para esta cuenta'
+        }
+      }
+    });
+
+    //Bar chart 3
+    new Chart(document.getElementById("chart3"), {
+      type: 'bar',
+      data: {
+        labels: ["Pánico", "Batería", "Velocidad", "Otros"],
+        datasets: [{
+          label: "Alertas (unidades)",
+          backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
+          data: [12,20,30,40]
+        }]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'Grafico de la cantidad de alertas producidas para esta cuenta'
+        }
+      }
+    });
+
+    //Bar chart 3
+    new Chart(document.getElementById("chart4"), {
       type: 'pie',
       data: {
         labels: ["Pánico", "Batería", "Velocidad", "Otros"],
