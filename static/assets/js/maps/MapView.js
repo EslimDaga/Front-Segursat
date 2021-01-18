@@ -20,8 +20,8 @@ class MapView {
     const unit = await response.json();
     return unit;
   }
-  getLocationHistory = async (unitName) => {
-    const url = `/web/api/locations/get-location-history/${unitName}/`
+  getLocationHistory = async (unitName,initialDate,finalDate) => {
+    const url = `/web/api/locations/get-location-history/${unitName}/${initialDate}/${finalDate}/`
     const response = await fetch(url);
     const locationHistory = await response.json();
     return locationHistory;
@@ -61,42 +61,7 @@ class MapView {
     }
     document.getElementById("history-units").innerHTML = unitList;
   }
-  searchHistory = () => {
-    const date_from = document.getElementById("date_from").value;
-    const date_to = document.getElementById("date_to").value;
-    const unit = document.getElementById("unit-list-travel").value;
-
-    if (date_from === "") {
-      swal({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Seleccione una fecha',
-        padding: '2em'
-      })
-    }else{
-      console.log(date_from);
-    }
-    if (date_to === "") {
-      swal({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Seleccione una fecha',
-        padding: '2em'
-      })
-    }else{
-      console.log(date_to);
-    }
-    if (unit === "") {
-      swal({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Seleccione una unidad',
-        padding: '2em'
-      })
-    }else{
-      console.log(unit);
-    }
-  }
+  
   renderUnitMarkers = (units) => {
     for (let i = 0; i < units.length; i++) {
       const icon = L.divIcon({
@@ -205,9 +170,9 @@ class MapView {
     }
   }
 
-  drawLocationHistory = async (unitName,historyDateFrom,historyDateTo) => {
+  drawLocationHistory = async (unitName,initialDate,finalDate) => {
     this.cleanMap()
-    const locationHistory = await this.getLocationHistory(unitName);
+    const locationHistory = await this.getLocationHistory(unitName,initialDate,finalDate);
     let route = [];
     for (let i=0;i<locationHistory.length;i++) {
       route.push([locationHistory[i].latitude, locationHistory[i].longitude]);
