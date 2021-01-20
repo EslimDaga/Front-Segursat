@@ -19,6 +19,7 @@
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="{% static 'plugins/leaflet/css/leaflet.css' %}"/>
+  <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -38,7 +39,7 @@
       </div>
       <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
         <div class="flex-row-reverse bd-highlight">
-          <form method="post" class="form-group" action="{% url 'detailed-report' %}">
+          <form method="post" action="{% url 'detailed-report' %}">
           {% csrf_token %}
           <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Inicial" name="initial_date" required>
         </div>
@@ -51,7 +52,7 @@
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
           <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
-            <option>Seleccionar Unidad</option>
+            <option value="">Seleccionar Unidad</option>
             {% for unit in units%}
             <option value="{{unit.name}}">{{unit.name}}</option>
             {% endfor %}
@@ -93,7 +94,7 @@
                   <td class="text-center">{{location.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap()" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
+                      <button type="button" onclick="renderMap('{{location.unit_name}}','{{location.latitude}}','{{location.longitude}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
                     </div>
                   </td>
                 </tr>
@@ -160,8 +161,7 @@
   });
 </script>
 <script>
-
-  const renderMap  = async () => {
+  const renderMap  = async (unitName,latitude,longitude) => {
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
     $("#modal-map").modal("show");
     setTimeout(() => {
@@ -194,6 +194,32 @@
       const overlays = {};
       L.control.layers(baseLayers,overlays).addTo(map);
       baseLayers['Google Street Maps'].addTo(map);
+
+      const icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+          </div>
+        </div>
+        `
+      });
+      latitude = parseFloat(latitude.replace(',','.'));
+      longitude = parseFloat(longitude.replace(',','.'));
+      const marker = new L.marker(
+        [latitude,longitude],
+        {
+          icon: icon,
+          title: unitName,
+          rotationAngle: 0
+        }
+      ).bindTooltip(unitName, {
+        permanent: true,
+        direction : "top",
+        offset: L.point({x: 0, y: -30})
+      }).addTo(map);
+      map.panTo([latitude,longitude]);
     },500);
   }
 </script>
@@ -201,7 +227,7 @@
 <script>
   swal({
       title: 'Oops...',
-      text: "Error en campos",
+      text: "Completa todos los campos",
       type: 'error',
       padding: '2em'
     })
