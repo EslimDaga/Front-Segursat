@@ -22,7 +22,6 @@
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-{% include "units/unit-create-modal.html" %}
 <!-- Begin Content Area -->
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
@@ -31,25 +30,27 @@
         <nav class="breadcrumb-two" aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'units' %}">Reporte de Viajes</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'travel-report' %}">Reporte de Viajes</a></li>
             <li class="breadcrumb-item"></li>
           </ol>
         </nav>
       </div>
       <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
-        <div class="d-flex flex-row-reverse bd-highlight">
-          <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Inicial" readonly="readonly">
+        <div class="flex-row-reverse bd-highlight">
+          <form method="post" action="{% url 'travel-report' %}">
+          {% csrf_token %}
+          <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Inicial" name="initial_date" required>
         </div>
       </div>
       <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
         <div class="d-flex flex-row-reverse bd-highlight">
-          <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Final" readonly="readonly">
+          <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Final" name="final_date" required>
         </div>
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
-          <select class="placeholder js-states form-control" id="unit_name">
-            <option value="all">Todos</option>
+          <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
+            <option value="">Seleccionar Unidad</option>
             {% for unit in units%}
             <option value="{{unit.name}}">{{unit.name}}</option>
             {% endfor %}
@@ -58,16 +59,10 @@
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
-          <button class="btn btn-primary responsive-button" onclick="alertSearch()" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+          <button type="submit" class="btn btn-primary responsive-button" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+        </form>
         </div>
       </div>
-      <!-- <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
-        <div class="d-flex flex-row-reverse bd-highlight">
-          <button id="create-unit" class="btn btn-primary btn-rounded">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-          </button>
-        </div>
-      </div> -->
       <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
         <div class="widget-content widget-content-area br-6">
           <div class="table-responsive mb-4 mt-4">
@@ -90,7 +85,6 @@
                 </tr>
               </thead>
               <tbody>
-                
               </tbody>
             </table>
           </div>
@@ -98,7 +92,6 @@
       </div>
     </div>
   </div>
-  {% include 'units/unit-update-modal.html' %}
   {% include 'includes/footer.html' %}
 </div>
 <!-- End Content Area -->
@@ -152,4 +145,24 @@
     allowClear: true
   });
 </script>
+{% if form.errors %}
+<script>
+  swal({
+      title: 'Oops...',
+      text: "Completa todos los campos",
+      type: 'error',
+      padding: '2em'
+    })
+</script>
+{% endif %}
+{% if error %}
+<script>
+  swal({
+      title: 'Oops...',
+      text: "{{error}}",
+      type: 'error',
+      padding: '2em'
+    })
+</script>
+{% endif %}
 {% endblock%}
