@@ -170,7 +170,7 @@ class MapView {
     }
   }
 
-  drawLocationHistory = async (unitName,initialDate,finalDate) => {
+  drawLocationHistory = async (unitName,initialDate,finalDate,markerCheckbox) => {
     this.cleanMap()
     const locationHistory = await this.getLocationHistory(unitName,initialDate,finalDate);
     let route = [];
@@ -205,21 +205,24 @@ class MapView {
         );
       }
       else {
-        const icon = new L.Icon.Default();
-        icon.options.shadowSize = [0,0];
-        this.historyMarkers.push(
-          new L.marker(
-            [locationHistory[i].latitude,locationHistory[i].longitude],
-            {
-              icon: icon,
-            }
+        if (markerCheckbox == true){
+          const icon = new L.Icon.Default();
+          icon.options.shadowSize = [0,0];
+          this.historyMarkers.push(
+            new L.marker(
+              [locationHistory[i].latitude,locationHistory[i].longitude],
+              {
+                icon: icon,
+              }
+            )
+            .addTo(this.map)
+            .setZIndexOffset(100)
+            .bindTooltip(`${locationHistory[i].speed} Km/h`,{
+              direction : "top"
+            })
           )
-          .addTo(this.map)
-          .setZIndexOffset(100)
-          .bindTooltip(`${locationHistory[i].speed} Km/h`,{
-            direction : "top"
-          })
-        )
+          
+        }
       }
       
     }
