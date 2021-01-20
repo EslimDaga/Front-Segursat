@@ -126,7 +126,7 @@
       const historyDateFrom = document.getElementById("history-date-from").value;
       const historyDateTo = document.getElementById("history-date-to").value;
       const historyUnit =  document.getElementById("history-units").value;
-
+      const historyCheckbox = document.getElementById("history-marker-checkbox").checked;
       if (historyDateFrom === "") {
         swal({
           type: 'error',
@@ -149,7 +149,7 @@
           padding: '2em'
         })
       }else{
-        mapView.drawLocationHistory(historyUnit,historyDateFrom,historyDateTo);
+        mapView.drawLocationHistory(historyUnit,historyDateFrom,historyDateTo,historyCheckbox);
       }
 
     });
