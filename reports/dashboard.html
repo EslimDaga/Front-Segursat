@@ -37,7 +37,7 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
+                  <h6 class="value">0</h6>
                   <p class="">Unidades sin Reportar</p>
               </div>
               <div class="">
@@ -54,7 +54,7 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
+                  <h6 class="value">0</h6>
                   <p class="">Unidades en Movimiento</p>
               </div>
               <div class="">
@@ -118,8 +118,8 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
-                  <p class="">Pánico
+                  <h6 class="value">0</h6>
+                  <p class=""> Alerta de Pánico
                   </p>
               </div>
               <div class="">
@@ -136,8 +136,8 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
-                  <p class="">Batería</p>
+                  <h6 class="value">1</h6>
+                  <p class="">Alerta de Batería</p>
               </div>
               <div class="">
                 <div class="w-icon">
@@ -153,8 +153,8 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
-                  <p class="">Velocidad</p>
+                  <h6 class="value">1</h6>
+                  <p class="">Alerta de Velocidad</p>
               </div>
               <div class="">
                 <div class="w-icon">
@@ -170,7 +170,7 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
+                  <h6 class="value">0</h6>
                   <p class="">Otros</p>
               </div>
               <div class="">
@@ -185,7 +185,7 @@
       <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
         <div class="widget widget-chart-two">
           <div class="widget-heading">
-            <h5 class="">Unidades Reportando</h5>
+            <h5 class="">Alertas - Diagrama de Torta</h5>
           </div>
           <div class="widget-content">
             <div class="w-chart">
@@ -199,7 +199,7 @@
           <div class="widget-content">
             <div class="w-numeric-value">
               <div class="w-content">
-                <span class="w-value">Unidades en Movimiento</span>
+                <span class="w-value">Alertas - Grafico de Torta</span>
                 <span class="w-numeric-title">Ir a las columnas para obtener detalles.</span>
               </div>
               <div class="w-icon">
@@ -227,11 +227,11 @@
   new Chart(document.getElementById("chart1"), {
       type: 'pie',
       data: {
-        labels: ["Pánico", "Batería", "Velocidad", "Otros"],
+        labels: ["Unidades reportando", "Unidades sin reportar"],
         datasets: [{
-          label: "Alertas (unidades)",
-          backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
-          data: [12,20,30,40]
+          label: "Reporte de unidades",
+          backgroundColor: ["#66F035", "#ff6384"],
+          data: [2,0]
         }]
       },
       options: {
@@ -246,11 +246,11 @@
   new Chart(document.getElementById("chart2"), {
       type: 'pie',
       data: {
-        labels: ["Pánico", "Batería", "Velocidad", "Otros"],
+        labels: ["Unidades en movimiento", "Unidades detenidas"],
         datasets: [{
-          label: "Alertas (unidades)",
-          backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
-          data: [12,20,30,40]
+          label: "Reporte de unidades",
+          backgroundColor: ["#66F035", "#ff6384"],
+          data: [0,2]
         }]
       },
       options: {
@@ -269,7 +269,7 @@
         datasets: [{
           label: "Alertas (unidades)",
           backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
-          data: [12,20,30,40]
+          data: [0,1,1,0]
         }]
       },
       options: {
@@ -289,7 +289,7 @@
         datasets: [{
           label: "Alertas (unidades)",
           backgroundColor: ["#ff6384", "#ffcd56", "#36a2eb", "#d251ee"],
-          data: [12,20,30,40]
+          data: [0,1,1,0]
         }]
       },
       options: {
