@@ -68,11 +68,16 @@
                           document.getElementById("history-playback-checkbox").checked = false;
                         }
                       }
+                      const rangePicker = () => {
+                        if(document.getElementById("history-playback-checkbox").checked){
+                          document.getElementById("history-marker-checkbox").checked = false;
+                        }
+                      }
                     </script>
                     <br>
                     <div class="custom-progress bottom-right progress-down" style="width: 100%">
                       <label for="">Velocidad de Playback</label>
-                      <input type="range" min="1" max="100" id="history-speed-range" class="custom-range progress-range-counter" value="50">
+                      <input type="range" min="1" onchange="blockInputPlayback();" max="100" id="history-speed-range" class="custom-range progress-range-counter" value="50">
                       <div class="range-count"><span class="range-count-number" data-rangecountnumber="0">50</span></div>
                     </div>
                     <br>
