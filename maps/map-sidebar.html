@@ -30,24 +30,58 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="justify-pills-profile" role="tabpanel" aria-labelledby="justify-pills-profile-tab">
-        <div class="col-md-12 pt-3">
-          <label for="">Desde</label>
-          <input type="date" name="" class="form-control" id="history-date-from"><br>
-          <label for="">Hasta</label>
-          <input type="date" name="" class="form-control" id="history-date-to"><br>
-          <label for="">Unidades</label><br>
-          <select class="form-control" id="history-units" data-live-search="true">
-          </select><br>
-          <div class="n-chk">
-            <label class="new-control new-checkbox checkbox-primary">
-              <input type="checkbox" class="new-control-input" id="history-marker-checkbox" checked>
-              <span class="new-control-indicator"></span>Mostrar Marcadores
-            </label>
-        </div>
-          <br>
-          <br>
-          <button class="btn btn-primary btn-block pb-2" id="history-btn">Buscar</button>
+      <div class="tab-pane fade block-content" id="justify-pills-profile"  role="tabpanel" aria-labelledby="justify-pills-profile-tab">
+        <!-- <button id="block-content" class="mr-2 btn btn-primary message">Layout area blocking</button> -->
+        <div class="tab-pane-body" style="height: 602px;">
+          <div id="ajax-items" style="position: relative;">
+            <div class="searchable-container">
+              <div class="">
+                <div class="" id="a-u-reload">
+                  <div class="col-md-12 pt-3">
+                    <label for="">Desde</label>
+                    <input type="date" name="" class="form-control" id="history-date-from"><br>
+                    <label for="">Hasta</label>
+                    <input type="date" name="" class="form-control" id="history-date-to"><br>
+                    <label for="">Unidades</label><br>
+                    <select class="form-control" id="history-units" data-live-search="true">
+                    </select><br>
+                    <div class="n-chk">
+                      <label class="new-control new-checkbox checkbox-primary">
+                        <input type="checkbox" class="new-control-input" id="history-marker-checkbox" onchange="blockInputPlayback();" checked>
+                        <span class="new-control-indicator"></span>Mostrar Marcadores
+                      </label>
+                    </div><br>
+                    <div class="n-chk">
+                      <label class="new-control new-checkbox checkbox-primary">
+                        <input type="checkbox" class="new-control-input" onchange="blockInput();" id="history-playback-checkbox">
+                        <span class="new-control-indicator"></span>Playback
+                      </label>
+                    </div>
+                    <script>
+                      const blockInput = () => {
+                        if(document.getElementById("history-playback-checkbox").checked){
+                          document.getElementById("history-marker-checkbox").checked = false;
+                        }
+                      }
+                      const blockInputPlayback = () => {
+                        if(document.getElementById("history-marker-checkbox").checked){
+                          document.getElementById("history-playback-checkbox").checked = false;
+                        }
+                      }
+                    </script>
+                    <br>
+                    <div class="custom-progress bottom-right progress-down" style="width: 100%">
+                      <label for="">Velocidad de Playback</label>
+                      <input type="range" min="1" max="100" id="history-speed-range" class="custom-range progress-range-counter" value="50">
+                      <div class="range-count"><span class="range-count-number" data-rangecountnumber="0">50</span></div>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary btn-block pb-2" id="history-btn">Buscar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
