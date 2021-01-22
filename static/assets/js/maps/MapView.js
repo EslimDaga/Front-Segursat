@@ -6,6 +6,7 @@ class MapView {
     this.markers = [];
     this.historyMarkers = [];
     this.historyPaths = [];
+    this.historyPlaybackMarker;
   }
 
   getUnits = async () => {
@@ -170,62 +171,88 @@ class MapView {
     }
   }
 
-  drawLocationHistory = async (unitName,initialDate,finalDate,markerCheckbox) => {
+  drawLocationHistory = async (unitName,initialDate,finalDate,markerCheckbox,playbackCheckbox,speedRange) => {
     this.cleanMap()
     const locationHistory = await this.getLocationHistory(unitName,initialDate,finalDate);
     let route = [];
+    let angles = [];
     for (let i=0;i<locationHistory.length;i++) {
       route.push([locationHistory[i].latitude, locationHistory[i].longitude]);
-      if (i == locationHistory.length-1) {
-        const icon = L.divIcon({
-          iconSize:null,
-          html:`
-          <div class="map-label">
-            <div class="map-label-content">
-              <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+      angles.push(locationHistory[i].angle);
+      // Si no esta marcado playback, se dibujan los marcadores
+      if (playbackCheckbox == false) {
+        if (i == locationHistory.length-1) {
+          const icon = L.divIcon({
+            iconSize:null,
+            html:`
+            <div class="map-label">
+              <div class="map-label-content">
+                <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+              </div>
             </div>
-          </div>
-          `
-        });
-        this.historyMarkers.push(
-          new L.marker(
-            [locationHistory[i].latitude,locationHistory[i].longitude],
-            {
-              icon: icon,
-              title: locationHistory[i].unit_name,
-              rotationAngle: locationHistory[i].angle
-            }
-          ).bindTooltip(`${locationHistory[i].unit_name}`, {
-            permanent: true,
-            direction : "top",
-            offset: L.point({x: 0, y: -30})
-          })
-          .addTo(this.map)
-          .setZIndexOffset(1000)
-        );
-      }
-      else {
-        if (markerCheckbox == true){
-          const icon = new L.Icon.Default();
-          icon.options.shadowSize = [0,0];
+            `
+          });
           this.historyMarkers.push(
             new L.marker(
               [locationHistory[i].latitude,locationHistory[i].longitude],
               {
                 icon: icon,
+                title: locationHistory[i].unit_name,
+                rotationAngle: locationHistory[i].angle
               }
-            )
-            .addTo(this.map)
-            .setZIndexOffset(100)
-            .bindTooltip(`${locationHistory[i].speed} Km/h`,{
-              direction : "top"
+            ).bindTooltip(`${locationHistory[i].unit_name}`, {
+              permanent: true,
+              direction : "top",
+              offset: L.point({x: 0, y: -30})
             })
-          )
-          
+            .addTo(this.map)
+            .setZIndexOffset(1000)
+          );
         }
-      }
-      
+        else {
+          if (markerCheckbox == true){
+            const icon = new L.Icon.Default();
+            icon.options.shadowSize = [0,0];
+            this.historyMarkers.push(
+              new L.marker(
+                [locationHistory[i].latitude,locationHistory[i].longitude],
+                {
+                  icon: icon,
+                }
+              )
+              .addTo(this.map)
+              .setZIndexOffset(100)
+              .bindTooltip(`${locationHistory[i].speed} Km/h`,{
+                direction : "top"
+              })
+            )
+            
+          }
+        }
+      }      
     }
+    // si playback esta marcado se dibuja el marcador con movimiento
+    if (playbackCheckbox == true){
+      var marker1 = L.Marker.movingMarker(route,(100-speedRange)*100).addTo(this.map);
+      marker1.once('click', function () {
+        marker1.start();
+        marker1.closePopup();
+        marker1.unbindPopup();
+        marker1.on('click', function() {
+          if (marker1.isRunning()) {
+            marker1.pause();
+          } else {
+            marker1.start();
+          }
+        });
+        setTimeout(function() {
+          marker1.bindPopup('<b>Click para detener !</b>').openPopup();
+        }, 10000);
+      });
+      marker1.bindPopup('<b>Click para empezar !</b>', {closeOnClick: false});
+      marker1.openPopup();
+    }
+    // termina el playback y se dibuja la linea
     this.historyPaths.push(
       L.polyline.antPath(route, {
         "dashArray": [
@@ -254,6 +281,13 @@ class MapView {
       this.map.removeLayer(this.historyPaths[i]);
     }
     this.historyPaths = [];
+    //clean playback marker
+    try {
+      this.map.removeLayer(this.historyPlaybackMarker);
+      //this.historyPlaybackMarker = undefined;
+    } catch (error) {
+      console.log("error al limpiar playback marker");
+    }
   }
 
   openUnitTab = async () => {
