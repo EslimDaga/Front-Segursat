@@ -60,7 +60,8 @@ code {
   margin-left: 25px; }
 
 .main-container {
-  min-height: 98vh;
+  min-height: 100vh;
+  margin-top: -20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -84,7 +85,7 @@ code {
 #content {
   width: 50%;
   flex-grow: 8;
-  margin-top: 41px;
+  margin-top: 60px;
   margin-bottom: 0;
   margin-left: 255px;
   -webkit-transition: .3s ease all;
