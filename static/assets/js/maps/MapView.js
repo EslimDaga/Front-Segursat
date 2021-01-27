@@ -150,12 +150,16 @@ class MapView {
     document.getElementById("unitNameSelect").innerHTML = unitName;
     /* document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' target="_blank"><img alt="Street view" src="https://iadpi.com.ar/wp-content/uploads/2019/05/google-street-696x355.jpg"></a>`; */
     document.getElementById("speed").innerHTML = `${unit.device.last_speed} km/h`;
-    document.getElementById("rssi").innerHTML = `${unit.device.last_attributes.rssi}`;
-    document.getElementById("battery").innerHTML = `${unit.device.last_attributes.battery}`;
+    document.getElementById("rssi").innerHTML = `${unit.device.last_attributes.rssi} %`;
+    document.getElementById("battery").innerHTML = `${unit.device.last_attributes.battery} %`;
     document.getElementById("address_link").innerHTML = `<a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
       <i class="fas fa-eye"></i>
     </a>`
     document.getElementById("address").innerHTML = `${unit.device.last_address}`;
+    /* Begin add for Eslim*/
+    document.getElementById("ignition").innerHTML = `${unit.device.last_attributes.ignition}`;
+    document.getElementById("satellites").innerHTML = `${unit.device.last_attributes.sat}`;
+    /* End add for Eslim*/
   }
 
   updateMarkerPosition = (unitName,latLng,angle) => {
