@@ -96,8 +96,8 @@ body {
 .form-form .form-form-wrap form .field-wrapper svg {
   position: absolute;
   top: 16px;
-  color: #1b55e2;
-  fill: rgba(27, 85, 226, 0.239216);
+  color: #898d9e;
+  fill: #CFD1D4;
 }
 .form-form .form-form-wrap form .field-wrapper.terms_condition {
   margin-bottom: 20px;
@@ -152,7 +152,7 @@ padding: 0px 0 10px 35px;
 .form-form .form-form-wrap form .field-wrapper a.forgot-pass-link {
   width: 100%;
   font-weight: 700;
-  color: #1b55e2;
+  color: #898d9e;
   text-align: center;
   display: block;
   letter-spacing: 2px;
@@ -184,7 +184,7 @@ padding: 0px 0 10px 35px;
   margin-top: 30px;
 }
 .form-form .terms-conditions a {
-  color: #1b55e2;
+  color: #F8951D;
   font-weight: 700;
 }
 
