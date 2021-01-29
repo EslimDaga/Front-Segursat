@@ -113,13 +113,13 @@
   .new-control.new-checkbox[class*="checkbox-outline-"] > input:checked ~ span.new-control-indicator {
     background-color: transparent; }
   .new-control.new-checkbox.new-checkbox-line-through.checkbox-outline-primary > input:checked ~ span.new-chk-content {
-    color: #1b55e2; }
+    color: #F8951D; }
   .new-control.new-checkbox.checkbox-outline-primary > input:checked ~ span.new-control-indicator {
-    border: 1px solid #1b55e2; }
+    border: 1px solid #F8951D; }
     .new-control.new-checkbox.checkbox-outline-primary > input:checked ~ span.new-control-indicator:after {
-      border-color: #1b55e2; }
+      border-color: #F8951D; }
   .new-control.new-checkbox.checkbox-primary > input:checked ~ span.new-control-indicator {
-    background: #1b55e2; }
+    background: #F8951D; }
 
 .list-group-item {
   border: 1px solid #e0e6ed;
