@@ -55,6 +55,8 @@
     background-color: #d3d3d3; }
   .switch.s-primary .slider:before {
     background-color: #1b55e2; }
+  .switch.s-segursat .slider:before {
+    background-color: #F8951D; }
   .switch.s-success .slider:before {
     background-color: #8dbf42; }
   .switch.s-warning .slider:before {
@@ -81,6 +83,10 @@
     background-color: #8dbf42; }
   .switch.s-success input:focus + .slider {
     box-shadow: 0 0 1px #8dbf42; }
+  .switch.s-segursat input:checked + .slider {
+    background-color: #F8951D; }
+  .switch.s-segursat input:focus + .slider {
+    box-shadow: 0 0 1px #F8951D; }
   .switch.s-warning input:checked + .slider {
     background-color: #e2a03f; }
   .switch.s-warning input:focus + .slider {
