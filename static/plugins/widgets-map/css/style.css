@@ -227,7 +227,7 @@ button,input,select,textarea{
     line-height:inherit
 }
 a{
-    color:#445ede;
+    color:#F8951D;
     text-decoration:none
 }
 a:focus,a:hover{
@@ -387,7 +387,7 @@ p{
     color:#eee
 }
 .text-primary{
-    color:#445ede
+    color:#F8951D
 }
 a.text-primary:focus,a.text-primary:hover{
     color:#157590
@@ -420,7 +420,7 @@ a.text-danger:focus,a.text-danger:hover{
     color:#fff
 }
 .bg-primary{
-    background-color:#445ede
+    background-color:#F8951D
 }
 a.bg-primary:focus,a.bg-primary:hover{
     background-color:#157590
@@ -1447,8 +1447,8 @@ fieldset[disabled] input[type=checkbox],fieldset[disabled] input[type=radio],inp
 
 .btn-action,.btn-primary{
     color:#fff;
-    background-color:#445ede;
-    border-color:#1887a7
+    background-color:#F8951D;
+    border-color:#F8951D
 }
 .btn-action:focus,.btn-primary.focus,.btn-primary:focus,.focus.btn-action{
     color:#fff;
@@ -1461,7 +1461,7 @@ fieldset[disabled] input[type=checkbox],fieldset[disabled] input[type=radio],inp
     border-color:#105c71
 }
 .btn-action[disabled],.btn-action[disabled].active,.btn-action[disabled].focus,.btn-action[disabled]:active,.btn-action[disabled]:focus,.btn-action[disabled]:hover,.btn-primary.disabled,.btn-primary.disabled.active,.btn-primary.disabled.focus,.btn-primary.disabled:active,.btn-primary.disabled:focus,.btn-primary.disabled:hover,.btn-primary[disabled],.btn-primary[disabled].active,.btn-primary[disabled].focus,.btn-primary[disabled]:active,.btn-primary[disabled]:focus,.btn-primary[disabled]:hover,.disabled.active.btn-action,.disabled.btn-action,.disabled.btn-action:active,.disabled.btn-action:focus,.disabled.btn-action:hover,.disabled.focus.btn-action,fieldset[disabled] .active.btn-action,fieldset[disabled] .btn-action,fieldset[disabled] .btn-action:active,fieldset[disabled] .btn-action:focus,fieldset[disabled] .btn-action:hover,fieldset[disabled] .btn-primary,fieldset[disabled] .btn-primary.active,fieldset[disabled] .btn-primary.focus,fieldset[disabled] .btn-primary:active,fieldset[disabled] .btn-primary:focus,fieldset[disabled] .btn-primary:hover,fieldset[disabled] .focus.btn-action{
-    background-color:#445ede;
+    background-color:#F8951D;
     border-color:#1887a7
 }
 
@@ -1547,7 +1547,7 @@ fieldset[disabled] input[type=checkbox],fieldset[disabled] input[type=radio],inp
 }
 
 .btn-link{
-    color:#445ede;
+    color:#F8951D;
     font-weight:400;
     border-radius:0
 }
@@ -1847,7 +1847,7 @@ tbody.collapse.in{
 }
 .nav-map .open>a,.nav-map .open>a:hover{
     background-color:#fff;
-    border-color:#445ede
+    border-color:#F8951D
 }
 .nav-map .nav-map-divider{
     height:1px;
@@ -1892,7 +1892,7 @@ tbody.collapse.in{
 }
 .nav-map-pills>li.active>a,.nav-map-pills>li.active>a:focus,.nav-map-pills>li.active>a:hover{
     color:#fff;
-    background-color:#445ede
+    background-color:#F8951D
 }
 .nav-map-stacked>li{
     float:none
@@ -1990,7 +1990,7 @@ tbody.collapse.in{
 }
 .pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span,.pagination>.active>span:focus,.pagination>.active>span:hover{
     z-index:2;
-    color:#445ede;
+    color:#F8951D;
     background-color:#f9f9f9;
     border-color:transparent;
     cursor:default
@@ -2058,7 +2058,7 @@ a.label:focus,a.label:hover{
     background-color:#d5d5d5
 }
 .label-primary{
-    background-color:#445ede
+    background-color:#F8951D
 }
 .label-primary[href]:focus,.label-primary[href]:hover{
     background-color:#157590
@@ -2132,7 +2132,7 @@ a.badge:focus,a.badge:hover{
     color:#202020
 }
 a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover{
-    border-color:#445ede
+    border-color:#F8951D
 }
 .alert,.help-block{
     padding:15px;
@@ -2239,7 +2239,7 @@ a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover{
     line-height:17px;
     color:#fff;
     text-align:center;
-    background-color:#445ede;
+    background-color:#F8951D;
     -webkit-box-shadow:inset 0 -1px 0 rgba(0,0,0,.15);
     box-shadow:inset 0 -1px 0 rgba(0,0,0,.15);
     -webkit-transition:width .6s ease;
@@ -2431,22 +2431,22 @@ a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover{
     border-bottom-color:#d9d9d9
 }
 .panel-primary{
-    border-color:#445ede
+    border-color:#F8951D
 }
 #widgets .panel-primary>.widget-heading,.panel-primary>.panel-heading,.plan .panel-primary>.plan-heading{
     color:#fff;
-    background-color:#445ede;
-    border-color:#445ede
+    background-color:#F8951D;
+    border-color:#F8951D
 }
 #widgets .panel-primary>.panel-heading+.panel-collapse>.widget-body,#widgets .panel-primary>.widget-heading+.panel-collapse>.panel-body,#widgets .panel-primary>.widget-heading+.panel-collapse>.widget-body,#widgets .plan .panel-primary>.plan-heading+.panel-collapse>.widget-body,#widgets .plan .panel-primary>.widget-heading+.panel-collapse>.plan-body,.panel-primary>.panel-heading+.panel-collapse>.panel-body,.plan #widgets .panel-primary>.plan-heading+.panel-collapse>.widget-body,.plan #widgets .panel-primary>.widget-heading+.panel-collapse>.plan-body,.plan .panel-primary>.panel-heading+.panel-collapse>.plan-body,.plan .panel-primary>.plan-heading+.panel-collapse>.panel-body,.plan .panel-primary>.plan-heading+.panel-collapse>.plan-body{
-    border-top-color:#445ede
+    border-top-color:#F8951D
 }
 #widgets .panel-primary>.widget-heading .badge,.panel-primary>.panel-heading .badge,.plan .panel-primary>.plan-heading .badge{
-    color:#445ede;
+    color:#F8951D;
     background-color:#fff
 }
 #widgets .panel-primary>.panel-footer+.panel-collapse>.widget-body,#widgets .plan .panel-primary>.plan-footer+.panel-collapse>.widget-body,.panel-primary>.panel-footer+.panel-collapse>.panel-body,.plan #widgets .panel-primary>.plan-footer+.panel-collapse>.widget-body,.plan .panel-primary>.panel-footer+.panel-collapse>.plan-body,.plan .panel-primary>.plan-footer+.panel-collapse>.panel-body,.plan .panel-primary>.plan-footer+.panel-collapse>.plan-body{
-    border-bottom-color:#445ede
+    border-bottom-color:#F8951D
 }
 .panel-success{
     border-color:#d6e9c6
@@ -8978,27 +8978,27 @@ button.close,button.ui-dialog-titlebar-close{
 }
 .checkbox-inline input[type=checkbox]:checked+label::before,.checkbox-inline input[type=radio]:checked+label::before,.group .checkbox input[type=checkbox]:checked+label::before,.group .checkbox input[type=radio]:checked+label::before,.table .checkbox input[type=checkbox]:checked+label::before,.table .checkbox input[type=radio]:checked+label::before{
     color:#fff;
-    background-color:#445ede
+    background-color:#F8951D
 }
 .checkbox-inline input[type=checkbox]:checked+label::after,.checkbox-inline input[type=radio]:checked+label::after,.group .checkbox input[type=checkbox]:checked+label::after,.group .checkbox input[type=radio]:checked+label::after,.table .checkbox input[type=checkbox]:checked+label::after,.table .checkbox input[type=radio]:checked+label::after{
-    background-color:#445ede;
-    border-color:#445ede
+    background-color:#F8951D;
+    border-color:#F8951D
 }
 .checkbox input[type=checkbox]:checked+label::before,.checkbox input[type=radio]:checked+label::before{
     color:#fff;
-    background-color:#445ede
+    background-color:#F8951D
 }
 .checkbox input[type=checkbox]:checked+label::after,.checkbox input[type=radio]:checked+label::after{
-    background-color:#445ede;
-    border-color:#445ede
+    background-color:#F8951D;
+    border-color:#F8951D
 }
 .checkbox-primary input[type=checkbox]:checked+label::before,.checkbox-primary input[type=radio]:checked+label::before{
     color:#fff;
-    background-color:#445ede
+    background-color:#F8951D
 }
 .checkbox-primary input[type=checkbox]:checked+label::after,.checkbox-primary input[type=radio]:checked+label::after{
-    background-color:#445ede;
-    border-color:#445ede
+    background-color:#F8951D;
+    border-color:#F8951D
 }
 .checkbox-danger input[type=checkbox]:checked+label::before,.checkbox-danger input[type=radio]:checked+label::before{
     color:#fff;
@@ -9102,22 +9102,22 @@ button.close,button.ui-dialog-titlebar-close{
     margin-top:0
 }
 .radio-inline input[type=radio]:checked+label::before{
-    background-color:#445ede
+    background-color:#F8951D
 }
 .radio-inline input[type=radio]:checked+label::after{
-    border-color:#445ede
+    border-color:#F8951D
 }
 .radio input[type=radio]:checked+label::before{
-    background-color:#445ede
+    background-color:#F8951D
 }
 .radio input[type=radio]:checked+label::after{
-    border-color:#445ede
+    border-color:#F8951D
 }
 .radio-primary input[type=radio]:checked+label::before{
-    background-color:#445ede
+    background-color:#F8951D
 }
 .radio-primary input[type=radio]:checked+label::after{
-    border-color:#445ede
+    border-color:#F8951D
 }
 .radio-danger input[type=radio]:checked+label::before{
     background-color:#d9534f
@@ -9301,13 +9301,13 @@ button.close,button.ui-dialog-titlebar-close{
 }
 .datepicker table tr td.active,.datepicker table tr td.active.disabled,.datepicker table tr td.active.disabled:hover,.datepicker table tr td.active:hover{
     color:#fff;
-    background-color:#445ede;
-    border-color:#445ede;
+    background-color:#F8951D;
+    border-color:#F8951D;
     text-shadow:0 -1px 0 rgba(0,0,0,.25)
 }
 .datepicker table tr td.active.active,.datepicker table tr td.active.disabled.active,.datepicker table tr td.active.disabled:active,.datepicker table tr td.active.disabled:focus,.datepicker table tr td.active.disabled:hover.active,.datepicker table tr td.active.disabled:hover:active,.datepicker table tr td.active.disabled:hover:focus,.datepicker table tr td.active:active,.datepicker table tr td.active:focus,.datepicker table tr td.active:hover.active,.datepicker table tr td.active:hover:active,.datepicker table tr td.active:hover:focus{
     color:#fff;
-    background-color:#445ede;
+    background-color:#F8951D;
     border-color:#136e87
 }
 .datepicker table tr td.active.disabled:hover,.datepicker table tr td.active.disabled:hover:hover,.datepicker table tr td.active:hover,.datepicker table tr td.active:hover:hover{
@@ -9335,13 +9335,13 @@ button.close,button.ui-dialog-titlebar-close{
 }
 .datepicker table tr td span.active,.datepicker table tr td span.active.disabled,.datepicker table tr td span.active.disabled:hover,.datepicker table tr td span.active:hover{
     color:#fff;
-    background-color:#445ede;
+    background-color:#F8951D;
     border-color:#1887a7;
     text-shadow:0 -1px 0 rgba(0,0,0,.25)
 }
 .datepicker table tr td span.active.active,.datepicker table tr td span.active.disabled.active,.datepicker table tr td span.active.disabled:active,.datepicker table tr td span.active.disabled:focus,.datepicker table tr td span.active.disabled:hover.active,.datepicker table tr td span.active.disabled:hover:active,.datepicker table tr td span.active.disabled:hover:focus,.datepicker table tr td span.active:active,.datepicker table tr td span.active:focus,.datepicker table tr td span.active:hover.active,.datepicker table tr td span.active:hover:active,.datepicker table tr td span.active:hover:focus{
     color:#fff;
-    background-color:#445ede;
+    background-color:#F8951D;
     border-color:#105c71
 }
 .datepicker table tr td span.active.disabled:hover,.datepicker table tr td span.active.disabled:hover:hover,.datepicker table tr td span.active:hover,.datepicker table tr td span.active:hover:hover{
@@ -9363,7 +9363,7 @@ button.close,button.ui-dialog-titlebar-close{
 }
 .datepicker tfoot tr th,.datepicker thead tr:first-child th{
     cursor:pointer;
-    color:#445ede
+    color:#F8951D
 }
 .datepicker tfoot tr th:hover,.datepicker thead tr:first-child th:hover{
     background:#f9f9f9
@@ -9572,21 +9572,21 @@ button.close,button.ui-dialog-titlebar-close{
     background-color:#5bc0de
 }
 .datetimepicker table tr td.active,.datetimepicker table tr td.active.disabled,.datetimepicker table tr td.active.disabled:hover,.datetimepicker table tr td.active:hover{
-    background-color:#445ede;
-    background-image:-moz-linear-gradient(top,#445ede,#445ede);
-    background-image:-ms-linear-gradient(top,#445ede,#445ede);
-    background-image:-webkit-gradient(linear,0 0,0 100%,from(#445ede),to(#445ede));
-    background-image:-webkit-linear-gradient(top,#445ede,#445ede);
-    background-image:-o-linear-gradient(top,#445ede,#445ede);
-    background-image:linear-gradient(top,#445ede,#445ede);
+    background-color:#F8951D;
+    background-image:-moz-linear-gradient(top,#F8951D,#F8951D);
+    background-image:-ms-linear-gradient(top,#F8951D,#F8951D);
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#F8951D),to(#F8951D));
+    background-image:-webkit-linear-gradient(top,#F8951D,#F8951D);
+    background-image:-o-linear-gradient(top,#F8951D,#F8951D);
+    background-image:linear-gradient(top,#F8951D,#F8951D);
     background-repeat:repeat-x;
-    border-color:#445ede #445ede #445ede;
+    border-color:#F8951D #F8951D #F8951D;
     border-color:rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
     color:#fff;
     text-shadow:0 -1px 0 rgba(0,0,0,.25)
 }
 .datetimepicker table tr td.active.active,.datetimepicker table tr td.active.disabled,.datetimepicker table tr td.active.disabled.active,.datetimepicker table tr td.active.disabled.disabled,.datetimepicker table tr td.active.disabled:active,.datetimepicker table tr td.active.disabled:hover,.datetimepicker table tr td.active.disabled:hover.active,.datetimepicker table tr td.active.disabled:hover.disabled,.datetimepicker table tr td.active.disabled:hover:active,.datetimepicker table tr td.active.disabled:hover:hover,.datetimepicker table tr td.active.disabled:hover[disabled],.datetimepicker table tr td.active.disabled[disabled],.datetimepicker table tr td.active:active,.datetimepicker table tr td.active:hover,.datetimepicker table tr td.active:hover.active,.datetimepicker table tr td.active:hover.disabled,.datetimepicker table tr td.active:hover:active,.datetimepicker table tr td.active:hover:hover,.datetimepicker table tr td.active:hover[disabled],.datetimepicker table tr td.active[disabled]{
-    background-color:#445ede
+    background-color:#F8951D
 }
 .datetimepicker .datetimepicker-hours table tr td span.hour_am,.datetimepicker .datetimepicker-hours table tr td span.hour_pm{
     width:14.6%
@@ -9601,20 +9601,20 @@ button.close,button.ui-dialog-titlebar-close{
     cursor:default
 }
 .datetimepicker table tr td span.active,.datetimepicker table tr td span.active.disabled,.datetimepicker table tr td span.active.disabled:hover,.datetimepicker table tr td span.active:hover{
-    background-color:#445ede;
-    background-image:-moz-linear-gradient(top,#445ede,#445ede);
-    background-image:-ms-linear-gradient(top,#445ede,#445ede);
-    background-image:-webkit-gradient(linear,0 0,0 100%,from(#445ede),to(#445ede));
-    background-image:-webkit-linear-gradient(top,#445ede,#445ede);
-    background-image:-o-linear-gradient(top,#445ede,#445ede);
-    background-image:linear-gradient(top,#445ede,#445ede);
+    background-color:#F8951D;
+    background-image:-moz-linear-gradient(top,#F8951D,#F8951D);
+    background-image:-ms-linear-gradient(top,#F8951D,#F8951D);
+    background-image:-webkit-gradient(linear,0 0,0 100%,from(#F8951D),to(#F8951D));
+    background-image:-webkit-linear-gradient(top,#F8951D,#F8951D);
+    background-image:-o-linear-gradient(top,#F8951D,#F8951D);
+    background-image:linear-gradient(top,#F8951D,#F8951D);
     background-repeat:repeat-x;
-    border-color:#445ede #445ede #445ede;
+    border-color:#F8951D #F8951D #F8951D;
     color:#fff;
     text-shadow:0 -1px 0 rgba(0,0,0,.25)
 }
 .datetimepicker table tr td span.active.active,.datetimepicker table tr td span.active.disabled,.datetimepicker table tr td span.active.disabled.active,.datetimepicker table tr td span.active.disabled.disabled,.datetimepicker table tr td span.active.disabled:active,.datetimepicker table tr td span.active.disabled:hover,.datetimepicker table tr td span.active.disabled:hover.active,.datetimepicker table tr td span.active.disabled:hover.disabled,.datetimepicker table tr td span.active.disabled:hover:active,.datetimepicker table tr td span.active.disabled:hover:hover,.datetimepicker table tr td span.active.disabled:hover[disabled],.datetimepicker table tr td span.active.disabled[disabled],.datetimepicker table tr td span.active:active,.datetimepicker table tr td span.active:hover,.datetimepicker table tr td span.active:hover.active,.datetimepicker table tr td span.active:hover.disabled,.datetimepicker table tr td span.active:hover:active,.datetimepicker table tr td span.active:hover:hover,.datetimepicker table tr td span.active:hover[disabled],.datetimepicker table tr td span.active[disabled]{
-    background-color:#445ede
+    background-color:#F8951D
 }
 .datetimepicker tfoot tr:first-child th,.datetimepicker thead tr:first-child th{
     cursor:pointer
@@ -10781,11 +10781,11 @@ button.toast-close-button{
 }
 .leaflet-control-layers label div input[type=checkbox]:checked+span::before,.leaflet-control-layers label div input[type=radio]:checked+span::before{
     color:#fff;
-    background-color:#445ede
+    background-color:#F8951D
 }
 .leaflet-control-layers label div input[type=checkbox]:checked+span::after,.leaflet-control-layers label div input[type=radio]:checked+span::after{
-    background-color:#445ede;
-    border-color:#445ede
+    background-color:#F8951D;
+    border-color:#F8951D
 }
 .leaflet-control-layers label div{
     padding:6px 13px
@@ -10827,13 +10827,13 @@ button.toast-close-button{
     height:-moz-calc(100% - 14px);
     height:-o-calc(100% - 14px);
     height:calc(100% - 14px);
-    border-color:#445ede #445ede transparent #445ede
+    border-color:#F8951D #F8951D transparent #F8951D
 }
 .cluster .cluster-inner-map b{
     color:#fff;
     display:block;
     position:absolute;
-    background:#445ede;
+    background:#F8951D;
     border-radius:50%;
     line-height:30px;
     left:14px;
@@ -10850,7 +10850,7 @@ button.toast-close-button{
     height:calc(100% - 28px)
 }
 .cluster.cluster-large .cluster-inner-map:before{
-    border-color:#445ede #445ede transparent #445ede
+    border-color:#F8951D #F8951D transparent #F8951D
 }
 .cluster.cluster-large .cluster-inner-map:after{
     border-color:green green transparent green
@@ -11253,9 +11253,9 @@ body{
     border-color:#848484
 }
 .drive-action .action-icon{
-    background:#445ede;
+    background:#F8951D;
     color:#fff;
-    border-color:#445ede
+    border-color:#F8951D
 }
 .datetime .date,.datetime .time{
     white-space:nowrap
@@ -11292,7 +11292,7 @@ body{
     display:none
 }
 .group .icon-list .checkbox input:checked+label,.icon-list .checkbox input:checked+label,.icon-list .checkbox-inline input:checked+label,.icon-list .group .checkbox input:checked+label,.icon-list .radio input:checked+label,.icon-list .radio-inline input:checked+label,.icon-list .table .checkbox input:checked+label,.table .icon-list .checkbox input:checked+label{
-    background:#445ede
+    background:#F8951D
 }
 .action-block{
     margin-bottom:10px
@@ -11527,7 +11527,7 @@ body{
     height:3px;
     left:0;
     bottom:0;
-    background:#445ede;
+    background:#F8951D;
     box-sizing:border-box
 }
 .nav-map-icons{
@@ -11541,10 +11541,10 @@ body{
     color:#777
 }
 .nav-map-icons>li>a:hover{
-    color:#445ede
+    color:#F8951D
 }
 .nav-map-icons>li.active>a{
-    color:#445ede
+    color:#F8951D
 }
 .nav-map-tabs-justified>li>a,.nav-map-tabs.nav-map-justified>li>a{
     margin-right:-1px;
@@ -11574,7 +11574,7 @@ body{
     display:block;
     position:absolute;
     color:#aaa;
-    background:#445ede;
+    background:#898d9e;
     text-align:center;
     text-decoration:none;
     font-size:10px;
@@ -11606,13 +11606,13 @@ body{
 #sidebar-map .btn-collapse:before,.btn-collapse.collapse-left:before{
     left:0;
     bottom:100%;
-    border-bottom:20px solid #445ede;
+    border-bottom:20px solid #898d9e;
     border-right:20px solid transparent
 }
 #sidebar-map .btn-collapse:after,.btn-collapse.collapse-left:after{
     left:0;
     top:100%;
-    border-top:20px solid #445ede;
+    border-top:20px solid #898d9e;
     border-right:20px solid transparent
 }
 .btn-collapse.collapse-right{
@@ -11648,13 +11648,13 @@ body{
 #widgets .btn-collapse:before,.btn-collapse.collapse-top:before{
     top:0;
     right:100%;
-    border-bottom:20px solid #445ede;
+    border-bottom:20px solid #898d9e;
     border-left:20px solid transparent
 }
 #widgets .btn-collapse:after,.btn-collapse.collapse-top:after{
     top:0;
     left:100%;
-    border-bottom:20px solid #445ede;
+    border-bottom:20px solid #898d9e;
     border-right:20px solid transparent
 }
 .btn-collapse.collapse-bottom{
@@ -11775,7 +11775,7 @@ label.required:after{
 
 .modal-title .icon,.ui-dialog-title .icon{
     vertical-align:top;
-    color:#445ede
+    color:#F8951D
 }
 .modal-body>.nav-map{
     margin:-15px;
@@ -11890,7 +11890,7 @@ label.required:after{
     color:#aaa
 }
 .table.table-list>tbody>tr>td .btn.icon:hover,.table.table-list>tbody>tr>th .btn.icon:hover,.table.table-list>tfoot>tr>td .btn.icon:hover,.table.table-list>tfoot>tr>th .btn.icon:hover,.table.table-list>thead>tr>td .btn.icon:hover,.table.table-list>thead>tr>th .btn.icon:hover{
-    color:#445ede
+    color:#F8951D
 }
 .table.table-list>tbody>tr.row-table-inner-map>td,.table.table-list>tfoot>tr.row-table-inner-map>td,.table.table-list>thead>tr.row-table-inner-map>td{
     padding:20px
@@ -11910,7 +11910,7 @@ label.required:after{
     white-space:nowrap
 }
 .table.table-list .table-checkbox:hover .icon{
-    color:#445ede
+    color:#F8951D
 }
 .table.table-list .user-list{
     overflow:hidden;
@@ -11942,10 +11942,10 @@ label.required:after{
     cursor:pointer
 }
 .table.table-list .sorting_asc:before{
-    color:#445ede
+    color:#F8951D
 }
 .table.table-list .sorting_desc:after{
-    color:#445ede
+    color:#F8951D
 }
 .table.table-list.sticky-header>thead>tr>th{
     position:sticky!important;
@@ -12068,7 +12068,7 @@ label.required:after{
     background:#f9f9f9
 }
 .table.table-weektime>tbody>tr>td.ds-selected{
-    background:#445ede
+    background:#F8951D
 }
 .table.table-weektime>tbody>tr>td.hour{
     border-left:1px solid #e9e9e9
@@ -12198,7 +12198,7 @@ label.required:after{
 }
 #widgets .widget{
     height:100%;
-    /* border:1px solid #445ede; */
+    /* border:1px solid #F8951D; */
     border-bottom:0;
     border-radius: 2px;
     display:inline-block;
@@ -12217,7 +12217,7 @@ label.required:after{
     float:right
 }
 #widgets .widget-title .icon{
-    color:#445ede;
+    color:#F8951D;
     margin-right:5px;
     vertical-align:middle
 }
@@ -12407,7 +12407,7 @@ label.required:after{
     right:0;
     top:auto;
     font-size:1em;
-    color:#445ede;
+    color:#F8951D;
     cursor:pointer
 }
 #sidebar-map.collapsed .group-heading>.group-title.btn-collapse,#widgets.collapsed .group-heading>.group-title.btn-collapse,.group-heading>.group-title.collapsed{
@@ -12431,7 +12431,7 @@ label.required:after{
     background-color:#eee
 }
 .group-heading:hover .group-title:after,.group-heading:hover .status-collapse{
-    color:#445ede
+    color:#F8951D
 }
 .group-body{
     position:relative
@@ -12512,7 +12512,7 @@ label.required:after{
     background:#f9f9f9
 }
 .group-list>li.active>:last-child{
-    border-right-color:#445ede
+    border-right-color:#F8951D
 }
 #widgets .panel .widget-heading,#widgets .plan .widget-heading,.panel #widgets .widget-heading,.panel .panel-heading,.plan #widgets .widget-heading,.plan .panel-heading,.plan .plan-heading{
     padding:0
@@ -12535,7 +12535,7 @@ label.required:after{
 }
 #widgets .panel .widget-title .icon,#widgets .plan .widget-title .icon,.panel #widgets .widget-title .icon,.panel .panel-title .icon,.panel .panel-title-overflow .icon,.plan #widgets .widget-title .icon,.plan .panel-title .icon,.plan .panel-title-overflow .icon,.plan .plan-title .icon{
     font-size:inherit;
-    color:#445ede;
+    color:#F8951D;
     vertical-align:middle
 }
 @media (min-width:768px){
@@ -12591,7 +12591,7 @@ label.required:after{
     bottom:0;
     left:0;
     z-index:99999;
-    color:#445ede
+    color:#F8951D
 }
 #loading{
     display:table;
@@ -12679,7 +12679,7 @@ body.sign-in-layout .app-links{
     outline:0
 }
 .plan .plan-body .icon.check{
-    color:#445ede;
+    color:#F8951D;
     line-height:1;
     font-size:1.6em
 }
@@ -12938,7 +12938,7 @@ div.table-responsive>div.dataTables_wrapper>div.checkboxes>div[class^=col-]:last
 }
 .dataTables_paginate .paginate_button.current,.dataTables_paginate .paginate_button.current:focus,.dataTables_paginate .paginate_button.current:hover{
     z-index:2;
-    color:#445ede;
+    color:#F8951D;
     background-color:#f9f9f9;
     border-color:transparent;
     cursor:default
