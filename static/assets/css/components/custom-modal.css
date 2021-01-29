@@ -50,13 +50,13 @@
       letter-spacing: 1px; }
       .modal-content .modal-footer button.btn[data-dismiss="modal"] {
         background-color: #fff;
-        color: #1b55e2;
+        color: #e2a03f;
         font-weight: 700;
         border: 1px solid #e8e8e8; }
     .modal-content .modal-footer .btn.btn-primary {
-      background-color: #1b55e2;
+      background-color: #e2a03f;
       color: #fff;
-      border: 1px solid #1b55e2; }
+      border: 1px solid #e2a03f; }
 
 /*
     Modal Success
