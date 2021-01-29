@@ -49,20 +49,22 @@
                   <th class="text-center">Latitud</th>
                   <th class="text-center">Longitud</th>
                   <th class="text-center">Velocidad</th>
+                  <th class="text-center">Odometro</th>
                   <th class="text-center">Dirección</th>
                   <th class="text-center">Acción</th>
                 </tr>
               </thead>
               <tbody>
-                {% for location in locations %}
+                {% for unit in units %}
                 <tr>
-                  <td class="text-center">{{location.unit_name}}</td>
+                  <td class="text-center">{{unit}}</td>
                   <td class="text-center">{{location.datetime}}</td>
-                  <td class="text-center">{{location.latitude}}</td>
-                  <td class="text-center">{{location.longitude}}</td>
-                  <td class="text-center">{{location.altitude}}</td>
-                  <td class="text-center">{{location.speed}} km/h</td>
-                  <td class="text-center">{{location.address}}</td>
+                  <td class="text-center">{% if unit.speed > 0 %}EN MOVIMIENTO{% else %}DETENIDO{% endif %}</td>
+                  <td class="text-center">{{unit.device.last_latitude}}</td>
+                  <td class="text-center">{{unit.device.last_longitude}}</td>
+                  <td class="text-center">{{unit.device.last_speed}} km/h</td>
+                  <td class="text-center">{{unit.device.last_gps_odometer}} Km</td>
+                  <td class="text-center">{{unit.device.last_address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
                       <button type="button" onclick="renderMap('{{location.unit_name}}','{{location.latitude}}','{{location.longitude}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
@@ -112,30 +114,6 @@
       "lengthMenu": [10, 20, 50],
       "pageLength": 10
     });
-</script>
-<!-- <script>
-  $('#zero-config').DataTable({
-      "oLanguage": {
-          "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-          "sInfo": "Showing page _PAGE_ of _PAGES_",
-          "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-          "sSearchPlaceholder": "Search...",
-          "sLengthMenu": "Results :  _MENU_",
-      },
-      "stripeClasses": [],
-      "lengthMenu": [7, 10, 20, 50],
-      "pageLength": 7
-  });
-</script> -->
-<script>
-  var f1 = flatpickr(document.getElementById('basicFlatpickr'));
-  var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
-</script>
-<script>
-  $(".placeholder").select2({
-    placeholder: "Buscar por Placa",
-    allowClear: true
-  });
 </script>
 <script>
   const renderMap  = async (unitName,latitude,longitude) => {
