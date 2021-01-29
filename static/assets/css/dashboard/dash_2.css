@@ -27,19 +27,19 @@
 .widget-card-four .w-info h6 {
     font-weight: 600;
     margin-bottom: 0;
-    color: #0e1726;
+    color: #898d9e;
     font-size: 23px;
     letter-spacing: 0;
 }
 .widget-card-four .w-info p {
     font-weight: 600;
     margin-bottom: 0;
-    color: #F8951D;
+    color: #898d9e;
     font-size: 16px;
 }
 .widget-card-four .w-icon {
-    color: #ffffff;
-    background-color: #F8951D;
+    color: #e2a03f;
+    background-color: #ffeccb;
     height: 45px;
     display: inline-flex;
     width: 45px;
