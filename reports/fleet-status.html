@@ -155,7 +155,6 @@
       const overlays = {};
       L.control.layers(baseLayers,overlays).addTo(map);
       baseLayers['Google Street Maps'].addTo(map);
-
       const icon = L.divIcon({
         iconSize:null,
         html:`
@@ -166,8 +165,6 @@
         </div>
         `
       });
-
-      
     },500);
   }
 </script>
