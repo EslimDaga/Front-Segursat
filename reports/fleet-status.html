@@ -58,7 +58,7 @@
                 {% for unit in units %}
                 <tr>
                   <td class="text-center">{{unit}}</td>
-                  <td class="text-center">{{location.datetime}}</td>
+                  <td class="text-center">{{unit.device.last_report}}</td>
                   <td class="text-center">{% if unit.speed > 0 %}EN MOVIMIENTO{% else %}DETENIDO{% endif %}</td>
                   <td class="text-center">{{unit.device.last_latitude}}</td>
                   <td class="text-center">{{unit.device.last_longitude}}</td>
@@ -116,7 +116,13 @@
     });
 </script>
 <script>
-  const renderMap  = async (unitName,latitude,longitude) => {
+  const getUnit = async (unit_name) => {
+    const url = `/web/api/units/get-unit/${unit_name}/`;
+    const response = await fetch(url);
+    const unit = await response.json();
+    return unit;
+  }
+  const renderMap  = async (unitName) => {
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
     $("#modal-map").modal("show");
     setTimeout(() => {
@@ -160,21 +166,8 @@
         </div>
         `
       });
-      latitude = parseFloat(latitude.replace(',','.'));
-      longitude = parseFloat(longitude.replace(',','.'));
-      const marker = new L.marker(
-        [latitude,longitude],
-        {
-          icon: icon,
-          title: unitName,
-          rotationAngle: 0
-        }
-      ).bindTooltip(unitName, {
-        permanent: true,
-        direction : "top",
-        offset: L.point({x: 0, y: -30})
-      }).addTo(map);
-      map.panTo([latitude,longitude]);
+
+      
     },500);
   }
 </script>
