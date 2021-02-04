@@ -55,7 +55,11 @@
         </div>
         <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
           <div class="">
-            <button class="btn btn-primary responsive-button" onclick="alertSearch()" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+            <button class="btn btn-primary responsive-button" onclick="alertHistory.alertSearch()" style="height: 45.39px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg> Buscar </button>
           </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
@@ -79,7 +83,7 @@
         </div>
       </div>
     </div>
-    <div class="modal fade bd-example-modal-xl" id="checkAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-xl" id="alertHistory.checkAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -213,8 +217,10 @@
   <script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
   <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+  <script src="{% static 'assets/js/alerts/AlertHistory.js' %}"></script>
   <script>
     var f1 = flatpickr(document.getElementById('basicFlatpickr'));
+    const alertHistory = new AlertHistory();
   </script>
   <script>
     $(".placeholder").select2({
@@ -245,7 +251,7 @@
       "pageLength": 7
     });
   </script>
-  <script>
+  <!-- <script>
     const getAlertSearch = async(alertDate,unitName) => {
       const url = `/web/api/alerts/alert-search/${alertDate}/${unitName}/`
       const response = await fetch(url);
@@ -330,8 +336,8 @@
         await getAlertSearch(alertDate,unitName);
       }
     }
-  </script>
-  <script>
+  </script> -->
+  <!-- <script>
     const checkAlert = async (id) => {
       const url = `/web/api/alerts/get-alert/${id}`;
       const response = await fetch(url);
@@ -353,6 +359,6 @@
       document.getElementById("datetime").innerHTML = `${alert.datetime}`
       return alert;
     }
-  </script>
+  </script> -->
 <!-- End Page Level Custom Scripts -->
 {% endblock%}
