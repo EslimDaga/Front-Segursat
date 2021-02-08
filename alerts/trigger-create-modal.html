@@ -3,50 +3,45 @@
     <div class="modal-content">
       {% load static %}
       {% load widget_tweaks %}
-
       <form method="post" action="{% url 'triggers' %}">
           {% csrf_token %}
-        
         <div class="modal-header">
-            <h5 class="modal-title">Crear nuevo trigger</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        
-          <div class="modal-body">
-            {% for field in form %}
-            {% if field.name != "is_active" %}
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {% if field.errors %}
-              {% render_field field class="form-control is-invalid" placeholder=field.label %}
-              {% for error in field.errors %}
-              <p class="help-block text-danger">(*) {{ error }}</p>
-              {% endfor %}
-              {% else %}
-              {% if field.value %}
-              {% render_field field class="form-control is-valid" placeholder=field.label %}
-              {% else %}
-              {% render_field field class="form-control" placeholder=field.label %}
-              {% endif %}
-              {% endif %}
-            </div>
-            {% endif %}
+          <h5 class="modal-title">Crear nuevo trigger</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {% for field in form %}
+          {% if field.name != "is_active" %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% if field.errors %}
+            {% render_field field class="form-control is-invalid" placeholder=field.label %}
+            {% for error in field.errors %}
+            <p class="help-block text-danger">(*) {{ error }}</p>
             {% endfor %}
-            <div class="n-chk">
-              <label class="new-control new-checkbox checkbox-outline-primary">
-                <input type="checkbox" class="new-control-input" checked>
-                <span class="new-control-indicator"></span>¿Esta activo?
-              </label>
+            {% else %}
+            {% if field.value %}
+            {% render_field field class="form-control is-valid" placeholder=field.label %}
+            {% else %}
+            {% render_field field class="form-control" placeholder=field.label %}
+            {% endif %}
+            {% endif %}
           </div>
+          {% endif %}
+          {% endfor %}
+          <div class="n-chk">
+            <label class="new-control new-checkbox checkbox-outline-primary">
+              <input type="checkbox" class="new-control-input" checked>
+              <span class="new-control-indicator"></span>¿Esta activo?
+            </label>
           </div>
-        
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="submit-btn btn btn-primary">Crear</button>
-          </div>
-      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="submit-btn btn btn-primary">Crear</button>
+        </div>
       </form>
     </div>
   </div>
