@@ -18,6 +18,10 @@
   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/forms/theme-checkbox-radio.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/forms/switches.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/alert.css' %}">
+  <link href="{% static 'plugins/toast/vanillatoasts.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/notification/snackbar/snackbar.min.css' %}" rel="stylesheet" type="text/css" />
+  <script src="{% static 'plugins/notification/snackbar/snackbar.min.js' %}"></script>
+
   {% endblock %}
 </head>
 <body class="form">
@@ -38,7 +42,7 @@
           <div class="form-content">
             <img class="img-login" src="{% static 'assets/img/others/logo.png' %}" alt="logo" width="300" style="padding-bottom: 50px;">
             {% if error %}
-            <div class="alert alert-arrow-left alert-icon-left alert-light-danger mb-4" role="alert">
+            <!-- <div class="alert alert-arrow-left alert-icon-left alert-light-danger mb-4" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -47,7 +51,16 @@
               </button>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"></circle><path d="M16 16s-1.5-2-4-2-4 2-4 2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
               <strong>Oops..!</strong> {{error}}.
-            </div>
+            </div> -->
+            <div id="message_error" style="display: none;"></div>
+            <script>
+              const message_error = document.getElementById("message_error").innerHTML = Snackbar.show({
+                text: 'Oops..! {{error}}',
+                pos: 'top-center',
+                actionTextColor: '#fff',
+                backgroundColor: '#e7515a'
+              });
+            </script>
             {% endif %}
             <form class="text-left" method="POST">
               {% csrf_token %}
@@ -101,5 +114,8 @@
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'assets/js/loader.js' %}"></script>
   <script src="{% static 'assets/js/authentication/form-1.js' %}"></script>
+  <script src="{% static 'plugins/toast/vanillatoasts.js' %}"></script>
+
+
 </body>
 </html>
