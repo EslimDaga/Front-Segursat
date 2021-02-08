@@ -70,7 +70,7 @@
                     <td class="text-center">{{alert.created}}</td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <button type="button" onclick="checkAlert({{alert.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+                        <button type="button" onclick="alerts.checkAlert({{alert.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -84,127 +84,16 @@
     </div>
     {% include 'includes/footer.html' %}
   </div>
-  <div class="modal fade bd-example-modal-xl" id="checkAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Detalles</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            x
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-xl-6 col-lg-6 col-sm-12">
-                <div style="width: 100%">
-                  <iframe width="100%" height="430" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=es&amp;q=Les%20Rambles,%201%20Barcelona,%20Spain+(Mi%20nombre%20de%20egocios)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                </div>
-              </div>
-              <div class="col-xl-6 col-lg-6 col-sm-12 pt-2">
-                <div class="widget widget-table-one">
-                  <div class="widget-content">
-                    <div class="transactions-list">
-                      <div class="t-item">
-                        <div class="t-company-name">
-                          <div class="t-name">
-                            <h4>Unidad</h4>
-                            <p class="text-primary"><strong id="unit_name"></strong></p>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <div class="t-icon">
-                            <div class="icon">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="transactions-list">
-                      <div class="t-item">
-                        <div class="t-company-name">
-                          <div class="t-name">
-                            <h4>Velocidad</h4>
-                            <p class="text-primary"><strong id="speed"></strong></p>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <div class="t-icon">
-                            <div class="icon">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="transactions-list">
-                      <div class="t-item">
-                        <div class="t-company-name">
-                          <div class="t-name">
-                            <h4>Descripción</h4>
-                            <p class="text-primary"><strong id="alert_type"></strong></p>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <div class="t-icon">
-                            <div class="icon">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="transactions-list">
-                      <div class="t-item">
-                        <div class="t-company-name">
-                          <div class="t-name">
-                            <h4>Prioridad</h4>
-                            <p class="text-primary"><strong id="alert_priority"></strong></p>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <div class="t-icon">
-                            <div class="icon">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="transactions-list">
-                      <div class="t-item">
-                        <div class="t-company-name">
-                          <div class="t-name">
-                            <h4>Fecha</h4>
-                            <p class="text-primary"><strong id="datetime"></strong></p>
-                          </div>
-                        </div>
-                        <div class="t-rate rate-dec">
-                          <div class="t-icon">
-                            <div class="icon">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <a class="btn btn-danger" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Cerrar</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% include 'alerts/alert-view-modal.html' %}
 {% endblock %}
 {% block script_content %}
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+  <script src="{% static 'assets/js/alerts/Alerts.js' %}"></script>
   <script>
+    /* Add from class Alerts */
+    const alerts = new Alerts();
+  </script>
+  <!-- <script>
     const checkAlert = async (id) => {
       const url = `/web/api/alerts/get-alert/${id}`;
       const response = await fetch(url);
@@ -226,5 +115,5 @@
       document.getElementById("datetime").innerHTML = `${alert.datetime}`
       return alert;
     }
-  </script>
+  </script> -->
 {% endblock%}
