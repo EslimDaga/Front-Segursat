@@ -1,5 +1,4 @@
 class AlertHistory {
-
   getAlertSearch = async (alertDate, unitName) => {
     const url = `/web/api/alerts/alert-search/${alertDate}/${unitName}/`
     const response = await fetch(url);
@@ -14,13 +13,11 @@ class AlertHistory {
       const cell2 = row.insertCell(2);
       const cell3 = row.insertCell(3);
       const cell4 = row.insertCell(4);
-
       cell0.className = "text-center";
       cell1.className = "text-center";
       cell2.className = "text-center";
       cell3.className = "text-center";
       cell4.className = "text-center";
-
       cell0.innerHTML = alert.unit_name;
       cell1.innerHTML = alert.alert_type;
       cell2.innerHTML = `{% if alert.alert_priority == "V" %}
@@ -106,5 +103,4 @@ class AlertHistory {
     document.getElementById("datetime").innerHTML = `${alert.datetime}`
     return alert;
   }
-
 }
