@@ -103,6 +103,7 @@
   <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
   <script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
   <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+  <script src="{% static 'assets/js/drivers/Drivers.js' %}"></script>
   <script>
       $('#html5-extension').DataTable( {
         dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -155,24 +156,5 @@
     })
   </script>
   {% endif %}
-  <script>
-    const getDriver = async (id) => {
-      const url = `/web/api/drivers/get-driver/${id}/`;
-      const response = await fetch(url);
-      const driver = await response.json();
-      return driver;
-    }
-
-    const renderDriverInformation = async (unitName) => {
-      const unit = await getUnit(unitName);
-      document.getElementById("tittleUnitName").innerHTML = `${unit.name}`;
-      document.getElementById("uniqueId").value = `${unit.device.uniqueid}`;
-      document.getElementById("imeiUnit").value = `${unit.device.imei}`;
-      document.getElementById("sim_phonenumber").value = `${unit.device.sim_phonenumber}`;
-      document.getElementById("sim_iccid").value = `${unit.device.sim_iccid}`;
-      document.getElementById("nameUnit").value = `${unit.name}`;
-      $("#driver_update_modal").modal("show");
-    }
-  </script>
 <!-- End Page Level Custom Scripts -->
 {% endblock%}
