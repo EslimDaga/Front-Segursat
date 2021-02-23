@@ -62,7 +62,7 @@ class MapView {
     }
     document.getElementById("history-units").innerHTML = unitList;
   }
-  
+
   renderUnitMarkers = (units) => {
     for (let i = 0; i < units.length; i++) {
       const icon = L.divIcon({
@@ -230,10 +230,10 @@ class MapView {
                 direction : "top"
               })
             )
-            
+
           }
         }
-      }      
+      }
     }
     // si playback esta marcado se dibuja el marcador con movimiento
     if (playbackCheckbox == true){
