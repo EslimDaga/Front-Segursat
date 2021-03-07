@@ -1,4 +1,4 @@
-class Alerts {
+class AlertView {
   checkAlert = async (id) => {
     const url = `/web/api/alerts/get-alert/${id}`;
     const response = await fetch(url);

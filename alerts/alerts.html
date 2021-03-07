@@ -70,7 +70,7 @@
                     <td class="text-center">{{alert.created}}</td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <button type="button" onclick="alerts.checkAlert({{alert.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+                        <button type="button" onclick="alertView.checkAlert({{alert.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -88,32 +88,8 @@
 {% endblock %}
 {% block script_content %}
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
-  <script src="{% static 'assets/js/pages/alerts/Alerts.js' %}"></script>
+  <script src="{% static 'assets/js/pages/alerts/alert-view.js' %}"></script>
   <script>
-    /* Add from class Alerts */
-    const alerts = new Alerts();
+    const alertView = new AlertView();
   </script>
-  <!-- <script>
-    const checkAlert = async (id) => {
-      const url = `/web/api/alerts/get-alert/${id}`;
-      const response = await fetch(url);
-      const alert = await response.json()
-      $("#checkAlert").modal("show");
-      console.log(alert);
-      document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
-      document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
-      document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
-      if(alert.alert_priority === "V"){
-        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
-      }else if(alert.alert_priority === "H"){
-        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-warning"> Alta </span>`;
-      }else if(alert.alert_priority === "M"){
-        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-info"> Media </span>`;
-      }else{
-        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-success"> Baja </span>`;
-      }
-      document.getElementById("datetime").innerHTML = `${alert.datetime}`
-      return alert;
-    }
-  </script> -->
 {% endblock%}

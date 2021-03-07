@@ -1,3 +1,5 @@
+const api = new Api()
+
 class MapView {
 
   constructor() {
@@ -7,27 +9,6 @@ class MapView {
     this.historyMarkers = [];
     this.historyPaths = [];
     this.historyPlaybackMarker;
-  }
-
-  getUnits = async () => {
-    const url = `/web/api/units/get-units/`
-    const response = await fetch(url);
-    const units = await response.json();
-    return units;
-  }
-
-  getUnit = async (name) => {
-    const url = `/web/api/units/get-unit/${name}/`;
-    const response = await fetch(url);
-    const unit = await response.json();
-    return unit;
-  }
-
-  getLocationHistory = async (unitName,initialDate,finalDate) => {
-    const url = `/web/api/locations/get-location-history/${unitName}/${initialDate}/${finalDate}/`
-    const response = await fetch(url);
-    const locationHistory = await response.json();
-    return locationHistory;
   }
 
   renderUnitsInUnitTab = (units) => {
@@ -149,7 +130,7 @@ class MapView {
     //almacenar en el local storage la unidad seleccionada
     localStorage.setItem("selectedUnit", unitName);
     //llamar a get unit
-    const unit = await this.getUnit(unitName);
+    const unit = await api.getUnit(unitName);
     console.log(unit);
     //
     document.getElementById("unitNameSelect").innerHTML = unitName;
@@ -182,7 +163,7 @@ class MapView {
 
   drawLocationHistory = async (unitName,initialDate,finalDate,markerCheckbox,playbackCheckbox,speedRange) => {
     this.cleanMap()
-    const locationHistory = await this.getLocationHistory(unitName,initialDate,finalDate);
+    const locationHistory = await api.getLocationHistory(unitName,initialDate,finalDate);
     let route = [];
     let angles = [];
     for (let i=0;i<locationHistory.length;i++) {
@@ -300,7 +281,7 @@ class MapView {
 
   openUnitTab = async () => {
     this.cleanMap();
-    const units = await this.getUnits();
+    const units = await api.getUnits();
     this.units = units;
     this.renderUnitMarkers(units);
   }
@@ -310,7 +291,7 @@ class MapView {
   }
 
   run = async () => {
-    const units = await this.getUnits();
+    const units = await api.getUnits();
     this.units = units;
     this.renderUnitsInUnitTab(units);
     this.renderMap(units);
