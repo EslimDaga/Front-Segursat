@@ -22,7 +22,6 @@
   <!-- Begin NavBar -->
   {% include 'includes/navbar.html' %}
   <!-- End NavBar -->
-
   <!-- Begin Main Container -->
   <div class="main-container sidebar-closed sbar-open"  id="container">
     <div class="overlay"></div>
@@ -48,10 +47,10 @@
     });
   </script>
   <script src="{% static 'assets/js/custom.js' %}"></script>
-  <script src="{% static 'plugins/toast/bootstrap-notify.js' %}"></script>
-  <script src="{% static 'plugins/toast/bootstrap-notify.min.js' %}"></script>
   <script src="{% static 'assets/js/pages/api/api.js' %}"></script>
   <!-- End Global Mandatory Scripts -->
   {% block script_content %}{% endblock %}
+  <script src="{% static 'plugins/toast/bootstrap-notify.js' %}"></script>
+  <script src="{% static 'plugins/toast/bootstrap-notify.min.js' %}"></script>
 </body>
 </html>
