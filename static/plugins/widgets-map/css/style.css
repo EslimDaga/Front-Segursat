@@ -12086,6 +12086,7 @@ label.required:after{
     overflow:hidden
 }
 #map{
+    margin-top: 2vh;
     overflow:hidden;
     position:absolute;
     top:0;
