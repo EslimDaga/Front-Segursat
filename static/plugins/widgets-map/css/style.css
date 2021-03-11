@@ -8511,7 +8511,7 @@ button.close,button.ui-dialog-titlebar-close{
 }
 .btn-collapse i,.group-heading>.group-title:after,.ico,.icon,.table.table-list .sorting:after,.table.table-list .sorting:before,.table.table-list .sorting_asc:after,.table.table-list .sorting_asc:before,.table.table-list .sorting_desc:after,.table.table-list .sorting_desc:before{
     font-family:icomoon!important;
-    speak:none;
+    speak-as:none;
     font-style:normal;
     font-weight:400;
     font-variant:normal;
