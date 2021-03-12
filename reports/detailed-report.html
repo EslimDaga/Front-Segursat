@@ -73,12 +73,12 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
-                  <th class="text-center">Ignition</th>
                   <th class="text-center">Fecha/Hora</th>
                   <th class="text-center">Latitud</th>
                   <th class="text-center">Longitud</th>
                   <th class="text-center">Altitud</th>
                   <th class="text-center">Velocidad</th>
+                  <th class="text-center">Ignición</th>
                   <th class="text-center">Dirección</th>
                   <th class="text-center">Acción</th>
                 </tr>
@@ -87,13 +87,12 @@
                 {% for location in locations %}
                 <tr>
                   <td class="text-center">{{location.unit_name}}</td>
-                  <td class="text-center">{% if location.ignition == True %}<span class="shadow-none badge badge-success">Encendido</span>{% else %}<span class="shadow-none badge badge-danger">Apagado</span>{% endif %}</td>
-                  <td class="text-center">{{location.ignition}}</td>
                   <td class="text-center">{{location.datetime}}</td>
                   <td class="text-center">{{location.latitude}}</td>
                   <td class="text-center">{{location.longitude}}</td>
                   <td class="text-center">{{location.altitude}}</td>
                   <td class="text-center">{{location.speed}} km/h</td>
+                  <td class="text-center">{% if location.ignition == True %}<span class="shadow-none badge badge-success">Encendido</span>{% else %}<span class="shadow-none badge badge-danger">Apagado</span>{% endif %}</td>
                   <td class="text-center">{{location.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
