@@ -63,13 +63,15 @@
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
-          <button type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px"><svg
+          <button type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px">
+            <svg
               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="feather feather-search">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg> Buscar </button>
+            </svg> Buscar
+          </button>
           </form>
         </div>
       </div>
@@ -100,20 +102,23 @@
                   <td class="text-center">{{location.longitude}}</td>
                   <td class="text-center">{{location.altitude}}</td>
                   <td class="text-center">{{location.speed}} km/h</td>
-                  <td class="text-center">{% if location.ignition == True %}<span
-                      class="shadow-none badge badge-success">Encendido</span>{% else %}<span
-                      class="shadow-none badge badge-danger">Apagado</span>{% endif %}</td>
+                  <td class="text-center">{% if location.ignition == True %}
+                    <span class="shadow-none badge badge-success">Encendido</span>{% else %}
+                    <span class="shadow-none badge badge-danger">Apagado</span>{% endif %}
+                  </td>
                   <td class="text-center">{{location.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
                       <button type="button"
                         onclick="renderMap('{{location.unit_name}}','{{location.latitude}}','{{location.longitude}}')"
-                        class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        class="btn btn-dark btn-sm">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                           stroke-linejoin="round" class="feather feather-eye">
-                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                          <circle cx="12" cy="12" r="3"></circle>
-                        </svg></button>
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </button>
                     </div>
                   </td>
                 </tr>
