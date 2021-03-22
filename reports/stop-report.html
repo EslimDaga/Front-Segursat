@@ -71,14 +71,23 @@
                 <tr>
                   <th class="text-center">Unidad</th>
                   <th class="text-center">Hora de inicio</th>
-                  <th class="text-center">Odómetro</th>
-                  <th class="text-center">Dirección</th>
                   <th class="text-center">Hora de fin</th>
                   <th class="text-center">Duración</th>
                   <th class="text-center">Horas motor</th>
+                  <th class="text-center">Dirección</th>
                 </tr>
               </thead>
               <tbody>
+                {% for sr in stop_report %}
+                <tr>
+                  <td class="text-center">{{ unit_name }}</td>
+                  <td class="text-center">{{ sr.initial_datetime }}</td>
+                  <td class="text-center">{{ sr.final_datetime }}</td>
+                  <td class="text-center">{{ sr.duration }}</td>
+                  <td class="text-center">N/D</td>
+                  <td class="text-center">{{ sr.address }}</td>
+                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
