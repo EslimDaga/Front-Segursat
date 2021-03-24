@@ -173,7 +173,7 @@ code {
   max-width: 58.333333%;
   margin-left: 80px; }
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -697,9 +697,8 @@ code {
     border-top-right-radius: 4px;
     margin-right: -12px;
     margin-left: -12px;
-    background: #8989ba;
-    margin-top: -1px;
-    background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%); }
+    background: #f8951d;
+    margin-top: -1px;}
     .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .user-profile-section .media {
       margin: 0; }
       .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .user-profile-section .media img {
@@ -751,10 +750,10 @@ code {
       width: 17px;
       margin-right: 7px;
       height: 17px;
-      color: #56478e;
-      fill: rgba(86, 71, 142, 0.34); }
+      color: #f8951d;
+      fill: #FDE3C4; }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -1176,7 +1175,7 @@ code {
   -webkit-animation-name: e-fadeInUp;
   animation-name: e-fadeInUp; }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
@@ -1210,7 +1209,7 @@ code {
   height: 15px;
   vertical-align: text-top; }
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================
