@@ -737,6 +737,7 @@ code {
   .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item {
     padding: 0; }
     .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item a {
+      text-decoration: none;
       display: block;
       color: #3b3f5c;
       font-size: 13px;
@@ -1256,13 +1257,13 @@ code {
     z-index: 9999;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
+    /* -webkit-transform: translate3d(0, 0, 0); */
     border-radius: 0; }
   #sidebar {
     height: 100vh !important;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0); }
+    /* -webkit-transform: translate3d(0, 0, 0); */ }
   /* display .overlay when it has the .active class */
   .overlay.show {
     display: block;
