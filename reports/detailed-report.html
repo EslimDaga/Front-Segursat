@@ -20,6 +20,9 @@
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="{% static 'plugins/leaflet/css/leaflet.css' %}"/>
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet">
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -61,7 +64,7 @@
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
-          <button type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+          <button id="block-page" type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
         </form>
         </div>
       </div>
@@ -130,6 +133,9 @@
 <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'plugins/blockui/jquery.blockUI.min.js' %}"></script>
+<script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
 <script>
     $('#zero-config').DataTable( {
       "oLanguage": {
@@ -241,4 +247,25 @@
     })
 </script>
 {% endif %}
+<script>
+  $('#block-page').on('click', function () {
+      $.blockUI({
+        message: '<img src="/static/assets/img/others/Loader-Data.gif" width="50"/>',
+        fadeIn: 800,
+        overlayCSS: {
+          backgroundColor: '#ffffff',
+          opacity: 0.8,
+          zIndex: 1200,
+          cursor: 'wait'
+        },
+        css: {
+          border: 0,
+          color: '#fff',
+          zIndex: 1201,
+          padding: 0,
+          backgroundColor: 'transparent'
+        }
+      });
+    });
+</script>
 {% endblock%}
