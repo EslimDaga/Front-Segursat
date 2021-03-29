@@ -3,9 +3,9 @@
 {% block head_content %}
   <title>Reporte detallado - Segursat GPS</title>
   <!-- Begin Page Level Custom Styles -->
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+  <link href="{% static 'plugins/table/datatable/datatables.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'plugins/table/datatable/dt-global_style.css' %}" rel="stylesheet" type="text/css" >
   <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
@@ -13,12 +13,12 @@
   <link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+  <link href="{% static 'plugins/select2/select2.min.css' %}" rel="stylesheet" type="text/css" >
   <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="{% static 'plugins/leaflet/css/leaflet.css' %}"/>
+  <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" />
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
@@ -40,6 +40,24 @@
           </ol>
         </nav>
       </div>
+      <!-- <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
+        <nav class="breadcrumb-two" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'detailed-report' %}">Reporte Detallado</a></li>
+            <li class="breadcrumb-item"></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <h6 class="text-center"><mark>📅 &nbsp; Fecha : 29-03-2021 12:23:20</mark></h6>
+            </li>
+          </ol>
+        </div>
+      </div> -->
       <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
         <div class="flex-row-reverse bd-highlight">
           <form method="post" action="{% url 'detailed-report' %}">
@@ -64,7 +82,13 @@
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
-          <button id="block-page" type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+          <button onclick="runLoader()" type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Buscar
+          </button>
         </form>
         </div>
       </div>
@@ -90,7 +114,7 @@
                 {% for location in locations %}
                 <tr>
                   <td class="text-center">{{location.unit_name}}</td>
-                  <td class="text-center">{{location.datetime}}</td>
+                  <td class="text-center">{{location.datetime}} - {{location.timestamp}}</td>
                   <td class="text-center">{{location.latitude}}</td>
                   <td class="text-center">{{location.longitude}}</td>
                   <td class="text-center">{{location.altitude}}</td>
@@ -247,25 +271,4 @@
     })
 </script>
 {% endif %}
-<script>
-  $('#block-page').on('click', function () {
-      $.blockUI({
-        message: '<img src="/static/assets/img/others/Loader-Data.gif" width="50"/>',
-        fadeIn: 800,
-        overlayCSS: {
-          backgroundColor: '#ffffff',
-          opacity: 0.8,
-          zIndex: 1200,
-          cursor: 'wait'
-        },
-        css: {
-          border: 0,
-          color: '#fff',
-          zIndex: 1201,
-          padding: 0,
-          backgroundColor: 'transparent'
-        }
-      });
-    });
-</script>
 {% endblock%}
