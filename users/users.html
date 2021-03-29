@@ -17,7 +17,6 @@
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/notification/snackbar/snackbar.min.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'plugins/toast/vanillatoasts.css' %}" rel="stylesheet" type="text/css" />
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -111,7 +110,6 @@
   <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
   <script src="{% static 'plugins/notification/snackbar/snackbar.min.js' %}"></script>
   <script src="{% static 'assets/js/components/notification/custom-snackbar.js' %}"></script>
-  <script src="{% static 'plugins/toast/vanillatoasts.js' %}"></script>
   <script>
       $('#html5-extension').DataTable( {
         dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -152,24 +150,6 @@
       text : "{{ success }}",
       padding : "2em"
     })
-  </script>
-  <script>
-    $('.top-right').click(function () {
-      Snackbar.show({
-        text: 'Example notification text.',
-        pos: 'top-right'
-      });
-    });
-  </script>
-  <script>
-    VanillaToasts.create({
-      title: 'Welcome to my site',
-      text: 'This toast will hide after 5000ms or when you click it',
-      type: 'warning',
-      icon: 'http://190.223.43.132:8000/static/assets/img/others/perfil.png',
-      positionClass: 'bottomLeft',
-      timeout: 5000
-    });
   </script>
   {% endif %}
   <!-- End Page Level Custom Scripts -->
