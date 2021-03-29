@@ -12673,7 +12673,8 @@ body.sign-in-layout .app-links{
 }
 #bottombar{
     position:absolute;
-    bottom:0;
+    /* bottom:0; */
+    bottom:-20px;
     right:0;
     z-index:997;
     width:100%;
