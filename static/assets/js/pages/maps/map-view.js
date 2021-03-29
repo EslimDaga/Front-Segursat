@@ -162,6 +162,7 @@ class MapView {
   }
 
   drawLocationHistory = async (unitName,initialDate,finalDate,markerCheckbox,playbackCheckbox,speedRange) => {
+    runLoader();
     this.cleanMap()
     const locationHistory = await api.getLocationHistory(unitName,initialDate,finalDate);
     let route = [];
@@ -255,6 +256,7 @@ class MapView {
       }).addTo(this.map)
     );
     this.map.fitBounds(this.historyPaths[this.historyPaths.length-1].getBounds());
+    clearLoader();
   }
 
   cleanMap = () => {
