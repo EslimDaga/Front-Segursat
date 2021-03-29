@@ -7,6 +7,7 @@
   <link href="{% static 'assets/css/dashboard/dash_2.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/chartjs/chartist.min.css' %}" rel="stylesheet" type="text/css"/>
   <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
   <!-- End Page Level Plugins/Custon -->
 {% endblock %}
 {% block container %}
@@ -14,6 +15,23 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
+      <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
+        <nav class="breadcrumb-two" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="{% url 'dashboard' %}">Inicio</a></li>
+            <li class="breadcrumb-item"></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <h6 class="text-center"><mark>📅 &nbsp; Fecha : 29-03-2021 12:23:20</mark></h6>
+            </li>
+          </ol>
+        </div>
+      </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 col-12 layout-spacing">
         <div class="widget widget-card-four">
           <div class="widget-content">
@@ -101,7 +119,6 @@
             <div class="w-numeric-value">
               <div class="w-content">
                 <span class="w-value">Unidades en Movimiento</span>
-                <span class="w-numeric-title">Ir a las columnas para obtener detalles.</span>
               </div>
               <div class="w-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
@@ -200,7 +217,6 @@
             <div class="w-numeric-value">
               <div class="w-content">
                 <span class="w-value">Alertas - Grafico de Torta</span>
-                <span class="w-numeric-title">Ir a las columnas para obtener detalles.</span>
               </div>
               <div class="w-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
