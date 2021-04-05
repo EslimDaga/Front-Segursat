@@ -23,7 +23,7 @@ class MapView {
           <div class="user-status">
             <span class="badge badge-primary">
               <div class="details">
-                <span data-device="speed">${units[i].device.last_speed} kph</span>
+                <span data-device="speed">${units[i].last_speed} kph</span>
                 <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
                 <span data-device="status" style="background-color: green" title="Online">online</span>
               </div>
@@ -62,11 +62,11 @@ class MapView {
       });
       this.markers.push(
         new L.marker(
-          [units[i].device.last_latitude,units[i].device.last_longitude],
+          [units[i].last_latitude,units[i].last_longitude],
           {
             icon: icon,
             title: units[i].name,
-            rotationAngle: units[i].device.last_angle
+            rotationAngle: units[i].last_angle
           }
         ).bindTooltip(`${units[i].name}`, {
           permanent: true,
@@ -135,16 +135,16 @@ class MapView {
     //
     document.getElementById("unitNameSelect").innerHTML = unitName;
     /* document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' target="_blank"><img alt="Street view" src="https://iadpi.com.ar/wp-content/uploads/2019/05/google-street-696x355.jpg"></a>`; */
-    document.getElementById("speed").innerHTML = `${unit.device.last_speed} km/h`;
-    document.getElementById("rssi").innerHTML = `${unit.device.last_attributes.rssi} %`;
-    document.getElementById("battery").innerHTML = `${unit.device.last_attributes.battery} %`;
+    document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
+    document.getElementById("rssi").innerHTML = `${unit.last_attributes.rssi} %`;
+    document.getElementById("battery").innerHTML = `${unit.last_attributes.battery} %`;
     document.getElementById("address_link").innerHTML = `<a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
       <i class="fas fa-eye"></i>
     </a>`
-    document.getElementById("address").innerHTML = `${unit.device.last_address}`;
+    document.getElementById("address").innerHTML = `${unit.last_address}`;
     /* Begin add for Eslim*/
-    document.getElementById("ignition").innerHTML = `${unit.device.last_attributes.ignition}`;
-    document.getElementById("satellites").innerHTML = `${unit.device.last_attributes.sat}`;
+    document.getElementById("ignition").innerHTML = `${unit.last_attributes.ignition}`;
+    document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
     /* End add for Eslim*/
   }
 
@@ -255,7 +255,11 @@ class MapView {
         delay: 1000
       }).addTo(this.map)
     );
-    this.map.fitBounds(this.historyPaths[this.historyPaths.length-1].getBounds());
+    if (route.length != 0){
+      this.map.fitBounds(this.historyPaths[this.historyPaths.length-1].getBounds());
+    } else {
+      alert('No existen ubicaciones');
+    }
     clearLoader();
   }
 
