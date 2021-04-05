@@ -59,25 +59,26 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="">Identificador Unico</label>
-            <input type="text" class="form-control" name="uniqueid" value="{{unit.device.uniqueid}}" readonly>
+            <input type="text" class="form-control" name="uniqueid" value="{{unit.uniqueid}}">
           </div>
           <div class="form-group">
             <label for="">Imei del Equipo</label>
-            <input type="text" class="form-control" name="imei" value="{{unit.device.imei}}" readonly>
+            <input type="text" class="form-control" name="imei" value="{{unit.imei}}">
           </div>
           <div class="form-group">
             <label for="">Número de telefono del SIM</label>
-            <input type="text" class="form-control" name="sim_phonenumber" value="{{unit.device.sim_phonenumber}}">
+            <input type="text" class="form-control" name="sim_phonenumber" value="{{unit.sim_phonenumber}}">
           </div>
           <div class="form-group">
             <label for="">Identificador del SIM</label>
-            <input type="text" class="form-control" name="sim_iccid" value="{{unit.device.sim_iccid}}">
+            <input type="text" class="form-control" name="sim_iccid" value="{{unit.sim_iccid}}">
           </div>
           <div class="form-group">
             <label for="">Placa de la unidad</label>
             <input type="text" class="form-control" name="unit_name" value="{{unit.name}}">
           </div>
           <input type="hidden" name="form_type" value="update_form">
+          <input type="hidden" name="id" value="{{unit.id}}">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
