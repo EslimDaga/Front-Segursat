@@ -106,7 +106,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   position: absolute;
   left: -100000px;
   width: 100%;
-  z-index: 950;
+  z-index: 9999;
   -webkit-box-shadow: 2px 5px 17px 0 rgba(31, 45, 61, 0.1);
   box-shadow: 2px 5px 17px 0 rgba(31, 45, 61, 0.1); }
 
