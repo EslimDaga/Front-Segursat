@@ -48,7 +48,7 @@
                 <tr>
                   <th class="text-center">Nombre</th>
                   <th class="text-center">Unique ID</th>
-                  <th class="text-center">Ultimo Reporte</th>
+                  <th class="text-center">IMEI</th>
                   <th class="text-center">Ultima Modificacion</th>
                   <th class="text-center">Fecha de Creacion</th>
                   <th class="text-center">Acción</th>
@@ -58,12 +58,8 @@
                 {% for unit in units %}
                 <tr>
                   <td class="text-center">{{unit.name}}</td>
-                  <td class="text-center">{{unit.device}}</td>
-                  {% if unit.device.modified < unit.created %}
-                  <td class="text-center">Sin Reportar</td>
-                  {% else %}
-                  <td class="text-center">{{unit.device.modified}}</td>
-                  {% endif %}
+                  <td class="text-center">{{unit.uniqueid}}</td>
+                  <td class="text-center">{{unit.imei}}</td>
                   <td class="text-center">{{unit.modified}}</td>
                   <td class="text-center">{{unit.created}}</td>
                   <td class="text-center">
