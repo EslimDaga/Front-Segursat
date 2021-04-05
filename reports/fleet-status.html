@@ -40,7 +40,7 @@
       <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
         <div class="d-flex flex-row-reverse bd-highlight">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><h6 class="text-center"><mark>📅 &nbsp; Fecha : 29-03-2021 12:23:20</mark></h6></li>
+            <li class="breadcrumb-item"><h6 class="text-center"><mark>📅 &nbsp; Fecha/Hora: {{ now }}</mark></h6></li>
           </ol>
         </div>
       </div>
@@ -65,13 +65,13 @@
                 {% for unit in units %}
                 <tr>
                   <td class="text-center">{{unit}}</td>
-                  <td class="text-center">{{unit.device.last_report }}</td>
+                  <td class="text-center">{{unit.last_report }}</td>
                   <td class="text-center">{% if unit.speed > 0 %}EN MOVIMIENTO{% else %}DETENIDO{% endif %}</td>
-                  <td class="text-center">{{unit.device.last_latitude}}</td>
-                  <td class="text-center">{{unit.device.last_longitude}}</td>
-                  <td class="text-center">{{unit.device.last_speed}} km/h</td>
+                  <td class="text-center">{{unit.last_latitude}}</td>
+                  <td class="text-center">{{unit.last_longitude}}</td>
+                  <td class="text-center">{{unit.last_speed}} km/h</td>
                   <td class="text-center">{{unit.odometer}} Km</td>
-                  <td class="text-center">{{unit.device.last_address}}</td>
+                  <td class="text-center">{{unit.last_address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
                       <button type="button" onclick="renderMap('{{location.unit_name}}','{{location.latitude}}','{{location.longitude}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
