@@ -27,7 +27,7 @@
         <div class="d-flex flex-row-reverse bd-highlight">
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <h6 class="text-center"><mark>📅 &nbsp; Fecha : 29-03-2021 12:23:20</mark></h6>
+              <h6 class="text-center"><mark>📅 &nbsp; Fecha/Hora: {{ now }}</mark></h6>
             </li>
           </ol>
         </div>
@@ -37,7 +37,7 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
+                  <h6 class="value">{{ units_transmitting }}</h6>
                   <p class="">Unidades Reportando
                   </p>
               </div>
@@ -55,7 +55,7 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">0</h6>
+                  <h6 class="value">{{ units_not_transmitted }}</h6>
                   <p class="">Unidades sin Reportar</p>
               </div>
               <div class="">
@@ -72,7 +72,7 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">0</h6>
+                  <h6 class="value">{{ units_in_motion }}</h6>
                   <p class="">Unidades en Movimiento</p>
               </div>
               <div class="">
@@ -89,7 +89,7 @@
           <div class="widget-content">
             <div class="w-content">
               <div class="w-info">
-                  <h6 class="value">2</h6>
+                  <h6 class="value">{{ units_stopped }}</h6>
                   <p class="">Unidades Detenidas</p>
               </div>
               <div class="">
@@ -238,6 +238,10 @@
 <!-- Begin Page Level Plugin/Custon -->
 <script src="{% static 'plugins/chartjs/Chart.min.js' %}"></script>
 <script>
+  const units_transmitting = parseInt("{{units_transmitting}}");
+  const units_not_transmitted = parseInt("{{units_not_transmitted}}");
+  const units_in_motion = parseInt("{{units_in_motion}}");
+  const units_stopped = parseInt("{{units_stopped}}");
   // Pie chart 1
   new Chart(document.getElementById("chart1"), {
       type: 'pie',
@@ -246,7 +250,7 @@
         datasets: [{
           label: "Reporte de unidades",
           backgroundColor: ["#66F035", "#ff6384"],
-          data: [2,0]
+          data: [units_transmitting,units_not_transmitted]
         }]
       },
       options: {
@@ -265,7 +269,7 @@
         datasets: [{
           label: "Reporte de unidades",
           backgroundColor: ["#66F035", "#ff6384"],
-          data: [0,2]
+          data: [units_in_motion,units_stopped]
         }]
       },
       options: {
