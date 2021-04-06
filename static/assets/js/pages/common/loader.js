@@ -1,6 +1,6 @@
 function runLoader() {
   $.blockUI({
-    message: '<img src="/static/assets/img/others/Loader-Data.gif" width="50"/>',
+    message: '<img src="/static/assets/img/others/Loader-Data.gif" width="70"/>',
     fadeIn: 800,
     overlayCSS: {
       backgroundColor: '#ffffff',
