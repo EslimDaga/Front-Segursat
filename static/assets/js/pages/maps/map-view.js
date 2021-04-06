@@ -8,6 +8,7 @@ class MapView {
     this.markers = [];
     this.historyMarkers = [];
     this.historyPaths = [];
+    this.geofences = [];
     this.historyPlaybackMarker;
   }
 
@@ -145,6 +146,7 @@ class MapView {
     /* Begin add for Eslim*/
     document.getElementById("ignition").innerHTML = `${unit.last_attributes.ignition}`;
     document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
+    document.getElementById("last_report").innerHTML = `${unit.last_report}`;
     /* End add for Eslim*/
   }
 
@@ -294,6 +296,20 @@ class MapView {
 
   openHistoryTab = () => {
     this.cleanMap();
+  }
+
+  showGeofences = async () => {
+    const check = document.getElementById("showGeofenceCheckbox");
+    if(check.checked){
+      const geofences = await api.getGeofences();
+      for (let i = 0; i < geofences.length; i++) {
+        this.geofences.push(L.geoJSON(geofences[i].geojson).addTo(this.map));
+      }
+    }else{
+      for (let i=0;i<this.geofences.length;i++) {
+        this.map.removeLayer(this.geofences[i]);
+      }
+    }
   }
 
   run = async () => {
