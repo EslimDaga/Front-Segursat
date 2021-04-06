@@ -33,7 +33,7 @@
         <span class="icon devices"></span>
       </label> -->
       <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Geocercas">
-        <input id="showGeofences" type="checkbox" autocomplete="off">
+        <input id="showGeofenceCheckbox" type="checkbox" autocomplete="off" onchange="mapView.showGeofences()">
         <span class="icon geofences"></span>
       </label>
       <!-- <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Rutas">
@@ -55,61 +55,7 @@
       <label class="btn" data-toggle="tooltip" data-placement="left" title="" data-original-title="Tráfico en vivo">
         <input id="showTraffic" type="checkbox" autocomplete="off" onchange="app.changeSetting('showTraffic', this.checked);">
         <span class="icon traffic"></span>
-      </label>
-      <label class="btn" data-toggle="modal" data-target="#exampleModal" data-placement="left" title="" data-original-title="Recorrido">
-        <input type="checkbox" autocomplete="off" onchange="app.changeSetting('show-tail', this.checked);">
-        <span class="icon routes"></span>
-      </label> -->
-    </div>
-  </div>
-  <div id="history-control-layers" style="display: none;">
-    <div class="btn-group-vertical" role="group" data-toggle="buttons">
-      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Route">
-        <input id="showHistoryRoute" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryRoute', this.checked);">
-        <span class="icon routes"></span>
-      </label>
-      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Arrows">
-        <input id="showHistoryArrow" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryArrow', this.checked);">
-        <span class="icon device"></span>
-      </label>
-      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Stops">
-        <input id="showHistoryStop" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryStop', this.checked);">
-        <span class="icon parking"></span>
-      </label>
-      <label class="btn active" data-toggle="tooltip" data-placement="left" title="" data-original-title="Events">
-        <input id="showHistoryEvent" type="checkbox" autocomplete="off" onchange="app.changeSetting('showHistoryEvent', this.checked);">
-        <span class="icon event"></span>
-      </label>
+      </label>-->
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Recorrido</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          x
-        </button>
-      </div>
-      <div class="modal-body">
-        <input id="dateTimeFlatpickr" value="2019-09-19 12:00" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Select Date..">
-      </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-{% block script_content %}
-  <script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
-  <script src="{% static 'plugins/bootstrap-range-Slider/bootstrap-rangeSlider.js' %}"></script>
-  <script>
-    var f2 = flatpickr(document.getElementById('dateTimeFlatpickr'), {
-      enableTime: true,
-      dateFormat: "Y-m-d H:i",
-    });
-  </script>
-{% endblock%}
