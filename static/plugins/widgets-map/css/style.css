@@ -12218,7 +12218,8 @@ label.required:after{
     padding-bottom:0;
     height:126px;
     font-size:11px;
-    overflow:auto
+    overflow:auto;
+    width: 450px;
 }
 #widgets .widget-body>*+.widget-empty{
     display:none
@@ -12242,7 +12243,7 @@ label.required:after{
     white-space:normal
 }
 #widgets .widget-device .table,#widgets .widget-gprs-command .table,#widgets .widget-locking .table,#widgets .widget-recent-events .table,#widgets .widget-services .table{
-    width:260px
+    width:100%
 }
 #widgets .widget-sensors .table{
     width:200px
