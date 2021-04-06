@@ -35,4 +35,11 @@ class Api {
     const geofence = await response.json();
     return geofence;
   }
+  // listar geocercas
+  getGeofences = async (id) => {
+    const url = '/web/api/geofences/get-geofences/';
+    const response = await fetch(url);
+    const geofence = await response.json();
+    return geofence;
+  }
 }
