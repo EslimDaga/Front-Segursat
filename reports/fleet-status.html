@@ -3,9 +3,9 @@
 {% block head_content %}
   <title>Estado de flota - Segursat GPS</title>
   <!-- Begin Page Level Custom Styles -->
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+  <link href="{% static 'plugins/table/datatable/datatables.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'plugins/table/datatable/dt-global_style.css' %}" rel="stylesheet" type="text/css" >
   <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
@@ -13,12 +13,12 @@
   <link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+  <link href="{% static 'plugins/select2/select2.min.css' %}" rel="stylesheet" type="text/css" >
   <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="{% static 'plugins/leaflet/css/leaflet.css' %}"/>
+  <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
   <!-- End Page Level Custom Styles -->
 {% endblock %}
@@ -66,7 +66,13 @@
                 <tr>
                   <td class="text-center">{{unit}}</td>
                   <td class="text-center">{{unit.last_report }}</td>
-                  <td class="text-center">{% if unit.speed > 0 %}EN MOVIMIENTO{% else %}DETENIDO{% endif %}</td>
+                  <td class="text-center">
+                    {% if unit.speed > 0 %}
+                      <span class="badge outline-badge-success"> En movimiento </span>
+                    {% else %}
+                      <span class="badge outline-badge-danger"> Detenido </span>
+                    {% endif %}
+                  </td>
                   <td class="text-center">{{unit.last_latitude}}</td>
                   <td class="text-center">{{unit.last_longitude}}</td>
                   <td class="text-center">{{unit.last_speed}} km/h</td>
@@ -74,7 +80,12 @@
                   <td class="text-center">{{unit.last_address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{location.unit_name}}','{{location.latitude}}','{{location.longitude}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
+                      <button type="button" onclick="renderMap('{{unit}}','{{unit.last_latitude}}','{{unit.last_longitude}}')" class="btn btn-dark btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -129,12 +140,14 @@
     const unit = await response.json();
     return unit;
   }
-  const renderMap  = async (unitName) => {
+</script>
+<script>
+  const renderMap = async (unitName, latitude, longitude) => {
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
     $("#modal-map").modal("show");
     setTimeout(() => {
-      const map = L.map('map',{
-        center: [-12.1021887,-77.0665742],
+      const map = L.map('map', {
+        center: [-12.1021887, -77.0665742],
         zoom: 16,
       });
       const openStreetMap = L.tileLayer(
@@ -144,15 +157,15 @@
           maxZoom: 19,
         }
       );
-      const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+      const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
         attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
         maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
       });
-      const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+      const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
         attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
         maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
       });
       const baseLayers = {
         'Open Street Maps': openStreetMap,
@@ -160,11 +173,12 @@
         'Google Hybrid Maps': googleHybridMap
       };
       const overlays = {};
-      L.control.layers(baseLayers,overlays).addTo(map);
+      L.control.layers(baseLayers, overlays).addTo(map);
       baseLayers['Google Street Maps'].addTo(map);
+
       const icon = L.divIcon({
-        iconSize:null,
-        html:`
+        iconSize: null,
+        html: `
         <div class="map-label">
           <div class="map-label-content">
             <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
@@ -172,7 +186,22 @@
         </div>
         `
       });
-    },500);
+      latitude = parseFloat(latitude.replace(',', '.'));
+      longitude = parseFloat(longitude.replace(',', '.'));
+      const marker = new L.marker(
+        [latitude, longitude],
+        {
+          icon: icon,
+          title: unitName,
+          rotationAngle: 0
+        }
+      ).bindTooltip(unitName, {
+        permanent: true,
+        direction: "top",
+        offset: L.point({ x: 0, y: -30 })
+      }).addTo(map);
+      map.panTo([latitude, longitude]);
+    }, 500);
   }
 </script>
 {% if form.errors %}
