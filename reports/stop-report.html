@@ -3,9 +3,9 @@
 {% block head_content %}
   <title>Reporte de Paradas - Segursat GPS</title>
   <!-- Begin Page Level Custom Styles -->
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+  <link href="{% static 'plugins/table/datatable/datatables.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}" rel="stylesheet" type="text/css" >
+  <link href="{% static 'plugins/table/datatable/dt-global_style.css' %}" rel="stylesheet" type="text/css" >
   <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
@@ -14,7 +14,7 @@
   <link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
   <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+  <link href="{% static 'plugins/select2/select2.min.css' %}" rel="stylesheet" type="text/css" >
   <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
@@ -59,7 +59,7 @@
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
-          <button type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
+          <button onclick="runLoader()" type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
         </form>
         </div>
       </div>
@@ -134,8 +134,8 @@
         "sLengthMenu": "Results :  _MENU_",
       },
       "stripeClasses": [],
-      "lengthMenu": [7, 10, 20, 50],
-      "pageLength": 7
+      "lengthMenu": [20, 30, 40, 50],
+      "pageLength": 15
     });
 </script>
 <script>
