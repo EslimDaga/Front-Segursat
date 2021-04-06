@@ -113,7 +113,7 @@
               <tbody>
                 {% for location in locations %}
                 <tr>
-                  <td class="text-center">{{location.unit_name}}</td>
+                  <td class="text-center">{{unit_name}}</td>
                   <td class="text-center">{{location.datetime}} - {{location.timestamp}}</td>
                   <td class="text-center">{{location.latitude}}</td>
                   <td class="text-center">{{location.longitude}}</td>
@@ -123,7 +123,7 @@
                   <td class="text-center">{{location.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{location.unit_name}}','{{location.latitude}}','{{location.longitude}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
+                      <button type="button" onclick="renderMap('{{unit_name}}','{{location.latitude}}','{{location.longitude}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
                     </div>
                   </td>
                 </tr>
@@ -158,8 +158,6 @@
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
 <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
-<script src="{% static 'plugins/blockui/jquery.blockUI.min.js' %}"></script>
-<script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
 <script>
     $('#zero-config').DataTable( {
       "oLanguage": {
