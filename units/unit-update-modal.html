@@ -17,6 +17,7 @@
         </div>
         <div class="modal-body">
           {% for field in update_form %}
+          <script>console.log("{{field.name}}")</script>
           <div class="form-group">
             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
             {% if field.errors %}
