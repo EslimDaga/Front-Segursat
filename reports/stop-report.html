@@ -19,9 +19,12 @@
   <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" />
+  <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
+{% include "reports/modal-map.html" %}
 <!-- Begin Content Area -->
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
@@ -75,6 +78,7 @@
                   <th class="text-center">Duración</th>
                   <th class="text-center">Horas motor</th>
                   <th class="text-center">Dirección</th>
+                  <th class="text-center">Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -86,6 +90,17 @@
                   <td class="text-center">{{ sr.duration }}</td>
                   <td class="text-center">N/D</td>
                   <td class="text-center">{{ sr.address }}</td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <button type="button" onclick="renderMap('{{unit_name}}','{{sr.latitude}}','{{sr.longitude}}')"
+                        class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="feather feather-eye">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg></button>
+                    </div>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -116,6 +131,7 @@
 <script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
 <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
 <script>
     $('#html5-extension').DataTable( {
       dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -168,4 +184,67 @@
     })
 </script>
 {% endif %}
+<script>
+  const renderMap = async (unitName, latitude, longitude) => {
+    document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
+    $("#modal-map").modal("show");
+    setTimeout(() => {
+      const map = L.map('map', {
+        center: [-12.1021887, -77.0665742],
+        zoom: 16,
+      });
+      const openStreetMap = L.tileLayer(
+        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+          maxZoom: 19,
+        }
+      );
+      const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      });
+      const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      });
+      const baseLayers = {
+        'Open Street Maps': openStreetMap,
+        'Google Street Maps': googleStreetsMap,
+        'Google Hybrid Maps': googleHybridMap
+      };
+      const overlays = {};
+      L.control.layers(baseLayers, overlays).addTo(map);
+      baseLayers['Google Street Maps'].addTo(map);
+
+      const icon = L.divIcon({
+        iconSize: null,
+        html: `
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+          </div>
+        </div>
+        `
+      });
+      latitude = parseFloat(latitude.replace(',', '.'));
+      longitude = parseFloat(longitude.replace(',', '.'));
+      const marker = new L.marker(
+        [latitude, longitude],
+        {
+          icon: icon,
+          title: unitName,
+          rotationAngle: 0
+        }
+      ).bindTooltip(unitName, {
+        permanent: true,
+        direction: "top",
+        offset: L.point({ x: 0, y: -30 })
+      }).addTo(map);
+      map.panTo([latitude, longitude]);
+    }, 500);
+  }
+</script>
 {% endblock%}
