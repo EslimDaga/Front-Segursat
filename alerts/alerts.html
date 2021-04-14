@@ -92,7 +92,14 @@
 {% block script_content %}
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
   <script src="{% static 'assets/js/pages/alerts/alert-view.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
     const alertView = new AlertView();
+    const WebSocket = require('ws');
+
+    function WebSocketClient(){
+      this.number = 0;	// Message number
+      this.autoReconnectInterval = 5*1000;	// ms
+    }
   </script>
 {% endblock%}
