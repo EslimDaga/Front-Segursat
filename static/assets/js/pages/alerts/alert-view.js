@@ -4,7 +4,6 @@ class AlertView {
     const response = await fetch(url);
     const alert = await response.json()
     $("#checkAlert").modal("show");
-    /* console.log(alert); */
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:430px;width:100%;"></div>`;
     setTimeout(() => {
       const map = L.map('map', {
@@ -47,14 +46,16 @@ class AlertView {
         </div>
         `
       });
-      /* latitude = parseFloat(latitude.replace(',', '.'));
-      longitude = parseFloat(longitude.replace(',', '.')); */
+      /*
+      latitude = parseFloat(latitude.replace(',', '.'));
+      longitude = parseFloat(longitude.replace(',', '.'));
+      */
       const marker = new L.marker(
         [alert.latitude, alert.longitude],
         {
           icon: icon,
           title: alert.unit_name,
-          rotationAngle: 0
+          rotationAngle: alert.angle
         }
       ).bindTooltip(alert.unit_name, {
         permanent: true,
@@ -77,5 +78,32 @@ class AlertView {
     }
     document.getElementById("datetime").innerHTML = `${alert.datetime}`
     return alert;
+  }
+
+  addAlert = () => {
+    const table = document.getElementById("html5-extension").getElementsByTagName('tbody')[0];
+    const row = table.insertRow(0);
+    const cell0 = row.insertCell(0);
+    const cell1 = row.insertCell(1);
+    const cell2 = row.insertCell(2);
+    const cell3 = row.insertCell(3);
+    const cell4 = row.insertCell(4);
+    const cell5 = row.insertCell(5);
+
+    cell0.className = "text-center";
+    cell1.className = "text-center";
+    cell2.className = "text-center";
+    cell3.className = "text-center";
+    cell4.className = "text-center";
+
+    cell0.innerHTML = "dasdasd";
+    cell1.innerHTML = "dasdasd";
+    cell2.innerHTML = "dasdasd";
+    cell3.innerHTML = "dasdasd";
+    cell4.innerHTML = `
+      <div class="btn-group">
+        <button type="button" onclick="alertView.checkAlert({{payload.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+      </div>
+    `;
   }
 }
