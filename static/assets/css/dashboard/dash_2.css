@@ -28,14 +28,14 @@
     font-weight: 600;
     margin-bottom: 0;
     color: #898d9e;
-    font-size: 23px;
+    font-size: 16px;
     letter-spacing: 0;
 }
 .widget-card-four .w-info p {
     font-weight: 600;
     margin-bottom: 0;
     color: #898d9e;
-    font-size: 16px;
+    font-size: 13px;
 }
 .widget-card-four .w-icon {
     color: #e2a03f;
@@ -264,7 +264,7 @@
     color: #888ea8;
 }
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags {
-    
+
 }
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge {
     padding: 2px 4px;
@@ -275,7 +275,7 @@
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge-primary {
     background-color: #c2d5ff;
     color: #F8951D;
-    
+
 }
 
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge-success {
@@ -286,7 +286,7 @@
 .widget-activity-three .timeline-line .item-timeline .t-content div.tags .badge-warning {
     background-color: #ffeccb;
     color: #e2a03f;
-    
+
 }
 .widget-activity-three .timeline-line .item-timeline .t-dot:after {
     content: '';
@@ -645,7 +645,7 @@
     border: 2px solid #e0e6ed;
 }
 .widget-card-two .card-bottom-section .img-group img:not(:last-child) {
-    margin-right: 5px;    
+    margin-right: 5px;
 }
 .widget-card-two .card-bottom-section a {
     display: block;
