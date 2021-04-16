@@ -14,7 +14,7 @@ html {
 body {
   color: #888ea8;
   height: 100%;
-  font-size: 0.875rem;
+  font-size: 13px;
   background: #fafafa;
   overflow-x: hidden;
   overflow-y: auto;
@@ -83,6 +83,8 @@ code {
 }
 
 #content {
+  /* background-color: red; */
+  /* background-image: url("../img/others/difumidado.jpeg"); */
   width: 50%;
   flex-grow: 8;
   margin-top: 60px;
@@ -820,7 +822,8 @@ code {
       margin-left: auto; }
     .sidebar-wrapper .profile-info .user-info h6 {
       font-weight: 700;
-      font-size: 16px;
+      /* Size Font segursat */
+      font-size: 13px;
       letter-spacing: 0px;
       margin-top: 0;
       margin-bottom: 0;
