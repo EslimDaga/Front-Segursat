@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_content %}
+<title>Historial - Segursat GPS</title>
+<!-- Begin Page Level Custom Styles -->
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/miscellaneous.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/breadcrumb.css' %}" />
+<link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+<script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+<link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/pages/error/style-maintanence.css' %}" rel="stylesheet" type="text/css" />
+<!-- End Page Level Custom Styles -->
+{% endblock %}
+{% block container %}
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+      <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
+        <nav class="breadcrumb-two" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'maintenances' %}">Historial</a></li>
+            <li class="breadcrumb-item"></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing maintanence text-center">
+        <div class="container-fluid maintanence-content">
+          <div class="">
+            <div class="maintanence-hero-img">
+              <img alt="logo" src="{% static 'assets/img/others/maintenences-unscreen.gif' %}" width="80">
+            </div>
+            <h1 class="error-title">Estamos trabajando ...</h1>
+            <p class="error-text">Gracias por visitarnos.</p>
+            <p class="text">Actualmente estamos trabajando para realizar algunas mejoras <br /> para brindarle una mejor
+              experiencia de usuario..</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'includes/footer.html' %}
+</div>
+{% endblock %}
+{% block script_content %}
+<!-- Begin Page Level Custom Scripts -->
+<script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
+<!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+<script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script>
+  $('#html5-extension').DataTable({
+    dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+    buttons: {
+      buttons: [
+        { extend: 'copy', className: 'btn' },
+        { extend: 'excel', className: 'btn' },
+        { extend: 'print', className: 'btn' }
+      ]
+    },
+    "oLanguage": {
+      "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+      "sInfo": "Mostrando página _PAGE_ de _PAGES_",
+      "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+      "sSearchPlaceholder": "Buscar...",
+      "sLengthMenu": "Results :  _MENU_",
+    },
+    "stripeClasses": [],
+    "lengthMenu": [7, 10, 20, 50],
+    "pageLength": 7
+  });
+</script>
+<!-- End Page Level Custom Scripts -->
+{% endblock%}
