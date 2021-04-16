@@ -15,6 +15,7 @@ class MapView {
   renderUnitsInUnitTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
+      /* console.log(units[i]); */
       const unit =
       `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
@@ -132,7 +133,6 @@ class MapView {
     localStorage.setItem("selectedUnit", unitName);
     //llamar a get unit
     const unit = await api.getUnit(unitName);
-    console.log(unit);
     //
     document.getElementById("unitNameSelect").innerHTML = unitName;
     /* document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' target="_blank"><img alt="Street view" src="https://iadpi.com.ar/wp-content/uploads/2019/05/google-street-696x355.jpg"></a>`; */
