@@ -50,9 +50,9 @@
                 <thead>
                   <tr>
                     <th class="text-center">Unidad</th>
+                    <th class="text-center">Fecha</th>
                     <th class="text-center">Tipo de Alerta</th>
                     <th class="text-center">Prioridad</th>
-                    <th class="text-center">Fecha de Creación</th>
                     <th class="text-center">Acciones</th>
                   </tr>
                 </thead>
@@ -60,6 +60,7 @@
                   {% for alert in alerts %}
                   <tr>
                     <td class="text-center">{{alert.unit_name}}</td>
+                    <td class="text-center">{{alert.datetime}}</td>
                     <td class="text-center">{{alert.alert_type}}</td>
                     {% if alert.alert_priority == "V" %}
                     <td class="text-center"><span class="badge badge-danger"> Muy alta </span></td>
@@ -70,7 +71,6 @@
                     {% else %}
                     <td class="text-center"><span class="badge badge-success"> Baja </span></td>
                     {% endif %}
-                    <td class="text-center">{{alert.created}}</td>
                     <td class="text-center">
                       <div class="btn-group">
                         <button type="button" onclick="alertView.checkAlert({{alert.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
@@ -92,14 +92,18 @@
 {% block script_content %}
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
   <script src="{% static 'assets/js/pages/alerts/alert-view.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
   <script>
     const alertView = new AlertView();
-    const WebSocket = require('ws');
-
-    function WebSocketClient(){
-      this.number = 0;	// Message number
-      this.autoReconnectInterval = 5*1000;	// ms
-    }
+    const myWebsocket = new MyWebsocket("{{ user.profile.account }}");
+    myWebsocket.run();
+    myWebsocket.ws.onmessage = function(e) {
+      const type = JSON.parse(e.data).message.type;
+      // websocket alertas
+      if (type == "update_alert"){
+        const newAlert = JSON.parse(e.data).message.payload;
+        alertView.addAlert();
+      }
+      // fin websocket alertas
+    };
   </script>
 {% endblock%}
