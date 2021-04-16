@@ -90,6 +90,8 @@
   <script src="{% static 'plugins/blockui/jquery.blockUI.min.js' %}"></script>
   <script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
   <script src="{% static 'assets/js/pages/maps/map-view.js' %}"></script>
+  <script src="{% static 'plugins/toast/bootstrap-notify.js' %}"></script>
+  <script src="{% static 'plugins/toast/bootstrap-notify.min.js' %}"></script>
   <script>
     $(".disabled-results").select2();
   </script>
@@ -105,25 +107,12 @@
   <script>
     const mapView = new MapView();
     mapView.run();
-    let ws;
-    const getWSURI = () => {
-      let domain = window.location.hostname;
-      let port = 8000;
-      if (location.port == ""){
-        port = 80;
-      }
-      wsURI = `ws://${domain}:${port}/ws/locations/{{user.profile.account}}/`;
-      return wsURI;
-    }
-    // websocket
-    const connect = () => {
-      wsURI = getWSURI();
-      ws = new WebSocket(wsURI);
-      ws.onopen = function() {
-        console.log('Socket is connected!');
-      };
-      ws.onmessage = function(e) {
-        newLocation = JSON.parse(e.data).message;
+    const myWebsocket = new MyWebsocket("{{ user.profile.account }}");
+    myWebsocket.run();
+    myWebsocket.ws.onmessage = function(e) {
+      const type = JSON.parse(e.data).message.type;
+      if (type == "update_location"){
+        const newLocation = JSON.parse(e.data).message.payload;
         /* console.log(newLocation); */
         mapView.updateMarkerPosition(
           newLocation['unit_name'],
@@ -133,16 +122,25 @@
           ],
           newLocation['angle']
         );
-      };
-      ws.onclose = function(e) {
-        console.log('Socket is closed. Reconnect will be attempted in 5 second.', e.reason);
-      };
-      ws.onerror = function(err) {
-        console.error('Socket encountered error: ', err.message, 'Closing socket');
-        ws.close();
-      };
+      }
+      // websocket notificaciones
+      if (type == "notification") {
+        const newNotification = JSON.parse(e.data).message.payload;
+        $.notify({
+          // options
+          icon: 'glyphicon glyphicon-warning-sign',
+          title: `${newNotification.title}`,
+          message: `${newNotification.message}`,
+        }, {
+          position: null, type: "danger",
+          offset: {
+            x: 20,
+            y: 70
+          }
+        });
+      }
+      // fin websocket notificaciones
     }
-    connect();
   </script>
   <script>
     document.getElementById("history-btn").addEventListener("click", function() {
