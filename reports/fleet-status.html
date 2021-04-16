@@ -119,6 +119,7 @@
 <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
+<script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
 <script>
     $('#zero-config').DataTable( {
       "oLanguage": {
@@ -132,14 +133,6 @@
       "lengthMenu": [10, 20, 50],
       "pageLength": 10
     });
-</script>
-<script>
-  const getUnit = async (unit_name) => {
-    const url = `/web/api/units/get-unit/${unit_name}/`;
-    const response = await fetch(url);
-    const unit = await response.json();
-    return unit;
-  }
 </script>
 <script>
   const renderMap = async (unitName, latitude, longitude) => {
@@ -193,7 +186,7 @@
         {
           icon: icon,
           title: unitName,
-          rotationAngle: 0
+          rotationAngle: 90
         }
       ).bindTooltip(unitName, {
         permanent: true,
