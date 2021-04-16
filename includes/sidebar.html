@@ -42,8 +42,8 @@
           </div>
         </a>
       </li>
-      <li class="menu {% if request.resolver_match.url_name == 'detailed-report' %}active{% elif request.resolver_match.url_name == 'travel-report' %}active{% elif request.resolver_match.url_name == 'stop-report' %}active{% elif request.resolver_match.url_name == 'fleet-status' %}active{% elif request.resolver_match.url_name == 'speed-report' %}active{% endif %}">
-        <a href="#reports" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% endif %}" class="dropdown-toggle">
+      <li class="menu {% if request.resolver_match.url_name == 'detailed-report' %}active{% elif request.resolver_match.url_name == 'travel-report' %}active{% elif request.resolver_match.url_name == 'stop-report' %}active{% elif request.resolver_match.url_name == 'fleet-status' %}active{% elif request.resolver_match.url_name == 'speed-report' %}active{% elif request.resolver_match.url_name == 'mileage-report' %}active{% endif %}">
+        <a href="#reports" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% elif request.resolver_match.url_name == 'mileage-report' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
               <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
@@ -73,6 +73,9 @@
           </li>
           <li class="{% if request.resolver_match.url_name == 'speed-report' %}active{% endif %}">
             <a href="{% url 'speed-report' %}"> Reporte de Velocidad</a>
+          </li>
+          <li class="{% if request.resolver_match.url_name == 'speed-report' %}active{% endif %}">
+            <a href="{% url 'mileage-report' %}"> Reporte de Kilometraje</a>
           </li>
           <!-- <li>
             <a href="groups.html"> Grupos </a>
@@ -148,6 +151,39 @@
         <ul class="collapse submenu list-unstyled" id="alerts" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'alert-history' %}active{% endif %}">
             <a href="{% url 'alert-history' %}"> Historial de Alertas </a>
+          </li>
+        </ul>
+      </li>
+      <li
+        class="menu {% if request.resolver_match.url_name == 'maintenances' %}active{% elif request.resolver_match.url_name == 'maintenance-triggers' %}active{% elif request.resolver_match.url_name == 'maintenance-history' %}active{% endif %}">
+        <a href="#maintenances" data-toggle="collapse"
+          aria-expanded="{% if request.resolver_match.url_name == 'maintenances' %}true{% elif request.resolver_match.url_name == 'maintenance-triggers' %}true{% elif request.resolver_match.url_name == 'maintenance-history' %}true{% endif %}"
+          class="dropdown-toggle">
+          <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Mantenimientos</span>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-chevron-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+        <ul class="collapse submenu list-unstyled" id="maintenances" data-parent="#accordionExample">
+          <li class="{% if request.resolver_match.url_name == 'maintenance-triggers' %}active{% endif %}">
+            <a href="{% url 'maintenance-triggers' %}"> Triggers </a>
+          </li>
+        </ul>
+        <ul class="collapse submenu list-unstyled" id="maintenances" data-parent="#accordionExample">
+          <li class="{% if request.resolver_match.url_name == 'maintenances' %}active{% endif %}">
+            <a href="{% url 'maintenances' %}"> Mantenimientos </a>
+          </li>
+        </ul>
+        <ul class="collapse submenu list-unstyled" id="maintenances" data-parent="#accordionExample">
+          <li class="{% if request.resolver_match.url_name == 'maintenance-history' %}active{% endif %}">
+            <a href="{% url 'maintenance-history' %}"> Historial</a>
           </li>
         </ul>
       </li>
