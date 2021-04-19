@@ -56,5 +56,21 @@
   <script src="{% static 'assets/js/pages/common/loader.js' %}"></script>
   <script src="{% static 'assets/js/pages/common/websocket.js' %}"></script>
   {% block script_content %}{% endblock %}
+  <script>
+    function logoutConfirmation(){
+      swal({
+        title: "¿Seguro que quiere cerrar sesión?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Cerrar sesión',
+        cancelButtonText:"cancelar",
+        padding: '2em'
+      }).then(function (result) {
+        if (result.value) {
+          window.location.href = "{% url 'logout' %}"
+        }
+      })
+    }
+  </script>
 </body>
 </html>
