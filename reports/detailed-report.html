@@ -58,19 +58,19 @@
           </ol>
         </div>
       </div> -->
-      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+      <div class="col-xl-3 col-lg-6 col-sm-12">
         <div class="flex-row-reverse bd-highlight">
           <form method="post" action="{% url 'detailed-report' %}">
           {% csrf_token %}
           <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Inicial" name="initial_date" required>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+      <div class="col-xl-3 col-lg-6 col-sm-12">
         <div class="d-flex flex-row-reverse bd-highlight">
           <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Final" name="final_date" required>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
+      <div class="col-xl-3 col-lg-3 col-sm-12">
         <div class="">
           <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
             <option value="">Seleccionar Unidad</option>
@@ -80,9 +80,9 @@
           </select>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
+      <div class="col-xl-3 col-lg-3 col-sm-12">
         <div class="">
-          <button onclick="runLoader()" type="submit" class="btn btn-secondary responsive-button" style="height: 45.39px">
+          <button onclick="runLoader()" type="submit" class="btn btn-secondary responsive-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -106,7 +106,7 @@
                   <th class="text-center">Altitud</th>
                   <th class="text-center">Velocidad</th>
                   <th class="text-center">Ignición</th>
-                  <th class="text-center">Dirección</th>
+                  <th class="text-center" style="width: 300px">Dirección</th>
                   <th class="text-center">Acción</th>
                 </tr>
               </thead>
@@ -123,7 +123,7 @@
                   <td class="text-center">{{location.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{unit_name}}','{{location.latitude}}','{{location.longitude}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
+                      <button type="button" onclick="renderMap('{{unit_name}}','{{location.latitude}}','{{location.longitude}}','{{location.angle}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
                     </div>
                   </td>
                 </tr>
@@ -157,6 +157,7 @@
 <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
+<script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
 <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
 <script>
     $('#zero-config').DataTable( {
@@ -197,7 +198,7 @@
   });
 </script>
 <script>
-  const renderMap  = async (unitName,latitude,longitude) => {
+  const renderMap  = async (unitName,latitude,longitude,angle) => {
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
     $("#modal-map").modal("show");
     setTimeout(() => {
@@ -243,12 +244,13 @@
       });
       latitude = parseFloat(latitude.replace(',','.'));
       longitude = parseFloat(longitude.replace(',','.'));
+      angle = parseInt(angle);
       const marker = new L.marker(
         [latitude,longitude],
         {
           icon: icon,
           title: unitName,
-          rotationAngle: 0
+          rotationAngle: angle
         }
       ).bindTooltip(unitName, {
         permanent: true,
