@@ -93,7 +93,7 @@
   .searchable-container .items .user-name p, .searchable-container .items .user-work p, .searchable-container .items .user-email p {
     margin-bottom: 0;
     color: #888ea8;
-    font-weight: 600; }
+    font-weight: 400; }
   .searchable-container .items .user-status span.badge {
     background: transparent;
     transform: none; }
