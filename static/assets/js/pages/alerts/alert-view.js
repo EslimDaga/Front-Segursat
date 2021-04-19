@@ -46,10 +46,6 @@ class AlertView {
         </div>
         `
       });
-      /*
-      latitude = parseFloat(latitude.replace(',', '.'));
-      longitude = parseFloat(longitude.replace(',', '.'));
-      */
       const marker = new L.marker(
         [alert.latitude, alert.longitude],
         {
