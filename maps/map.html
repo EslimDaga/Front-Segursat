@@ -111,9 +111,10 @@
     myWebsocket.run();
     myWebsocket.ws.onmessage = function(e) {
       const type = JSON.parse(e.data).message.type;
+      // websocket actualizacion ubicaciones
       if (type == "update_location"){
         const newLocation = JSON.parse(e.data).message.payload;
-        /* console.log(newLocation); */
+        console.log(newLocation);
         mapView.updateMarkerPosition(
           newLocation['unit_name'],
           [
@@ -123,6 +124,7 @@
           newLocation['angle']
         );
       }
+      // websocket actualizacion ubicaciones
       // websocket notificaciones
       if (type == "notification") {
         const newNotification = JSON.parse(e.data).message.payload;
