@@ -104,8 +104,11 @@
       color: #e7515a;
       border: 2px dashed #e7515a; }
     .searchable-container .items .user-status span.badge.badge-primary {
-      color: #F8951D;
-      border: 2px dashed #F8951D; }
+      color: yellow;
+      border: 2px dashed yellow; }
+      .searchable-container .items .user-status span.badge.badge-success {
+      color: green;
+      border: 2px dashed green; }
   .searchable-container .items .action-btn p {
     margin-bottom: 0;
     color: #3b3f5c;
