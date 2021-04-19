@@ -14,7 +14,7 @@ html {
 body {
   color: #888ea8;
   height: 100%;
-  font-size: 13px;
+  font-size: 12px;
   background: #fafafa;
   overflow-x: hidden;
   overflow-y: auto;
@@ -387,7 +387,8 @@ code {
       border: 1px solid #FFFFFF;
       border-radius: 6px;
       transform: none;
-      font-size: 11px;
+      /* font-size: 11px; */
+      font-size: 12px;
       line-height: 17px;
       background-color: #FFFFFF;
       letter-spacing: normal;
@@ -742,7 +743,7 @@ code {
       text-decoration: none;
       display: block;
       color: #3b3f5c;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       padding: 9px 3px; }
     .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item.active, .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item:active {
@@ -823,13 +824,13 @@ code {
     .sidebar-wrapper .profile-info .user-info h6 {
       font-weight: 700;
       /* Size Font segursat */
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 0px;
       margin-top: 0;
       margin-bottom: 0;
       opacity: 1; }
     .sidebar-wrapper .profile-info .user-info p {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0;
       opacity: 1;
@@ -903,7 +904,7 @@ code {
 
 .sidebar-wrapper ul.menu-categories li.menu.menu-heading > .heading {
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #515365;
   padding: 20px 0 20px 12px;
@@ -923,7 +924,7 @@ code {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     color: #3b3f5c;
     padding: 14px 10px;
     font-weight: 600;
@@ -973,7 +974,7 @@ code {
   justify-content: space-between;
   padding: 15px 12px 15px 48px;
   padding-left: 61px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #1b2e4b;
   text-decoration: none;}
@@ -993,7 +994,7 @@ code {
 
 #sidebar ul.menu-categories ul.submenu > li.active a {
   color: #F8951D;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700; }
 
 #sidebar ul.menu-categories li.menu.active > .dropdown-toggle {
@@ -1201,7 +1202,7 @@ code {
 .footer-wrapper .footer-section p {
   margin-bottom: 0;
   color: #515365;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 1px; }
   .footer-wrapper .footer-section p a {
     color: #515365; }
