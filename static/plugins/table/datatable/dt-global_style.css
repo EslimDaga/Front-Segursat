@@ -65,7 +65,7 @@ table.dataTable {
 .table > thead > tr > th {
   color: #898d9e;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   border: none;
   letter-spacing: 1px;
   text-transform: uppercase; }
@@ -73,7 +73,7 @@ table.dataTable {
 .table > tbody > tr > td {
   border: none;
   color: #888ea8;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 1px; }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -100,7 +100,7 @@ div.dataTables_wrapper div.dataTables_info {
   display: inline-block;
   padding: 10px 16px;
   border-radius: 6px;
-  font-size: 13px; }
+  font-size: 12px; }
 
 div.dataTables_wrapper div.dataTables_filter label {
   position: relative; }
