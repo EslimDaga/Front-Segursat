@@ -15,20 +15,16 @@ class MapView {
   renderUnitsInUnitTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
-      /* if (units[i].last_speed > 0) {
-        console.log("Verde");
-      }else{
-        console.log("Rojo");
-      } */
-      console.log(units[i]);
-      const unit =
-      `
+      if (units[i].last_speed > 0) {
+        console.log(units[i]);
+        const unit =
+          `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
           <div class="user-name">
             <p class="">${units[i].name}</p>
           </div>
           <div class="user-status">
-            <span class="badge badge-primary">
+            <span class="badge badge-success">
               <div class="details">
                 <span data-device="speed">${units[i].last_speed} kph</span>
                 <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
@@ -38,7 +34,28 @@ class MapView {
           </div>
         </div>
       `;
-      unitList += unit;
+        unitList += unit;
+      }else{
+        console.log(units[i]);
+        const unit =
+          `
+        <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
+          <div class="user-name">
+            <p class="">${units[i].name}</p>
+          </div>
+          <div class="user-status">
+            <span class="badge badge-danger">
+              <div class="details">
+                <span data-device="speed">${units[i].last_speed} kph</span>
+                <span data-device="status" style="background-color: red" title="Online">online</span>
+              </div>
+            </span>
+          </div>
+        </div>
+      `;
+        unitList += unit;
+      }
+
     }
     document.getElementById("unit-list").innerHTML = unitList;
   }
@@ -149,6 +166,11 @@ class MapView {
     </a>`
     document.getElementById("address").innerHTML = `${unit.last_address}`;
     /* Begin add for Eslim*/
+    if (unit.last_speed > 0) {
+      document.getElementById("status").innerHTML = `<span data-device="status" style="background-color: green" title="Online">Online</span><span data-device="status-text"> Online</span>`;
+    }else{
+      document.getElementById("status").innerHTML = `<span data-device="status" style="background-color: red" title="ACK">ACK</span><span data-device="status-text"> ACK</span>`;
+    }
     document.getElementById("ignition").innerHTML = `${unit.last_attributes.ignition}`;
     document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
     document.getElementById("last_report").innerHTML = `${unit.last_report}`;
