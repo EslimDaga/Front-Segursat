@@ -216,7 +216,7 @@ html{
 }
 body{
     font-family:"Nunito",sans-serif;
-    font-size:14px;
+    font-size:12px;
     line-height:1.42857;
     color:#202020;
     background-color:#ddd
@@ -2319,7 +2319,7 @@ a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover{
 #widgets .widget-title,.panel-title,.plan .plan-title{
     margin-top:0;
     margin-bottom:0;
-    font-size:14px;
+    font-size:12px;
     color:inherit
 }
 #widgets .widget-title>.small,#widgets .widget-title>.small>a,#widgets .widget-title>a,#widgets .widget-title>small,#widgets .widget-title>small>a,.panel-title>.small,.panel-title>.small>a,.panel-title>a,.panel-title>small,.panel-title>small>a,.plan .plan-title>.small,.plan .plan-title>.small>a,.plan .plan-title>a,.plan .plan-title>small,.plan .plan-title>small>a{
