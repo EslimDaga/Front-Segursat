@@ -15,6 +15,11 @@ class MapView {
   renderUnitsInUnitTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
+      /* if (units[i].last_speed > 0) {
+        console.log("Verde");
+      }else{
+        console.log("Rojo");
+      } */
       console.log(units[i]);
       const unit =
       `
