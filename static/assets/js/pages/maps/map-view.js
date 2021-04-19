@@ -15,7 +15,7 @@ class MapView {
   renderUnitsInUnitTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
-      /* console.log(units[i]); */
+      console.log(units[i]);
       const unit =
       `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
@@ -313,6 +313,7 @@ class MapView {
   }
 
   run = async () => {
+    localStorage.removeItem('selectedUnit');
     const units = await api.getUnits();
     this.units = units;
     this.renderUnitsInUnitTab(units);
