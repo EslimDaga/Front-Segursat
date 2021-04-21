@@ -14,6 +14,13 @@ class Api {
     const unit = await response.json();
     return unit;
   }
+  // listar unidad
+  getUnitStatus = async (name) => {
+    const url = `/web/api/units/get-unit-status/${name}/`;
+    const response = await fetch(url);
+    const unit = await response.json();
+    return unit;
+  }
   // listar historial de ubicaciones
   getLocationHistory = async (unitName,initialDate,finalDate) => {
     const url = `/web/api/locations/get-location-history/${unitName}/${initialDate}/${finalDate}/`
