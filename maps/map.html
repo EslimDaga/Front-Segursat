@@ -114,7 +114,7 @@
       // websocket actualizacion ubicaciones
       if (type == "update_location"){
         const newLocation = JSON.parse(e.data).message.payload;
-        console.log(newLocation);
+        //console.log(newLocation);
         mapView.updateMarkerPosition(
           newLocation['unit_name'],
           [
@@ -123,6 +123,7 @@
           ],
           newLocation['angle']
         );
+        mapView.updateBottomBar(newLocation['unit_name']);
       }
       // websocket actualizacion ubicaciones
       // websocket notificaciones
