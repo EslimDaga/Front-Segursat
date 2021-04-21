@@ -13,6 +13,11 @@ class MyWebsocket{
     const wsURI = `ws://${domain}:${port}/ws/locations/${this.account}/`;
     return wsURI;
   }
+
+  reload = () => {
+    this.run();
+  }
+
   // websocket
   run = () => {
     const wsURI = this.getWSURI();
@@ -26,7 +31,8 @@ class MyWebsocket{
     this.ws.onclose = function(e) {
       console.log('Socket is closed. Reconnect will be attempted in 5 second.', e.reason);
       setTimeout(function() {
-        this.run();
+        //this.reload();
+        location.reload();
       }, 5000);
     };
     this.ws.onerror = function(err) {
