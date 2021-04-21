@@ -16,7 +16,7 @@ class MapView {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
       if (units[i].last_speed > 0) {
-        console.log(units[i]);
+        //console.log(units[i]);
         const unit =
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
@@ -36,7 +36,7 @@ class MapView {
       `;
         unitList += unit;
       }else{
-        console.log(units[i]);
+        //console.log(units[i]);
         const unit =
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
@@ -183,10 +183,19 @@ class MapView {
     this.markers[index].setRotationAngle(angle);
   }
 
-  updateBottomBar = (data) => {
+  updateBottomBar = async (unit_name) => {
     const selectedUnit = localStorage.getItem("selectedUnit")
-    if (selectedUnit == data['unit_name']) {
-      console.log(`Actualizar informacion del bottom bar ${unitName}`)
+    if (selectedUnit == unit_name) {
+      const unit = await api.getUnitStatus(unit_name);
+      console.log(unit);
+      const lat = unit_name.last_latitude;
+      const lng = unit_name.last_longitude;
+      document.getElementById("address_link").innerHTML = `<a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
+        <i class="fas fa-eye"></i>
+      </a>`
+      document.getElementById("address").innerHTML = `${unit.last_address}`;
+      document.getElementById("last_report").innerHTML = `${unit.last_report}`;
+      document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
     }
   }
 
