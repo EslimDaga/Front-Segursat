@@ -20,6 +20,11 @@
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+
+
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -64,20 +69,20 @@
               <tbody>
                 {% for unit in units %}
                 <tr>
-                  <td class="text-center">{{unit}}</td>
-                  <td class="text-center">{{unit.last_report }}</td>
+                  <td class="text-center" id="unit{{unit.id}}_name">{{unit}}</td>
+                  <td class="text-center" id="unit{{unit.id}}_last_report">{{unit.last_report }}</td>
                   <td class="text-center">
                     {% if unit.last_speed > 0 %}
-                      <span class="badge outline-badge-success"> En movimiento </span>
+                      <span class="badge outline-badge-success" id="unit{{unit.id}}_last_state"> En movimiento </span>
                     {% else %}
-                      <span class="badge outline-badge-danger"> Detenido </span>
+                      <span class="badge outline-badge-danger" id="unit{{unit.id}}_last_state"> Detenido </span>
                     {% endif %}
                   </td>
-                  <td class="text-center">{{unit.last_latitude}}</td>
-                  <td class="text-center">{{unit.last_longitude}}</td>
-                  <td class="text-center">{{unit.last_speed}} km/h</td>
-                  <td class="text-center">{{unit.odometer}} Km</td>
-                  <td class="text-center">{{unit.last_address}}</td>
+                  <td class="text-center" id="unit{{unit.id}}_last_latitude">{{unit.last_latitude}}</td>
+                  <td class="text-center" id="unit{{unit.id}}_last_longitude">{{unit.last_longitude}}</td>
+                  <td class="text-center" id="unit{{unit.id}}_last_speed">{{unit.last_speed}} km/h</td>
+                  <td class="text-center" id="unit{{unit.id}}_odometer">{{unit.odometer}} Km</td>
+                  <td class="text-center" id="unit{{unit.id}}_last_address">{{unit.last_address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
                       <button type="button" onclick="renderMap('{{unit}}','{{unit.last_latitude}}','{{unit.last_longitude}}')" class="btn btn-dark btn-sm">
@@ -120,6 +125,9 @@
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
 <script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
+<script src="{% static 'assets/js/pages/reports/fleet-status-view.js' %}"></script>
+<script src="{% static 'plugins/leaflet-easyprint/bundle.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 <script>
     $('#zero-config').DataTable( {
       "oLanguage": {
@@ -179,6 +187,18 @@
         </div>
         `
       });
+
+      //Funca
+      L.easyPrint({
+        title: 'My awesome print button',
+        position: 'bottomright',
+        sizeModes: ['A4Portrait', 'A4Landscape']
+      }).addTo(map);
+      //Funca
+
+      L.control.locate().addTo(map);
+
+
       latitude = parseFloat(latitude.replace(',', '.'));
       longitude = parseFloat(longitude.replace(',', '.'));
       const marker = new L.marker(
@@ -196,6 +216,23 @@
       map.panTo([latitude, longitude]);
     }, 500);
   }
+
+  /*
+  const fleetStatusView = new FleetStatusView();
+  const myWebsocket = new MyWebsocket("{{ user.profile.account }}");
+  myWebsocket.run();
+  myWebsocket.ws.onmessage = function(e) {
+    const type = JSON.parse(e.data).message.type;
+    // websocket ubicaciones
+    if (type == "update_location"){
+      const newLocation = JSON.parse(e.data).message.payload;
+      console.log(newLocation);
+      fleetStatusView.updateUnitStatus(newLocation);
+    }
+    // fin websocket ubicaciones
+  };
+  */
+
 </script>
 {% if form.errors %}
 <script>
