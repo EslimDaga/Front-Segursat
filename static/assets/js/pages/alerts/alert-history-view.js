@@ -18,17 +18,9 @@ class AlertHistory {
       cell2.className = "text-center";
       cell3.className = "text-center";
       cell4.className = "text-center";
-      cell0.innerHTML = alert.unit_name;
+      cell0.innerHTML = alert.account;
       cell1.innerHTML = alert.alert_type;
-      cell2.innerHTML = `{% if alert.alert_priority == "V" %}
-                    <td class="text-center"><span class="badge badge-danger"> Muy alta </span></td>
-                    {% elif alert.alert_priority == "H" %}
-                    <td class="text-center"><span class="badge badge-warning"> Alta </span></td>
-                    {% elif alert.alert_priority == "M" %}
-                    <td class="text-center"><span class="badge badge-info"> Media </span></td>
-                    {% else %}
-                    <td class="text-center"><span class="badge badge-success"> Baja </span></td>
-                    {% endif %}`;
+      cell2.innerHTML = alert.alert_priority;
       cell3.innerHTML = alert.datetime;
       cell4.innerHTML = `
           <div class="btn-group">
