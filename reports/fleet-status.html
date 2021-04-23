@@ -85,7 +85,7 @@
                   <td class="text-center" id="unit{{unit.id}}_last_address">{{unit.last_address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{unit}}','{{unit.last_latitude}}','{{unit.last_longitude}}')" class="btn btn-dark btn-sm">
+                      <button type="button" onclick="renderMap('{{unit}}','{{unit.last_latitude}}','{{unit.last_longitude}}','{{unit.last_angle}}')" class="btn btn-dark btn-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                           <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                           <circle cx="12" cy="12" r="3"></circle>
@@ -143,7 +143,7 @@
     });
 </script>
 <script>
-  const renderMap = async (unitName, latitude, longitude) => {
+  const renderMap = async (unitName, latitude, longitude, angle) => {
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
     $("#modal-map").modal("show");
     setTimeout(() => {
@@ -201,12 +201,13 @@
 
       latitude = parseFloat(latitude.replace(',', '.'));
       longitude = parseFloat(longitude.replace(',', '.'));
+      angle = parseInt(angle);
       const marker = new L.marker(
         [latitude, longitude],
         {
           icon: icon,
           title: unitName,
-          rotationAngle: 90
+          rotationAngle: angle
         }
       ).bindTooltip(unitName, {
         permanent: true,
