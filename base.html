@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/css/plugins.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
     <!-- End Global Mandatory Styles -->
     {% block head_content %}{% endblock %}
   </head>
@@ -55,6 +58,8 @@
   <script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
   <script src="{% static 'assets/js/pages/common/loader.js' %}"></script>
   <script src="{% static 'assets/js/pages/common/websocket.js' %}"></script>
+  <script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+  <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
   {% block script_content %}{% endblock %}
   <script>
     function logoutConfirmation(){
