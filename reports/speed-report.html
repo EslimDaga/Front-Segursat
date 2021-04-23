@@ -100,7 +100,7 @@
                   <td class="text-center">{{ sr.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{ unit_name }}','{{sr.latitude}}','{{sr.longitude}}')" class="btn btn-dark btn-sm">
+                      <button type="button" onclick="renderMap('{{ unit_name }}','{{sr.latitude}}','{{sr.longitude}}','{{sr.angle}}')" class="btn btn-dark btn-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                           <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                           <circle cx="12" cy="12" r="3"></circle>
@@ -139,6 +139,7 @@
 <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
+<script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
 <script>
   $('#zero-config').DataTable({
     "oLanguage": {
@@ -178,7 +179,7 @@
   });
 </script>
 <script>
-  const renderMap = async (unitName, latitude, longitude) => {
+  const renderMap = async (unitName, latitude, longitude, angle) => {
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
     $("#modal-map").modal("show");
     setTimeout(() => {
@@ -224,12 +225,13 @@
       });
       latitude = parseFloat(latitude.replace(',', '.'));
       longitude = parseFloat(longitude.replace(',', '.'));
+      angle = parseInt(angle);
       const marker = new L.marker(
         [latitude, longitude],
         {
           icon: icon,
           title: unitName,
-          rotationAngle: 0
+          rotationAngle: angle
         }
       ).bindTooltip(unitName, {
         permanent: true,
