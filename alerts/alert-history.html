@@ -22,10 +22,15 @@
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+  <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" />
+  <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
+  <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
   {% include "alerts/trigger-create-modal.html" %}
+  <!-- {% include "alerts/checkalert-view-modal.html" %} -->
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <div class="row layout-top-spacing">
@@ -55,7 +60,7 @@
         </div>
         <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
           <div class="">
-            <button class="btn btn-primary responsive-button" onclick="alertHistory.alertSearch()" style="height: 45.39px">
+            <button class="btn btn-primary responsive-button" onclick="alertSearch()" style="height: 45.39px">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -102,9 +107,172 @@
   <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
   <script src="{% static 'assets/js/pages/alerts/alert-history-view.js' %}"></script>
-  <script>
+  <!-- <script>
     /* Import from class */
     const alertHistory = new AlertHistory();
+  </script> -->
+  <script>
+    const getAlertSearch = async (alertDate, unitName) => {
+        const url = `/web/api/alerts/alert-search/${alertDate}/${unitName}/`
+        const response = await fetch(url);
+        const alerts = await response.json();
+        console.log(alerts);
+        $('#html5-extension').DataTable().clear().destroy();
+        const alertsArray = alerts.map(alert => {
+          const table = document.getElementById("html5-extension").getElementsByTagName('tbody')[0];
+          const row = table.insertRow(0);
+          const cell0 = row.insertCell(0);
+          const cell1 = row.insertCell(1);
+          const cell2 = row.insertCell(2);
+          const cell3 = row.insertCell(3);
+          const cell4 = row.insertCell(4);
+          cell0.className = "text-center";
+          cell1.className = "text-center";
+          cell2.className = "text-center";
+          cell3.className = "text-center";
+          cell4.className = "text-center";
+          cell0.innerHTML = alert.account;
+          cell1.innerHTML = alert.alert_type;
+          if (alert.alert_priority === "V") {
+            cell2.innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
+          } else if (alert.alert_priority === "H") {
+            cell2.innerHTML = `<span class="badge badge-warning"> Alta </span>`;
+          } else if (alert.alert_priority === "M") {
+            cell2.innerHTML = `<span class="badge badge-info"> Media </span>`
+          } else {
+            cell2.innerHTML = `<span class="badge badge-success"> Baja </span>`;
+          }
+
+          cell3.innerHTML = alert.datetime;
+          cell4.innerHTML = `
+          <div class="btn-group">
+            <button onclick="checkAlert(${alert.id})" type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+          </div>
+        `;
+        });
+
+        const table = $('#html5-extension').DataTable({
+          destroy: true,
+          dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+          buttons: {
+            buttons: [
+              { extend: 'copy', className: 'btn' },
+              { extend: 'excel', className: 'btn' },
+              { extend: 'print', className: 'btn' }
+            ]
+          },
+          "oLanguage": {
+            "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+            "sInfo": "Mostrando página _PAGE_ de _PAGES_",
+            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+            "sSearchPlaceholder": "Buscar...",
+            "sLengthMenu": "Results :  _MENU_",
+          },
+          "stripeClasses": [],
+          "lengthMenu": [7, 10, 20, 50],
+          "pageLength": 7
+        });
+      }
+
+      const alertSearch = async () => {
+        let alertDate = document.getElementById("basicFlatpickr").value;
+        let unitName = document.getElementById("unit_name").value
+        if (alertDate === "") {
+          swal({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Seleccione una fecha',
+            padding: '2em'
+          })
+        } else if (unitName === "") {
+          swal({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Seleccione una unidad',
+            padding: '2em'
+          })
+        } else {
+          await getAlertSearch(alertDate, unitName);
+        }
+      }
+
+      const checkAlert = async (id) => {
+        const url = `/web/api/alerts/get-alert/${id}`;
+        const response = await fetch(url);
+        const alert = await response.json()
+        $("#checkAlert").modal("show");
+        console.log(alert);
+        document.getElementById("map-container").innerHTML = `<div id="map" style="height:430px;width:100%;"></div>`;
+        setTimeout(() => {
+          const map = L.map('map', {
+            center: [alert.latitude, alert.longitude],
+            zoom: 16,
+          });
+          const openStreetMap = L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+              attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+              maxZoom: 19,
+            }
+          );
+          const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+          });
+          const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+          });
+          const baseLayers = {
+            'Open Street Maps': openStreetMap,
+            'Google Street Maps': googleStreetsMap,
+            'Google Hybrid Maps': googleHybridMap
+          };
+          const overlays = {};
+          L.control.layers(baseLayers, overlays).addTo(map);
+          baseLayers['Google Street Maps'].addTo(map);
+
+          const icon = L.divIcon({
+            iconSize: null,
+            html: `
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+          </div>
+        </div>
+        `
+          });
+          const marker = new L.marker(
+            [alert.latitude, alert.longitude],
+            {
+              icon: icon,
+              title: alert.unit_name,
+              rotationAngle: alert.angle
+            }
+          ).bindTooltip(alert.unit_name, {
+            permanent: true,
+            direction: "top",
+            offset: L.point({ x: 0, y: -30 })
+          }).addTo(map);
+          map.panTo([alert.latitude, alert.longitude]);
+        }, 500);
+        document.getElementById("account").innerHTML = `${alert.unit_name}`;
+        document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
+        document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
+        if (alert.alert_priority === "V") {
+          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
+        } else if (alert.alert_priority === "H") {
+          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-warning"> Alta </span>`;
+        } else if (alert.alert_priority === "M") {
+          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-info"> Media </span>`;
+        } else {
+          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-success"> Baja </span>`;
+        }
+        document.getElementById("datetime").innerHTML = `${alert.datetime}`
+        return alert;
+      }
   </script>
   <script>
     /* Input Date */
