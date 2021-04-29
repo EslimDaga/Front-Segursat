@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_content %}
+<title>Grupos - Segursat GPS</title>
+<!-- Begin Page Level Custom Styles -->
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+<link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
+<script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+<link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<!-- End Page Level Custom Styles -->
+{% endblock %}
+{% block container %}
+{% include "units/unit-create-modal.html" %}
+<!-- Begin Content Area -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+      <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
+        <nav class="breadcrumb-two" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
+            <li class="breadcrumb-item active"><a href="{% url 'unit-group' %}">Grupos</a></li>
+            <li class="breadcrumb-item"></li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <button id="create-unit" class="btn btn-primary btn-rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-truck">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+          <div class="table-responsive">
+            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Unique ID</th>
+                  <th class="text-center">IMEI</th>
+                  <th class="text-center">Ultima Modificacion</th>
+                  <th class="text-center">Fecha de Creacion</th>
+                  <th class="text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for unit in units %}
+                <tr>
+                  <td class="text-center">{{unit.name}}</td>
+                  <td class="text-center">{{unit.uniqueid}}</td>
+                  <td class="text-center">{{unit.imei}}</td>
+                  <td class="text-center">{{unit.modified}}</td>
+                  <td class="text-center">{{unit.created}}</td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <button onclick="$('#unit{{unit.id}}_update_modal').modal('show');" type="button"
+                        class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+                      <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
+                        id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        data-reference="parent">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                          class="feather feather-chevron-down">
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuReference24">
+                        <a class="dropdown-item" href="{% url 'delete-unit' unit.id %}"><i class="fas fa-trash-alt"
+                            style="padding-right: 15px;"></i>Eliminar</a>
+                        <!-- <a class="dropdown-item" onclick="deleteConfirmation(`{{unit.name}}`,'{{unit.id}}')"><i class="fas fa-trash-alt"
+                            style="padding-right: 15px;"></i>Eliminar</a> -->
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'units/unit-update-modal.html' %}
+  {% include 'includes/footer.html' %}
+</div>
+<!-- End Content Area -->
+{% endblock %}
+{% block script_content %}
+<!-- Begin Page Level Custom Scripts -->
+<script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
+<!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+<script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/treeview/custom-jstree.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script>
+  $('#html5-extension').DataTable({
+    dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+    buttons: {
+      buttons: [
+        { extend: 'copy', className: 'btn' },
+        { extend: 'excel', className: 'btn' },
+        { extend: 'print', className: 'btn' }
+      ]
+    },
+    "oLanguage": {
+      "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+      "sInfo": "Mostrando página _PAGE_ de _PAGES_",
+      "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+      "sSearchPlaceholder": "Buscar...",
+      "sLengthMenu": "Results :  _MENU_",
+    },
+    "stripeClasses": [],
+    "lengthMenu": [10, 20, 30, 50],
+    "pageLength": 10
+  });
+</script>
+<script>
+  document.getElementById("create-unit").addEventListener("click", () => {
+    $("#unit_create_modal").modal("show");
+  });
+
+  $('#unit_create_modal').on('hidden.bs.modal', () => {
+    document.getElementById("id_uniqueid").value = "";
+    document.getElementById("id_uniqueid").classList.remove("is-valid");
+    document.getElementById("id_uniqueid").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_uniqueid").remove();
+    } catch (error) {
+      //nada
+    }
+    document.getElementById("id_imei").value = "";
+    document.getElementById("id_imei").classList.remove("is-valid");
+    document.getElementById("id_imei").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_imei").remove();
+    } catch (error) {
+      //nada
+    }
+    document.getElementById("id_sim_phonenumber").value = "";
+    document.getElementById("id_sim_phonenumber").classList.remove("is-valid");
+    document.getElementById("id_sim_phonenumber").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_sim_phonenumber").remove();
+    } catch (error) {
+      //nada
+    }
+    document.getElementById("id_sim_iccid").value = "";
+    document.getElementById("id_sim_iccid").classList.remove("is-valid");
+    document.getElementById("id_sim_iccid").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_sim_iccid").remove();
+    } catch (error) {
+      //nada
+    }
+    document.getElementById("id_unit_name").value = "";
+    document.getElementById("id_unit_name").classList.remove("is-valid");
+    document.getElementById("id_unit_name").classList.remove("is-invalid");
+    try {
+      document.getElementById("id_error_unit_name").remove();
+    } catch (error) {
+      //nada
+    }
+  })
+
+</script>
+{% if create_form.errors %}
+<script>
+  $("#unit_create_modal").modal("show");
+</script>
+{% endif %}
+{% if update_form.errors %}
+<script>
+  $("#{{modal_id}}").modal("show");
+</script>
+{% endif %}
+{% if success %}
+<script>
+  swal({
+    type: "success",
+    title: "Operacion exitosa",
+    text: "{{ success }}",
+    padding: "2em"
+  })
+</script>
+{% endif %}
+<script>
+  function deleteConfirmation(unit, id) {
+    swal({
+      title: `¿Seguro que quieres eliminar la unidad ${unit}?`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: "cancelar",
+      padding: '2em'
+    }).then(function (result) {
+      if (result.value) {
+        window.location.href = "{% url 'logout' %}"
+      }
+    })
+  }
+</script>
+<!-- End Page Level Custom Scripts -->
+{% endblock%}
