@@ -23,8 +23,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
-
-
+  <link href="{% static 'plugins/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet">
+  <style>
+    #map1 {
+      width: 100%;
+      height: 500px;
+    }
+  </style>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -49,10 +54,11 @@
           </ol>
         </div>
       </div>
-      <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+      <div id="dialog" title="Mapa" ><div id="map1"></div></div>
+      <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
         <div class="widget-content widget-content-area br-6">
-          <div class="table-responsive mb-4 mt-4">
-            <table id="zero-config" class="table table-hover non-hover" style="width:100%">
+          <div class="table-responsive">
+            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
@@ -68,7 +74,7 @@
               </thead>
               <tbody>
                 {% for unit in units %}
-                <tr>
+                <tr onclick="console.log('{{ unit.name }}')">
                   <td class="text-center" id="unit{{unit.id}}_name">{{unit}}</td>
                   <td class="text-center" id="unit{{unit.id}}_last_report">{{unit.last_report }}</td>
                   <td class="text-center">
@@ -127,25 +133,48 @@
 <script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
 <script src="{% static 'assets/js/pages/reports/fleet-status-view.js' %}"></script>
 <script src="{% static 'plugins/leaflet-easyprint/bundle.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}" rel="stylesheet">
 <script>
-    $('#zero-config').DataTable( {
-      "oLanguage": {
-        "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-        "sInfo": "Mostrando página _PAGE_ de _PAGES_",
-        "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-        "sSearchPlaceholder": "Buscar...",
-        "sLengthMenu": "Resultados :  _MENU_",
-      },
-      "stripeClasses": [],
-      "lengthMenu": [10, 20, 50],
-      "pageLength": 10
-    });
+  $('#html5-extension').DataTable({
+    dom: "<'ui grid'" +
+    "<'row justify-content-between'" +
+    "<'four wide column'l>" +
+    "<'center aligned eight wide column'B>" +
+    "<'right aligned four wide column'f>" +
+    ">" +
+    "<'row dt-table'" +
+    "<'sixteen wide column'tr>" +
+    ">" +
+    "<'row wide justify-content-between'" +
+    "<'seven wide column'i>" +
+    "<'right aligned nine wide column'p>" +
+    ">" +
+    ">",
+    buttons: {
+      buttons: [
+        { extend: 'copy', className: 'btn' },
+        { extend: 'excel', className: 'btn' },
+        { extend: 'print', className: 'btn' }
+      ]
+    },
+    "oLanguage": {
+      "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+      "sInfo": "Mostrando página _PAGE_ de _PAGES_",
+      "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+      "sSearchPlaceholder": "Buscar...",
+      "sLengthMenu": "Resultados : <select class='form-control'><option value='10'>10</option><option value='15'>15</option><option value='20'>20</option><option value='30'>30</option></select>",
+    },
+    "stripeClasses": [],
+    "pageLength": 15
+  });
 </script>
 <script>
   const renderMap = async (unitName, latitude, longitude, angle) => {
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
     $("#modal-map").modal("show");
+    /* $("#dialog").dialog("open"); */
     setTimeout(() => {
       const map = L.map('map', {
         center: [-12.1021887, -77.0665742],
@@ -196,9 +225,6 @@
       }).addTo(map);
       //Funca
 
-      L.control.locate().addTo(map);
-
-
       latitude = parseFloat(latitude.replace(',', '.'));
       longitude = parseFloat(longitude.replace(',', '.'));
       angle = parseInt(angle);
@@ -234,6 +260,51 @@
   };
   */
 
+</script>
+<script>
+  $("#dialog").dialog({ autoOpen: true, minWidth : 800, position: [550, 150] });
+</script>
+<script>
+  const map1 = L.map('map1', {
+    center: [-12.1021887, -77.0665742],
+    zoom: 16,
+  });
+  const openStreetMap = L.tileLayer(
+    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+      attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+      maxZoom: 19,
+    }
+  );
+  const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+    attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+    maxZoom: 20,
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+  });
+  const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+    attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+    maxZoom: 20,
+    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+  });
+  const baseLayers = {
+    'Open Street Maps': openStreetMap,
+    'Google Street Maps': googleStreetsMap,
+    'Google Hybrid Maps': googleHybridMap
+  };
+  const overlays = {};
+  L.control.layers(baseLayers, overlays).addTo(map1);
+  baseLayers['Google Street Maps'].addTo(map1);
+
+  const icon = L.divIcon({
+    iconSize: null,
+    html: `
+    <div class="map-label">
+      <div class="map-label-content">
+        <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+      </div>
+    </div>
+    `
+  });
 </script>
 {% if form.errors %}
 <script>
