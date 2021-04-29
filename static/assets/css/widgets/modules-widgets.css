@@ -996,7 +996,7 @@
   display: flex; }
 
 .widget-table-one .transactions-list {
-  padding: 12px 12px;
+  padding: 1px 12px;
   border: 1px dashed #bfc9d4;
   border-radius: 6px;
   -webkit-transition: all 0.1s ease;
@@ -1046,7 +1046,7 @@
     .widget-table-one .transactions-list .t-item .t-name {
       align-self: center; }
       .widget-table-one .transactions-list .t-item .t-name h4 {
-        font-size: 15px;
+        font-size: 12px;
         letter-spacing: 0px;
         font-weight: 600;
         margin-bottom: 0; }
