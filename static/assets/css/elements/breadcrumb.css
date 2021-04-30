@@ -153,11 +153,11 @@
   margin-bottom: 0; }
   .breadcrumb-four .breadcrumb li {
     position: relative;
-    font-size: 14px;
+    font-size: 12px;
     background: #fff;
     margin-right: 20px;
     margin-bottom: 6px;
-    padding: 7px 10px;
+    padding: 7px 10px 0px 10px;
     border-radius: 10px;
     border: 1px solid #e0e6ed;
     -webkit-box-shadow: 2px 5px 17px 0 rgba(31, 45, 61, 0.1);
