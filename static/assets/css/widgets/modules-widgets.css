@@ -434,59 +434,100 @@
       .widget-account-invoice-two .account-box .acc-action a svg {
         width: 18px;
         height: 18px; }
-
 /*
     ==================
         Statistics
     ==================
 */
-.widget-card-one {
-  background: #fff;
-  padding: 20px 0;
-  height: 100%; }
-  .widget-card-one .widget-content .media {
+.widget.widget-card-one {
+    background: #fff;
+    padding: 20px 0;
+    height: 100%;
+}
+.widget-card-one .widget-content .media {
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 19px;
     padding-bottom: 21px;
-    border-bottom: 1px dashed #e0e6ed; }
-    .widget-card-one .widget-content .media .w-img {
-      margin-right: 9px;
-      align-self: center; }
-    .widget-card-one .widget-content .media img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 3px solid #e0e6ed; }
-  .widget-card-one .widget-content .media-body {
-    align-self: center; }
-    .widget-card-one .widget-content .media-body h6 {
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 0;
-      margin-bottom: 0; }
-    .widget-card-one .widget-content .media-body p {
-      font-size: 14px;
-      letter-spacing: 1px;
-      margin-bottom: 0;
-      font-weight: 600;
-      color: #888ea8;
-      padding: 0; }
-  .widget-card-one .widget-content p {
+    border-bottom: 1px dashed #e0e6ed;
+}
+.widget-card-one .widget-content .media .w-img {
+    margin-right: 10px;
+    align-self: center;
+}
+.widget-card-one .widget-content .media img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #e0e6ed;
+}
+.widget-card-one .widget-content .media-body {
+    align-self: center;
+}
+.widget-card-one .widget-content .media-body h6 {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0;
+    margin-bottom: 0;
+}
+.widget-card-one .widget-content .media-body p {
+    font-size: 13px;
+    letter-spacing: 0px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #888ea8;
+    padding: 0;
+}
+.widget-card-one .widget-content p {
     font-weight: 600;
     font-size: 13px;
     margin-bottom: 61px;
-    padding: 0 20px; }
-  .widget-card-one .widget-content .w-action {
-    padding: 0 20px; }
-    .widget-card-one .widget-content .w-action svg {
-      color: #1b55e2;
-      fill: #c2d5ff; }
-    .widget-card-one .widget-content .w-action span {
-      vertical-align: sub;
-      font-weight: 700;
-      color: #0e1726;
-      letter-spacing: 1px; }
+    padding: 0 20px;
+    display: inline-block;
+    width: 100%;
+}
+.widget-card-one .widget-content .w-action {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.widget-card-one .widget-content .w-action svg {
+    color: #2196f3;
+    fill: #e7f7ff;
+    margin-right: 8px;
+    stroke-width: 1.5;
+}
+.widget-card-one .widget-content .w-action span {
+    vertical-align: sub;
+    font-weight: 700;
+    color: #0e1726;
+    letter-spacing: 1px;
+}
+.widget-card-one .widget-content .w-action .read-more {
+    align-self: center;
+}
+.widget-card-one .widget-content .w-action .read-more a {
+    display: inline-block;
+    padding: 3px 5px;
+    background: rgb(0 150 136 / 26%);
+    color: #009688;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.widget-card-one .widget-content .w-action .read-more a svg {
+    margin-right: 0;
+    color: #009688;
+    width: 16px;
+    height: 16px;
+    fill: transparent;
+    stroke-width: 1.8;
+    transition: .5s;
+}
+.widget-card-one .widget-content .w-action .read-more a:hover {
+    box-shadow: 0 0 30px rgb(224 240 239);
+}
+
 
 /*
     ===========================
@@ -622,7 +663,7 @@
     .widget-card-two .card-bottom-section a {
       display: block;
       margin-top: 18px;
-      background: #1b55e2;
+      background: #F8951D;
       color: #fff;
       padding: 10px 10px;
       transform: none;
@@ -632,7 +673,7 @@
       font-weight: 600;
       letter-spacing: 1px; }
       .widget-card-two .card-bottom-section a.btn:hover, .widget-card-two .card-bottom-section a.btn:focus {
-        border-color: #1b55e2; }
+        border-color: #F8951D; }
 
 /*
     =====================
