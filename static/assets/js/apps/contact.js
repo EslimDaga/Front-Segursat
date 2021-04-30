@@ -152,7 +152,7 @@ function addContact() {
     deleteContact();
     editContact();
     checkall('contact-check-all', 'contact-chkbox');
-  });  
+  });
 }
 
 $('#addContactModal').on('hidden.bs.modal', function (e) {
@@ -249,7 +249,7 @@ function editContact() {
 }
 
 $(".delete-multiple").on("click", function() {
-    var inboxCheckboxParents = $(".contact-chkbox:checked").parents('.items');   
+    var inboxCheckboxParents = $(".contact-chkbox:checked").parents('.items');
       inboxCheckboxParents.remove();
 });
 
@@ -262,7 +262,7 @@ editContact();
 
 // Validation Process
 
-var $_getValidationField = document.getElementsByClassName('validation-text');
+/* var $_getValidationField = document.getElementsByClassName('validation-text');
 var reg = /^.+@[^\.].*\.[a-z]{2,}$/;
 var phoneReg = /^\d{10}$/;
 
@@ -316,4 +316,4 @@ getPhoneInput.addEventListener('input', function() {
     $_getValidationField[2].style.display = 'none';
   }
 
-})
+}) */
