@@ -169,8 +169,8 @@
     padding: 10px 25px; }
 
 .searchable-container .switch .view-grid:hover, .searchable-container .switch .view-list:hover, .searchable-container .switch .active-view {
-  color: #1b55e2;
-  fill: rgba(27, 85, 226, 0.239216); }
+  color: #F8951D;
+  fill: rgb(247, 201, 141); }
 
 .searchable-container .searchable-items.list .items.items-header-section h4 {
   display: inline-block;
@@ -319,7 +319,7 @@
       font-size: 21px;
       font-weight: 600;
       margin-bottom: 0;
-      color: #2196f3; }
+      color: #F8951D; }
     .searchable-container .searchable-items.grid .items .user-meta-info .user-work {
       font-weight: 700;
       font-size: 13px; }
