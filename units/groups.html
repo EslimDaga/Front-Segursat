@@ -3,12 +3,11 @@
 {% block head_content %}
 <title>Grupos - Segursat GPS</title>
 <!-- Begin Page Level Custom Styles -->
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+<link href="{% static 'plugins/table/datatable/datatables.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'plugins/table/datatable/dt-global_style.css' %}" rel="stylesheet" type="text/css"/>
 <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
-<script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
 <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
@@ -16,90 +15,208 @@
 <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/forms/theme-checkbox-radio.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/apps/contacts.css' %}" rel="stylesheet" type="text/css" />
+<script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
 <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-{% include "units/unit-create-modal.html" %}
 <!-- Begin Content Area -->
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-      <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
-        <nav class="breadcrumb-two" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'unit-group' %}">Grupos</a></li>
-            <li class="breadcrumb-item"></li>
-          </ol>
-        </nav>
+      <div class="col-xl-6 col-lg-12 col-sm-12 layout-spacing responsive-header-menu-breadcum">
+        <div class="breadcrumb-four">
+          <ul class="breadcrumb">
+            <li><a href="javscript:void(0);"><i class="fas fa-home h6" aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a class="d-flex" href="javscript:void(0);">
+                <i class="fas fa-car-side h6 pr-2" aria-hidden="true"></i>
+                Unidades
+              </a>
+            </li>
+            <li class="active">
+              <a class="d-flex" href="javscript:void(0);">
+                <i class="fas fa-layer-group h6 pr-2" aria-hidden="true"></i>
+                Grupos
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
         <div class="d-flex flex-row-reverse bd-highlight">
-          <button id="create-unit" class="btn btn-primary btn-rounded">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="feather feather-truck">
-              <rect x="1" y="3" width="15" height="13"></rect>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-              <circle cx="5.5" cy="18.5" r="2.5"></circle>
-              <circle cx="18.5" cy="18.5" r="2.5"></circle>
-            </svg>
+          <button class="btn btn-primary mb-2 mr-2">
+            <i class="fas fa-layer-group h7 pr-2" aria-hidden="true"></i> Agregar grupos
           </button>
         </div>
       </div>
-      <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-        <div class="widget-content widget-content-area br-6">
-          <div class="table-responsive">
-            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
-              <thead>
-                <tr>
-                  <th class="text-center">Nombre</th>
-                  <th class="text-center">Unique ID</th>
-                  <th class="text-center">IMEI</th>
-                  <th class="text-center">Ultima Modificacion</th>
-                  <th class="text-center">Fecha de Creacion</th>
-                  <th class="text-center">Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for unit in units %}
-                <tr>
-                  <td class="text-center">{{unit.name}}</td>
-                  <td class="text-center">{{unit.uniqueid}}</td>
-                  <td class="text-center">{{unit.imei}}</td>
-                  <td class="text-center">{{unit.modified}}</td>
-                  <td class="text-center">{{unit.created}}</td>
-                  <td class="text-center">
-                    <div class="btn-group">
-                      <button onclick="$('#unit{{unit.id}}_update_modal').modal('show');" type="button"
-                        class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
-                      <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split"
-                        id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        data-reference="parent">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                          class="feather feather-chevron-down">
-                          <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuReference24">
-                        <a class="dropdown-item" href="{% url 'delete-unit' unit.id %}"><i class="fas fa-trash-alt"
-                            style="padding-right: 15px;"></i>Eliminar</a>
-                        <!-- <a class="dropdown-item" onclick="deleteConfirmation(`{{unit.name}}`,'{{unit.id}}')"><i class="fas fa-trash-alt"
-                            style="padding-right: 15px;"></i>Eliminar</a> -->
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+      <div class="col-lg-12">
+        <div class="widget-content searchable-container grid">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-5 col-sm-7 filtered-list-search layout-spacing align-self-center">
+              <form class="form-inline my-2 my-lg-0">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-search">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" class="form-control product-search" id="input-search" placeholder="Buscar Grupos...">
+                </div>
+              </form>
+            </div>
+            <div class="col-xl-8 col-lg-7 col-md-7 col-sm-5 text-sm-right text-center layout-spacing align-self-center">
+              <div class="d-flex justify-content-sm-end justify-content-center">
+                <div class="switch align-self-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid view-grid active-view">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-list view-list ">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3" y2="6"></line>
+                    <line x1="3" y1="12" x2="3" y2="12"></line>
+                    <line x1="3" y1="18" x2="3" y2="18"></line>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="searchable-items grid">
+            <div class="items items-header-section">
+              <div class="item-content">
+                <div class="">
+                  <div class="n-chk align-self-center text-center">
+                    <label class="new-control new-checkbox checkbox-primary">
+                      <input type="checkbox" class="new-control-input" id="contact-check-all">
+                      <span class="new-control-indicator"></span>
+                    </label>
+                  </div>
+                  <h4>Nombre</h4>
+                </div>
+                <div class="user-email">
+                  <h4 style="margin-left: 0;">Descripción</h4>
+                </div>
+                <div class="user-location">
+                  <h4 style="margin-left: 0;">Cantidad</h4>
+                </div>
+                <div class="user-phone">
+                  <h4 style="margin-left: 3px;">Phone</h4>
+                </div>
+                <div class="action-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-trash-2  delete-multiple">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="items" style="">
+              <div class="item-content">
+                <div class="user-profile">
+                  <div class="n-chk align-self-center text-center">
+                    <label class="new-control new-checkbox checkbox-primary">
+                      <input type="checkbox" class="new-control-input contact-chkbox">
+                      <span class="new-control-indicator"></span>
+                    </label>
+                  </div>
+                  <img src="{% static 'assets/img/others/favicon.png' %}" alt="avatar" width="100">
+                  <div class="user-meta-info">
+                    <p class="user-name" data-name="Alan Green">Grupo</p>
+                    <p class="user-work" data-occupation="Web Developer">Segursat</p>
+                  </div>
+                </div>
+                <div class="user-email">
+                  <p class="info-title">Descripción: </p>
+                  <p class="usr-email-addr" data-email="Descripción 1">Descripción 1</p>
+                </div>
+                <div class="user-location">
+                  <p class="info-title">Cantidad: </p>
+                  <p class="usr-location" data-location="Cantidad 1">Cantidad 1</p>
+                </div>
+                <div class="user-phone">
+                  <p class="info-title">Phone: </p>
+                  <p class="usr-ph-no" data-phone="+1 (070) 123-4567">+1 (070) 123-4567</p>
+                </div>
+                <div class="action-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-edit-2 edit">
+                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-user-minus delete">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="items" style="">
+              <div class="item-content">
+                <div class="user-profile">
+                  <div class="n-chk align-self-center text-center">
+                    <label class="new-control new-checkbox checkbox-primary">
+                      <input type="checkbox" class="new-control-input contact-chkbox">
+                      <span class="new-control-indicator"></span>
+                    </label>
+                  </div>
+                  <img src="{% static 'assets/img/others/favicon.png' %}" alt="avatar" width="100">
+                  <div class="user-meta-info">
+                    <p class="user-name" data-name="Alan Green">Grupo 1</p>
+                    <p class="user-work" data-occupation="Web Developer">Segursat 1</p>
+                  </div>
+                </div>
+                <div class="user-email">
+                  <p class="info-title">Descripción: </p>
+                  <p class="usr-email-addr" data-email="Descripción 2">Descripción 2</p>
+                </div>
+                <div class="user-location">
+                  <p class="info-title">Cantidad: </p>
+                  <p class="usr-location" data-location="Cantidad 2">Cantidad 2</p>
+                </div>
+                <div class="user-phone">
+                  <p class="info-title">Phone: </p>
+                  <p class="usr-ph-no" data-phone="+1 (070) 123-4567">+1 (070) 123-4567</p>
+                </div>
+                <div class="action-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-edit-2 edit">
+                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-user-minus delete">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <line x1="23" y1="11" x2="17" y2="11"></line>
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  {% include 'units/unit-update-modal.html' %}
   {% include 'includes/footer.html' %}
 </div>
 <!-- End Content Area -->
@@ -116,112 +233,8 @@
 <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
 <script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
 <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
-<script>
-  $('#html5-extension').DataTable({
-    dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
-    buttons: {
-      buttons: [
-        { extend: 'copy', className: 'btn' },
-        { extend: 'excel', className: 'btn' },
-        { extend: 'print', className: 'btn' }
-      ]
-    },
-    "oLanguage": {
-      "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-      "sInfo": "Mostrando página _PAGE_ de _PAGES_",
-      "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-      "sSearchPlaceholder": "Buscar...",
-      "sLengthMenu": "Results :  _MENU_",
-    },
-    "stripeClasses": [],
-    "lengthMenu": [10, 20, 30, 50],
-    "pageLength": 10
-  });
-</script>
-<script>
-  document.getElementById("create-unit").addEventListener("click", () => {
-    $("#unit_create_modal").modal("show");
-  });
-
-  $('#unit_create_modal').on('hidden.bs.modal', () => {
-    document.getElementById("id_uniqueid").value = "";
-    document.getElementById("id_uniqueid").classList.remove("is-valid");
-    document.getElementById("id_uniqueid").classList.remove("is-invalid");
-    try {
-      document.getElementById("id_error_uniqueid").remove();
-    } catch (error) {
-      //nada
-    }
-    document.getElementById("id_imei").value = "";
-    document.getElementById("id_imei").classList.remove("is-valid");
-    document.getElementById("id_imei").classList.remove("is-invalid");
-    try {
-      document.getElementById("id_error_imei").remove();
-    } catch (error) {
-      //nada
-    }
-    document.getElementById("id_sim_phonenumber").value = "";
-    document.getElementById("id_sim_phonenumber").classList.remove("is-valid");
-    document.getElementById("id_sim_phonenumber").classList.remove("is-invalid");
-    try {
-      document.getElementById("id_error_sim_phonenumber").remove();
-    } catch (error) {
-      //nada
-    }
-    document.getElementById("id_sim_iccid").value = "";
-    document.getElementById("id_sim_iccid").classList.remove("is-valid");
-    document.getElementById("id_sim_iccid").classList.remove("is-invalid");
-    try {
-      document.getElementById("id_error_sim_iccid").remove();
-    } catch (error) {
-      //nada
-    }
-    document.getElementById("id_unit_name").value = "";
-    document.getElementById("id_unit_name").classList.remove("is-valid");
-    document.getElementById("id_unit_name").classList.remove("is-invalid");
-    try {
-      document.getElementById("id_error_unit_name").remove();
-    } catch (error) {
-      //nada
-    }
-  })
-
-</script>
-{% if create_form.errors %}
-<script>
-  $("#unit_create_modal").modal("show");
-</script>
-{% endif %}
-{% if update_form.errors %}
-<script>
-  $("#{{modal_id}}").modal("show");
-</script>
-{% endif %}
-{% if success %}
-<script>
-  swal({
-    type: "success",
-    title: "Operacion exitosa",
-    text: "{{ success }}",
-    padding: "2em"
-  })
-</script>
-{% endif %}
-<script>
-  function deleteConfirmation(unit, id) {
-    swal({
-      title: `¿Seguro que quieres eliminar la unidad ${unit}?`,
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: "cancelar",
-      padding: '2em'
-    }).then(function (result) {
-      if (result.value) {
-        window.location.href = "{% url 'logout' %}"
-      }
-    })
-  }
-</script>
+<script src="{% static 'assets/js/widgets/modules-widgets.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+<script src="{% static 'assets/js/apps/contact.js' %}"></script>
 <!-- End Page Level Custom Scripts -->
 {% endblock%}
