@@ -11392,7 +11392,7 @@ body{
     max-height:-moz-calc(100% - 100px);
     max-height:-o-calc(100% - 100px);
     max-height:calc(100% - 100px);
-    height:100%;
+    /* height:100%; */
     width:250px
 }
 @media (min-width:768px){
@@ -11421,7 +11421,7 @@ body{
     background:#fff;
     border-right:1px solid #d9d9d9;
     width:100%;
-    height:789px;
+    height:91%;
     max-width:100%
 }
 #sidebar-map .nav-map-tabs>li{
