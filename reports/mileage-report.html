@@ -31,33 +31,20 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-      <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing responsive-header-menu-breadcum">
-        <nav class="breadcrumb-two" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'mileage-report' %}">Reporte de Kilometraje</a></li>
-            <li class="breadcrumb-item"></li>
-          </ol>
-        </nav>
-      </div>
-      <!-- <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
-        <nav class="breadcrumb-two" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'detailed-report' %}">Reporte Detallado</a></li>
-            <li class="breadcrumb-item"></li>
-          </ol>
-        </nav>
-      </div>
-      <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
-        <div class="d-flex flex-row-reverse bd-highlight">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <h6 class="text-center"><mark>📅 &nbsp; Fecha : 29-03-2021 12:23:20</mark></h6>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="breadcrumb-four">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
             </li>
-          </ol>
+            <li class="active">
+              <a class="d-flex" href="{% url 'mileage-report' %}">
+                <i class="fas fa-tachometer-alt h5 pr-2"></i>
+                Reporte de Kilometraje
+              </a>
+            </li>
+          </ul>
         </div>
-      </div> -->
+      </div>
       <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
         <div class="flex-row-reverse bd-highlight">
           <form method="post" action="{% url 'mileage-report' %}">

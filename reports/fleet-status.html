@@ -20,7 +20,6 @@
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
   <link href="{% static 'plugins/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet">
@@ -38,16 +37,21 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-      <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
-        <nav class="breadcrumb-two" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'fleet-status' %}">Estado de Flota</a></li>
-            <li class="breadcrumb-item"></li>
-          </ol>
-        </nav>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+        <div class="breadcrumb-four">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
+            </li>
+            <li class="active">
+              <a class="d-flex" href="{% url 'fleet-status' %}">
+                <i class="fas fa-cars h5 pr-2"></i>
+                Estado de Flota
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
+      <div class="col-xl-6 col-lg-6 col-sm-6 col-12 responsive-header-menu">
         <div class="d-flex flex-row-reverse bd-highlight">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><h6 class="text-center"><mark style="font-size: 12px;">📅 &nbsp; Fecha/Hora: {{ now }}</mark></h6></li>
