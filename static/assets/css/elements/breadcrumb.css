@@ -133,7 +133,7 @@
     border-bottom-right-radius: 13px;
     border-top-right-radius: 13px; }
     .breadcrumb-three .breadcrumb-item.active {
-      color: #F8951D;
+      color: #1b55e2;
       font-weight: 600; }
     .breadcrumb-three .breadcrumb-item + .breadcrumb-item::before {
       color: #515365;
@@ -213,7 +213,7 @@
       border-radius: 50%;
       height: 4px;
       width: 4px;
-      background: #F8951D;
+      background: #1b55e2;
       left: -13px;
       top: 50%; }
     .breadcrumb-five .breadcrumb li a {
@@ -227,7 +227,7 @@
       vertical-align: bottom;
       width: 20px; }
     .breadcrumb-five .breadcrumb li.active a {
-      color: #F8951D !important;
+      color: #1b55e2 !important;
       font-weight: 600; }
 
 @media (max-width: 575px) {
