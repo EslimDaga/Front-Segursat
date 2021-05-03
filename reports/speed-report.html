@@ -68,7 +68,7 @@
       </div>
       <div class="col-xl-2 col-lg-2 col-sm-12 pb-2">
         <input type="text" class="form-control"
-            placeholder="Velocidad" name="speed_limit" id="speed_limit" >
+            placeholder="Velocidad" name="speed_limit" id="speed_limit" value="{% if speed_limit %}{{ speed_limit }}{% endif %}">
       </div>
       <div class="col-xl-1 col-lg-1 col-sm-12 pb-2">
         <button onclick="runLoader()" type="submit" class="btn btn-secondary responsive-button">

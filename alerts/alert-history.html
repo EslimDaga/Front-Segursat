@@ -21,7 +21,6 @@
   <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
-  <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" />
   <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
@@ -34,14 +33,19 @@
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <div class="row layout-top-spacing">
-        <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing responsive-header-menu-breadcum">
-          <nav class="breadcrumb-two" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
-              <li class="breadcrumb-item active"><a href="{% url 'alert-history' %}">Historial de Alertas</a></li>
-              <li class="breadcrumb-item"></li>
-            </ol>
-          </nav>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+          <div class="breadcrumb-four">
+            <ul class="breadcrumb">
+              <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
+              </li>
+              <li class="active">
+                <a class="d-flex" href="{% url 'alert-history' %}">
+                  <i class="fas fa-sensor-alert h5 pr-2"></i>
+                  Historial de Alertas
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-sm-12 pb-2">
           <div class="d-flex flex-row-reverse bd-highlight">
