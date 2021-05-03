@@ -16,7 +16,6 @@
 <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'plugins/select2/select2.min.css' %}" rel="stylesheet" type="text/css">
-<script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
 <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
@@ -24,14 +23,19 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-      <div class="col-xl-6 col-lg-6 col-sm-6 layout-spacing responsive-header-menu-breadcum">
-        <nav class="breadcrumb-two" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Inicio</a></li>
-            <li class="breadcrumb-item active"><a href="{% url 'maintenance-triggers' %}">Triggers</a></li>
-            <li class="breadcrumb-item"></li>
-          </ol>
-        </nav>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 layout-spacing">
+        <div class="breadcrumb-four">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
+            </li>
+            <li class="active">
+              <a class="d-flex" href="{% url 'maintenance-triggers' %}">
+                <i class="fas fa-project-diagram h5 pr-2"></i>
+                  Triggers
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
         <div class="d-flex flex-row-reverse bd-highlight">
