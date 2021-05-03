@@ -169,7 +169,8 @@ class MapView {
     /* document.getElementById("address_link").innerHTML = `<a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
       <i class="fas fa-eye"></i>
     </a>` */
-    document.getElementById("address").innerHTML = `${unit.last_address}`;
+    document.getElementById("address").innerHTML = `${unit.last_address} <a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
+      (<i class="fas fa-eye"></i>)`;
     /* Begin add for Eslim*/
     /* if (unit.last_speed > 0) {
       document.getElementById("status").innerHTML = `<span data-device="status" style="background-color: green" title="Online">Online</span><span data-device="status-text"> Online</span>`;
