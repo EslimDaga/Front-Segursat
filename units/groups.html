@@ -26,19 +26,19 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
-      <div class="col-xl-6 col-lg-12 col-sm-12 layout-spacing responsive-header-menu-breadcum">
+      <div class="col-xl-6 col-lg-12 col-sm-12 col-8 layout-spacing responsive-header-menu-breadcum">
         <div class="breadcrumb-four">
           <ul class="breadcrumb">
-            <li><a href="javscript:void(0);"><i class="fas fa-home h6" aria-hidden="true"></i></a>
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h6" aria-hidden="true"></i></a>
             </li>
             <li>
-              <a class="d-flex" href="javscript:void(0);">
+              <a class="d-flex" href="{% url 'units' %}">
                 <i class="fas fa-car-side h6 pr-2" aria-hidden="true"></i>
                 Unidades
               </a>
             </li>
             <li class="active">
-              <a class="d-flex" href="javscript:void(0);">
+              <a class="d-flex" href="{% url 'unit-group' %}">
                 <i class="fas fa-layer-group h6 pr-2" aria-hidden="true"></i>
                 Grupos
               </a>
@@ -46,10 +46,10 @@
           </ul>
         </div>
       </div>
-      <div class="col-xl-6 col-lg-6 col-sm-6 responsive-header-menu">
+      <div class="col-xl-6 col-lg-6 col-sm-6 col-4 responsive-header-menu">
         <div class="d-flex flex-row-reverse bd-highlight">
           <button class="btn btn-primary mb-2">
-            <i class="fas fa-layer-group h7 pr-2" aria-hidden="true"></i> Agregar grupos
+            <i class="fas fa-layer-group h7 pr-2" aria-hidden="true"></i> Agregar
           </button>
         </div>
       </div>
