@@ -47,16 +47,19 @@
         <div class="flex-row-reverse bd-highlight">
           <form method="post" action="{% url 'stop-report' %}">
           {% csrf_token %}
+          <label for="">Seleccionar Fecha Inicial</label>
           <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Inicial" name="initial_datetime" required>
         </div>
       </div>
       <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+        <label for="">Seleccionar Fecha Final</label>
         <div class="d-flex flex-row-reverse bd-highlight">
           <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha Final" name="final_datetime" required>
         </div>
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
+          <label for="">Seleccionar Unidad</label>
           <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
             <option value="">Seleccionar Unidad</option>
             {% for unit in units%}
@@ -65,7 +68,7 @@
           </select>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
+      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2 align-self-center">
         <div class="">
           <button onclick="runLoader()" type="submit" class="btn btn-secondary responsive-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar </button>
         </form>
