@@ -42,6 +42,7 @@ class MapView {
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
           <div class="user-name">
             <p class="">${units[i].name}</p>
+
           </div>
           <div class="user-status">
             <span class="badge badge-danger">
@@ -157,7 +158,7 @@ class MapView {
     const unit = await api.getUnit(unitName);
     /* console.log(unit); */
     /* document.getElementById("unitNameSelect").innerHTML = unitName; */
-    /* document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' target="_blank"><img alt="Street view" src="https://iadpi.com.ar/wp-content/uploads/2019/05/google-street-696x355.jpg"></a>`; */
+
     document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
     document.getElementById("rssi").innerHTML = `${unit.last_attributes.rssi} %`;
     if (unit.last_attributes.out1){
@@ -169,8 +170,10 @@ class MapView {
     /* document.getElementById("address_link").innerHTML = `<a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
       <i class="fas fa-eye"></i>
     </a>` */
-    document.getElementById("address").innerHTML = `${unit.last_address} <a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
-      (<i class="fas fa-eye"></i>)`;
+    document.getElementById("address").innerHTML = `${unit.last_address} <div class="d-flex"> <a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
+      (<i class="fas fa-eye"></i>)
+    </a><p id="streetView"></p></div>`;
+    document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' class="btn btn-xs btn-default" target="_blank"><i class="fas fa-street-view"></i></a>`;
     /* Begin add for Eslim*/
     /* if (unit.last_speed > 0) {
       document.getElementById("status").innerHTML = `<span data-device="status" style="background-color: green" title="Online">Online</span><span data-device="status-text"> Online</span>`;
@@ -186,6 +189,8 @@ class MapView {
     document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
     document.getElementById("last_report").innerHTML = `${unit.last_report}`;
     /* End add for Eslim*/
+    document.getElementById('waze-modal-body').innerHTML = `<iframe id="Waze-Map" src="https://embed.waze.com/iframe?zoom=15&lat=${unit.last_latitude}&lon=${unit.last_longitude}&pin=1" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"></iframe>`
+    document.getElementById("waze").innerHTML = `<a href="#" onclick="$('#waze-modal').modal('show');">Abrir mapa</a>`;
   }
 
   updateMarkerPosition = (unitName,latLng,angle) => {
