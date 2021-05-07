@@ -1,5 +1,5 @@
 {% load static %}
-<div id="sidebar-map" style="padding-bottom: 0px;">
+<div id="sidebar-map" style="padding-bottom: 0px; height: 900px;">
   <a class="btn-collapse" onclick="app.changeSetting('toggleSidebar');"><i style="color: white;"></i></a>
   <div class="sidebar-map-content">
     <ul class="nav nav-pills mb-3 mt-3 nav-fill" id="justify-pills-tab" role="tablist">
@@ -24,7 +24,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane-header">
+          <div class="tab-pane-header" style="margin-right: 13px;">
             <div class="widget widget-table-one">
               <div class="widget-content">
                 <div class="transactions-list">
@@ -155,6 +155,23 @@
                       <div class="t-name">
                         <h4>Satélites</h4>
                         <p class="meta-date" id="satellites"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="widget widget-table-one pt-1">
+              <div class="widget-content">
+                <div class="transactions-list">
+                  <div class="t-item">
+                    <div class="t-company-name">
+                      <div class="t-icon">
+                        <i class="icon satellites"></i>
+                      </div>
+                      <div class="t-name">
+                        <h4>Waze</h4>
+                        <p class="meta-date" id="waze"></p>
                       </div>
                     </div>
                   </div>
