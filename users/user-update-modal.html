@@ -1,6 +1,6 @@
 {% for profile in profiles %}
 {% if modal_user_id == profile.user %}
-<div class="modal fade" id="{{profile.user.username}}_profile_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="{{profile.id}}_profile_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog mt-5">
     <div class="modal-content">
       {% load static %}
@@ -47,7 +47,7 @@
   </div>
 </div>
 {% else %}
-<div class="modal fade" id="{{profile.user.username}}_profile_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="{{profile.id}}_profile_update_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog mt-5">
     <div class="modal-content">
       {% load static %}
@@ -75,7 +75,7 @@
           <div class="form-group">
             <div class="n-chk">
               <label class="new-control new-checkbox checkbox-primary">
-                <input type="checkbox" class="new-control-input" {% if profile.user.is_active %} checked {% endif %}>
+                <input type="checkbox" class="new-control-input" name="is_active" {% if profile.user.is_active %} checked {% endif %}>
                 <span class="new-control-indicator"></span>Estado
               </label>
             </div>
