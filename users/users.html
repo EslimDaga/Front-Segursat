@@ -52,7 +52,7 @@
         </div>
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
           <div class="widget-content widget-content-area br-6">
-            <div class="table-responsive mb-4 mt-4">
+            <div class="table-responsive">
               <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
                 <thead>
                   <tr>
@@ -78,7 +78,7 @@
                     {% endif %}
                     <td class="text-center">
                       <div class="btn-group">
-                        <button onclick="$('#{{profile.user.username}}_profile_update_modal').modal('show');" type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+                        <button onclick="$('#{{profile.id}}_profile_update_modal').modal('show');" type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
                         <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference24" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -120,9 +120,9 @@
         dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
         buttons: {
           buttons: [
-            { extend: 'copy', className: 'btn' },
-            { extend: 'excel', className: 'btn' },
-            { extend: 'print', className: 'btn' }
+            { extend: 'copy', text: '<i class="fas fa-copy"></i>', className: 'btn rounded-circle' },
+            { extend: 'excel', text: '<i class="fas fa-file-excel"></i>', className: 'btn rounded-circle' },
+            { extend: 'print', text: '<i class="fas fa-print"></i>', className: 'btn rounded-circle' }
           ]
         },
         "oLanguage": {

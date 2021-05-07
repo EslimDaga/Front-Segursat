@@ -48,7 +48,7 @@
       </div>
       <div class="col-xl-6 col-lg-6 col-sm-6 col-4 responsive-header-menu">
         <div class="d-flex flex-row-reverse bd-highlight">
-          <button class="btn btn-primary mb-2">
+          <button class="btn btn-primary mb-2" disabled>
             <i class="fas fa-layer-group h7 pr-2" aria-hidden="true"></i> Agregar
           </button>
         </div>
@@ -123,6 +123,7 @@
                 </div>
               </div>
             </div>
+            {% for group in groups %}
             <div class="items">
               <div class="item-content">
                 <div class="user-profile">
@@ -134,17 +135,21 @@
                   </div>
                   <img src="{% static 'assets/img/others/traffic-jam.png' %}" alt="avatar" width="100">
                   <div class="user-meta-info">
-                    <p class="user-name" data-name="Alan Green">Grupo 1</p>
-                    <p class="user-work" data-occupation="Web Developer">Segursat 1</p>
+                    <p class="user-name" data-name="{{ group.name }}">{{ group.name }}</p>
+                    <p class="user-work" data-occupation="{{ group.description }}">{{ group.description }}</p>
                   </div>
                 </div>
                 <div class="user-email">
                   <p class="info-title">Cantidad:</p>
-                  <p class="usr-email-addr" data-email="Cantidad 2 ">Cantidad 2</p>
+                  <p class="usr-email-addr" data-email="Cantidad 2 ">0</p>
                 </div>
                 <div class="user-location">
-                  <p class="info-title">Descripción:</p>
-                  <p class="usr-location" data-location="Descripción 2">Descripción 2</p>
+                  <p class="info-title">Modificación:</p>
+                  <p class="usr-location" data-location="{{ group.modified }}">{{ group.modified }}</p>
+                </div>
+                <div class="user-location">
+                  <p class="info-title">Creación:</p>
+                  <p class="usr-location" data-location="{{ group.created }}">{{ group.created }}</p>
                 </div>
                 <div class="action-btn">
                   <a href="">
@@ -166,49 +171,7 @@
                 </div>
               </div>
             </div>
-            <div class="items">
-              <div class="item-content">
-                <div class="user-profile">
-                  <div class="n-chk align-self-center text-center">
-                    <label class="new-control new-checkbox checkbox-primary">
-                      <input type="checkbox" class="new-control-input contact-chkbox">
-                      <span class="new-control-indicator"></span>
-                    </label>
-                  </div>
-                  <img src="{% static 'assets/img/others/traffic-jam.png' %}" alt="avatar" width="100">
-                  <div class="user-meta-info">
-                    <p class="user-name" data-name="Alan Green">Grupo 2</p>
-                    <p class="user-work" data-occupation="Web Developer">Segursat 2</p>
-                  </div>
-                </div>
-                <div class="user-email">
-                  <p class="info-title">Cantidad:</p>
-                  <p class="usr-email-addr" data-email="Cantidad 2 ">Cantidad 2</p>
-                </div>
-                <div class="user-location">
-                  <p class="info-title">Descripción:</p>
-                  <p class="usr-location" data-location="Descripción 2">Descripción 2</p>
-                </div>
-                <div class="action-btn">
-                  <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </a>
-                  <a href="">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
-                      <polyline points="3 6 5 6 21 6"></polyline>
-                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                      <line x1="10" y1="11" x2="10" y2="17"></line>
-                      <line x1="14" y1="11" x2="14" y2="17"></line>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>

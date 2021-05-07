@@ -74,14 +74,14 @@
         <input type="text" class="form-control" placeholder="Velocidad" name="speed_limit" id="speed_limit" value="{% if speed_limit %}{{ speed_limit }}{% endif %}">
       </div>
       <div class="col-xl-1 col-lg-1 col-sm-12 pb-2 align-self-center">
-        <button onclick="runLoader()" type="submit" class="btn btn-secondary responsive-button">
+        <button onclick="runLoader()" type="submit" class="btn btn-dark rounded-circle responsive-button">
             <svg
               xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="feather feather-search">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg> Buscar
+            </svg>
           </button>
           </form>
       </div>
@@ -166,9 +166,9 @@
       ">",
     buttons: {
       buttons: [
-        { extend: 'copy', className: 'btn' },
-        { extend: 'excel', className: 'btn' },
-        { extend: 'print', className: 'btn' }
+        { extend: 'copy', text: '<i class="fas fa-copy"></i>', className: 'btn rounded-circle' },
+        { extend: 'excel', text: '<i class="fas fa-file-excel"></i>', className: 'btn rounded-circle' },
+        { extend: 'print', text: '<i class="fas fa-print"></i>', className: 'btn rounded-circle' }
       ]
     },
     "oLanguage": {
