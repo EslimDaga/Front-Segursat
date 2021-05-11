@@ -16,7 +16,7 @@ class MapView {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
       if (units[i].last_speed > 0) {
-        //console.log(units[i]);
+        console.log(units[i]);
         const unit =
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
@@ -182,9 +182,9 @@ class MapView {
     } */
 
     if (unit.last_attributes.ignition) {
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> ${unit.last_attributes.ignition} </span>`;
     }else{
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> ${unit.last_attributes.ignition} </span>`;
     }
     document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
     document.getElementById("last_report").innerHTML = `${unit.last_report}`;
@@ -204,8 +204,8 @@ class MapView {
     if (selectedUnit == unit_name) {
       const unit = await api.getUnitStatus(unit_name);
       //console.log(unit);
-      const lat = unit_name.last_latitude;
-      const lng = unit_name.last_longitude;
+      const lat = unit.last_latitude;
+      const lng = unit.last_longitude;
       document.getElementById("address").innerHTML = `${unit.last_address}`;
       document.getElementById("last_report").innerHTML = `${unit.last_report}`;
       document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
@@ -215,16 +215,14 @@ class MapView {
       }else{
         document.getElementById("blocking").innerHTML = `<span class="badge badge-success"> Sin bloqueo </span>`;
       }
-        document.getElementById("battery").innerHTML = `${unit.last_attributes.battery} %`;
-      }
-      /*
+      document.getElementById("battery").innerHTML = `${unit.last_attributes.battery} %`;
       if (unit.last_attributes.ignition) {
-        document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
+        document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> ${unit.last_attributes.ignition} </span>`;
       }else{
-        document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
+        document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> ${unit.last_attributes.ignition}  </span>`;
       }
-      */
       /* document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`; */
+    }
   }
 
   drawLocationHistory = async (unitName,initialDate,finalDate,markerCheckbox,playbackCheckbox,speedRange) => {
