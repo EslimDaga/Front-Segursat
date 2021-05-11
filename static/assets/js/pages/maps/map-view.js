@@ -154,7 +154,7 @@ class MapView {
     const lng = this.markers[index].getLatLng().lng
     const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
     //this.map.panTo([lat,lng]);
-    this.map.setView([lat,lng],15);
+    this.map.setView([lat,lng],16);
     //almacenar en el local storage la unidad seleccionada
     localStorage.setItem("selectedUnit", unitName);
     //llamar a get unit
