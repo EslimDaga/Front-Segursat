@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head_content %}
-  <title>Mapa - Segursat GPS</title>
+  <title>Mapas - Segursat GPS</title>
   <!-- Begin Page Level Custom Styles -->
   <link href="{% static 'plugins/widgets-map/css/style.css' %}" rel="stylesheet">
   <!-- End Global Mandatory Styles -->
@@ -22,6 +22,10 @@
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
+
   <style>
     .map {
       width: 100%;
@@ -91,6 +95,9 @@
   <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
   <script src="{% static 'plugins/blockui/jquery.blockUI.min.js' %}"></script>
   <script src="{% static 'plugins/blockui/custom-blockui.js' %}"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+
   <script src="{% static 'assets/js/pages/maps/map-view.js' %}"></script>
   <script src="{% static 'plugins/toast/bootstrap-notify.js' %}"></script>
   <script src="{% static 'plugins/toast/bootstrap-notify.min.js' %}"></script>
