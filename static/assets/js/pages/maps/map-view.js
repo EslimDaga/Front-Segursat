@@ -6,6 +6,7 @@ class MapView {
     this.map;
     this.units = [];
     this.markers = [];
+    this.markerCluster = L.markerClusterGroup();
     this.historyMarkers = [];
     this.historyPaths = [];
     this.geofences = [];
@@ -85,21 +86,22 @@ class MapView {
         </div>
         `
       });
-      this.markers.push(
-        new L.marker(
-          [units[i].last_latitude,units[i].last_longitude],
-          {
-            icon: icon,
-            title: units[i].name,
-            rotationAngle: units[i].last_angle
-          }
-        ).bindTooltip(`${units[i].name}`, {
-          permanent: true,
-          direction : "top",
-          offset: L.point({x: 0, y: -30})
-        }).addTo(this.map)
-      );
+      const marker = new L.marker(
+        [units[i].last_latitude,units[i].last_longitude],
+        {
+          icon: icon,
+          title: units[i].name,
+          rotationAngle: units[i].last_angle
+        }
+      ).bindTooltip(`${units[i].name}`, {
+        permanent: true,
+        direction : "top",
+        offset: L.point({x: 0, y: -30})
+      }).addTo(this.map);
+      this.markers.push(marker);
+      this.markerCluster.addLayer(marker);
     }
+    this.map.addLayer(this.markerCluster);
   }
 
   renderMap = (units) => {
@@ -151,7 +153,8 @@ class MapView {
     const lat = this.markers[index].getLatLng().lat
     const lng = this.markers[index].getLatLng().lng
     const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
-    this.map.panTo([lat,lng]);
+    //this.map.panTo([lat,lng]);
+    this.map.setView([lat,lng],15);
     //almacenar en el local storage la unidad seleccionada
     localStorage.setItem("selectedUnit", unitName);
     //llamar a get unit
@@ -328,6 +331,8 @@ class MapView {
   }
 
   cleanMap = () => {
+    this.map.removeLayer(this.markerCluster);
+    this.markerCluster = L.markerClusterGroup();
     for (let i=0;i<this.markers.length;i++) {
       this.map.removeLayer(this.markers[i]);
     }
