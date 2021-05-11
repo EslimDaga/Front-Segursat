@@ -6,7 +6,7 @@ class MapView {
     this.map;
     this.units = [];
     this.markers = [];
-    this.markerCluster = L.markerClusterGroup();
+    //this.markerCluster = L.markerClusterGroup();
     this.historyMarkers = [];
     this.historyPaths = [];
     this.geofences = [];
@@ -99,9 +99,9 @@ class MapView {
         offset: L.point({x: 0, y: -30})
       }).addTo(this.map);
       this.markers.push(marker);
-      this.markerCluster.addLayer(marker);
+      //this.markerCluster.addLayer(marker);
     }
-    this.map.addLayer(this.markerCluster);
+    //this.map.addLayer(this.markerCluster);
   }
 
   renderMap = (units) => {
