@@ -48,7 +48,7 @@
   margin: 0 auto; }
 
 .searchable-items {
-  padding: 13px 25px 13px 13px;
+  padding: 13px 14px 13px 13px;
   border-radius: 10px; }
 
 .searchable-container .searchable-items {
@@ -74,7 +74,7 @@
   margin-bottom: 8px;
   border-radius: 5px;
   padding: 5px 18px;
-  width: 100%;
+  width: 95%;
   color: #0e1726;
   /* min-width: 625px; */
   transition: all 0.35s ease;
