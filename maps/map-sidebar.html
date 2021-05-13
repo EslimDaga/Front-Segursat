@@ -2,7 +2,7 @@
 <div id="sidebar-map" style="padding-bottom: 0px; height: 900px;">
   <a class="btn-collapse" onclick="app.changeSetting('toggleSidebar');"><i style="color: white;"></i></a>
   <div class="sidebar-map-content">
-    <ul class="nav nav-pills mb-3 mt-3 nav-fill" id="justify-pills-tab" role="tablist">
+    <ul class="nav nav-pills nav-fill" id="justify-pills-tab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="justify-pills-home-tab" data-toggle="pill" href="#justify-pills-home" role="tab" aria-controls="justify-pills-home" aria-selected="true" style="height: 45px; padding-top: 9%;" onclick="mapView.openUnitTab();">Objetos</a>
       </li>
@@ -12,166 +12,196 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane fade show active" id="justify-pills-home" role="tabpanel" aria-labelledby="justify-pills-home-tab">
-        <div class="tab-pane-header">
-          <div class="input-group mb-2">
-            <input type="search" class="form-control" id="input-search"  placeholder="Buscar unidad">
-          </div>
-        </div>
-        <div class="tab-pane-body" style="height: 602px;">
-          <div id="ajax-items" style="position: relative; background-color: #afafaf2e;">
-            <div class="searchable-container">
-              <div class="searchable-items" id="unit-list">
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane-header" style="margin-right: 13px;">
-            <div class="widget widget-table-one">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon poi leaflet-drag-target"></i>
+        <div class="tab-pane-body" style="height: 800px;">
+          <div id='jqxSplitter'>
+            <div id="">
+              <div class="widget-content widget-content-area text-center tags-content">
+                <div class="mx-auto">
+                  <div class="filtered-list-search">
+                    <form class="form-inline my-2 my-lg-0 justify-content-center">
+                      <div class="w-100">
+                        <input type="search" class="w-100 form-control product-search br-30" id="input-search"
+                          placeholder="Buscar unidad">
+                        <button class="btn btn-dark" type="button" style="cursor: default;">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-search">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                          </svg>
+                        </button>
                       </div>
-                      <div class="t-name">
-                        <h4>Dirección</h4>
-                        <p class="meta-date" id="address"></p>
-                      </div>
+                    </form>
+                  </div>
+                  <div class="searchable-container" id="myDIV">
+                    <div class="searchable-items" id="unit-list">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon today"></i>
+            <div id="">
+              <div class="widget widget-table-one">
+                <div class="widget-heading">
+                  <h5 class="">Detalles</h5>
+
+                </div>
+                <div class="widget-content">
+                  <div class="transactions-list">
+                    <div class="t-item">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Dirección</h4>
+                          <p class="meta-date" id="address"></p>
+                        </div>
                       </div>
-                      <div class="t-name">
-                        <h4>Tiempo</h4>
-                        <p class="meta-date" id="last_report"></p>
+                      <div class="t-rate rate-dec">
+                        <div class="task-action">
+                          <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="pendingTask" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="feather feather-more-horizontal">
+                                <circle cx="12" cy="12" r="1"></circle>
+                                <circle cx="19" cy="12" r="1"></circle>
+                                <circle cx="5" cy="12" r="1"></circle>
+                              </svg>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="pendingTask"
+                              style="will-change: transform;">
+                              <a class="dropdown-item" href="javascript:void(0);">Ver en Google Maps</a>
+                              <a class="dropdown-item" href="javascript:void(0);">Ver en Street View</a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon speed"></i>
+                  <div class="transactions-list">
+                    <div class="t-item">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Dirección</h4>
+                          <a href="#">
+                            <p class="meta-date" id="address"></p>
+                          </a>
+                        </div>
                       </div>
-                      <div class="t-name">
-                        <h4>Velocidad</h4>
-                        <p class="meta-date" id="speed"></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon gsm gsm-2"></i>
-                      </div>
-                      <div class="t-name">
-                        <h4>RSSI</h4>
-                        <p class="meta-date" id="rssi"></p>
+                      <div class="t-rate rate-dec">
+                        <a href="#"><i class="fas fa-street-view"></i></a>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon door"></i>
+                  <div class="transactions-list">
+                    <div class="t-item">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-clock"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Tiempo</h4>
+                          <p class="meta-date" id="last_report"></p>
+                        </div>
                       </div>
-                      <div class="t-name">
-                        <h4>Bloqueo</h4>
-                        <p class="meta-date" id="blocking"></p>
+                      <!-- <div class="t-rate rate-dec">
+                        <p><span>-$16.44</span></p>
+                      </div> -->
+                    </div>
+                  </div>
+                  <div class="transactions-list d-flex">
+                    <div class="t-item w-50">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Velocidad</h4>
+                          <p class="meta-date" id="speed"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="t-item w-50">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-signal"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>RSSI</h4>
+                          <p class="meta-date" id="rssi"></p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon battery battery-1"></i>
+                  <div class="transactions-list d-flex">
+                    <div class="t-item w-50">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-lock"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Bloqueo</h4>
+                          <p class="meta-date" id="blocking"></p>
+                        </div>
                       </div>
-                      <div class="t-name">
-                        <h4>Batería</h4>
-                        <p class="meta-date" id="battery"></p>
+                    </div>
+                    <div class="t-item w-50">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-car-battery"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Batería</h4>
+                          <p class="meta-date" id="battery"></p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon ignition"></i>
-                      </div>
-                      <div class="t-name">
-                        <h4>Encendido</h4>
-                        <p class="meta-date" id="ignition"></p>
+                  <div class="transactions-list d-flex">
+                    <div class="t-item w-50">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-key"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Encendido</h4>
+                          <p class="meta-date" id="ignition"></p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon satellites"></i>
-                      </div>
-                      <div class="t-name">
-                        <h4>Satélites</h4>
-                        <p class="meta-date" id="satellites"></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="widget widget-table-one pt-1">
-              <div class="widget-content">
-                <div class="transactions-list">
-                  <div class="t-item">
-                    <div class="t-company-name">
-                      <div class="t-icon">
-                        <i class="icon traffic"></i>
-                      </div>
-                      <div class="t-name">
-                        <h4>Waze</h4>
-                        <p class="meta-date" id="waze"></p>
+                    <div class="t-item w-50">
+                      <div class="t-company-name">
+                        <div class="t-icon">
+                          <div class="icon">
+                            <i class="fas fa-satellite-dish"></i>
+                          </div>
+                        </div>
+                        <div class="t-name">
+                          <h4>Satelites</h4>
+                          <p class="meta-date" id="satellites"></p>
+                        </div>
                       </div>
                     </div>
                   </div>
