@@ -11397,12 +11397,12 @@ body{
 }
 @media (min-width:768px){
     #sidebar-map{
-        width:300px
+        width:381px
     }
 }
 @media (min-width:992px){
     #sidebar-map{
-        width:330px
+        width:396px
     }
 }
 #sidebar-map.collapsed,#sidebar-map.collapsed #sidebar-map.btn-collapse,#widgets.collapsed #sidebar-map.btn-collapse{
