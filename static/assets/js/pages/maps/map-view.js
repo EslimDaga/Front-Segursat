@@ -1,3 +1,16 @@
+// Force zIndex of Leaflet
+(function(global){
+  var MarkerMixin = {
+    _updateZIndex: function (offset) {
+      this._icon.style.zIndex = this.options.forceZIndex ? (this.options.forceZIndex + (this.options.zIndexOffset || 0)) : (this._zIndex + offset);
+    },
+    setForceZIndex: function(forceZIndex) {
+      this.options.forceZIndex = forceZIndex ? forceZIndex : null;
+    }
+  };
+  if (global) global.include(MarkerMixin);
+})(L.Marker);
+
 const api = new Api()
 
 class MapView {
@@ -150,11 +163,43 @@ class MapView {
 
   unitSelect = async (unitName) => {
     const index = this.searchUnitMarker(unitName);
+
+    console.log(this.markers[index])
+    console.log(this.units[index])
+    for (let i=0;i<this.markers.length;i++) {
+      this.markers[i].setForceZIndex(null);
+    }
+    this.map.removeLayer(this.markers[index])
+    const icon = L.divIcon({
+      iconSize:null,
+      html:`
+      <div class="map-label">
+        <div class="map-label-content">
+          <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+        </div>
+      </div>
+      `
+    });
+    const marker = new L.marker(
+      [this.units[index].last_latitude,this.units[index].last_longitude],
+      {
+        icon: icon,
+        title: this.units[index].name,
+        rotationAngle: this.units[index].last_angle,
+        forceZIndex: 1000
+      }
+    ).bindTooltip(`${this.units[index].name}`, {
+      permanent: true,
+      direction : "top",
+      offset: L.point({x: 0, y: -30})
+    }).addTo(this.map);
+    this.markers[index] = marker;
+
     const lat = this.markers[index].getLatLng().lat
     const lng = this.markers[index].getLatLng().lng
     const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
-    //this.map.panTo([lat,lng]);
-    this.map.setView([lat,lng],16);
+    this.map.panTo([lat,lng]);
+    //this.map.setView([lat,lng],16);
     //almacenar en el local storage la unidad seleccionada
     localStorage.setItem("selectedUnit", unitName);
     //llamar a get unit
