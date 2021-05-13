@@ -55,6 +55,30 @@
         padding: 15px 15px 10px 15px;
     }
     .multiMessageBlockUi i { display: block }
+    .leaflet-tooltip-left:before {
+    right: 0;
+    margin-right: -12px;
+    border-left-color: rgba(0, 0, 0, 0.4);
+}
+.leaflet-tooltip-right:before {
+    left: 0;
+    margin-left: -12px;
+    border-right-color: rgba(0, 0, 0, 0.4);
+    }
+.leaflet-tooltip-own {
+    position: absolute;
+    padding: 4px;
+    background-color: white;
+    border: 1px solid #000;
+    color: #000;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
 </style>
 
   <!-- End Page Level Custom Styles -->
