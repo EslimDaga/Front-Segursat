@@ -109,6 +109,7 @@ class MapView {
       ).bindTooltip(`${units[i].name}`, {
         permanent: true,
         direction : "top",
+        className: "leaflet-tooltip-own",
         offset: L.point({x: 0, y: -30})
       }).addTo(this.map);
       this.markers.push(marker);
@@ -164,8 +165,8 @@ class MapView {
   unitSelect = async (unitName) => {
     const index = this.searchUnitMarker(unitName);
 
-    console.log(this.markers[index])
-    console.log(this.units[index])
+    /* console.log(this.markers[index])
+    console.log(this.units[index]) */
     for (let i=0;i<this.markers.length;i++) {
       this.markers[i].setForceZIndex(null);
     }
@@ -191,6 +192,7 @@ class MapView {
     ).bindTooltip(`${this.units[index].name}`, {
       permanent: true,
       direction : "top",
+      className: "leaflet-tooltip-own",
       offset: L.point({x: 0, y: -30})
     }).addTo(this.map);
     this.markers[index] = marker;
