@@ -22,7 +22,8 @@
   <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
-
+  <link href="{% static 'plugins/jquery-splitter/css/jqx.base.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'assets/css/dashboard/dash_1.css' %}" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
 
@@ -126,6 +127,21 @@
   <script src="{% static 'plugins/toast/bootstrap-notify.js' %}"></script>
   <script src="{% static 'plugins/toast/bootstrap-notify.min.js' %}"></script>
   <script src="{% static 'assets/js/widgets/modules-widgets.js' %}"></script>
+  <script src="{% static 'plugins/jquery-splitter/js/demos.js' %}"></script>
+  <script src="{% static 'plugins/jquery-splitter/js/jqxcore.js' %}"></script>
+  <script src="{% static 'plugins/jquery-splitter/js/jqxsplitter.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      // Create jqxSplitter.
+      $('#jqxSplitter').jqxSplitter({
+        width: "100%",
+        height: "100%",
+        orientation: "horizontal",
+        theme: 'summer',
+        panels: [{ size: '50%' }, { size: '50%' }]
+      });
+    });
+  </script>
   <script>
     $(".disabled-results").select2();
   </script>
