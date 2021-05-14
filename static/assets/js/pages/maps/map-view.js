@@ -35,7 +35,7 @@ class MapView {
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
           <div class="avatar avatar-sm">
-            <img src="https://designreset.com/cork/ltr/demo6/assets/img/profile-5.jpeg" class="rounded-circle">
+            <img src="/static/assets/img/others/car-solid.svg" class="rounded-circle">
           </div>
           <div class="user-name">
             <p class="">${units[i].name}</p>
