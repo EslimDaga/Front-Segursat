@@ -25,6 +25,8 @@
   <link href="{% static 'plugins/jquery-splitter/css/jqx.base.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/dashboard/dash_1.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/elements/avatar.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css" rel="stylesheet" >
   <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css" rel="stylesheet" >
   <style>
@@ -126,6 +128,7 @@
   <script src="{% static 'plugins/jquery-splitter/js/demos.js' %}"></script>
   <script src="{% static 'plugins/jquery-splitter/js/jqxcore.js' %}"></script>
   <script src="{% static 'plugins/jquery-splitter/js/jqxsplitter.js' %}"></script>
+  <script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
   <script>
     $(document).ready(function () {
       // Create jqxSplitter.
@@ -231,6 +234,20 @@
         );
       }
 
+    });
+  </script>
+  <script>
+    var f1 = flatpickr(document.getElementById('history-date-from'), {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true,
+      defaultDate: "today"
+    });
+    var f2 = flatpickr(document.getElementById('history-date-to'), {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true,
+      defaultDate: "today"
     });
   </script>
 {% endblock%}
