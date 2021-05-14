@@ -34,17 +34,14 @@ class MapView {
         const unit =
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
+          <div class="avatar avatar-sm">
+            <img src="https://designreset.com/cork/ltr/demo6/assets/img/profile-5.jpeg" class="rounded-circle">
+          </div>
           <div class="user-name">
             <p class="">${units[i].name}</p>
           </div>
           <div class="user-status">
-            <span class="badge badge-success">
-              <div class="details">
-                <span data-device="speed">${units[i].last_speed} kph</span>
-                <span data-device="detect_engine" class="on"><i class="icon detect_engine"></i></span>
-                <span data-device="status" style="background-color: green" title="Online">online</span>
-              </div>
-            </span>
+            <span class="badge badge-success">${units[i].last_speed} km/h</span>
           </div>
         </div>
       `;
@@ -54,17 +51,14 @@ class MapView {
         const unit =
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
+          <div class="avatar avatar-sm">
+            <img src="/static/assets/img/others/car-solid.svg" class="rounded-circle">
+          </div>
           <div class="user-name">
             <p class="">${units[i].name}</p>
-
           </div>
           <div class="user-status">
-            <span class="badge badge-danger">
-              <div class="details">
-                <span data-device="speed">${units[i].last_speed} kph</span>
-                <span data-device="status" style="background-color: red" title="Online">online</span>
-              </div>
-            </span>
+            <span class="badge badge-danger">${units[i].last_speed} km/h</span>
           </div>
         </div>
       `;
