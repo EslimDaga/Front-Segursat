@@ -11561,7 +11561,7 @@ body{
     display:block;
     position:absolute;
     color:#aaa;
-    background:#898d9e;
+    background:#3b3f5c;
     text-align:center;
     text-decoration:none;
     font-size:10px;
@@ -11593,13 +11593,13 @@ body{
 #sidebar-map .btn-collapse:before,.btn-collapse.collapse-left:before{
     left:0;
     bottom:100%;
-    border-bottom:20px solid #898d9e;
+    border-bottom:20px solid #3b3f5c;
     border-right:20px solid transparent
 }
 #sidebar-map .btn-collapse:after,.btn-collapse.collapse-left:after{
     left:0;
     top:100%;
-    border-top:20px solid #898d9e;
+    border-top:20px solid #3b3f5c;
     border-right:20px solid transparent
 }
 .btn-collapse.collapse-right{
