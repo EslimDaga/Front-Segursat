@@ -158,12 +158,21 @@ class MapView {
 
   unitSelect = async (unitName) => {
     const index = this.searchUnitMarker(unitName);
-
-    /* console.log(this.markers[index])
-    console.log(this.units[index]) */
     for (let i=0;i<this.markers.length;i++) {
       this.markers[i].setForceZIndex(null);
     }
+    
+    const lat = this.markers[index].getLatLng().lat
+    const lng = this.markers[index].getLatLng().lng
+    const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
+    this.map.panTo([lat,lng]);
+    //this.map.setView([lat,lng],16);
+    //almacenar en el local storage la unidad seleccionada
+    localStorage.setItem("selectedUnit", unitName);
+    //llamar a get unit
+    const unit = await api.getUnit(unitName);
+
+    // volver a dibular marcador
     this.map.removeLayer(this.markers[index])
     const icon = L.divIcon({
       iconSize:null,
@@ -176,33 +185,23 @@ class MapView {
       `
     });
     const marker = new L.marker(
-      [this.units[index].last_latitude,this.units[index].last_longitude],
+      [unit.last_latitude,unit.last_longitude],
       {
         icon: icon,
-        title: this.units[index].name,
-        rotationAngle: this.units[index].last_angle,
+        title: unit.name,
+        rotationAngle: unit.last_angle,
         forceZIndex: 1000
       }
-    ).bindTooltip(`${this.units[index].name}`, {
+    ).bindTooltip(`${unit.name}`, {
       permanent: true,
       direction : "top",
       className: "leaflet-tooltip-own",
       offset: L.point({x: 0, y: -30})
     }).addTo(this.map);
     this.markers[index] = marker;
+    // fin volver a dibular marcador
 
-    const lat = this.markers[index].getLatLng().lat
-    const lng = this.markers[index].getLatLng().lng
-    const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
-    this.map.panTo([lat,lng]);
-    //this.map.setView([lat,lng],16);
-    //almacenar en el local storage la unidad seleccionada
-    localStorage.setItem("selectedUnit", unitName);
-    //llamar a get unit
-    const unit = await api.getUnit(unitName);
-    /* console.log(unit); */
     document.getElementById("unitNameSelect").innerHTML = `${unit.name}`;
-
     document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
     document.getElementById("rssi").innerHTML = `${unit.last_attributes.rssi} %`;
     if (unit.last_attributes.out1){
