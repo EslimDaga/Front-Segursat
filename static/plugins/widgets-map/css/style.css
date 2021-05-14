@@ -11440,7 +11440,7 @@ body{
     /* overflow-y:auto; */
     overflow-y:overlay;
     position:relative;
-    height: 755px;
+    height: 735px !important;
 }
 #sidebar-map .tab-pane-footer{
     padding:8px 10px
