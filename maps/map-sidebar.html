@@ -1,5 +1,5 @@
 {% load static %}
-<div id="sidebar-map" style="padding-bottom: 0px; height: 900px;">
+<div id="sidebar-map" style="padding-bottom: 0px; height: 721px;">
   <a class="btn-collapse" onclick="app.changeSetting('toggleSidebar');"><i style="color: white;"></i></a>
   <div class="sidebar-map-content">
     <ul class="nav nav-pills nav-fill" id="justify-pills-tab" role="tablist">
@@ -12,7 +12,7 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane fade show active" id="justify-pills-home" role="tabpanel" aria-labelledby="justify-pills-home-tab">
-        <div class="tab-pane-body" style="height: 800px;">
+        <div class="tab-pane-body" style="height: 700px;">
           <div id='jqxSplitter'>
             <div id="">
               <div class="widget-content widget-content-area text-center tags-content">
@@ -56,50 +56,14 @@
                         </div>
                         <div class="t-name">
                           <h4>Dirección</h4>
-                          <p class="meta-date" id="address"></p>
-                        </div>
-                      </div>
-                      <div class="t-rate rate-dec">
-                        <div class="task-action">
-                          <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" id="pendingTask" data-toggle="dropdown"
-                              aria-haspopup="true" aria-expanded="false">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                class="feather feather-more-horizontal">
-                                <circle cx="12" cy="12" r="1"></circle>
-                                <circle cx="19" cy="12" r="1"></circle>
-                                <circle cx="5" cy="12" r="1"></circle>
-                              </svg>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="pendingTask"
-                              style="will-change: transform;">
-                              <a class="dropdown-item" href="javascript:void(0);">Ver en Google Maps</a>
-                              <a class="dropdown-item" href="javascript:void(0);">Ver en Street View</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="transactions-list">
-                    <div class="t-item">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fas fa-map-marked-alt"></i>
-                          </div>
-                        </div>
-                        <div class="t-name">
-                          <h4>Dirección</h4>
                           <a href="#">
                             <p class="meta-date" id="address"></p>
                           </a>
                         </div>
                       </div>
-                      <div class="t-rate rate-dec">
+                      <!-- <div class="t-rate rate-dec">
                         <a href="#"><i class="fas fa-street-view"></i></a>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <div class="transactions-list">
@@ -115,91 +79,100 @@
                           <p class="meta-date" id="last_report"></p>
                         </div>
                       </div>
-                      <!-- <div class="t-rate rate-dec">
-                        <p><span>-$16.44</span></p>
-                      </div> -->
                     </div>
                   </div>
-                  <div class="transactions-list d-flex">
-                    <div class="t-item w-50">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fas fa-tachometer-alt"></i>
+                  <div class="d-flex">
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fas fa-tachometer-alt"></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="t-name">
-                          <h4>Velocidad</h4>
-                          <p class="meta-date" id="speed"></p>
+                          <div class="t-name">
+                            <h4>Velocidad</h4>
+                            <p class="meta-date" id="speed"></p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="t-item w-50">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fas fa-signal"></i>
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fas fa-signal"></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="t-name">
-                          <h4>RSSI</h4>
-                          <p class="meta-date" id="rssi"></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="transactions-list d-flex">
-                    <div class="t-item w-50">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fas fa-lock"></i>
+                          <div class="t-name">
+                            <h4>RSSI</h4>
+                            <p class="meta-date" id="rssi"></p>
                           </div>
-                        </div>
-                        <div class="t-name">
-                          <h4>Bloqueo</h4>
-                          <p class="meta-date" id="blocking"></p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="t-item w-50">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fas fa-car-battery"></i>
-                          </div>
-                        </div>
-                        <div class="t-name">
-                          <h4>Batería</h4>
-                          <p class="meta-date" id="battery"></p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="transactions-list d-flex">
-                    <div class="t-item w-50">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fas fa-key"></i>
+                  <div class="d-flex">
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fas fa-lock"></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="t-name">
-                          <h4>Encendido</h4>
-                          <p class="meta-date" id="ignition"></p>
+                          <div class="t-name">
+                            <h4>Bloqueo</h4>
+                            <p class="meta-date" id="blocking"></p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <div class="t-item w-50">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fas fa-satellite-dish"></i>
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fas fa-car-battery"></i>
+                            </div>
+                          </div>
+                          <div class="t-name">
+                            <h4>Batería</h4>
+                            <p class="meta-date" id="battery"></p>
                           </div>
                         </div>
-                        <div class="t-name">
-                          <h4>Satelites</h4>
-                          <p class="meta-date" id="satellites"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fas fa-key"></i>
+                            </div>
+                          </div>
+                          <div class="t-name">
+                            <h4>Encendido</h4>
+                            <p class="meta-date">15 km/h</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fas fa-satellite-dish"></i>
+                            </div>
+                          </div>
+                          <div class="t-name">
+                            <h4>Satelites</h4>
+                            <p class="meta-date">5%</p>
+                          </div>
                         </div>
                       </div>
                     </div>
