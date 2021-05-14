@@ -11441,6 +11441,7 @@ body{
     overflow-y:overlay;
     position:relative;
     height: 735px !important;
+    background-color: #ffff;
 }
 #sidebar-map .tab-pane-footer{
     padding:8px 10px
