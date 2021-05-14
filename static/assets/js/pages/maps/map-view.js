@@ -260,9 +260,9 @@ class MapView {
       }
       document.getElementById("battery").innerHTML = `${unit.last_attributes.battery} %`;
       if (unit.last_attributes.ignition) {
-        document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> ${unit.last_attributes.ignition} </span>`;
+        document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
       }else{
-        document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> ${unit.last_attributes.ignition}  </span>`;
+        document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
       }
       /* document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`; */
     }
