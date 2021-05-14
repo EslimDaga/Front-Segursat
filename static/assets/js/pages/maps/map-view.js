@@ -30,12 +30,12 @@ class MapView {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
       if (units[i].last_speed > 0) {
-        console.log(units[i]);
+        //console.log(units[i]);
         const unit =
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
           <div class="avatar avatar-sm">
-            <img src="/static/assets/img/others/car-solid.svg" class="rounded-circle">
+            <img src="/static/assets/img/others/car-on.svg" class="rounded-circle">
           </div>
           <div class="user-name">
             <p class="">${units[i].name}</p>
@@ -52,7 +52,7 @@ class MapView {
           `
         <div onclick="mapView.unitSelect('${units[i].name}')" class="items">
           <div class="avatar avatar-sm">
-            <img src="/static/assets/img/others/car-solid.svg" class="rounded-circle">
+            <img src="/static/assets/img/others/car-off.svg" class="rounded-circle">
           </div>
           <div class="user-name">
             <p class="">${units[i].name}</p>
