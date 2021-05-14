@@ -3,7 +3,7 @@
 }
 .widget {
     position: relative;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     border: none;
     background: #fff;
@@ -370,7 +370,7 @@
     border-radius: 6px;
 }
 .widget-table-one .transactions-list:not(:last-child) {
-    margin-bottom: 22.2px;
+    margin-bottom: 5px;
 }
 .widget-table-one .transactions-list .t-item {
     display: flex;
