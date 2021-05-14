@@ -161,7 +161,7 @@ class MapView {
     for (let i=0;i<this.markers.length;i++) {
       this.markers[i].setForceZIndex(null);
     }
-    
+
     const lat = this.markers[index].getLatLng().lat
     const lng = this.markers[index].getLatLng().lng
     const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
@@ -225,9 +225,9 @@ class MapView {
     } */
 
     if (unit.last_attributes.ignition) {
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> ${unit.last_attributes.ignition} </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
     }else{
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> ${unit.last_attributes.ignition} </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
     }
     document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
     document.getElementById("last_report").innerHTML = `${unit.last_report}`;
