@@ -167,9 +167,17 @@ code {
 .widget-content-area {
   padding: 10px;
   position: relative;
-  background-color: #f1f2f3;
+  background-color: #ffff;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px; }
+
+.widget-content-area-map {
+padding: 10px;
+position: relative;
+background-color: #f1f2f3;
+border-bottom-left-radius: 6px;
+border-bottom-right-radius: 6px; }
+
 
 .content-area {
   max-width: 58.333333%;
