@@ -158,21 +158,14 @@ class MapView {
 
   unitSelect = async (unitName) => {
     const index = this.searchUnitMarker(unitName);
+    const lat = this.markers[index].getLatLng().lat;
+    const lng = this.markers[index].getLatLng().lng;
+    const angle = this.markers[index].options.rotationAngle;
+    const title = mapView.markers[index].options.title
+
     for (let i=0;i<this.markers.length;i++) {
       this.markers[i].setForceZIndex(null);
     }
-
-    const lat = this.markers[index].getLatLng().lat
-    const lng = this.markers[index].getLatLng().lng
-    const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
-    //this.map.panTo([lat,lng]);
-    this.map.setView([lat,lng],16);
-    //almacenar en el local storage la unidad seleccionada
-    localStorage.setItem("selectedUnit", unitName);
-    //llamar a get unit
-    const unit = await api.getUnit(unitName);
-
-    // volver a dibular marcador
     this.map.removeLayer(this.markers[index])
     const icon = L.divIcon({
       iconSize:null,
@@ -185,23 +178,31 @@ class MapView {
       `
     });
     const marker = new L.marker(
-      [unit.last_latitude,unit.last_longitude],
+      [lat,lng],
       {
         icon: icon,
-        title: unit.name,
-        rotationAngle: unit.last_angle,
+        title: title,
+        rotationAngle: angle,
         forceZIndex: 1000
       }
-    ).bindTooltip(`${unit.name}`, {
+    ).bindTooltip(title, {
       permanent: true,
       direction : "top",
       className: "leaflet-tooltip-own",
       offset: L.point({x: 0, y: -30})
     }).addTo(this.map);
     this.markers[index] = marker;
-    // fin volver a dibular marcador
 
+    const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
+    this.map.panTo([lat,lng]);
+    //this.map.setView([lat,lng],16);
+    //almacenar en el local storage la unidad seleccionada
+    localStorage.setItem("selectedUnit", unitName);
+    //llamar a get unit
+    const unit = await api.getUnit(unitName);
+    /* console.log(unit); */
     document.getElementById("unitNameSelect").innerHTML = `${unit.name}`;
+
     document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
     document.getElementById("rssi").innerHTML = `${unit.last_attributes.rssi} %`;
     if (unit.last_attributes.out1){
@@ -225,9 +226,9 @@ class MapView {
     } */
 
     if (unit.last_attributes.ignition) {
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> ${unit.last_attributes.ignition} </span>`;
     }else{
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> ${unit.last_attributes.ignition} </span>`;
     }
     document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
     document.getElementById("last_report").innerHTML = `${unit.last_report}`;
@@ -260,9 +261,9 @@ class MapView {
       }
       document.getElementById("battery").innerHTML = `${unit.last_attributes.battery} %`;
       if (unit.last_attributes.ignition) {
-        document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
+        document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> ${unit.last_attributes.ignition} </span>`;
       }else{
-        document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
+        document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> ${unit.last_attributes.ignition}  </span>`;
       }
       /* document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`; */
     }
