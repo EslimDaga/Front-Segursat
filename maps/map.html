@@ -243,11 +243,13 @@
       time_24hr: true,
       defaultDate: "today"
     });
+    var date = new Date();
+    var tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
     var f2 = flatpickr(document.getElementById('history-date-to'), {
       enableTime: true,
       dateFormat: "Y-m-d H:i",
       time_24hr: true,
-      defaultDate: "today"
+      defaultDate: tomorrow
     });
   </script>
   <script type="text/javascript">
