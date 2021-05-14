@@ -40,6 +40,9 @@ class MapView {
           <div class="user-name">
             <p class="">${units[i].name}</p>
           </div>
+          <div class="user-status">
+            <i class="fas fa-info-circle"></i>
+          </div>
         </div>
       `;
         unitList += unit;
@@ -53,6 +56,9 @@ class MapView {
           </div>
           <div class="user-name">
             <p class="">${units[i].name}</p>
+          </div>
+          <div class="user-status">
+            <i class="fas fa-info-circle"></i>
           </div>
         </div>
       `;
@@ -195,7 +201,7 @@ class MapView {
     //llamar a get unit
     const unit = await api.getUnit(unitName);
     /* console.log(unit); */
-    /* document.getElementById("unitNameSelect").innerHTML = unitName; */
+    document.getElementById("unitNameSelect").innerHTML = `${unit.name}`;
 
     document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
     document.getElementById("rssi").innerHTML = `${unit.last_attributes.rssi} %`;
