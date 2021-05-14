@@ -375,10 +375,10 @@ class MapView {
     /*
     this.map.removeLayer(this.markerCluster);
     this.markerCluster = L.markerClusterGroup();
+    */
     for (let i=0;i<this.markers.length;i++) {
       this.map.removeLayer(this.markers[i]);
     }
-    */
     this.markers = [];
     for (let i=0;i<this.historyMarkers.length;i++) {
       this.map.removeLayer(this.historyMarkers[i]);
