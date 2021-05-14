@@ -11387,13 +11387,14 @@ body{
     z-index:999;
     bottom:0;
     left:0;
+    top: 13vh;
     max-height:90%;
     max-height:-webkit-calc(100% - 100px);
     max-height:-moz-calc(100% - 100px);
     max-height:-o-calc(100% - 100px);
     max-height:calc(100% - 100px);
     /* height:100%; */
-    width:250px
+    width:350px
 }
 @media (min-width:768px){
     #sidebar-map{
@@ -11439,7 +11440,7 @@ body{
     /* overflow-y:auto; */
     overflow-y:overlay;
     position:relative;
-    height: 755px !important;
+    height: 755px;
 }
 #sidebar-map .tab-pane-footer{
     padding:8px 10px
