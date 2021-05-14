@@ -80,9 +80,9 @@ input[type="search"]::-webkit-search-cancel-button {
   word-wrap: break-word;
   justify-content: space-between;
   background: #fff;
-  margin-bottom: 15px;
-  border-radius: 14px;
-  padding: 7px 18px 7px 18px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 4px 15px 4px 15px;
   width: 100%;
   color: #0e1726;
   min-width: auto;
