@@ -236,7 +236,7 @@
 
     });
   </script>
-  <!-- <script>
+  <script>
     var f1 = flatpickr(document.getElementById('history-date-from'), {
       enableTime: true,
       dateFormat: "Y-m-d H:i",
@@ -249,5 +249,10 @@
       time_24hr: true,
       defaultDate: "today"
     });
-  </script> -->
+  </script>
+  <script type="text/javascript">
+    $(document).on("click", ".searchable-container .items", function () {
+      $(this).addClass("active").siblings().removeClass("active")
+    })
+  </script>
 {% endblock%}
