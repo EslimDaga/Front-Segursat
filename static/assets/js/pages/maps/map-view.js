@@ -40,9 +40,6 @@ class MapView {
           <div class="user-name">
             <p class="">${units[i].name}</p>
           </div>
-          <div class="user-status">
-            <span class="badge badge-success">${units[i].last_speed} km/h</span>
-          </div>
         </div>
       `;
         unitList += unit;
@@ -56,9 +53,6 @@ class MapView {
           </div>
           <div class="user-name">
             <p class="">${units[i].name}</p>
-          </div>
-          <div class="user-status">
-            <span class="badge badge-danger">${units[i].last_speed} km/h</span>
           </div>
         </div>
       `;
