@@ -137,7 +137,7 @@
         height: "100%",
         orientation: "horizontal",
         theme: 'summer',
-        panels: [{ size: '50%' }, { size: '50%' }]
+        panels: [{ size: '48%' }, { size: '52%' }]
       });
     });
   </script>
@@ -251,6 +251,21 @@
       time_24hr: true,
       defaultDate: tomorrow
     });
+    const blockInput = () => {
+        if (document.getElementById("history-playback-checkbox").checked) {
+          document.getElementById("history-marker-checkbox").checked = false;
+        }
+      }
+      const blockInputPlayback = () => {
+        if (document.getElementById("history-marker-checkbox").checked) {
+          document.getElementById("history-playback-checkbox").checked = false;
+        }
+      }
+      const rangePicker = () => {
+        if (document.getElementById("history-playback-checkbox").checked) {
+          document.getElementById("history-marker-checkbox").checked = false;
+        }
+      }
   </script>
   <script type="text/javascript">
     $(document).on("click", ".searchable-container .items", function () {
