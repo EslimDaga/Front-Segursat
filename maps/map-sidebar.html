@@ -33,9 +33,7 @@
                       </div>
                     </form>
                   </div>
-                  <div class="searchable-container" id="unit-list">
-
-                  </div>
+                  <div class="searchable-container" id="unit-list"></div>
                 </div>
               </div>
             </div>
@@ -43,7 +41,6 @@
               <div class="widget widget-table-one">
                 <div class="widget-heading">
                   <h5 class="">Detalles</h5>
-
                 </div>
                 <div class="widget-content">
                   <div class="transactions-list">
@@ -221,62 +218,56 @@
             <div class="searchable-container">
               <div class="">
                 <div class="" id="a-u-reload">
-                  <div class="col-md-12 pt-3">
-                    <label for="">Desde</label>
-                    <div class="input-group mb-3">
-                      <input type="date" name="" class="form-control" id="history-date-from">
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-calendar"></i></span>
+                  <div class="col-md-12 pt-4">
+                    <div class="form-group">
+                      <label for="history-date-from"><strong>Desde</strong></label>
+                      <div class="input-group mb-4">
+                        <input type="date" name="" class="form-control" id="history-date-from">
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="basic-addon2"><i class="fas fa-calendar"></i></span>
+                        </div>
+                        <br>
                       </div>
-                      <br>
                     </div>
-                    <label for="">Hasta</label>
-                    <div class="input-group mb-3">
-                      <input type="date" name="" class="form-control" id="history-date-to">
-                      <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-calendar"></i></span>
+                    <div class="form-group">
+                      <label for="history-date-to"><strong>Hasta</strong></label>
+                      <div class="input-group mb-4">
+                        <input type="date" name="" class="form-control" id="history-date-to">
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="basic-addon2"><i class="fas fa-calendar"></i></span>
+                        </div>
+                        <br>
                       </div>
-                      <br>
                     </div>
-                    <label for="">Unidades</label><br>
-                    <select class="form-control disabled-results" id="history-units"></select><br>
-                    <div class="n-chk">
-                      <label class="new-control new-checkbox checkbox-warning">
+                    <div class="form-group">
+                      <label for="history-units"><strong>Unidades</strong></label><br>
+                      <select class="form-control disabled-results" id="history-units"></select><br>
+                    </div>
+                    <div class="n-chk pb-2">
+                      <label class="new-control new-checkbox checkbox-dark">
                         <input type="checkbox" class="new-control-input" id="history-marker-checkbox" onchange="blockInputPlayback();">
-                        <span class="new-control-indicator"></span>Mostrar Marcadores
+                        <span class="new-control-indicator"></span>
+                        <strong>Mostrar Marcadores</strong>
                       </label>
                     </div><br>
-                    <div class="n-chk">
-                      <label class="new-control new-checkbox checkbox-warning">
+                    <div class="n-chk pb-2">
+                      <label class="new-control new-checkbox checkbox-dark">
                         <input type="checkbox" class="new-control-input" onchange="blockInput();" id="history-playback-checkbox">
-                        <span class="new-control-indicator"></span>Playback
+                        <span class="new-control-indicator"></span>
+                        <strong>Playback</strong>
                       </label>
                     </div>
                     <script>
-                      const blockInput = () => {
-                        if(document.getElementById("history-playback-checkbox").checked){
-                          document.getElementById("history-marker-checkbox").checked = false;
-                        }
-                      }
-                      const blockInputPlayback = () => {
-                        if(document.getElementById("history-marker-checkbox").checked){
-                          document.getElementById("history-playback-checkbox").checked = false;
-                        }
-                      }
-                      const rangePicker = () => {
-                        if(document.getElementById("history-playback-checkbox").checked){
-                          document.getElementById("history-marker-checkbox").checked = false;
-                        }
-                      }
+
                     </script>
                     <br>
                     <div class="custom-progress bottom-right progress-down" style="width: 100%">
-                      <label for="">Velocidad de Playback</label>
+                      <label for="history-speed-range"><strong>Velocidad de Playback</strong></label>
                       <input type="range" min="1" onchange="blockInputPlayback();" max="100" id="history-speed-range" class="custom-range progress-range-counter" value="50">
                       <div class="range-count"><span class="range-count-number" data-rangecountnumber="0">50</span></div>
                     </div>
                     <br>
-                    <button class="btn btn-dark btn-block pb-2 mb-5" id="history-btn">Buscar</button>
+                    <button class="btn btn-dark btn-block pb-2 btn-lg" id="history-btn">Buscar</button>
                   </div>
                 </div>
               </div>
