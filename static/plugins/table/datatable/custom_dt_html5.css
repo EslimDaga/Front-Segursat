@@ -27,3 +27,12 @@
       width: 100%;
     }
   }
+
+  @media (max-width: 767px) {
+    .dt-buttons{
+      display: flex;
+    }
+    .btn.rounded-circle{
+      padding: 8px 15px;
+    }
+  }
