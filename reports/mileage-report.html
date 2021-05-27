@@ -92,10 +92,10 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
+                  <th class="text-center">Kilometraje Actual</th>
                   <th class="text-center">Fecha/Hora Inicio</th>
                   <th class="text-center">Fecha/Hora Fin</th>
                   <th class="text-center">Kilometraje Recorrido</th>
-                  <th class="text-center">Kilometraje Total</th>
                   <!-- <th class="text-center">Acción</th> -->
                 </tr>
               </thead>
@@ -103,10 +103,10 @@
                 {% for item in result %}
                 <tr>
                   <td class="text-center">{{ item.unit }}</td>
+                  <td class="text-center">{{ item.odometer }} km</td>
                   <td class="text-center">{{ item.initial_date }}</td>
                   <td class="text-center">{{ item.final_date }}</td>
                   <td class="text-center">{{ item.distance }} km</td>
-                  <td class="text-center">{{ item.odometer }} km</td>
                 </tr>
                 {% endfor %}
               </tbody>
