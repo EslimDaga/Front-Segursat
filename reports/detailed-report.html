@@ -34,7 +34,10 @@
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
         <div class="breadcrumb-four">
           <ul class="breadcrumb">
-            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
+            <li>
+              <a href="{% url 'dashboard' %}">
+                <i class="fas fa-home h5"></i>
+              </a>
             </li>
             <li class="active">
               <a class="d-flex" href="{% url 'detailed-report' %}">
@@ -81,7 +84,6 @@
         </form>
         </div>
       </div>
-
       <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
         <div class="widget-content widget-content-area br-6">
           <div class="table-responsive">
@@ -108,11 +110,22 @@
                   <td class="text-center">{{location.longitude}}</td>
                   <td class="text-center">{{location.altitude}}</td>
                   <td class="text-center">{{location.speed}} km/h</td>
-                  <td class="text-center">{% if location.ignition == True %}<span class="shadow-none badge badge-success">Encendido</span>{% else %}<span class="shadow-none badge badge-danger">Apagado</span>{% endif %}</td>
+                  <td class="text-center">
+                    {% if location.ignition == True %}
+                      <span class="shadow-none badge badge-success">Encendido</span>
+                      {% else %}
+                      <span class="shadow-none badge badge-danger">Apagado</span>
+                    {% endif %}
+                  </td>
                   <td class="text-center">{{location.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{unit_name}}','{{location.latitude}}','{{location.longitude}}','{{location.angle}}')" class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></button>
+                      <button type="button" onclick="renderMap('{{unit_name}}','{{location.latitude}}','{{location.longitude}}','{{location.angle}}')" class="btn btn-dark btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                      </button>
                     </div>
                   </td>
                 </tr>
