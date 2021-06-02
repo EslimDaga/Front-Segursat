@@ -34,7 +34,10 @@
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
         <div class="breadcrumb-four">
           <ul class="breadcrumb">
-            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
+            <li>
+              <a href="{% url 'dashboard' %}">
+                <i class="fas fa-home h5"></i>
+              </a>
             </li>
             <li class="active">
               <a class="d-flex" href="{% url 'fleet-status' %}">
@@ -48,7 +51,11 @@
       <div class="col-xl-6 col-lg-6 col-sm-6 col-12 responsive-header-menu">
         <div class="d-flex flex-row-reverse bd-highlight">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><h6 class="text-center"><mark style="font-size: 12px;">📅 &nbsp; Fecha/Hora: {{ now }}</mark></h6></li>
+            <li class="breadcrumb-item">
+              <h6 class="text-center">
+                <mark style="font-size: 12px;">📅 &nbsp; Fecha/Hora: {{ now }}</mark>
+              </h6>
+            </li>
           </ol>
         </div>
       </div>
