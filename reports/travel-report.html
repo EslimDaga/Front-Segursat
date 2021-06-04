@@ -158,12 +158,6 @@
     defaultDate: {% if final_datetime %}"{{ final_datetime }}"{% else %}tomorrow{% endif %}
   });
 </script>
-<script>
-  $(".placeholder").select2({
-    placeholder: "Buscar por Placa",
-    allowClear: true
-  });
-</script>
 {% if form.errors %}
 <script>
   swal({
