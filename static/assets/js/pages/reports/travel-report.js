@@ -34,3 +34,8 @@ const htmlExtension = () => {
 }
 
 htmlExtension();
+
+$(".placeholder").select2({
+  placeholder: "Buscar por Placa",
+  allowClear: true
+});
