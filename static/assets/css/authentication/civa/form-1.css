@@ -245,3 +245,19 @@ padding: 0px 0 10px 35px;
     height: 100%;
   }
 }
+
+.switch.s-segursat .slider:before{
+  background-color: #E4007C !important;
+}
+
+.btn-primary{
+  background-color: #E4007C !important;
+}
+
+.new-control.new-checkbox.checkbox-primary > input:checked ~ span.new-control-indicator{
+  background-color: #E4007C !important;
+}
+
+.form-form .terms-conditions a{
+  color: #E4007C !important;
+}
