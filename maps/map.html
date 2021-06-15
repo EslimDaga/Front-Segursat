@@ -272,4 +272,16 @@
       $(this).addClass("active").siblings().removeClass("active")
     })
   </script>
+  <script>
+    const acticateTracking = () => {
+      const check = document.getElementById("activateTrackingCheckbox");
+      if (check.checked) {
+        console.log("Checked");
+      } else {
+        console.log("Not Checked");
+      }
+      //Para saber el estado desde la consola escribir esto.
+      //document.getElementById("activateTrackingCheckbox").checked
+    }
+  </script>
 {% endblock%}
