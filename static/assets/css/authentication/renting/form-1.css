@@ -204,7 +204,7 @@ padding: 0px 0 10px 35px;
 }
 
 .form-image .l-image {
-  background-image: url(./../../../img/others/civa/civa-flota.jpeg);
+  background-image: url(./../../../img/others/renting/renting.jpeg);
   position: absolute;
   top: 0;
   left: 0;
@@ -247,17 +247,17 @@ padding: 0px 0 10px 35px;
 }
 
 .switch.s-segursat .slider:before{
-  background-color: #E4007C !important;
+  background-color: red !important;
 }
 
 .btn-primary{
-  background-color: #E4007C !important;
+  background-color: red !important;
 }
 
 .new-control.new-checkbox.checkbox-primary > input:checked ~ span.new-control-indicator{
-  background-color: #E4007C !important;
+  background-color: red !important;
 }
 
 .form-form .terms-conditions a{
-  color: #E4007C !important;
+  color: red !important;
 }
