@@ -31,7 +31,9 @@
     .modal-content .modal-body-map {
       padding: 0px 0px; }
     .modal-content .modal-body a:not(.btn) {
-      color: #1b55e2;
+      /* color: #F8951D; */
+      color: red;
+      font-size: 15px;
       font-weight: 600; }
     .modal-content .modal-body p {
       color: #888ea8;
@@ -41,7 +43,8 @@
       .modal-content .modal-body p:last-child {
         margin-bottom: 0; }
       .modal-content .modal-body p:not(:last-child) {
-        margin-bottom: 10px; }
+        /* margin-bottom: 10px; */
+      margin-bottom: 0px; }
   .modal-content .modal-footer {
     border-top: 1px solid #e0e6ed; }
     .modal-content .modal-footer button.btn {
