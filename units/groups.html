@@ -204,9 +204,25 @@
 <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
 <script src="{% static 'assets/js/apps/contact.js' %}"></script>
 <script>
-    var monkeyList = new List('test-list', {
-      valueNames: ['name']
-    });
+  var monkeyList = new List('test-list', {
+    valueNames: ['name']
+  });
+</script>
+<script>
+  function deleteConfirmation() {
+    swal({
+      title: `¿Seguro que quieres eliminar la unidad?`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: "cancelar",
+      padding: '2em'
+    }).then(function (result) {
+      if (result.value) {
+        window.location.href = "{% url 'unit-group' %}"
+      }
+    })
+  }
 </script>
 <!-- End Page Level Custom Scripts -->
 {% endblock%}
