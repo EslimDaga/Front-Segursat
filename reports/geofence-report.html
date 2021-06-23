@@ -45,7 +45,7 @@
       </div>
       <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
         <div class="flex-row-reverse bd-highlight">
-          <form method="post" action="{% url 'stop-report' %}">
+          <form method="post" action="{% url 'geofence-report' %}">
             {% csrf_token %}
             <label for="">Seleccionar Fecha Inicial</label>
             <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text"
