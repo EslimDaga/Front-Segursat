@@ -35,7 +35,7 @@
             <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
             </li>
             <li class="active">
-              <a class="d-flex" href="{% url 'stop-report' %}">
+              <a class="d-flex" href="{% url 'geofence-report' %}">
                 <i class="fas fa-vector-square h5 pr-2" aria-hidden="true"></i>
                 Reporte de Geocercas
               </a>
@@ -103,11 +103,11 @@
                 <tr>
                   <td class="text-center">{{ unit_name }}</td>
                   <td class="text-center">{{ gr.name }}</td>
-                  <td class="text-center">{{ gr.initial_datetime }}</td>
-                  <td class="text-center">{{ gr.final_datetime }}</td>
+                  <td class="text-center">{{ gr.initial_timestamp }}</td>
+                  <td class="text-center">{{ gr.final_timestamp }}</td>
                   <td class="text-center">{{ gr.initial_speed }}</td>
                   <td class="text-center">{{ gr.final_speed }}</td>
-                  <td class="text-center">{{ gr.address }}</td>
+                  <td class="text-center">{{ gr.duration }}</td>
                 </tr>
                 {% endfor %}
               </tbody>
