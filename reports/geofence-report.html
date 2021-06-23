@@ -102,11 +102,11 @@
                 {% for gr in geofence_report %}
                 <tr>
                   <td class="text-center">{{ unit_name }}</td>
+                  <td class="text-center">{{ gr.name }}</td>
                   <td class="text-center">{{ gr.initial_datetime }}</td>
                   <td class="text-center">{{ gr.final_datetime }}</td>
-                  <td class="text-center">{{ gr.duration }}</td>
-                  <td class="text-center">N/D</td>
-                  <td class="text-center">{{ gr.address }}</td>
+                  <td class="text-center">{{ gr.initial_speed }}</td>
+                  <td class="text-center">{{ gr.final_speed }}</td>
                   <td class="text-center">{{ gr.address }}</td>
                 </tr>
                 {% endfor %}
