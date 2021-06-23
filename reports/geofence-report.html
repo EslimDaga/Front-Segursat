@@ -105,8 +105,16 @@
                   <td class="text-center">{{ gr.name }}</td>
                   <td class="text-center">{{ gr.initial_datetime }}</td>
                   <td class="text-center">{{ gr.final_datetime }}</td>
-                  <td class="text-center">{{ gr.initial_speed }}</td>
-                  <td class="text-center">{{ gr.final_speed }}</td>
+                  {% if gr.initial_speed != 'N/D' %}
+                  <td class="text-center">{{ gr.initial_speed }} Km/h</td>
+                  {% else %}
+                  <td class="text-center">N/D</td>
+                  {% endif %}
+                  {% if gr.final_speed != 'N/D' %}
+                  <td class="text-center">{{ gr.final_speed }} Km/h</td>
+                  {% else %}
+                  <td class="text-center">N/D</td>
+                  {% endif %}
                   <td class="text-center">{{ gr.duration }}</td>
                 </tr>
                 {% endfor %}
