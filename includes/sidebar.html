@@ -42,8 +42,8 @@
           </div>
         </a>
       </li>
-      <li class="menu {% if request.resolver_match.url_name == 'detailed-report' %}active{% elif request.resolver_match.url_name == 'travel-report' %}active{% elif request.resolver_match.url_name == 'stop-report' %}active{% elif request.resolver_match.url_name == 'fleet-status' %}active{% elif request.resolver_match.url_name == 'speed-report' %}active{% elif request.resolver_match.url_name == 'mileage-report' %}active{% elif request.resolver_match.url_name == 'geofence-report' %}active{% endif %}">
-        <a href="#reports" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% elif request.resolver_match.url_name == 'mileage-report' %}true{% elif request.resolver_match.url_name == 'geofence-report' %}true{% endif %}" class="dropdown-toggle">
+      <li class="menu {% if request.resolver_match.url_name == 'detailed-report' %}active{% elif request.resolver_match.url_name == 'travel-report' %}active{% elif request.resolver_match.url_name == 'stop-report' %}active{% elif request.resolver_match.url_name == 'fleet-status' %}active{% elif request.resolver_match.url_name == 'speed-report' %}active{% elif request.resolver_match.url_name == 'mileage-report' %}active{% elif request.resolver_match.url_name == 'geofence-report' %}active{% elif request.resolver_match.url_name == 'group-trip-report' %}active{% endif %}">
+        <a href="#reports" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% elif request.resolver_match.url_name == 'mileage-report' %}true{% elif request.resolver_match.url_name == 'geofence-report' %}true{% elif request.resolver_match.url_name == 'group-trip-report' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
               <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
@@ -65,20 +65,53 @@
           <li class="{% if request.resolver_match.url_name == 'detailed-report' %}active{% endif %}">
             <a href="{% url 'detailed-report' %}"> Reporte Detallado </a>
           </li>
-          <li class="{% if request.resolver_match.url_name == 'travel-report' %}active{% endif %}">
-            <a href="{% url 'travel-report' %}"> Reporte de Viajes</a>
+          <li>
+            <a href="#sm3" data-toggle="collapse" class="dropdown-toggle"> Reportes por Unidades <svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg> </a>
+            <ul class="collapse list-unstyled sub-submenu show" id="sm3" data-parent="#reports">
+              <li class="{% if request.resolver_match.url_name == 'travel-report' %}active{% endif %}">
+                <a href="{% url 'travel-report' %}"> Reporte de Viajes</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'stop-report' %}active{% endif %}">
+                <a href="{% url 'stop-report' %}"> Reporte de Paradas</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'speed-report' %}active{% endif %}">
+                <a href="{% url 'speed-report' %}"> Reporte de Velocidad</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'mileage-report' %}active{% endif %}">
+                <a href="{% url 'mileage-report' %}"> Reporte de Kilometraje</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'geofence-report' %}active{% endif %}">
+                <a href="{% url 'geofence-report' %}"> Reporte de Geocercas</a>
+              </li>
+            </ul>
           </li>
-          <li class="{% if request.resolver_match.url_name == 'stop-report' %}active{% endif %}">
-            <a href="{% url 'stop-report' %}"> Reporte de Paradas</a>
-          </li>
-          <li class="{% if request.resolver_match.url_name == 'speed-report' %}active{% endif %}">
-            <a href="{% url 'speed-report' %}"> Reporte de Velocidad</a>
-          </li>
-          <li class="{% if request.resolver_match.url_name == 'mileage-report' %}active{% endif %}">
-            <a href="{% url 'mileage-report' %}"> Reporte de Kilometraje</a>
-          </li>
-          <li class="{% if request.resolver_match.url_name == 'geofence-report' %}active{% endif %}">
-            <a href="{% url 'geofence-report' %}"> Reporte de Geocercas</a>
+          <li>
+            <a href="#sm2" data-toggle="collapse" class="dropdown-toggle"> Reportes por Grupos <svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg> </a>
+            <ul class="collapse list-unstyled sub-submenu show" id="sm2" data-parent="#reports">
+              <li class="{% if request.resolver_match.url_name == 'group-trip-report' %}active{% endif %}">
+                <a href="{% url 'group-trip-report' %}"> Reporte de Viajes</a>
+              </li>
+              <!-- <li class="{% if request.resolver_match.url_name == 'stop-report' %}active{% endif %}">
+                <a href="{% url 'stop-report' %}"> Reporte de Paradas</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'speed-report' %}active{% endif %}">
+                <a href="{% url 'speed-report' %}"> Reporte de Velocidad</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'mileage-report' %}active{% endif %}">
+                <a href="{% url 'mileage-report' %}"> Reporte de Kilometraje</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'geofence-report' %}active{% endif %}">
+                <a href="{% url 'geofence-report' %}"> Reporte de Geocercas</a>
+              </li> -->
+            </ul>
           </li>
           <!-- <li>
             <a href="groups.html"> Grupos </a>
@@ -245,7 +278,85 @@
           </div>
         </a>
       </li>
-
+      <!-- <li class="menu">
+        <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <div class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
+              <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>Reportes</span>
+          </div>
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-chevron-right">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+        </a>
+        <ul class="collapse submenu list-unstyled" id="submenu2" data-parent="#accordionExample">
+          <li>
+            <a href="#sm3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Unidades <svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg> </a>
+            <ul class="collapse list-unstyled sub-submenu" id="sm3" data-parent="#submenu2">
+              <li>
+                <a href="javascript:void(0);"> Reporte Detallado </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Viajes </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Paradas </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Velocidad </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Kilometraje </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Geocercas </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="collapse submenu list-unstyled" id="submenu2" data-parent="#accordionExample">
+          <li>
+            <a href="#sm2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Grupos <svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg> </a>
+            <ul class="collapse list-unstyled sub-submenu" id="sm2" data-parent="#submenu2">
+              <li>
+                <a href="javascript:void(0);"> Reporte Detallado </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Viajes </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Paradas </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Velocidad </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Kilometraje </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"> Reporte de Geocercas </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li> -->
     </ul>
   </nav>
 </div>
