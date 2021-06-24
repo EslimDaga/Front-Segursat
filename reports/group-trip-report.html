@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_content %}
+<title>Reporte de Viajes por Grupo - Segursat GPS</title>
+<!-- Begin Page Level Custom Styles -->
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
+<link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
+<script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
+<link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
+<link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<!-- End Page Level Custom Styles -->
+{% endblock %}
+{% block container %}
+<!-- Begin Content Area -->
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="breadcrumb-four">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
+            </li>
+            <li class="active">
+              <a class="d-flex" href="{% url 'group-trip-report' %}">
+                <i class="fas fa-car-side h5 pr-2"></i>
+                Reporte de Viajes por Grupo
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+        <div class="flex-row-reverse bd-highlight">
+          <form method="post" action="{% url 'group-trip-report' %}">
+            {% csrf_token %}
+            <label for="">Seleccionar Fecha Inicial</label>
+            <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text"
+              placeholder="Seleccionar Fecha Inicial" name="initial_datetime" required>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+        <label for="">Seleccionar Fecha Final</label>
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text"
+            placeholder="Seleccionar Fecha Final" name="final_datetime" required>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-12">
+        <div class="">
+          <label for="">Seleccionar Grupo</label>
+          <select class="placeholder js-states form-control" id="group_name" name="group_name">
+            <option value="">Seleccionar Grupo</option>
+            {% for group in groups%}
+            <option value="{{group.name}}">{{group.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2 align-self-center">
+        <div class="">
+          <button onclick="runLoader()" type="submit" class="btn btn-dark rounded-circle responsive-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-search">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          </form>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+          <div class="table-responsive">
+            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th class="text-center">Grupo</th>
+                  <th class="text-center">Unidad</th>
+                  <th class="text-center">Hora de inicio</th>
+                  {% comment %} <th class="text-center">Odómetro inicial</th> {% endcomment %}
+                  <th class="text-center">Dirección de inicio</th>
+                  <th class="text-center">Hora de fin</th>
+                  {% comment %} <th class="text-center">Odómetro final</th> {% endcomment %}
+                  <th class="text-center">Dirección de fin</th>
+                  <th class="text-center">Distancia</th>
+                  <th class="text-center">Velocidad promedio</th>
+                  <th class="text-center">Velocidad máxima</th>
+                  <th class="text-center">Duración</th>
+                  <th class="text-center">Combustible utilizado</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for gtr in group_trip_report %}
+                <tr>
+                  <td class="text-center">{{ gtr.group_name}}</td>
+                  <td class="text-center">{{ unit_name }}</td>
+                  <td class="text-center">{{ gtr.initial_datetime }}</td>
+                  <td class="text-center">{{ gtr.initial_address }}</td>
+                  <td class="text-center">{{ gtr.final_datetime }}</td>
+                  <td class="text-center">{{ gtr.final_address }}</td>
+                  <td class="text-center">{{ gtr.distance }} Km</td>
+                  <td class="text-center">{{ gtr.average_speed }}</td>
+                  <td class="text-center">{{ gtr.max_speed }}</td>
+                  <td class="text-center">{{ gtr.duration }}</td>
+                  <td class="text-center">N/D</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 'includes/footer.html' %}
+</div>
+<!-- End Content Area -->
+{% endblock %}
+{% block script_content %}
+<!-- Begin Page Level Custom Scripts -->
+<script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
+<!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+<script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/treeview/custom-jstree.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
+<script src="{% static 'plugins/select2/select2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'assets/js/pages/reports/group-trip-report.js' %}"></script>
+<script>
+  const date = new Date();
+  const tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
+  //var f1 = flatpickr(document.getElementById('basicFlatpickr'));
+  var f1 = flatpickr(document.getElementById('basicFlatpickr'), {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    defaultDate: {% if initial_datetime %}"{{ initial_datetime }}"{% else %}"today"{% endif %}
+  });
+  //var f2 = flatpickr(document.getElementById('basicFlatpickr2'));
+  var f2 = flatpickr(document.getElementById('basicFlatpickr2'), {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    defaultDate: {% if final_datetime %}"{{ final_datetime }}"{% else %}tomorrow{% endif %}
+  });
+</script>
+{% if form.errors %}
+<script>
+  swal({
+    title: 'Oops...',
+    text: "Completa todos los campos",
+    type: 'error',
+    padding: '2em'
+  })
+</script>
+{% endif %}
+{% if error %}
+<script>
+  swal({
+    title: 'Oops...',
+    text: "{{error}}",
+    type: 'error',
+    padding: '2em'
+  })
+</script>
+{% endif %}
+{% endblock%}
