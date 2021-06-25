@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head_content %}
-<title>Reporte de Geocercas por Grupos- Segursat GPS</title>
+<title>Reporte de Geocercas Por Grupo - Segursat GPS</title>
 <!-- Begin Page Level Custom Styles -->
 <link href="{% static 'plugins/table/datatable/datatables.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'plugins/table/datatable/dt-global_style.css' %}" rel="stylesheet" type="text/css">
 <link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
-<script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
 <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
@@ -21,11 +20,14 @@
 <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" />
 <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
+<link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet">
 <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-{% include "reports/modal-map.html" %}
 <!-- Begin Content Area -->
+{% include "reports/modal-map.html" %}
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing">
@@ -36,14 +38,14 @@
             </li>
             <li class="active">
               <a class="d-flex" href="{% url 'group-geofence-report' %}">
-                <i class="fas fa-vector-square h5 pr-2" aria-hidden="true"></i>
-                Reporte de Geocercas por Grupos
+                <i class="fas fa-tachometer-alt h5 pr-2"></i>
+                Reporte de Kilometraje por Grupo
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-4">
         <div class="flex-row-reverse bd-highlight">
           <form method="post" action="{% url 'group-geofence-report' %}">
             {% csrf_token %}
@@ -52,23 +54,21 @@
               placeholder="Seleccionar Fecha Inicial" name="initial_datetime" required>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-3">
         <label for="">Seleccionar Fecha Final</label>
         <div class="d-flex flex-row-reverse bd-highlight">
           <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text"
             placeholder="Seleccionar Fecha Final" name="final_datetime" required>
         </div>
       </div>
-      <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
-        <div class="">
-          <label for="">Seleccionar Grupo</label>
-          <select class="placeholder js-states form-control" id="group_name" name="group_name">
-            <option value="">Seleccionar Grupo</option>
-            {% for group in groups%}
-            <option value="{{group.name}}">{{group.name}}</option>
-            {% endfor %}
-          </select>
-        </div>
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-3">
+        <label for="">Seleccionar Grupo</label>
+        <select class="placeholder js-states form-control" id="group_name" name="group_name">
+          <option value="">Seleccionar Grupo</option>
+          {% for group in groups%}
+          <option value="{{group.name}}">{{group.name}}</option>
+          {% endfor %}
+        </select>
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2 align-self-center">
         <div class="">
@@ -83,6 +83,7 @@
           </form>
         </div>
       </div>
+
       <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
         <div class="widget-content widget-content-area br-6">
           <div class="table-responsive">
@@ -91,7 +92,6 @@
                 <tr>
                   <th class="text-center">Grupo</th>
                   <th class="text-center">Unidad</th>
-                  <th class="text-center">Geocerca</th>
                   <th class="text-center">Hora de ingreso</th>
                   <th class="text-center">Hora de salida</th>
                   <th class="text-center">Velocidad de ingreso</th>
@@ -148,7 +148,7 @@
 <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
 <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
 <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
-<script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
 <script>
   $('#html5-extension').DataTable({
     dom: "<'ui grid'" +
@@ -205,21 +205,74 @@
     allowClear: true
   });
 </script>
+<script>
+  const renderMap = async (unitName, latitude, longitude) => {
+    document.getElementById("map-container").innerHTML = `<div id="map" style="height:700px;width:100%;"></div>`;
+    $("#modal-map").modal("show");
+    setTimeout(() => {
+      const map = L.map('map', {
+        center: [-12.1021887, -77.0665742],
+        zoom: 16,
+      });
+      const openStreetMap = L.tileLayer(
+        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+          maxZoom: 19,
+        }
+      );
+      const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      });
+      const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+      });
+      const baseLayers = {
+        'Open Street Maps': openStreetMap,
+        'Google Street Maps': googleStreetsMap,
+        'Google Hybrid Maps': googleHybridMap
+      };
+      const overlays = {};
+      L.control.layers(baseLayers, overlays).addTo(map);
+      baseLayers['Google Street Maps'].addTo(map);
+
+      const icon = L.divIcon({
+        iconSize: null,
+        html: `
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+          </div>
+        </div>
+        `
+      });
+      latitude = parseFloat(latitude.replace(',', '.'));
+      longitude = parseFloat(longitude.replace(',', '.'));
+      const marker = new L.marker(
+        [latitude, longitude],
+        {
+          icon: icon,
+          title: unitName,
+          rotationAngle: 0
+        }
+      ).bindTooltip(unitName, {
+        permanent: true,
+        direction: "top",
+        offset: L.point({ x: 0, y: -30 })
+      }).addTo(map);
+      map.panTo([latitude, longitude]);
+    }, 500);
+  }
+</script>
 {% if form.errors %}
 <script>
   swal({
     title: 'Oops...',
     text: "Completa todos los campos",
-    type: 'error',
-    padding: '2em'
-  })
-</script>
-{% endif %}
-{% if error %}
-<script>
-  swal({
-    title: 'Oops...',
-    text: "{{error}}",
     type: 'error',
     padding: '2em'
   })
