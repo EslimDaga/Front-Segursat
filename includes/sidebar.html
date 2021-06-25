@@ -42,8 +42,8 @@
           </div>
         </a>
       </li>
-      <li class="menu {% if request.resolver_match.url_name == 'detailed-report' %}active{% elif request.resolver_match.url_name == 'travel-report' %}active{% elif request.resolver_match.url_name == 'stop-report' %}active{% elif request.resolver_match.url_name == 'fleet-status' %}active{% elif request.resolver_match.url_name == 'speed-report' %}active{% elif request.resolver_match.url_name == 'mileage-report' %}active{% elif request.resolver_match.url_name == 'geofence-report' %}active{% elif request.resolver_match.url_name == 'group-trip-report' %}active{% endif %}">
-        <a href="#reports" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% elif request.resolver_match.url_name == 'mileage-report' %}true{% elif request.resolver_match.url_name == 'geofence-report' %}true{% elif request.resolver_match.url_name == 'group-trip-report' %}true{% endif %}" class="dropdown-toggle">
+      <li class="menu {% if request.resolver_match.url_name == 'detailed-report' %}active{% elif request.resolver_match.url_name == 'travel-report' %}active{% elif request.resolver_match.url_name == 'stop-report' %}active{% elif request.resolver_match.url_name == 'fleet-status' %}active{% elif request.resolver_match.url_name == 'speed-report' %}active{% elif request.resolver_match.url_name == 'mileage-report' %}active{% elif request.resolver_match.url_name == 'geofence-report' %}active{% elif request.resolver_match.url_name == 'group-trip-report' %}active{% elif request.resolver_match.url_name == 'group-stop-report' %}active{% elif request.resolver_match.url_name == 'group-mileage-report' %}active{% elif request.resolver_match.url_name == 'group-geofence-report' %}active{% endif %}">
+        <a href="#reports" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% elif request.resolver_match.url_name == 'mileage-report' %}true{% elif request.resolver_match.url_name == 'geofence-report' %}true{% elif request.resolver_match.url_name == 'group-trip-report' %}true{% elif request.resolver_match.url_name == 'group-stop-report' %}true{% elif request.resolver_match.url_name == 'group-mileage-report' %}true{% elif request.resolver_match.url_name == 'group-geofence-report' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
               <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
@@ -99,14 +99,18 @@
               <li class="{% if request.resolver_match.url_name == 'group-trip-report' %}active{% endif %}">
                 <a href="{% url 'group-trip-report' %}"> Reporte de Viajes</a>
               </li>
-              <!-- <li class="{% if request.resolver_match.url_name == 'stop-report' %}active{% endif %}">
-                <a href="{% url 'stop-report' %}"> Reporte de Paradas</a>
+              <li class="{% if request.resolver_match.url_name == 'group-stop-report' %}active{% endif %}">
+                <a href="{% url 'group-stop-report' %}"> Reporte de Paradas</a>
               </li>
+              <li class="{% if request.resolver_match.url_name == 'group-mileage-report' %}active{% endif %}">
+                <a href="{% url 'group-mileage-report' %}"> Reporte de Kilometraje</a>
+              </li>
+              <li class="{% if request.resolver_match.url_name == 'group-geofence-report' %}active{% endif %}">
+                <a href="{% url 'group-geofence-report' %}"> Reporte de Geocercas</a>
+              </li>
+              <!--
               <li class="{% if request.resolver_match.url_name == 'speed-report' %}active{% endif %}">
                 <a href="{% url 'speed-report' %}"> Reporte de Velocidad</a>
-              </li>
-              <li class="{% if request.resolver_match.url_name == 'mileage-report' %}active{% endif %}">
-                <a href="{% url 'mileage-report' %}"> Reporte de Kilometraje</a>
               </li>
               <li class="{% if request.resolver_match.url_name == 'geofence-report' %}active{% endif %}">
                 <a href="{% url 'geofence-report' %}"> Reporte de Geocercas</a>
