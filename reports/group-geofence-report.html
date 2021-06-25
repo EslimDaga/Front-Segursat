@@ -102,8 +102,8 @@
               <tbody>
                 {% for gr in group_geofence_report %}
                 <tr>
-                  <td class="text-center">{{ unit_name }}</td>
-                  <td class="text-center">{{ gr.name }}</td>
+                  <td class="text-center">{{ group_name }}</td>
+                  <td class="text-center">{{ gr.unit_name }}</td>
                   <td class="text-center">{{ gr.initial_datetime }}</td>
                   <td class="text-center">{{ gr.final_datetime }}</td>
                   {% if gr.initial_speed != 'N/D' %}
