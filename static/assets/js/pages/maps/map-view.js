@@ -37,8 +37,13 @@ class MapView {
           <div class="avatar avatar-sm">
             <img src="/static/assets/img/others/car-solid.svg" class="rounded-circle">
           </div>
-          <div class="user-name">
-            <p class="">${units[i].name}</p>
+          <div>
+            <div class="user-name">
+              <p class="">${units[i].name}</p>
+            </div>
+            <div>
+              ${units[i].description}
+            </div>
           </div>
           <div class="user-status">
             <i class="fas fa-info-circle"></i>
@@ -54,8 +59,13 @@ class MapView {
           <div class="avatar avatar-sm">
             <img src="/static/assets/img/others/car-solid.svg" class="rounded-circle">
           </div>
-          <div class="user-name">
-            <p class="">${units[i].name}</p>
+          <div>
+            <div class="user-name">
+              <p class="">${units[i].name}</p>
+            </div>
+            <div style="font-size : 12px">
+              ${units[i].description}
+            </div>
           </div>
           <div class="user-status">
             <i class="fas fa-info-circle"></i>
@@ -202,7 +212,11 @@ class MapView {
     const unit = await api.getUnit(unitName);
     /* console.log(unit); */
     document.getElementById("unitNameSelect").innerHTML = `${unit.name}`;
-
+    if(unit.description.length > 0){
+      document.getElementById("description").innerHTML = `${unit.description}`;
+    }else{
+      document.getElementById("description").innerHTML = `Sin descripción`;
+    }
     document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
     document.getElementById("rssi").innerHTML = `${unit.last_attributes.rssi} %`;
     if (unit.last_attributes.out1){
@@ -226,9 +240,9 @@ class MapView {
     } */
 
     if (unit.last_attributes.ignition) {
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> ${unit.last_attributes.ignition} </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
     }else{
-      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> ${unit.last_attributes.ignition} </span>`;
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
     }
     document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
     document.getElementById("last_report").innerHTML = `${unit.last_report}`;
