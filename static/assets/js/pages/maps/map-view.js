@@ -41,7 +41,7 @@ class MapView {
             <div class="user-name">
               <p class="">${units[i].name}</p>
             </div>
-            <div>
+            <div style="font-size : 12px">
               ${units[i].description}
             </div>
           </div>
