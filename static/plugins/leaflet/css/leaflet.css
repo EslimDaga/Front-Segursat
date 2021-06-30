@@ -609,7 +609,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .leaflet-tooltip-top:before {
 	bottom: 0;
 	margin-bottom: -12px;
-	border-top-color: #fff;
+	border-top-color: #000;
 	}
 .leaflet-tooltip-bottom:before {
 	top: 0;
