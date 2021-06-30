@@ -108,6 +108,7 @@ class MapView {
         {
           icon: icon,
           title: units[i].name,
+          description : units[i].description,
           rotationAngle: units[i].last_angle
         }
       ).bindTooltip(`<div class="text-center font-weight-bold">${units[i].name}</div><div class="text-center"> ${units[i].description} </div>`, {
@@ -172,6 +173,7 @@ class MapView {
     const lng = this.markers[index].getLatLng().lng;
     const angle = this.markers[index].options.rotationAngle;
     const title = mapView.markers[index].options.title
+    const description = mapView.markers[index].options.description
 
     for (let i=0;i<this.markers.length;i++) {
       this.markers[i].setForceZIndex(null);
@@ -195,7 +197,7 @@ class MapView {
         rotationAngle: angle,
         forceZIndex: 1000
       }
-    ).bindTooltip(`<div class="text-center font-weight-bold">${title}</div><div class="text-center">Descripción</div>`, {
+    ).bindTooltip(`<div class="text-center font-weight-bold">${title}</div><div class="text-center">${description}</div>`, {
       permanent: true,
       direction : "top",
       className: "leaflet-tooltip-own",
