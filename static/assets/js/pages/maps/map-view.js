@@ -110,7 +110,7 @@ class MapView {
           title: units[i].name,
           rotationAngle: units[i].last_angle
         }
-      ).bindTooltip(`${units[i].name}`, {
+      ).bindTooltip(`<div class="text-center font-weight-bold">${units[i].name}</div><div class="text-center"> ${units[i].description} </div>`, {
         permanent: true,
         direction : "top",
         className: "leaflet-tooltip-own",
@@ -195,7 +195,7 @@ class MapView {
         rotationAngle: angle,
         forceZIndex: 1000
       }
-    ).bindTooltip(title, {
+    ).bindTooltip(`<div class="text-center font-weight-bold">${title}</div><div class="text-center">Descripción</div>`, {
       permanent: true,
       direction : "top",
       className: "leaflet-tooltip-own",
