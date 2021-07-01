@@ -98,7 +98,7 @@ class MapView {
         html:`
         <div class="map-label">
           <div class="map-label-content">
-            <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+            <img src="/static/assets/img/markers/cars.png" width="20" height="40"/>
           </div>
         </div>
         `
@@ -115,7 +115,7 @@ class MapView {
         permanent: true,
         direction : "top",
         className: "leaflet-tooltip-own",
-        offset: L.point({x: 0, y: -30})
+        offset: L.point({x: 0, y: -20})
       }).addTo(this.map);
       this.markers.push(marker);
       //this.markerCluster.addLayer(marker);
@@ -184,7 +184,7 @@ class MapView {
       html:`
       <div class="map-label">
         <div class="map-label-content">
-          <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+          <img src="/static/assets/img/markers/cars.png" width="20" height="40"/>
         </div>
       </div>
       `
@@ -194,6 +194,7 @@ class MapView {
       {
         icon: icon,
         title: title,
+        description : description,
         rotationAngle: angle,
         forceZIndex: 1000
       }
@@ -201,7 +202,7 @@ class MapView {
       permanent: true,
       direction : "top",
       className: "leaflet-tooltip-own",
-      offset: L.point({x: 0, y: -30})
+      offset: L.point({x: 0, y: -20})
     }).addTo(this.map);
     this.markers[index] = marker;
 
@@ -302,7 +303,7 @@ class MapView {
             html:`
             <div class="map-label">
               <div class="map-label-content">
-                <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
+                <img src="/static/assets/img/markers/cars.png" width="20" height="40"/>
               </div>
             </div>
             `
@@ -318,7 +319,7 @@ class MapView {
             ).bindTooltip(`${locationHistory[i].unit_name}`, {
               permanent: true,
               direction : "top",
-              offset: L.point({x: 0, y: -30})
+              offset: L.point({x: 0, y: -20})
             })
             .addTo(this.map)
             .setZIndexOffset(1000)
