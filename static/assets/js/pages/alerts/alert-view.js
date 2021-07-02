@@ -76,7 +76,7 @@ class AlertView {
     return alert;
   }
 
-  addAlert = () => {
+  addAlert = (alert) => {
     const table = document.getElementById("html5-extension").getElementsByTagName('tbody')[0];
     const row = table.insertRow(0);
     const cell0 = row.insertCell(0);
@@ -92,13 +92,13 @@ class AlertView {
     cell3.className = "text-center";
     cell4.className = "text-center";
 
-    cell0.innerHTML = "dasdasd";
-    cell1.innerHTML = "dasdasd";
-    cell2.innerHTML = "dasdasd";
-    cell3.innerHTML = "dasdasd";
+    cell0.innerHTML = alert.unit_name;
+    cell1.innerHTML = "now";
+    cell2.innerHTML = alert.alert_type;
+    cell3.innerHTML = alert.alert_priority;
     cell4.innerHTML = `
       <div class="btn-group">
-        <button type="button" onclick="alertView.checkAlert({{payload.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
+        <button type="button" onclick="alertView.checkAlert(${alert.alert_id})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
       </div>
     `;
   }

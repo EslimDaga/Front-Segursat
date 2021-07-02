@@ -106,8 +106,8 @@
       const type = JSON.parse(e.data).message.type;
       // websocket alertas
       if (type == "update_alert"){
-        const newAlert = JSON.parse(e.data).message.payload;
-        alertView.addAlert();
+        const alert = JSON.parse(e.data).message.payload;
+        alertView.addAlert(alert);
       }
       // fin websocket alertas
     };
