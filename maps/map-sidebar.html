@@ -56,6 +56,7 @@
                           <a href="#">
                             <p class="meta-date" id="unitNameSelect"></p>
                           </a>
+                          <a style="display:none" id="copiar_placa" href="#" onclick="copiarTexto(this,'#unitNameSelect')"><i class="far fa-copy"></i></a>
                         </div>
                       </div>
                     </div>
@@ -205,19 +206,44 @@
                       </div>
                     </div>
                   </div>
-                  <div class="transactions-list">
-                    <div class="t-item">
-                      <div class="t-company-name">
-                        <div class="t-icon">
-                          <div class="icon">
-                            <i class="fab fa-waze"></i>
+                  <div class="d-flex">
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fab fa-waze"></i>
+                            </div>
+                          </div>
+                          <div class="t-name">
+                            <h4>Waze</h4>
+                            <a href="#">
+                              <p class="meta-date" id="waze">
+                              </p>
+                            </a>
                           </div>
                         </div>
-                        <div class="t-name">
-                          <h4>Waze</h4>
-                          <a href="#">
-                            <p class="meta-date" id="waze"></p>
-                          </a>
+                      </div>
+                    </div>
+                    <div class="transactions-list w-50">
+                      <div class="t-item">
+                        <div class="t-company-name">
+                          <div class="t-icon">
+                            <div class="icon">
+                              <i class="fas fa-road"></i>
+                            </div>
+                          </div>
+                          <div class="t-name">
+                            <h4>Sutran</h4>
+                            <p class="meta-date" id="satellites">
+                              <a href="#" onclick="modalSutran(this)">
+                                <strong class="text-segursat">
+                                  Consultar
+                                  <i class="fas fa-external-link-alt"></i>
+                                </strong>
+                              </a>
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -291,6 +317,28 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal animated zoomInUp custo-zoomInUp" id="sutran-modal" data="" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <span></span>
+          <a id="copiar_placa" href="#" onclick="copiarTextoSutran(this)">
+            <input type="hidden"> <i class="far fa-copy"></i>
+          </a>
+      </h5> 
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          x
+        </button>
+      </div>
+      <div class="modal-body-map-sutran">
+        <iframe id="iframe_sutran" style="width: 100%; height: 600px; overflow: show;" src="http://webexterno.sutran.gob.pe/ConsultaSutran"
+          width="100" height="100" scrolling="yes">Iframes not supported</iframe>
       </div>
     </div>
   </div>

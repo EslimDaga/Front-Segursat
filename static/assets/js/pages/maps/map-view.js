@@ -168,6 +168,7 @@ class MapView {
   }
 
   unitSelect = async (unitName) => {
+    $("#copiar_placa").show();
     const index = this.searchUnitMarker(unitName);
     const lat = this.markers[index].getLatLng().lat;
     const lng = this.markers[index].getLatLng().lng;

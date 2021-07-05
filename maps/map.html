@@ -147,6 +147,26 @@
     $(".disabled-results").select2();
   </script>
   <script>
+    function copiarTexto(THIS,element){ 
+      var $temp = $("<input>"); 
+       $("body").append($temp); 
+       $temp.val($(element).html()).select(); 
+       document.execCommand("copy"); 
+       $temp.remove();
+    }
+    function copiarTextoSutran(THIS){ 
+       var $temp = $("<input>"); 
+       $("body").append($temp);  
+       $temp.val($('#sutran-modal').attr("data")).select(); 
+       console.log($('#sutran-modal').attr("data"));
+       document.execCommand("copy"); 
+       $temp.remove();
+    }
+    function modalSutran(THIS){
+      $('#sutran-modal').attr("data",$("#unitNameSelect").text());
+      $('#sutran-modal h5 span').text($("#unitNameSelect").text());
+      $('#sutran-modal').modal('show');
+    }
     $('#input-search').on('keyup', function() {
       var rex = new RegExp($(this).val(), 'i');
       $('.searchable-container .items').hide();
@@ -154,6 +174,21 @@
         return rex.test($(this).text());
       }).show();
     });
+    /*Demo.prototype.addSearchFilter = function () {
+      document.querySelector('.js-shuffle-search').addEventListener('keyup', this._handleSearchKeyup.bind(this));
+    };
+
+    // Filter the shuffle instance by items with a title that matches the search input.
+    Demo.prototype._handleSearchKeyup = function (evt) {
+      var searchText = evt.target.value.toLowerCase();
+
+      this.shuffle.filter(function (element, shuffle) {
+        var titleElement = element.querySelector('.picture-item__title');
+        var titleText = titleElement.textContent.toLowerCase().trim();
+
+        return titleText.indexOf(searchText) !== -1;
+      });
+    };*/
   </script>
   <script>
     const mapView = new MapView();
