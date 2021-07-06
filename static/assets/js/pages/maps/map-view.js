@@ -81,10 +81,11 @@ class MapView {
 
   renderUnitsInHistoryTab = (units) => {
     let unitList = "";
+    console.log(units);
     for (let i = 0; i < units.length; i++) {
       const unit =
       `
-        <option value="${units[i].name}">${units[i].name}</option>
+        <option value="${units[i].name}">${units[i].name} - ${units[i].description} </option>
       `;
       unitList += unit;
     }
