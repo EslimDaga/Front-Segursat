@@ -71,7 +71,7 @@
     }
 .leaflet-tooltip-own {
     position: absolute;
-    padding: 4px;
+    padding: 3px;
     background-color: white;
     border: 1px solid #000;
     color: #000;
@@ -144,22 +144,41 @@
     });
   </script>
   <script>
-    $(".disabled-results").select2();
+      $(".disabled-results").select2({
+        placeholder: "Seleccione por favor",
+        allowClear: false
+      });
+      $("#select2-history-units-container").click(function(){
+        console.log("history");
+      });
   </script>
   <script>
-    function copiarTexto(THIS,element){ 
-      var $temp = $("<input>"); 
-       $("body").append($temp); 
-       $temp.val($(element).html()).select(); 
-       document.execCommand("copy"); 
+    function select2Categorias(){
+      contenedor = $("span.select2-dropdown--below");
+      contenedor.find("ul li ul li").css("padding","0 12px 1px");
+      console.log(contenedor.find("strong"));
+      if(contenedor.find("ul li ul li").attr("aria-selected") == "true"){
+        contenedor.find("strong").css({
+          "padding":"1px 12px 0",
+          "background-color": "#ffecc7"
+        });
+      }else{
+        contenedor.find("strong").css("padding","1px 12px 0");
+      }
+    }
+    function copiarTexto(THIS,element){
+      var $temp = $("<input>");
+       $("body").append($temp);
+       $temp.val($(element).html()).select();
+       document.execCommand("copy");
        $temp.remove();
     }
-    function copiarTextoSutran(THIS){ 
-       var $temp = $("<input>"); 
-       $("body").append($temp);  
-       $temp.val($('#sutran-modal').attr("data")).select(); 
+    function copiarTextoSutran(THIS){
+       var $temp = $("<input>");
+       $("body").append($temp);
+       $temp.val($('#sutran-modal').attr("data")).select();
        console.log($('#sutran-modal').attr("data"));
-       document.execCommand("copy"); 
+       document.execCommand("copy");
        $temp.remove();
     }
     function modalSutran(THIS){
