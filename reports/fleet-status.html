@@ -81,7 +81,11 @@
                 {% for unit in units %}
                 <tr onclick="console.log('{{ unit.name }}')">
                   <td class="text-center" id="unit{{unit.id}}_name">{{unit}}</td>
+                  {% if unit.description == "" %}
+                  <td class="text-center" id="unit{{unit.id}}_description">N/D</td>
+                  {% else %}
                   <td class="text-center" id="unit{{unit.id}}_description">{{unit.description}}</td>
+                  {% endif %}
                   <td class="text-center" id="unit{{unit.id}}_last_report">{{unit.last_report }}</td>
                   <td class="text-center">
                     {% if unit.last_speed > 0 %}
