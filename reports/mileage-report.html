@@ -67,7 +67,7 @@
           <option value="">Seleccionar Unidad</option>
           <option value="all">Todos</option>
           {% for unit in units%}
-          <option value="{{unit.name}}">{{unit.name}}</option>
+          <option value="{{unit.name}}">{{unit.name}} - {{unit.description}}</option>
           {% endfor %}
         </select>
       </div>
