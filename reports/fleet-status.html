@@ -66,6 +66,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
+                  <th class="text-center">Descripción</th>
                   <th class="text-center">Ultimo Reporte</th>
                   <th class="text-center">Estado</th>
                   <th class="text-center">Latitud</th>
@@ -80,6 +81,7 @@
                 {% for unit in units %}
                 <tr onclick="console.log('{{ unit.name }}')">
                   <td class="text-center" id="unit{{unit.id}}_name">{{unit}}</td>
+                  <td class="text-center" id="unit{{unit.id}}_description">{{unit.description}}</td>
                   <td class="text-center" id="unit{{unit.id}}_last_report">{{unit.last_report }}</td>
                   <td class="text-center">
                     {% if unit.last_speed > 0 %}
