@@ -85,7 +85,7 @@ class MapView {
     for (let i = 0; i < units.length; i++) {
       const unit =
       `
-        <option value="${units[i].name}">${units[i].name} - ${units[i].description} </option>
+        <option value="${units[i].name}">${units[i].name} - ${units[i].description}</option>
       `;
       unitList += unit;
     }
@@ -112,7 +112,7 @@ class MapView {
           description : units[i].description,
           rotationAngle: units[i].last_angle
         }
-      ).bindTooltip(`<div class="text-center font-weight-bold">${units[i].name}</div><div class="text-center"> ${units[i].description} </div>`, {
+      ).bindTooltip(`<div class="text-center font-weight-bold" style="font-size: 10px;">${units[i].name}</div><div class="text-center" style="font-size: 10px;"> ${units[i].description} </div>`, {
         permanent: true,
         direction : "top",
         className: "leaflet-tooltip-own",
