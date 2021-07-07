@@ -20,9 +20,8 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .filtered-list-search {
-  margin-top: 0;
-  margin-bottom: 10px;
-  width: 100%; }
+  margin:7px 8px;  
+}
   .filtered-list-search form > div {
     position: relative; }
   .filtered-list-search form input {

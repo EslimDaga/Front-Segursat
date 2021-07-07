@@ -11440,7 +11440,7 @@ body{
     /* overflow-y:auto; */
     overflow-y:overlay;
     position:relative;
-    height: 735px !important;
+    height: 708px !important;
     background-color: #ffff;
 }
 #sidebar-map .tab-pane-footer{
@@ -12074,7 +12074,8 @@ label.required:after{
     overflow:hidden
 }
 #map{
-    margin-top: 2vh;
+    /* margin-top: 2vh; */
+    margin-top: 0;
     overflow:hidden;
     position:absolute;
     top:0;
