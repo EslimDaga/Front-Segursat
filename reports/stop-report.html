@@ -86,6 +86,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
+                  <th class="text-center">Descripción</th>
                   <th class="text-center">Hora de inicio</th>
                   <th class="text-center">Hora de fin</th>
                   <th class="text-center">Duración</th>
@@ -97,7 +98,12 @@
               <tbody>
                 {% for sr in stop_report %}
                 <tr>
-                  <td class="text-center">{{ unit_name }}</td>
+                  <td class="text-center">{{selected_unit.name}}</td>
+                  {% if selected_unit.description == "" %}
+                  <td class="text-center">N/D</td>
+                  {% else %}
+                  <td class="text-center">{{selected_unit.description}}</td>
+                  {% endif %}
                   <td class="text-center">{{ sr.initial_datetime }}</td>
                   <td class="text-center">{{ sr.final_datetime }}</td>
                   <td class="text-center">{{ sr.duration }}</td>
@@ -105,13 +111,15 @@
                   <td class="text-center">{{ sr.address }}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{unit_name}}','{{sr.latitude}}','{{sr.longitude}}','{{sr.angle}}')"
-                        class="btn btn-dark btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                      <button type="button" onclick="renderMap('{{selected_unit.name}}','{{sr.latitude}}','{{sr.longitude}}','{{sr.angle}}')"
+                        class="btn btn-dark btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                           class="feather feather-eye">
                           <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                           <circle cx="12" cy="12" r="3"></circle>
-                        </svg></button>
+                        </svg>
+                      </button>
                     </div>
                   </td>
                 </tr>
