@@ -91,6 +91,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
+                  <th class="text-center">Descripción</th>
                   <th class="text-center">Fecha/Hora</th>
                   <th class="text-center">Latitud</th>
                   <th class="text-center">Longitud</th>
@@ -105,6 +106,7 @@
                 {% for location in locations %}
                 <tr>
                   <td class="text-center">{{unit_name}}</td>
+                  <td class="text-center">{{description}}}</td>
                   <td class="text-center">{{location.datetime}}</td>
                   <td class="text-center">{{location.latitude}}</td>
                   <td class="text-center">{{location.longitude}}</td>
