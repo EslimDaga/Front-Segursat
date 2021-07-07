@@ -432,7 +432,18 @@ class MapView {
     if(check.checked){
       const geofences = await api.getGeofences();
       for (let i = 0; i < geofences.length; i++) {
-        this.geofences.push(L.geoJSON(geofences[i].geojson).addTo(this.map));
+        /* Add Eslim */
+        const onEachFeature = (feature, layer) => {
+          var popupContent = `<p class="text-center">${geofences[i].name}<p>` + `<p class="text-center">${geofences[i].description}<p>`;
+          if (feature.properties && feature.properties.popupContent) {
+            popupContent += feature.properties.popupContent;
+          }
+          layer.bindPopup(popupContent);
+        }
+        /* Add Eslim */
+        this.geofences.push(L.geoJSON(geofences[i].geojson, {
+          onEachFeature: onEachFeature,
+        }).addTo(this.map));
       }
     }else{
       for (let i=0;i<this.geofences.length;i++) {
