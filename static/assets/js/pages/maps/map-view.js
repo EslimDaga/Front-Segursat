@@ -81,7 +81,7 @@ class MapView {
 
   renderUnitsInHistoryTab = (units) => {
     let unitList = "";
-    console.log(units);
+    /* console.log(units); */
     for (let i = 0; i < units.length; i++) {
       const unit =
       `
@@ -200,7 +200,7 @@ class MapView {
         rotationAngle: angle,
         forceZIndex: 1000
       }
-    ).bindTooltip(`<div class="text-center font-weight-bold">${title}</div><div class="text-center">${description}</div>`, {
+    ).bindTooltip(`<div class="text-center font-weight-bold" style="font-size: 10px;">${title}</div><div class="text-center" style="font-size: 10px;">${description}</div>`, {
       permanent: true,
       direction : "top",
       className: "leaflet-tooltip-own",
