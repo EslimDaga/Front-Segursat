@@ -83,6 +83,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
+                  <th class="text-center">Descripción</th>
                   <th class="text-center">Hora de inicio</th>
                   {% comment %} <th class="text-center">Odómetro inicial</th> {% endcomment %}
                   <th class="text-center">Dirección de inicio</th>
@@ -99,7 +100,12 @@
               <tbody>
                 {% for tr in travel_report %}
                 <tr>
-                  <td class="text-center">{{ unit_name }}</td>
+                  <td class="text-center">{{selected_unit.name}}</td>
+                  {% if selected_unit.description == "" %}
+                  <td class="text-center">N/D</td>
+                  {% else %}
+                  <td class="text-center">{{selected_unit.description}}</td>
+                  {% endif %}
                   <td class="text-center">{{ tr.initial_datetime }}</td>
                   <td class="text-center">{{ tr.initial_address }}</td>
                   <td class="text-center">{{ tr.final_datetime }}</td>
