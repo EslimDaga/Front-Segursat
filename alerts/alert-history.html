@@ -47,12 +47,12 @@
             </ul>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-sm-12 pb-2">
+        <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
           <div class="d-flex flex-row-reverse bd-highlight">
             <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha" readonly="readonly">
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-sm-12 pb-2">
+        <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
           <div class="d-flex flex-row-reverse bd-highlight">
             <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text"
               placeholder="Seleccionar Fecha" readonly="readonly">
@@ -293,9 +293,21 @@
       }
   </script>
   <script>
+    const date = new Date();
+    const tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
     /* Input Date */
-    const f1 = flatpickr(document.getElementById('basicFlatpickr'));
-    const f2 = flatpickr(document.getElementById('basicFlatpickr2'));
+    var f1 = flatpickr(document.getElementById('basicFlatpickr'), {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true,
+        defaultDate: {% if initial_datetime %}"{{ initial_datetime }}"{% else %}"today"{% endif %}
+    });
+    var f2 = flatpickr(document.getElementById('basicFlatpickr2'), {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true,
+        defaultDate: {% if final_datetime %}"{{ final_datetime }}"{% else %}tomorrow{% endif %}
+    });
     /* Select 2 input */
     $(".placeholder").select2({
       placeholder: "Buscar por Placa",
