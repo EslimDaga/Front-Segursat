@@ -92,6 +92,14 @@
             <label for="">Nota</label>
             <textarea type="text" class="form-control" name="note" rows="10">{{unit.note}}</textarea>
           </div>
+          <div class="form-group">
+            <div class="n-chk">
+              <label class="new-control new-checkbox checkbox-primary">
+                <input type="checkbox" class="new-control-input" name="sutran_retransmission">
+                <span class="new-control-indicator"></span>Sutran retransmission
+              </label>
+            </div>
+          </div>
           <input type="hidden" name="form_type" value="update_form">
           <input type="hidden" name="id" value="{{unit.id}}">
         </div>
