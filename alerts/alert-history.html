@@ -52,6 +52,12 @@
             <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha" readonly="readonly">
           </div>
         </div>
+        <div class="col-xl-6 col-lg-6 col-sm-12 pb-2">
+          <div class="d-flex flex-row-reverse bd-highlight">
+            <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text"
+              placeholder="Seleccionar Fecha" readonly="readonly">
+          </div>
+        </div>
         <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
           <div class="">
             <select class="placeholder js-states form-control" id="unit_name">
@@ -116,8 +122,8 @@
     const alertHistory = new AlertHistory();
   </script> -->
   <script>
-    const getAlertSearch = async (alertDate, unitName) => {
-        const url = `/web/api/alerts/alert-search/${alertDate}/${unitName}/`
+    const getAlertSearch = async (alertDate, alertDate2, unitName) => {
+        const url = `/web/api/alerts/alert-search/${alertDate}/${alertDate2}/${unitName}/`
         const response = await fetch(url);
         const alerts = await response.json();
         console.log(alerts);
@@ -180,8 +186,16 @@
 
       const alertSearch = async () => {
         let alertDate = document.getElementById("basicFlatpickr").value;
+        let alertDate2 = document.getElementById("basicFlatpickr2").value;
         let unitName = document.getElementById("unit_name").value
         if (alertDate === "") {
+          swal({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Seleccione una fecha',
+            padding: '2em'
+          })
+        } else if (alertDate2 === "") {
           swal({
             type: 'error',
             title: 'Oops...',
@@ -196,7 +210,7 @@
             padding: '2em'
           })
         } else {
-          await getAlertSearch(alertDate, unitName);
+          await getAlertSearch(alertDate, alertDate2, unitName);
         }
       }
 
@@ -281,6 +295,7 @@
   <script>
     /* Input Date */
     const f1 = flatpickr(document.getElementById('basicFlatpickr'));
+    const f2 = flatpickr(document.getElementById('basicFlatpickr2'));
     /* Select 2 input */
     $(".placeholder").select2({
       placeholder: "Buscar por Placa",
