@@ -105,11 +105,11 @@
               <tbody>
                 {% for location in locations %}
                 <tr>
-                  <td class="text-center">{{unit.name}}</td>
-                  {% if unit.description == "" %}
+                  <td class="text-center">{{selected_unit.name}}</td>
+                  {% if selected_unit.description == "" %}
                   <td class="text-center">N/D</td>
                   {% else %}
-                  <td class="text-center">{{unit.description}}</td>
+                  <td class="text-center">{{selected_unit.description}}</td>
                   {% endif %}
                   <td class="text-center">{{location.datetime}}</td>
                   <td class="text-center">{{location.latitude}}</td>
@@ -126,7 +126,7 @@
                   <td class="text-center">{{location.address}}</td>
                   <td class="text-center">
                     <div class="btn-group">
-                      <button type="button" onclick="renderMap('{{unit_name}}','{{location.latitude}}','{{location.longitude}}','{{location.angle}}')" class="btn btn-dark btn-sm">
+                      <button type="button" onclick="renderMap('{{selected_unit.name}}','{{location.latitude}}','{{location.longitude}}','{{location.angle}}')" class="btn btn-dark btn-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                           <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                           <circle cx="12" cy="12" r="3"></circle>
