@@ -11387,7 +11387,8 @@ body{
     z-index:999;
     bottom:0;
     left:0;
-    top: 13vh;
+    /* top: 13vh; */
+    top: 10vh;
     max-height:90%;
     max-height:-webkit-calc(100% - 100px);
     max-height:-moz-calc(100% - 100px);
@@ -12074,8 +12075,7 @@ label.required:after{
     overflow:hidden
 }
 #map{
-    /* margin-top: 2vh; */
-    margin-top: 0;
+    margin-top: 2vh;
     overflow:hidden;
     position:absolute;
     top:0;
