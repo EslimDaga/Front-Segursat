@@ -105,11 +105,11 @@
               <tbody>
                 {% for location in locations %}
                 <tr>
-                  <td class="text-center">{{unit_name}}</td>
+                  <td class="text-center">{{unit.name}}</td>
                   {% if unit.description == "" %}
                   <td class="text-center">N/D</td>
                   {% else %}
-                  <td class="text-center">{{description}}</td>
+                  <td class="text-center">{{unit.description}}</td>
                   {% endif %}
                   <td class="text-center">{{location.datetime}}</td>
                   <td class="text-center">{{location.latitude}}</td>
