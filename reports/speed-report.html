@@ -93,6 +93,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
+                  <th class="text-center">Descripción</th>
                   <th class="text-center">Fecha / Hora</th>
                   <th class="text-center">Velocidad</th>
                   <th class="text-center">Dirección</th>
@@ -102,7 +103,12 @@
               <tbody>
                 {% for sr in speed_report%}
                 <tr>
-                  <td class="text-center">{{ unit_name }}</td>
+                  <td class="text-center">{{selected_unit.name}}</td>
+                  {% if selected_unit.description == "" %}
+                  <td class="text-center">N/D</td>
+                  {% else %}
+                  <td class="text-center">{{selected_unit.description}}</td>
+                  {% endif %}
                   <td class="text-center">{{ sr.dt }}</td>
                   <td class="text-center">{{ sr.speed }} Km/h</td>
                   <td class="text-center">{{ sr.address}}</td>

@@ -90,6 +90,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Unidad</th>
+                  <th class="text-center">Descripción</th>
                   <th class="text-center">Geocerca</th>
                   <th class="text-center">Hora de ingreso</th>
                   <th class="text-center">Hora de salida</th>
@@ -101,7 +102,12 @@
               <tbody>
                 {% for gr in geofence_report %}
                 <tr>
-                  <td class="text-center">{{ unit_name }}</td>
+                  <td class="text-center">{{selected_unit.name}}</td>
+                  {% if selected_unit.description == "" %}
+                  <td class="text-center">N/D</td>
+                  {% else %}
+                  <td class="text-center">{{selected_unit.description}}</td>
+                  {% endif %}
                   <td class="text-center">{{ gr.name }}</td>
                   <td class="text-center">{{ gr.initial_datetime }}</td>
                   <td class="text-center">{{ gr.final_datetime }}</td>
