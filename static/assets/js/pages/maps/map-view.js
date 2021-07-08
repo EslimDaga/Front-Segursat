@@ -16,6 +16,7 @@ const api = new Api()
 class MapView {
 
   constructor() {
+
     this.map;
     this.units = [];
     this.markers = [];
@@ -24,8 +25,25 @@ class MapView {
     this.historyPaths = [];
     this.geofences = [];
     this.historyPlaybackMarker;
+    this.searchActions();
   }
-
+  searchActions =() =>{
+    $('#input-search').on('keyup', function() {
+      var rex = new RegExp($(this).val(), 'i');
+      var count = 0;
+      $('.searchable-container .items').hide();
+      $('.searchable-container .items').filter(function() {
+        count++;
+        return rex.test($(this).text());
+      }).show();
+      console.log(count);
+      $('.result-count span').text(count);
+    });
+    $("#container").height(($("#container").height()+$("#sidebar-map").height())-800);
+    $("#advanced_search").click(function(){
+      $("#result_advanced_search").toggle();
+    });
+  } 
   renderUnitsInUnitTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
@@ -82,6 +100,7 @@ class MapView {
   renderUnitsInHistoryTab = (units) => {
     let unitList = "";
     /* console.log(units); */
+    $('.result-count span').text(units.length);;
     for (let i = 0; i < units.length; i++) {
       const unit =
       `
@@ -434,11 +453,16 @@ class MapView {
       for (let i = 0; i < geofences.length; i++) {
         /* Add Eslim */
         const onEachFeature = (feature, layer) => {
-          var popupContent = `<p class="text-center" style="font-size:10px">${geofences[i].name}<p>` + `<p class="text-center" style="font-size:10px">${geofences[i].description}<p>`;
+          var popupContent = `<div class="text-center" style="font-size:10px">${geofences[i].name}<div>` + `<div class="text-center" style="font-size:10px">${geofences[i].description}<div>`;
           if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;
           }
-          layer.bindPopup(popupContent);
+          layer.bindTooltip(popupContent,{
+            permanent: true,
+            direction: "top",
+            className: "leaflet-tooltip-own-geofence",
+            offset: L.point({ x: 0, y: -20 })
+          });
         }
         /* Add Eslim */
         this.geofences.push(L.geoJSON(geofences[i].geojson, {
