@@ -52,6 +52,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Nombre</th>
+                  <th class="text-center">Descripción</th>
                   <th class="text-center">Ultima Modificacion</th>
                   <th class="text-center">Fecha de Creacion</th>
                   <th class="text-center">Acción</th>
@@ -61,6 +62,11 @@
                 {% for geofence in geofences %}
                 <tr>
                   <td class="text-center">{{geofence.name}}</td>
+                  {% if geofence.description == "" %}
+                    <td class="text-center">N/D</td>
+                  {% else %}
+                  <td class="text-center">{{geofence.description}}</td>
+                  {% endif %}
                   <td class="text-center">{{geofence.modified}}</td>
                   <td class="text-center">{{geofence.created}}</td>
                   <td class="text-center">
