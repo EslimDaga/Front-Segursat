@@ -20,7 +20,7 @@
         </div>
       </li>
       <li class="menu {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
-        <a href="{% url 'dashboard' %}" aria-expanded="{% if request.resolver_match.url_name == 'dashboard' %}true{% endif %}" class="dropdown-toggle">
+        <a href="{% url 'dashboard' %}" onclick="runLoader()" aria-expanded="{% if request.resolver_match.url_name == 'dashboard' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -31,7 +31,7 @@
         </a>
       </li>
       <li class="menu {% if request.resolver_match.url_name == 'map' %}active{% endif %}">
-        <a href="{% url 'map' %}" aria-expanded="{% if request.resolver_match.url_name == 'map' %}true{% endif %}" class="dropdown-toggle">
+        <a href="{% url 'map' %}" onclick="runLoader()" aria-expanded="{% if request.resolver_match.url_name == 'map' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map">
               <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
@@ -43,7 +43,7 @@
         </a>
       </li>
       <li class="menu {% if request.resolver_match.url_name == 'detailed-report' %}active{% elif request.resolver_match.url_name == 'travel-report' %}active{% elif request.resolver_match.url_name == 'stop-report' %}active{% elif request.resolver_match.url_name == 'fleet-status' %}active{% elif request.resolver_match.url_name == 'speed-report' %}active{% elif request.resolver_match.url_name == 'mileage-report' %}active{% elif request.resolver_match.url_name == 'geofence-report' %}active{% elif request.resolver_match.url_name == 'group-trip-report' %}active{% elif request.resolver_match.url_name == 'group-stop-report' %}active{% elif request.resolver_match.url_name == 'group-mileage-report' %}active{% elif request.resolver_match.url_name == 'group-geofence-report' %}active{% elif request.resolver_match.url_name == 'group-speed-report' %}active{% endif %}">
-        <a href="#reports" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% elif request.resolver_match.url_name == 'mileage-report' %}true{% elif request.resolver_match.url_name == 'geofence-report' %}true{% elif request.resolver_match.url_name == 'group-trip-report' %}true{% elif request.resolver_match.url_name == 'group-stop-report' %}true{% elif request.resolver_match.url_name == 'group-mileage-report' %}true{% elif request.resolver_match.url_name == 'group-geofence-report' %}true{% elif request.resolver_match.url_name == 'group-speed-report' %}true{% endif %}" class="dropdown-toggle">
+        <a href="#reports" onclick="runLoader()" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'detailed-report' %}true{% elif request.resolver_match.url_name == 'travel-report' %}true{% elif request.resolver_match.url_name == 'stop-report' %}true{% elif request.resolver_match.url_name == 'fleet-status' %}true{% elif request.resolver_match.url_name == 'speed-report' %}true{% elif request.resolver_match.url_name == 'mileage-report' %}true{% elif request.resolver_match.url_name == 'geofence-report' %}true{% elif request.resolver_match.url_name == 'group-trip-report' %}true{% elif request.resolver_match.url_name == 'group-stop-report' %}true{% elif request.resolver_match.url_name == 'group-mileage-report' %}true{% elif request.resolver_match.url_name == 'group-geofence-report' %}true{% elif request.resolver_match.url_name == 'group-speed-report' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-octagon">
               <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
@@ -60,10 +60,10 @@
         </a>
         <ul class="collapse submenu list-unstyled" id="reports" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'fleet-status' %}active{% endif %}">
-            <a href="{% url 'fleet-status' %}"> Estado de flota</a>
+            <a href="{% url 'fleet-status' %}" onclick="runLoader()"> Estado de flota</a>
           </li>
           <li class="{% if request.resolver_match.url_name == 'detailed-report' %}active{% endif %}">
-            <a href="{% url 'detailed-report' %}"> Reporte Detallado </a>
+            <a href="{% url 'detailed-report' %}" onclick="runLoader()"> Reporte Detallado </a>
           </li>
           <li>
             <a href="#sm3" data-toggle="collapse" class="dropdown-toggle"> Reportes por Unidades <svg
@@ -97,19 +97,19 @@
               </svg> </a>
             <ul class="collapse list-unstyled sub-submenu show" id="sm2" data-parent="#reports">
               <li class="{% if request.resolver_match.url_name == 'group-trip-report' %}active{% endif %}">
-                <a href="{% url 'group-trip-report' %}"> Reporte de Viajes</a>
+                <a href="{% url 'group-trip-report' %}" onclick="runLoader()"> Reporte de Viajes</a>
               </li>
               <li class="{% if request.resolver_match.url_name == 'group-stop-report' %}active{% endif %}">
-                <a href="{% url 'group-stop-report' %}"> Reporte de Paradas</a>
+                <a href="{% url 'group-stop-report' %}" onclick="runLoader()"> Reporte de Paradas</a>
               </li>
               <li class="{% if request.resolver_match.url_name == 'group-speed-report' %}active{% endif %}">
-                <a href="{% url 'group-speed-report' %}"> Reporte de Velocidad</a>
+                <a href="{% url 'group-speed-report' %}" onclick="runLoader()"> Reporte de Velocidad</a>
               </li>
               <li class="{% if request.resolver_match.url_name == 'group-mileage-report' %}active{% endif %}">
-                <a href="{% url 'group-mileage-report' %}"> Reporte de Kilometraje</a>
+                <a href="{% url 'group-mileage-report' %}" onclick="runLoader()"> Reporte de Kilometraje</a>
               </li>
               <li class="{% if request.resolver_match.url_name == 'group-geofence-report' %}active{% endif %}">
-                <a href="{% url 'group-geofence-report' %}"> Reporte de Geocercas</a>
+                <a href="{% url 'group-geofence-report' %}" onclick="runLoader()"> Reporte de Geocercas</a>
               </li>
             </ul>
           </li>
@@ -132,15 +132,15 @@
         </a>
         <ul class="collapse submenu list-unstyled" id="units" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'units' %}active{% endif %}">
-            <a href="{% url 'units' %}"> Unidades </a>
+            <a href="{% url 'units' %}" onclick="runLoader()"> Unidades </a>
           </li>
           <li class="{% if request.resolver_match.url_name == 'unit-group' %}active{% endif %}">
-            <a href="{% url 'unit-group' %}"> Grupos </a>
+            <a href="{% url 'unit-group' %}" onclick="runLoader()"> Grupos </a>
           </li>
         </ul>
       </li>
       <li class="menu {% if request.resolver_match.url_name == 'drivers' %}active{% endif %}">
-        <a href="{% url 'drivers' %}" aria-expanded="{% if request.resolver_match.url_name == 'drivers' %}true{% endif %}" class="dropdown-toggle">
+        <a href="{% url 'drivers' %}" onclick="runLoader()" aria-expanded="{% if request.resolver_match.url_name == 'drivers' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             <span>Conductores</span>
@@ -148,7 +148,7 @@
         </a>
       </li>
       <li class="menu {% if request.resolver_match.url_name == 'geofences' %}active{% endif %}">
-        <a href="{% url 'geofences' %}" aria-expanded="{% if request.resolver_match.url_name == 'geofences' %}true{% endif %}" class="dropdown-toggle">
+        <a href="{% url 'geofences' %}" onclick="runLoader()" aria-expanded="{% if request.resolver_match.url_name == 'geofences' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-crop">
               <path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path>
@@ -176,17 +176,17 @@
         </a>
         <ul class="collapse submenu list-unstyled" id="alerts" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'triggers' %}active{% endif %}">
-            <a href="{% url 'triggers' %}"> Triggers </a>
+            <a href="{% url 'triggers' %}" onclick="runLoader()"> Triggers </a>
           </li>
         </ul>
         <ul class="collapse submenu list-unstyled" id="alerts" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'alerts' %}active{% endif %}">
-            <a href="{% url 'alerts' %}"> Ultimas Alertas </a>
+            <a href="{% url 'alerts' %}" onclick="runLoader()"> Ultimas Alertas </a>
           </li>
         </ul>
         <ul class="collapse submenu list-unstyled" id="alerts" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'alert-history' %}active{% endif %}">
-            <a href="{% url 'alert-history' %}"> Historial de Alertas </a>
+            <a href="{% url 'alert-history' %}" onclick="runLoader()"> Historial de Alertas </a>
           </li>
         </ul>
       </li>
@@ -209,17 +209,17 @@
         </a>
         <ul class="collapse submenu list-unstyled" id="maintenances" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'maintenance-triggers' %}active{% endif %}">
-            <a href="{% url 'maintenance-triggers' %}"> Triggers </a>
+            <a href="{% url 'maintenance-triggers' %}" onclick="runLoader()"> Triggers </a>
           </li>
         </ul>
         <ul class="collapse submenu list-unstyled" id="maintenances" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'maintenances' %}active{% endif %}">
-            <a href="{% url 'maintenances' %}"> Mantenimientos </a>
+            <a href="{% url 'maintenances' %}" onclick="runLoader()"> Mantenimientos </a>
           </li>
         </ul>
         <ul class="collapse submenu list-unstyled" id="maintenances" data-parent="#accordionExample">
           <li class="{% if request.resolver_match.url_name == 'maintenance-history' %}active{% endif %}">
-            <a href="{% url 'maintenance-history' %}"> Historial</a>
+            <a href="{% url 'maintenance-history' %}" onclick="runLoader()"> Historial</a>
           </li>
         </ul>
       </li>
@@ -266,7 +266,7 @@
         </ul>
       </li> -->
       <li class="menu {% if request.resolver_match.url_name == 'users' %}active{% endif %}">
-        <a href="{% url 'users' %}" aria-expanded="{% if request.resolver_match.url_name == 'users' %}true{% endif %}" class="dropdown-toggle">
+        <a href="{% url 'users' %}" onclick="runLoader()" aria-expanded="{% if request.resolver_match.url_name == 'users' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
