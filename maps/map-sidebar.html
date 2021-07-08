@@ -13,33 +13,32 @@
     <div class="tab-content">
       <div class="tab-pane fade show active" id="justify-pills-home" role="tabpanel" aria-labelledby="justify-pills-home-tab">
         <div class="filtered-list-search">
-                    <form class="form-inline my-2 my-lg-0 justify-content-center">
-                      <div class="w-100">
-                        <input type="text" class="w-100 form-control product-search br-30" id="input-search"
-                          placeholder="Buscar unidad">
-                        <button class="btn btn-dark" type="button" style="cursor: default;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-search">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                          </svg>
-                        </button>
-                      </div>
-                    </form>
-          </div>  
+          <form class="form-inline my-2 my-lg-0 justify-content-center">
+            <div class="w-100">
+              <input type="text" class="w-100 form-control product-search br-30" id="input-search"
+                placeholder="Buscar unidad">
+              <button class="btn btn-dark" type="button" style="cursor: default;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-search">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
         <div class="tab-pane-body" style="height: 775px;">
-          
           <div id='jqxSplitter'>
             <div id="">
               <div class="widget-content widget-content-area-map text-center tags-content">
-                <div class="mx-auto"> 
+                <div class="mx-auto">
                   <div class="searchable-container" id="unit-list"></div>
                 </div>
               </div>
             </div>
-            <div id="">
-              <div class="widget widget-table-one">
+            <div>
+              <div class="widget widget-table-one" id="reload">
                 <div class="widget-heading">
                   <h5 class="">Detalles</h5>
                 </div>
@@ -261,7 +260,7 @@
           <div id="ajax-items" style="position: relative;">
             <div class="searchable-container">
               <div class="">
-                <div class="" id="a-u-reload">
+                <div class="">
                   <div class="col-md-12 pt-4">
                     <div class="form-group">
                       <label for="history-date-from"><strong>Desde</strong></label>
@@ -335,7 +334,7 @@
           <a id="copiar_placa" href="#" onclick="copiarTextoSutran(this)">
             <input type="hidden"> <i class="far fa-copy"></i>
           </a>
-      </h5> 
+      </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           x
         </button>
