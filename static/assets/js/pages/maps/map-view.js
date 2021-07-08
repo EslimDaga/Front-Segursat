@@ -449,6 +449,7 @@ class MapView {
   showGeofences = async () => {
     const check = document.getElementById("showGeofenceCheckbox");
     if(check.checked){
+      runLoader();
       const geofences = await api.getGeofences();
       for (let i = 0; i < geofences.length; i++) {
         /* Add Eslim */
@@ -469,11 +470,14 @@ class MapView {
           onEachFeature: onEachFeature,
         }).addTo(this.map));
       }
+      clearLoader();
     }else{
+      runLoader();
       for (let i=0;i<this.geofences.length;i++) {
         this.map.removeLayer(this.geofences[i]);
       }
       this.geofences = []
+      clearLoader();
     }
   }
 
