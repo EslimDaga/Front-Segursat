@@ -474,8 +474,12 @@ class MapView {
             offset: L.point({ x: 0, y: -20 })
           });
         }
+        const myStyle = {
+          "color": "#FF0000"
+        }
         /* Add Eslim */
         this.geofences.push(L.geoJSON(geofences[i].geojson, {
+          style: myStyle,
           onEachFeature: onEachFeature,
         }).addTo(this.map));
       }
