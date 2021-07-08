@@ -359,10 +359,13 @@ class MapView {
               )
               .addTo(this.map)
               .setZIndexOffset(100)
-                .bindTooltip(`<div class="text-center">${locationHistory[i].speed} Km/h<div>
+                .bindTooltip(`
                 <div class="text-center">${locationHistory[i].latitude} <div>
                 <div class="text-center">${locationHistory[i].longitude} <div>
-                <div class="text-center">${locationHistory[i].timestamp} <div>`,{
+                <div class="text-center">${locationHistory[i].speed} Km/h<div>
+                <div class="text-center">${locationHistory[i].timestamp} <div>
+                <div class="text-center">${locationHistory[i].datetime} <div>
+                `,{
                 direction : "top"
               })
             )
