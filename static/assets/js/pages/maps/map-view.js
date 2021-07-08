@@ -25,9 +25,9 @@ class MapView {
     this.historyPaths = [];
     this.geofences = [];
     this.historyPlaybackMarker;
-    this.searchActions();
+    /* this.searchActions(); */
   }
-  searchActions =() =>{
+  /* searchActions =() =>{
     $('#input-search').on('keyup', function() {
       var rex = new RegExp($(this).val(), 'i');
       var count = 0;
@@ -43,7 +43,7 @@ class MapView {
     $("#advanced_search").click(function(){
       $("#result_advanced_search").toggle();
     });
-  } 
+  }  */
   renderUnitsInUnitTab = (units) => {
     let unitList = "";
     for (let i = 0; i < units.length; i++) {
@@ -473,6 +473,7 @@ class MapView {
       for (let i=0;i<this.geofences.length;i++) {
         this.map.removeLayer(this.geofences[i]);
       }
+      this.geofences = []
     }
   }
 
