@@ -188,6 +188,7 @@ class MapView {
   }
 
   unitSelect = async (unitName) => {
+    runLoaderSidebar();
     $("#copiar_placa").show();
     const index = this.searchUnitMarker(unitName);
     const lat = this.markers[index].getLatLng().lat;
@@ -227,6 +228,7 @@ class MapView {
     }).addTo(this.map);
     this.markers[index] = marker;
 
+
     const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
     //this.map.panTo([lat,lng]);
     this.map.setView([lat,lng],16);
@@ -235,6 +237,7 @@ class MapView {
     //llamar a get unit
     const unit = await api.getUnit(unitName);
     /* console.log(unit); */
+    clearRunLoaderSidebar()
     document.getElementById("unitNameSelect").innerHTML = `${unit.name}`;
     if(unit.description.length > 0){
       document.getElementById("description").innerHTML = `${unit.description}`;
