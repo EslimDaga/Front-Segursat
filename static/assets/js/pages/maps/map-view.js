@@ -467,8 +467,7 @@ class MapView {
           if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;
           }
-          layer.bindTooltip(popupContent,{
-            permanent: true,
+          layer.bindPopup(popupContent,{
             direction: "top",
             className: "leaflet-tooltip-own-geofence",
             offset: L.point({ x: 0, y: -20 })
