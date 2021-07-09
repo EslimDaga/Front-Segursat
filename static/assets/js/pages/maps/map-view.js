@@ -463,7 +463,7 @@ class MapView {
       for (let i = 0; i < geofences.length; i++) {
         /* Add Eslim */
         const onEachFeature = (feature, layer) => {
-          var popupContent = `<div class="text-center" style="font-size:10px">${geofences[i].name}<div>` + `<div class="text-center" style="font-size:10px">${geofences[i].description}<div>`;
+          var popupContent = `<div class="text-center" style="font-size:11px; color: #000; ">${geofences[i].name}<div>` + `<div class="text-center" style="font-size:10px">${geofences[i].description}<div>`;
           if (feature.properties && feature.properties.popupContent) {
             popupContent += feature.properties.popupContent;
           }
