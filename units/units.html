@@ -52,6 +52,7 @@
               <thead>
                 <tr>
                   <th class="text-center">Nombre</th>
+		  <th class="text-center">Descripción</th>
                   <th class="text-center">Unique ID</th>
                   <th class="text-center">IMEI</th>
                   <th class="text-center">Ultima Modificacion</th>
@@ -63,6 +64,7 @@
                 {% for unit in units %}
                 <tr>
                   <td class="text-center">{{unit.name}}</td>
+		  <td class="text-center">{{unit.description}}</td>
                   <td class="text-center">{{unit.uniqueid}}</td>
                   <td class="text-center">{{unit.imei}}</td>
                   <td class="text-center">{{unit.modified}}</td>
