@@ -72,9 +72,8 @@
       </div>
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
-          <label for="">Seleccionar Geocerca</label>
-          <select class="placeholder-geofence js-states form-control" id="geofence_name" name="geofence_name">
-            <option value="">Seleccionar Geocerca</option>
+          <label for="">Seleccionar Geocercsa</label>
+          <select class="js-example-basic-multiple js-states form-control" name="states[]" multiple="multiple">
             {% for geofence in geofences %}
             <option value="{{geofence.name}}">{{geofence.name}}</option>
             {% endfor %}
@@ -221,9 +220,10 @@
     allowClear: true
   });
 
-  $(".placeholder-geofence").select2({
-    placeholder: "Buscar por Geocerca",
-    allowClear: true
+  $(document).ready(function () {
+    $('.js-example-basic-multiple').select2({
+      placeholder: "Buscar por Geocerca"
+    });
   });
 </script>
 {% if form.errors %}
