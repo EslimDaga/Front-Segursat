@@ -46,6 +46,7 @@ class MapView {
   }  */
   renderUnitsInUnitTab = (units) => {
     let unitList = "";
+    runLoaderSidebarUnits();
     for (let i = 0; i < units.length; i++) {
       if (units[i].last_speed > 0) {
         //console.log(units[i]);
@@ -94,6 +95,7 @@ class MapView {
       }
 
     }
+    clearRunLoaderSidebarUnits();
     document.getElementById("unit-list").innerHTML = unitList;
   }
 
