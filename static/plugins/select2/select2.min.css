@@ -91,7 +91,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   .select2-container .select2-search--inline .select2-search__field {
     box-sizing: border-box;
     border: none;
-    font-size: 100%;
+    font-size: 12px;
     margin-top: 5px;
     padding: 0; }
     .select2-container .select2-search--inline .select2-search__field::-webkit-search-cancel-button {
@@ -237,7 +237,8 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   border: 1px solid #bfc9d4;
   color: #3b3f5c;
   font-size: 15px;
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
+  padding: 3px 16px;
   letter-spacing: 1px;
   font-weight: 700;
   background: #f1f2f3; }
@@ -262,7 +263,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     margin-right: 10px; }
   .select2-container--default .select2-selection--multiple .select2-selection__choice {
     background-color: #e4e4e4;
-    border: 1px solid #ebedf2;
+    /* border: 1px solid #ebedf2; */
     border-radius: 4px;
     cursor: default;
     float: left;
