@@ -92,7 +92,7 @@ span.select2.select2-container.select2-container--default.select2-container--ope
     box-sizing: border-box;
     border: none;
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: 6px;
     padding: 0; }
     .select2-container .select2-search--inline .select2-search__field::-webkit-search-cancel-button {
       -webkit-appearance: none; }
@@ -321,9 +321,10 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   background: transparent;
   border: none;
   outline: 0;
+  letter-spacing: unset;
   box-shadow: none;
   -webkit-appearance: textfield;
-  width: 100% !important; }
+  width: 110% !important; }
 
 .select2-container--default .select2-results > .select2-results__options {
   max-height: 200px;
