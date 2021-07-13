@@ -73,7 +73,7 @@
       <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
         <div class="">
           <label for="">Seleccionar Geocercsa</label>
-          <select class="js-example-basic-multiple js-states form-control" name="states[]" multiple="multiple">
+          <select class="js-example-basic-multiple js-states form-control" id="geofence_name" name="geofence_name" multiple="multiple">
             {% for geofence in geofences %}
             <option value="{{geofence.name}}">{{geofence.name}}</option>
             {% endfor %}
