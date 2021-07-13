@@ -231,14 +231,14 @@ span.select2.select2-container.select2-container--default.select2-container--ope
   border-width: 0 4px 5px 4px; }
 
 .select2-container--default .select2-selection--multiple {
-  background-color: white;
+  background-color: white !important;
   border-radius: 4px;
   cursor: text;
   border: 1px solid #bfc9d4;
   color: #3b3f5c;
-  font-size: 15px;
+  font-size: 12px;
   /* padding: 8px 16px; */
-  padding: 3px 16px;
+  padding: 5px 16px;
   letter-spacing: 1px;
   font-weight: 700;
   background: #f1f2f3; }
