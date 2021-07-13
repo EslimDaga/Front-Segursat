@@ -31,10 +31,30 @@
           </div>
           {% endif %}
           {% endfor %}
+          <div class="">
+            <label for="">Seleccionar Alerta</label>
+            <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
+              <option value="">Alerta de Pánico</option>
+              <option value="">Alerta de Batería</option>
+              <option value="">Alerta de Velocidad</option>
+            </select>
+          </div>
           <div class="n-chk">
             <label class="new-control new-checkbox checkbox-outline-warning">
               <input type="checkbox" class="new-control-input" checked>
               <span class="new-control-indicator"></span>¿Esta activo?
+            </label>
+          </div>
+          <div class="n-chk">
+            <label class="new-control new-checkbox checkbox-outline-warning">
+              <input type="checkbox" class="new-control-input" checked>
+              <span class="new-control-indicator"></span>Activar notificación
+            </label>
+          </div>
+          <div class="n-chk">
+            <label class="new-control new-checkbox checkbox-outline-warning">
+              <input type="checkbox" class="new-control-input" checked>
+              <span class="new-control-indicator"></span>Activar notificación por correo electronico
             </label>
           </div>
         </div>

@@ -13,11 +13,12 @@
   <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
   <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'plugins/select2/select2.min.css' %}" rel="stylesheet" type="text/css">
   <script src="https://kit.fontawesome.com/2ea5efd210.js" crossorigin="anonymous"></script>
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-  {% include "alerts/trigger-create-modal.html" %}
+  {% include "triggers/create-fleet-trigger-modal.html" %}
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <div class="row layout-top-spacing">
@@ -27,7 +28,7 @@
               <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
               </li>
               <li class="active">
-                <a class="d-flex" href="{% url 'triggers' %}">
+                <a class="d-flex" href="{% url 'fleet-trigger' %}">
                   <i class="fas fa-project-diagram h5 pr-2"></i>
                   Trigger por Flota
                 </a>
@@ -103,6 +104,13 @@
   <script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
   <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
   <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+  <script src="{% static 'plugins/select2/select2.min.js' %}"></script>
+  <script>
+    $(".placeholder").select2({
+        placeholder: "Seleccionar Alerta",
+        allowClear: true
+      });
+  </script>
   <script>
       $('#html5-extension').DataTable({
           dom: "<'ui grid'" +

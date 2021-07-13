@@ -158,8 +158,8 @@
           </div>
         </a>
       </li>
-      <li class="menu {% if request.resolver_match.url_name == 'triggers' %}active{% elif request.resolver_match.url_name == 'alerts' %}active{% elif request.resolver_match.url_name == 'alert-history' %}active{% endif %}">
-        <a href="#alerts" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'triggers' %}true{% elif request.resolver_match.url_name == 'alerts' %}true{% elif request.resolver_match.url_name == 'alert-history' %}true{% endif %}" class="dropdown-toggle">
+      <li class="menu {% if request.resolver_match.url_name == 'fleet-trigger' %}active{% elif request.resolver_match.url_name == 'alerts' %}active{% elif request.resolver_match.url_name == 'alert-history' %}active{% endif %}">
+        <a href="#alerts" data-toggle="collapse" aria-expanded="{% if request.resolver_match.url_name == 'fleet-trigger' %}true{% elif request.resolver_match.url_name == 'alerts' %}true{% elif request.resolver_match.url_name == 'alert-history' %}true{% endif %}" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle">
               <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
@@ -175,8 +175,8 @@
           </div>
         </a>
         <ul class="collapse submenu list-unstyled" id="alerts" data-parent="#accordionExample">
-          <li class="{% if request.resolver_match.url_name == 'triggers' %}active{% endif %}">
-            <a href="{% url 'triggers' %}" onclick="runLoader()"> Triggers </a>
+          <li class="{% if request.resolver_match.url_name == 'fleet-trigger' %}active{% endif %}">
+            <a href="{% url 'fleet-trigger' %}" onclick="runLoader()"> Triggers por Flota </a>
           </li>
         </ul>
         <ul class="collapse submenu list-unstyled" id="alerts" data-parent="#accordionExample">
