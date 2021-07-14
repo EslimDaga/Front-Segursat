@@ -24,7 +24,6 @@
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-  {% include "alerts/trigger-create-modal.html" %}
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
       <div class="row layout-top-spacing">
@@ -56,6 +55,7 @@
                 <thead>
                   <tr>
                     <th class="text-center">Unidad</th>
+                    <th class="text-center">Descripción</th>
                     <th class="text-center">Fecha</th>
                     <th class="text-center">Tipo de Alerta</th>
                     <th class="text-center">Prioridad</th>
@@ -65,7 +65,8 @@
                 <tbody>
                   {% for alert in alerts %}
                   <tr>
-                    <td class="text-center">{{alert.unit_name}}</td>
+                    <td class="text-center">{{alert.selected.name}}</td>
+                    <td class="text-center">{{alert.selected.description}}</td>
                     <td class="text-center">{{alert.datetime}}</td>
                     <td class="text-center">{{alert.alert_type}}</td>
                     {% if alert.alert_priority == "V" %}
