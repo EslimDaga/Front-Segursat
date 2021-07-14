@@ -1501,13 +1501,13 @@
     align-self: center;
 }
 .widget-table-one .transactions-list .t-item .t-name h4 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     margin-bottom: 0;
     transition: all 0.5s ease;
 }
 .widget-table-one .transactions-list:hover .t-item .t-name h4 {
-    color: #2196f3;
+    color: #F8951D;
 }
 .widget-table-one .transactions-list .t-item .t-name .meta-date {
     font-size: 12px;
