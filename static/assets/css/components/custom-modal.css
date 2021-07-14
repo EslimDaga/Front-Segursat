@@ -31,14 +31,14 @@
     .modal-content .modal-body-map {
       padding: 0px 0px; }
     .modal-content .modal-body a:not(.btn) {
-      /* color: #F8951D; */
-      color: red;
-      font-size: 15px;
+      color: #F8951D;
+      /* color: red; */
+      font-size: 12px;
       font-weight: 600; }
     .modal-content .modal-body p {
       color: #888ea8;
       letter-spacing: 1px;
-      font-size: 14px;
+      font-size: 12px;
       line-height: 22px; }
       .modal-content .modal-body p:last-child {
         margin-bottom: 0; }
