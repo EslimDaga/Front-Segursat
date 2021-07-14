@@ -2,7 +2,8 @@ class AlertView {
   checkAlert = async (id) => {
     const url = `/web/api/alerts/get-alert/${id}`;
     const response = await fetch(url);
-    const alert = await response.json()
+    const alert = await response.json();
+    console.log(alert);
     $("#checkAlert").modal("show");
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:430px;width:100%;"></div>`;
     setTimeout(() => {
@@ -61,8 +62,9 @@ class AlertView {
       map.panTo([alert.latitude, alert.longitude]);
     }, 500);
     document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
+    document.getElementById("description").innerHTML = `${alert.description}`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
-    document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
+    document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
       document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
     } else if (alert.alert_priority === "H") {
@@ -91,12 +93,22 @@ class AlertView {
     cell2.className = "text-center";
     cell3.className = "text-center";
     cell4.className = "text-center";
+    cell5.className = "text-center";
 
     cell0.innerHTML = alert.unit_name;
-    cell1.innerHTML = "now";
-    cell2.innerHTML = alert.alert_type;
-    cell3.innerHTML = alert.alert_priority;
-    cell4.innerHTML = `
+    cell1.innerHTML = alert.description;
+    cell2.innerHTML = "now";
+    cell3.innerHTML = alert.alert_description;
+    if(alert.alert_priority === "L"){
+      cell4.innerHTML = "LOW";
+    } else if (alert.alert_priority === "M"){
+      cell4.innerHTML = "MEDIUM"
+    } else if (alert.alert_priority === "H"){
+      cell4.innerHTML = "HIGH"
+    } else {
+      cell4.innerHTML = "VERY HIGH"
+    }
+    cell5.innerHTML = `
       <div class="btn-group">
         <button type="button" onclick="alertView.checkAlert(${alert.alert_id})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
       </div>
