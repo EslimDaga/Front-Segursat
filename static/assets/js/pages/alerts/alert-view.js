@@ -62,7 +62,7 @@ class AlertView {
       map.panTo([alert.latitude, alert.longitude]);
     }, 500);
     document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
-    document.getElementById("description").innerHTML = `${alert.description}`;
+    /* document.getElementById("description").innerHTML = `${alert.description}`; */
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
     document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
