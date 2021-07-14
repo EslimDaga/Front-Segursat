@@ -2196,6 +2196,7 @@ a.thumbnail.active,a.thumbnail:focus,a.thumbnail:hover{
     color:#66512c
 }
 .alert-danger,.help-block.error{
+    width: 300px !important;
     background-color:#f2dede;
     border-color:#ebccd1;
     color:#a94442
