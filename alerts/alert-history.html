@@ -28,7 +28,7 @@
   <!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
-  {% include "alerts/trigger-create-modal.html" %}
+
   <!-- {% include "alerts/checkalert-view-modal.html" %} -->
   <div id="content" class="main-content">
     <div class="layout-px-spacing">
@@ -160,7 +160,6 @@
           </div>
         `;
         });
-
         const table = $('#html5-extension').DataTable({
           destroy: true,
           dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
@@ -308,6 +307,8 @@
         time_24hr: true,
         defaultDate: {% if final_datetime %}"{{ final_datetime }}"{% else %}tomorrow{% endif %}
     });
+
+    console.log(f1.value,f2.value)
     /* Select 2 input */
     $(".placeholder").select2({
       placeholder: "Buscar por Placa",
