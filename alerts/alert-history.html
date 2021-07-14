@@ -70,6 +70,7 @@
           <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
             <option value="">Seleccionar Unidad</option>
             {% for unit in units%}
+            <option value="all">Todos</option>
             <option value="{{unit.name}}">{{unit.name}} - {{unit.description}}</option>
             {% endfor %}
           </select>
@@ -103,9 +104,7 @@
                 </tr>
               </thead>
               <tbody>
-
-
-                  {% for alert in alerts %}
+                {% for alert in alerts %}
                   <tr>
                     <td class="text-center">{{selected_unit.name}}</td>
                     {% if selected_unit.description == "" %}
@@ -114,7 +113,7 @@
                     <td class="text-center">{{selected_unit.description}}</td>
                     {% endif %}
                     <td class="text-center">{{alert.datetime}}</td>
-                    <td class="text-center">{{alert.alert_type}}</td>
+                    <td class="text-center">{{alert.alert_description}}</td>
                     {% if alert.alert_priority == "V" %}
                     <td class="text-center"><span class="badge badge-danger"> Muy alta </span></td>
                     {% elif alert.alert_priority == "H" %}
@@ -131,9 +130,7 @@
                       </div>
                     </td>
                   </tr>
-                  {% endfor %}
-
-
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -244,7 +241,7 @@
         map.panTo([alert.latitude, alert.longitude]);
       }, 500);
       document.getElementById("account").innerHTML = `${alert.unit_name}`;
-      document.getElementById("description").innerHTML = `${alert.description}`;
+      /* document.getElementById("description").innerHTML = `${alert.description}`; */
       document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
       document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
       if (alert.alert_priority === "V") {
