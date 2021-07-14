@@ -1,341 +1,273 @@
 {% extends "base.html" %}
 {% load static %}
 {% block head_content %}
-  <title>Historial de alertas - Segursat GPS</title>
-  <!-- Begin Page Level Custom Styles -->
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/datatables.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/table/datatable/dt-global_style.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/miscellaneous.css' %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/elements/breadcrumb.css' %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/forms/theme-checkbox-radio.css' %}"/>
-  <link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="{% static 'plugins/select2/select2.min.css' %}">
-  <link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'plugins/sweetalerts/promise-polyfill.js' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
-  <link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" />
-  <link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
-  <script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
-  <!-- End Page Level Custom Styles -->
+<title>Historal de alertas - Segursat GPS</title>
+<!-- Begin Page Level Custom Styles -->
+<link href="{% static 'plugins/table/datatable/datatables.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/table/datatable/custom_dt_html5.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/table/datatable/dt-global_style.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'assets/css/elements/miscellaneous.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/elements/breadcrumb.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/users/user-profile.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/elements/custom-tree_view.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/flatpickr/flatpickr.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'plugins/flatpickr/custom-flatpickr.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/select2/select2.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'assets/css/widgets/modules-widgets.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/sweetalerts/sweetalert2.min.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/sweetalerts/sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'assets/css/components/custom-sweetalert.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'plugins/leaflet/css/leaflet.css' %}" rel="stylesheet" />
+<link href="{% static 'plugins/widgets-map/css/marker.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/scrollspyNav.css' %}" rel="stylesheet">
+<link href="{% static 'assets/css/components/custom-modal.css' %}" rel="stylesheet">
+<link href="{% static 'plugins/animate/animate.css' %}" rel="stylesheet">
+<!-- End Page Level Custom Styles -->
 {% endblock %}
 {% block container %}
+<!-- Begin Content Area -->
+{% include "alerts/checkalert-view-modal.html" %}
+<div id="content" class="main-content">
+  <div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="breadcrumb-four">
+          <ul class="breadcrumb">
+            <li>
+              <a href="{% url 'dashboard' %}">
+                <i class="fas fa-home h5"></i>
+              </a>
+            </li>
+            <li class="active">
+              <a class="d-flex" href="{% url 'alert-history' %}">
+                <i class="fas fa-cars h5 pr-2"></i>
+                Historial de Alerta
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-sm-12">
+        <div class="flex-row-reverse bd-highlight pb-2">
+          <form method="post" action="{% url 'alert-history' %}">
+            {% csrf_token %}
+            <label for="">Seleccionar Fecha Inicial</label>
+            <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text"
+              placeholder="Seleccionar Fecha Inicial" name="initial_datetime" required>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-sm-12 pb-2">
+        <label for="">Seleccionar Fecha Final</label>
+        <div class="d-flex flex-row-reverse bd-highlight">
+          <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text"
+            placeholder="Seleccionar Fecha Final" name="final_datetime" required>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-10">
+        <div class="">
+          <label for="">Seleccionar Unidad</label>
+          <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
+            <option value="">Seleccionar Unidad</option>
+            {% for unit in units%}
+            <option value="{{unit.name}}">{{unit.name}} - {{unit.description}}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-sm-2 align-self-center">
+        <div class="">
+          <button onclick="runLoader()" type="submit" class="btn btn-dark rounded-circle w-100-test responsive-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="feather feather-search">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+          </form>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+          <div class="table-responsive">
+            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+              <thead>
+                <tr>
+                  <th class="text-center">Unidad</th>
+                  <th class="text-center">Descripción</th>
+                  <th class="text-center">Fecha</th>
+                  <th class="text-center">Tipo de Alerta</th>
+                  <th class="text-center">Prioridad</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
 
-  <!-- {% include "alerts/checkalert-view-modal.html" %} -->
-  <div id="content" class="main-content">
-    <div class="layout-px-spacing">
-      <div class="row layout-top-spacing">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-          <div class="breadcrumb-four">
-            <ul class="breadcrumb">
-              <li><a href="{% url 'dashboard' %}"><i class="fas fa-home h5"></i></a>
-              </li>
-              <li class="active">
-                <a class="d-flex" href="{% url 'alert-history' %}">
-                  <i class="fas fa-sensor-alert h5 pr-2"></i>
-                  Historial de Alertas
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
-          <div class="d-flex flex-row-reverse bd-highlight">
-            <input id="basicFlatpickr" class="form-control flatpickr flatpickr-input active" type="text" placeholder="Seleccionar Fecha" readonly="readonly">
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
-          <div class="d-flex flex-row-reverse bd-highlight">
-            <input id="basicFlatpickr2" class="form-control flatpickr flatpickr-input active" type="text"
-              placeholder="Seleccionar Fecha" readonly="readonly">
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
-          <div class="">
-            <select class="placeholder js-states form-control" id="unit_name">
-              <option value="all">Todos</option>
-              {% for unit in units%}
-              <option value="{{unit.name}}">{{unit.name}}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-sm-12 pb-2">
-          <div class="">
-            <button class="btn btn-primary responsive-button" onclick="alertSearch()" style="height: 45.39px">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg> Buscar </button>
-          </div>
-        </div>
-        <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-          <div class="widget-content widget-content-area br-6">
-            <div class="table-responsive">
-              <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
-                <thead>
+
+                  {% for alert in alerts %}
                   <tr>
-                    <th class="text-center">Unidad</th>
-                    <th class="text-center">Tipo de Alerta</th>
-                    <th class="text-center">Prioridad</th>
-                    <th class="text-center">Fecha de Creación</th>
-                    <th class="text-center">Acciones</th>
+                    <td class="text-center">{{selected_unit.name}}</td>
+                    {% if selected_unit.description == "" %}
+                    <td class="text-center">N/D</td>
+                    {% else %}
+                    <td class="text-center">{{selected_unit.description}}</td>
+                    {% endif %}
+                    <td class="text-center">{{alert.datetime}}</td>
+                    <td class="text-center">{{alert.alert_type}}</td>
+                    {% if alert.alert_priority == "V" %}
+                    <td class="text-center"><span class="badge badge-danger"> Muy alta </span></td>
+                    {% elif alert.alert_priority == "H" %}
+                    <td class="text-center"><span class="badge badge-warning"> Alta </span></td>
+                    {% elif alert.alert_priority == "M" %}
+                    <td class="text-center"><span class="badge badge-info"> Media </span></td>
+                    {% else %}
+                    <td class="text-center"><span class="badge badge-success"> Baja </span></td>
+                    {% endif %}
+                    <td class="text-center">
+                      <div class="btn-group">
+                        <button type="button" onclick="checkAlert({{alert.id}})" class="btn btn-dark btn-sm"><i
+                            class="fas fa-eye"></i></button>
+                      </div>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
-            </div>
+                  {% endfor %}
+
+
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
-    {% include 'alerts/checkalert-view-modal.html' %}
-    {% include 'includes/footer.html' %}
   </div>
+  {% include 'includes/footer.html' %}
+</div>
+<!-- End Content Area -->
 {% endblock %}
 {% block script_content %}
-  <!-- Begin Page Level Custom Scripts -->
-  <script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
-  <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
-  <script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
-  <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
-  <script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
-  <script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
-  <script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
-  <script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
-  <script src="{% static 'plugins/select2/select2.min.js' %}"></script>
-  <script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
-  <script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
-  <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
-  <script src="{% static 'assets/js/pages/alerts/alert-history-view.js' %}"></script>
-  <!-- <script>
-    /* Import from class */
-    const alertHistory = new AlertHistory();
-  </script> -->
-  <script>
-    const getAlertSearch = async (alertDate, alertDate2, unitName) => {
-        const url = `/web/api/alerts/alert-search/${alertDate}/${alertDate2}/${unitName}/`
-        const response = await fetch(url);
-        const alerts = await response.json();
-        console.log(alerts);
-        $('#html5-extension').DataTable().clear().destroy();
-        const alertsArray = alerts.map(alert => {
-          const table = document.getElementById("html5-extension").getElementsByTagName('tbody')[0];
-          const row = table.insertRow(0);
-          const cell0 = row.insertCell(0);
-          const cell1 = row.insertCell(1);
-          const cell2 = row.insertCell(2);
-          const cell3 = row.insertCell(3);
-          const cell4 = row.insertCell(4);
-          cell0.className = "text-center";
-          cell1.className = "text-center";
-          cell2.className = "text-center";
-          cell3.className = "text-center";
-          cell4.className = "text-center";
-          cell0.innerHTML = alert.account;
-          cell1.innerHTML = alert.alert_type;
-          if (alert.alert_priority === "V") {
-            cell2.innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
-          } else if (alert.alert_priority === "H") {
-            cell2.innerHTML = `<span class="badge badge-warning"> Alta </span>`;
-          } else if (alert.alert_priority === "M") {
-            cell2.innerHTML = `<span class="badge badge-info"> Media </span>`
-          } else {
-            cell2.innerHTML = `<span class="badge badge-success"> Baja </span>`;
+<!-- Begin Page Level Custom Scripts -->
+<script src="{% static 'plugins/table/datatable/datatables.js' %}"></script>
+<!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+<script src="{% static 'plugins/table/datatable/button-ext/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/buttons.print.min.js' %}"></script>
+<script src="{% static 'plugins/treeview/custom-jstree.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script src="{% static 'plugins/flatpickr/flatpickr.js' %}"></script>
+<script src="{% static 'plugins/select2/select2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/sweetalert2.min.js' %}"></script>
+<script src="{% static 'plugins/sweetalerts/custom-sweetalert.js' %}"></script>
+<script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/leaflet/js/leaflet.js' %}"></script>
+<script src="{% static 'plugins/leaflet-rotated-marker/js/leaflet.rotatedMarker.js' %}"></script>
+<script src="{% static 'assets/js/scrollspyNav.js' %}"></script>
+<script src="{% static 'assets/js/pages/reports/detailed-report.js' %}"></script>
+<script>
+  const date = new Date();
+  const tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
+  var f1 = flatpickr(document.getElementById('basicFlatpickr'), {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    defaultDate: {% if initial_datetime %}"{{ initial_datetime }}"{% else %}"today"{% endif %}
+  });
+  var f2 = flatpickr(document.getElementById('basicFlatpickr2'), {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    defaultDate: {% if final_datetime %}"{{ final_datetime }}"{% else %}tomorrow{% endif %}
+  });
+  const checkAlert = async (id) => {
+      const url = `/web/api/alerts/get-alert/${id}`;
+      const response = await fetch(url);
+      const alert = await response.json()
+      $("#checkAlert").modal("show");
+      console.log(alert);
+      document.getElementById("map-container").innerHTML = `<div id="map" style="height:430px;width:100%;"></div>`;
+      setTimeout(() => {
+        const map = L.map('map', {
+          center: [alert.latitude, alert.longitude],
+          zoom: 16,
+        });
+        const openStreetMap = L.tileLayer(
+          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+            maxZoom: 19,
           }
-
-          cell3.innerHTML = alert.datetime;
-          cell4.innerHTML = `
-          <div class="btn-group">
-            <button onclick="checkAlert(${alert.id})" type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
-          </div>
-        `;
+        );
+        const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+          attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+          maxZoom: 20,
+          subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
-        const table = $('#html5-extension').DataTable({
-          destroy: true,
-          dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
-          buttons: {
-            buttons: [
-              { extend: 'copy', text: '<i class="fas fa-copy"></i>', className: 'btn rounded-circle' },
-              { extend: 'excel', text: '<i class="fas fa-file-excel"></i>', className: 'btn rounded-circle' },
-              { extend: 'print', text: '<i class="fas fa-print"></i>', className: 'btn rounded-circle' }
-            ]
-          },
-          "oLanguage": {
-            "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-            "sInfo": "Mostrando página _PAGE_ de _PAGES_",
-            "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-            "sSearchPlaceholder": "Buscar...",
-            "sLengthMenu": "Results :  _MENU_",
-          },
-          "stripeClasses": [],
-          "lengthMenu": [7, 10, 20, 50],
-          "pageLength": 7
+        const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+          attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
+          maxZoom: 20,
+          subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
-      }
+        const baseLayers = {
+          'Open Street Maps': openStreetMap,
+          'Google Street Maps': googleStreetsMap,
+          'Google Hybrid Maps': googleHybridMap
+        };
+        const overlays = {};
+        L.control.layers(baseLayers, overlays).addTo(map);
+        baseLayers['Google Street Maps'].addTo(map);
 
-      const alertSearch = async () => {
-        let alertDate = document.getElementById("basicFlatpickr").value;
-        let alertDate2 = document.getElementById("basicFlatpickr2").value;
-        let unitName = document.getElementById("unit_name").value
-        if (alertDate === "") {
-          swal({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Seleccione una fecha',
-            padding: '2em'
-          })
-        } else if (alertDate2 === "") {
-          swal({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Seleccione una fecha',
-            padding: '2em'
-          })
-        } else if (unitName === "") {
-          swal({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Seleccione una unidad',
-            padding: '2em'
-          })
-        } else {
-          await getAlertSearch(alertDate, alertDate2, unitName);
-        }
-      }
-
-      const checkAlert = async (id) => {
-        const url = `/web/api/alerts/get-alert/${id}`;
-        const response = await fetch(url);
-        const alert = await response.json()
-        $("#checkAlert").modal("show");
-        console.log(alert);
-        document.getElementById("map-container").innerHTML = `<div id="map" style="height:430px;width:100%;"></div>`;
-        setTimeout(() => {
-          const map = L.map('map', {
-            center: [alert.latitude, alert.longitude],
-            zoom: 16,
-          });
-          const openStreetMap = L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            {
-              attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-              maxZoom: 19,
-            }
-          );
-          const googleStreetsMap = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-            attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-          });
-          const googleHybridMap = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-            attribution: '&copy; <a href="https://maps.google.com/">Google Maps</a>',
-            maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-          });
-          const baseLayers = {
-            'Open Street Maps': openStreetMap,
-            'Google Street Maps': googleStreetsMap,
-            'Google Hybrid Maps': googleHybridMap
-          };
-          const overlays = {};
-          L.control.layers(baseLayers, overlays).addTo(map);
-          baseLayers['Google Street Maps'].addTo(map);
-
-          const icon = L.divIcon({
-            iconSize: null,
-            html: `
+        const icon = L.divIcon({
+          iconSize: null,
+          html: `
         <div class="map-label">
           <div class="map-label-content">
             <img src="/static/assets/img/markers/cars.png" width="26" height="48"/>
           </div>
         </div>
         `
-          });
-          const marker = new L.marker(
-            [alert.latitude, alert.longitude],
-            {
-              icon: icon,
-              title: alert.unit_name,
-              rotationAngle: alert.angle
-            }
-          ).bindTooltip(alert.unit_name, {
-            permanent: true,
-            direction: "top",
-            offset: L.point({ x: 0, y: -30 })
-          }).addTo(map);
-          map.panTo([alert.latitude, alert.longitude]);
-        }, 500);
-        document.getElementById("account").innerHTML = `${alert.unit_name}`;
-        document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
-        document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
-        if (alert.alert_priority === "V") {
-          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
-        } else if (alert.alert_priority === "H") {
-          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-warning"> Alta </span>`;
-        } else if (alert.alert_priority === "M") {
-          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-info"> Media </span>`;
-        } else {
-          document.getElementById("alert_priority").innerHTML = `<span class="badge badge-success"> Baja </span>`;
-        }
-        document.getElementById("datetime").innerHTML = `${alert.datetime}`
-        return alert;
+        });
+        const marker = new L.marker(
+          [alert.latitude, alert.longitude],
+          {
+            icon: icon,
+            title: alert.unit_name,
+            rotationAngle: alert.angle
+          }
+        ).bindTooltip(alert.unit_name, {
+          permanent: true,
+          direction: "top",
+          offset: L.point({ x: 0, y: -30 })
+        }).addTo(map);
+        map.panTo([alert.latitude, alert.longitude]);
+      }, 500);
+      document.getElementById("account").innerHTML = `${alert.unit_name}`;
+      document.getElementById("description").innerHTML = `${alert.description}`;
+      document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
+      document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
+      if (alert.alert_priority === "V") {
+        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
+      } else if (alert.alert_priority === "H") {
+        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-warning"> Alta </span>`;
+      } else if (alert.alert_priority === "M") {
+        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-info"> Media </span>`;
+      } else {
+        document.getElementById("alert_priority").innerHTML = `<span class="badge badge-success"> Baja </span>`;
       }
-  </script>
-  <script>
-    const date = new Date();
-    const tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
-    /* Input Date */
-    var f1 = flatpickr(document.getElementById('basicFlatpickr'), {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        time_24hr: true,
-        defaultDate: {% if initial_datetime %}"{{ initial_datetime }}"{% else %}"today"{% endif %}
-    });
-    var f2 = flatpickr(document.getElementById('basicFlatpickr2'), {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        time_24hr: true,
-        defaultDate: {% if final_datetime %}"{{ final_datetime }}"{% else %}tomorrow{% endif %}
-    });
-
-    console.log(f1.value,f2.value)
-    /* Select 2 input */
-    $(".placeholder").select2({
-      placeholder: "Buscar por Placa",
-      allowClear: true
-    });
-    /* Html5 Export */
-    $('#html5-extension').DataTable({
-        destroy: true,
-        dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
-        buttons: {
-          buttons: [
-            { extend: 'copy', text: '<i class="fas fa-copy"></i>', className: 'btn rounded-circle' },
-            { extend: 'excel', text: '<i class="fas fa-file-excel"></i>', className: 'btn rounded-circle' },
-            { extend: 'print', text: '<i class="fas fa-print"></i>', className: 'btn rounded-circle' }
-          ]
-        },
-        "oLanguage": {
-          "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
-          "sInfo": "Mostrando página _PAGE_ de _PAGES_",
-          "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
-          "sSearchPlaceholder": "Buscar...",
-          "sLengthMenu": "Results :  _MENU_",
-        },
-        "stripeClasses": [],
-        "lengthMenu": [7, 10, 20, 50],
-        "pageLength": 7
-      });
-  </script>
-<!-- End Page Level Custom Scripts -->
+      document.getElementById("datetime").innerHTML = `${alert.datetime}`
+      return alert;
+    }
+</script>
+{% if form.errors %}
+<script>
+  swal({
+    title: 'Oops...',
+    text: "Completa todos los campos",
+    type: 'error',
+    padding: '2em'
+  })
+</script>
+{% endif %}
 {% endblock%}
