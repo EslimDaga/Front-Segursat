@@ -70,7 +70,7 @@
           <select class="placeholder js-states form-control" id="unit_name" name="unit_name">
             <option value="">Seleccionar Unidad</option>
             {% for unit in units%}
-            <option value="all">Todos</option>
+            <!-- <option value="all">Todos</option>-->
             <option value="{{unit.name}}">{{unit.name}} - {{unit.description}}</option>
             {% endfor %}
           </select>
