@@ -51,8 +51,11 @@
                   <tr>
                     <th class="text-center">Nombre</th>
                     <th class="text-center">Descripción</th>
+                    <th class="text-center">Tipo de Alerta</th>
                     <th class="text-center">Ultima Modificacion</th>
                     <th class="text-center">Fecha de Creacion</th>
+                    <th class="text-center">Notificación</th>
+                    <th class="text-center">Email Notificación</th>
                     <th class="text-center">Estado</th>
                     <th class="text-center">Acción</th>
                   </tr>
@@ -62,12 +65,47 @@
                   <tr>
                     <td class="text-center">{{trigger.name}}</td>
                     <td class="text-center">{{trigger.description}}</td>
+                    {% if trigger.alert_type == 1001 %}
+                      <td class="text-center">ALERTA DE PANICO</td>
+                    {% elif trigger.alert_type == 1002 %}
+                      <td class="text-center">ALERTA DE DESCONEXION DE BATERIA</td>
+                    {% elif trigger.alert_type == 1003 %}
+                      <td class="text-center">ALERTA DE VELOCIDAD</td>
+                    {% elif trigger.alert_type == 1004 %}
+                      <td class="text-center">ALERTA DE INGRESO A GEOCERCA</td>
+                    {% elif trigger.alert_type == 1005 %}
+                      <td class="text-center">ALERTA DE SALIDA DE GEOCERCA</td>
+                    {% else %}
+                      <td class="text-center">ALERTA DE VELOCIDAD POR GEOCERCA</td>
+                    {% endif %}
                     <td class="text-center">{{trigger.modified}}</td>
                     <td class="text-center">{{trigger.created}}</td>
-                    {% if trigger.is_active == True %}
-                    <td class="text-center"><span class="badge badge-success"> Activo </span></td>
+                    {% if trigger.send_notification %}
+                    <td class="text-center">
+                      <span class="badge badge-success"> Activo </span>
+                    </td>
                     {% else %}
-                    <td class="text-center"><span class="badge badge-danger"> Inactivo </span></td>
+                    <td class="text-center">
+                      <span class="badge badge-danger"> Inactivo </span>
+                    </td>
+                    {% endif %}
+                    {% if trigger.send_mail_notification %}
+                    <td class="text-center">
+                      <span class="badge badge-success"> Activo </span>
+                    </td>
+                    {% else %}
+                    <td class="text-center">
+                      <span class="badge badge-danger"> Inactivo </span>
+                    </td>
+                    {% endif %}
+                    {% if trigger.is_active == True %}
+                    <td class="text-center">
+                      <span class="badge badge-success"> Activo </span>
+                    </td>
+                    {% else %}
+                    <td class="text-center">
+                      <span class="badge badge-danger"> Inactivo </span>
+                    </td>
                     {% endif %}
                     <td class="text-center">
                       <div class="btn-group">
