@@ -252,14 +252,15 @@
         $.notify({
           // options
           icon: 'glyphicon glyphicon-warning-sign',
-          title: `${newNotification.title}`,
-          message: `${newNotification.message}`,
+          title: `<div>${newNotification.title}</div>`,
+          message: `<div>${newNotification.message}</div>`,
         }, {
           position: null, type: "danger",
           offset: {
             x: 20,
             y: 70
-          }
+          },
+          delay: 15000
         });
       }
       // fin websocket notificaciones
