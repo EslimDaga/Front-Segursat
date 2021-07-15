@@ -35,7 +35,7 @@
               <li class="active">
                 <a class="d-flex" href="{% url 'alerts' %}">
                   <i class="fas fa-bell h5 pr-2"></i>
-                  Ultimas Alertas
+                  Monitoreo Activo
                 </a>
               </li>
             </ul>
@@ -63,28 +63,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for alert in alerts %}
-                  <tr>
-                    <td class="text-center">{{alert.selected.name}}</td>
-                    <td class="text-center">{{alert.selected.description}}</td>
-                    <td class="text-center">{{alert.datetime}}</td>
-                    <td class="text-center">{{alert.alert_type}}</td>
-                    {% if alert.alert_priority == "V" %}
-                    <td class="text-center"><span class="badge badge-danger"> Muy alta </span></td>
-                    {% elif alert.alert_priority == "H" %}
-                    <td class="text-center"><span class="badge badge-warning"> Alta </span></td>
-                    {% elif alert.alert_priority == "M" %}
-                    <td class="text-center"><span class="badge badge-info"> Media </span></td>
-                    {% else %}
-                    <td class="text-center"><span class="badge badge-success"> Baja </span></td>
-                    {% endif %}
-                    <td class="text-center">
-                      <div class="btn-group">
-                        <button type="button" onclick="alertView.checkAlert({{alert.id}})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
-                      </div>
-                    </td>
-                  </tr>
-                  {% endfor %}
+                  
                 </tbody>
               </table>
             </div>

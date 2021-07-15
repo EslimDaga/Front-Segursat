@@ -80,8 +80,8 @@ class AlertHistory {
     const alert = await response.json()
     $("#checkAlert").modal("show");
     console.log(alert);
-    document.getElementById("unit_name").innerHTML = `${alert.unit_name}ss`;
-    document.getElementById("description").innerHTML = `${alert.unit_description}ss`;
+    document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
+    document.getElementById("description").innerHTML = `${alert.unit_description}`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
     document.getElementById("address").innerHTML = `${alert.address}`;
     document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;

@@ -62,7 +62,7 @@ class AlertView {
       map.panTo([alert.latitude, alert.longitude]);
     }, 500);
     document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
-    /* document.getElementById("description").innerHTML = `${alert.description}`; */
+    document.getElementById("description").innerHTML = `${alert.description}`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
     document.getElementById("description").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
@@ -97,16 +97,16 @@ class AlertView {
 
     cell0.innerHTML = alert.unit_name;
     cell1.innerHTML = alert.unit_description;
-    cell2.innerHTML = "now";
+    cell2.innerHTML = alert.datetime;
     cell3.innerHTML = alert.alert_description;
     if(alert.alert_priority === "L"){
-      cell4.innerHTML = "LOW";
+      cell4.innerHTML = "BAJO";
     } else if (alert.alert_priority === "M"){
-      cell4.innerHTML = "MEDIUM"
+      cell4.innerHTML = "MEDIO"
     } else if (alert.alert_priority === "H"){
-      cell4.innerHTML = "HIGH"
+      cell4.innerHTML = "ALTA"
     } else {
-      cell4.innerHTML = "VERY HIGH"
+      cell4.innerHTML = "MUY ALTA"
     }
     cell5.innerHTML = `
       <div class="btn-group">
