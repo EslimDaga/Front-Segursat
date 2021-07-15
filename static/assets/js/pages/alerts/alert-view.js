@@ -64,7 +64,7 @@ class AlertView {
     document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
     /* document.getElementById("description").innerHTML = `${alert.description}`; */
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
-    document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;
+    document.getElementById("description").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
       document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
     } else if (alert.alert_priority === "H") {
@@ -96,7 +96,7 @@ class AlertView {
     cell5.className = "text-center";
 
     cell0.innerHTML = alert.unit_name;
-    cell1.innerHTML = alert.description;
+    cell1.innerHTML = alert.unit_description;
     cell2.innerHTML = "now";
     cell3.innerHTML = alert.alert_description;
     if(alert.alert_priority === "L"){
