@@ -80,9 +80,9 @@ class AlertHistory {
     const alert = await response.json()
     $("#checkAlert").modal("show");
     console.log(alert);
-    document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
+    document.getElementById("unit_name").innerHTML = `${alert.unit_name}s`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
-    document.getElementById("alert_type").innerHTML = `${alert.alert_type}`;
+    document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
       document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
     } else if (alert.alert_priority === "H") {
