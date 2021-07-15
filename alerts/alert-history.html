@@ -98,6 +98,7 @@
                   <th class="text-center">Unidad</th>
                   <th class="text-center">Descripción</th>
                   <th class="text-center">Fecha</th>
+                  <th class="text-center">Velocidad</th>
                   <th class="text-center">Tipo de Alerta</th>
                   <th class="text-center">Prioridad</th>
                   <th class="text-center">Acciones</th>
@@ -106,13 +107,14 @@
               <tbody>
                 {% for alert in alerts %}
                   <tr>
-                    <td class="text-center">{{selected_unit.name}}</td>
-                    {% if selected_unit.description == "" %}
+                    <td class="text-center">{{alert.unit_name}}</td>
+                    {% if alert.unit_description == "" %}
                     <td class="text-center">N/D</td>
                     {% else %}
-                    <td class="text-center">{{selected_unit.description}}</td>
+                    <td class="text-center">{{alert.unit_description}}</td>
                     {% endif %}
                     <td class="text-center">{{alert.datetime}}</td>
+                    <td class="text-center">{{alert.speed}} km/h</td>
                     <td class="text-center">{{alert.alert_description}}</td>
                     {% if alert.alert_priority == "V" %}
                     <td class="text-center"><span class="badge badge-danger"> Muy alta </span></td>
@@ -241,7 +243,7 @@
         map.panTo([alert.latitude, alert.longitude]);
       }, 500);
       document.getElementById("account").innerHTML = `${alert.unit_name}`;
-      /* document.getElementById("description").innerHTML = `${alert.description}`; */
+      document.getElementById("description").innerHTML = `${alert.unit_description}`;
       document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
       document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;
       if (alert.alert_priority === "V") {
