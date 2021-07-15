@@ -83,6 +83,7 @@ class AlertHistory {
     document.getElementById("unit_name").innerHTML = `${alert.unit_name}ss`;
     document.getElementById("description").innerHTML = `${alert.unit_description}ss`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
+    document.getElementById("address").innerHTML = `${alert.address}`;
     document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
       document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
