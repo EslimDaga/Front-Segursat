@@ -1,9 +1,11 @@
 class AlertView {
+  constructor() {
+    this.audio;
+  }
   checkAlert = async (id) => {
     const url = `/web/api/alerts/get-alert/${id}`;
     const response = await fetch(url);
     const alert = await response.json();
-    console.log(alert);
     $("#checkAlert").modal("show");
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:430px;width:100%;"></div>`;
     setTimeout(() => {
@@ -64,7 +66,7 @@ class AlertView {
     document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
     document.getElementById("description").innerHTML = `${alert.description}`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
-    document.getElementById("description").innerHTML = `${alert.alert_description}`;
+    document.getElementById("alert_description").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
       document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
     } else if (alert.alert_priority === "H") {
@@ -116,6 +118,14 @@ class AlertView {
       <div class="btn-group">
         <button type="button" onclick="alertView.checkAlert(${alert.alert_id})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
       </div>
+      <div class="btn-group">
+        <a onclick="myFunction();" class="btn btn-dark btn-sm"><i class="fas fa-trash-alt"></i></a>
+      </div>
     `;
   }
+
+  loadAudio = async (path) => {
+    this.audio = new Audio('/static/sounds/medium.mp3');
+  }
+
 }

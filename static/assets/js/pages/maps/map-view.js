@@ -115,23 +115,39 @@ class MapView {
 
   renderUnitMarkers = (units) => {
     for (let i = 0; i < units.length; i++) {
-      const icon = L.divIcon({
-        iconSize:null,
-        html:`
-        <div class="map-label">
-          <div class="map-label-content">
-            <img src="/static/assets/img/markers/cars.png" width="20" height="40"/>
+      let icon;
+      if ( units[i].last_speed > 0 ) {
+        icon = L.divIcon({
+          iconSize:null,
+          html:`
+          <div class="map-label">
+            <div class="map-label-content">
+              <img src="/static/assets/img/markers/green.png" width="20" height="40"/>
+            </div>
           </div>
-        </div>
-        `
-      });
+          `
+        });
+      }
+      else {
+        icon = L.divIcon({
+          iconSize:null,
+          html:`
+          <div class="map-label">
+            <div class="map-label-content">
+              <img src="/static/assets/img/markers/red.png" width="20" height="40"/>
+            </div>
+          </div>
+          `
+        });
+      }
       const marker = new L.marker(
         [units[i].last_latitude,units[i].last_longitude],
         {
           icon: icon,
           title: units[i].name,
           description : units[i].description,
-          rotationAngle: units[i].last_angle
+          rotationAngle: units[i].last_angle,
+          speed: units[i].last_speed
         }
       ).bindTooltip(`<div class="text-center font-weight-bold" style="font-size: 11px;">${units[i].name}</div><div class="text-center" style="font-size: 11px;"> ${units[i].description} </div>`, {
         permanent: true,
@@ -196,6 +212,7 @@ class MapView {
     const lat = this.markers[index].getLatLng().lat;
     const lng = this.markers[index].getLatLng().lng;
     const angle = this.markers[index].options.rotationAngle;
+    const speed = this.markers[index].options.speed;
     const title = mapView.markers[index].options.title
     const description = mapView.markers[index].options.description
 
@@ -203,16 +220,33 @@ class MapView {
       this.markers[i].setForceZIndex(null);
     }
     this.map.removeLayer(this.markers[index])
-    const icon = L.divIcon({
-      iconSize:null,
-      html:`
-      <div class="map-label">
-        <div class="map-label-content">
-          <img src="/static/assets/img/markers/cars.png" width="20" height="40"/>
+
+    let icon;
+    if ( speed > 0 ) {
+      icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/green.png" width="20" height="40"/>
+          </div>
         </div>
-      </div>
-      `
-    });
+        `
+      });
+    }
+    else {
+      icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/red.png" width="20" height="40"/>
+          </div>
+        </div>
+        `
+      });
+    }
+
     const marker = new L.marker(
       [lat,lng],
       {
@@ -220,6 +254,7 @@ class MapView {
         title: title,
         description : description,
         rotationAngle: angle,
+        speed: speed,
         forceZIndex: 1000
       }
     ).bindTooltip(`<div class="text-center font-weight-bold" style="font-size: 11px;">${title}</div><div class="text-center" style="font-size: 11px;">${description}</div>`, {
@@ -280,10 +315,37 @@ class MapView {
     document.getElementById("waze").innerHTML = `<a href="#" onclick="$('#waze-modal').modal('show');">Abrir mapa</a>`;
   }
 
-  updateMarkerPosition = (unitName,latLng,angle) => {
+  updateMarkerPosition = (unitName,latLng,angle,speed) => {
     const index = this.searchUnitMarker(unitName);
     this.markers[index].setLatLng(latLng);
     this.markers[index].setRotationAngle(angle);
+    this.markers[index].options.speed = speed;
+    let icon;
+    if ( speed > 0 ) {
+      icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/green.png" width="20" height="40"/>
+          </div>
+        </div>
+        `
+      });
+    }
+    else {
+      icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img src="/static/assets/img/markers/red.png" width="20" height="40"/>
+          </div>
+        </div>
+        `
+      });
+    }
+    this.markers[index].setIcon(icon);
   }
 
   updateBottomBar = async (unit_name) => {

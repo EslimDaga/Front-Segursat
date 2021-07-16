@@ -87,7 +87,7 @@ class AlertHistory {
     document.getElementById("description").innerHTML = `${alert.unit_description}`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
     document.getElementById("address").innerHTML = `${alert.address}`;
-    document.getElementById("alert_type").innerHTML = `${alert.alert_description}`;
+    document.getElementById("alert_description").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
       document.getElementById("alert_priority").innerHTML = `<span class="badge badge-danger"> Muy alta </span>`;
     } else if (alert.alert_priority === "H") {
