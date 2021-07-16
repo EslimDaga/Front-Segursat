@@ -13,16 +13,19 @@ class AlertHistory {
       const cell2 = row.insertCell(2);
       const cell3 = row.insertCell(3);
       const cell4 = row.insertCell(4);
+      const cell5 = row.insertCell(5);
       cell0.className = "text-center";
       cell1.className = "text-center";
       cell2.className = "text-center";
       cell3.className = "text-center";
       cell4.className = "text-center";
+      cell5.className = "text-center";
       cell0.innerHTML = alert.account;
       cell1.innerHTML = alert.alert_type;
-      cell2.innerHTML = alert.alert_priority;
-      cell3.innerHTML = alert.datetime;
-      cell4.innerHTML = `
+      cell2.innerHTML = alert.address;
+      cell3.innerHTML = alert.alert_priority;
+      cell4.innerHTML = alert.datetime;
+      cell5.innerHTML = `
           <div class="btn-group">
             <button onclick="this.checkAlert(${alert.id})" type="button" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
           </div>

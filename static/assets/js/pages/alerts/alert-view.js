@@ -87,6 +87,7 @@ class AlertView {
     const cell3 = row.insertCell(3);
     const cell4 = row.insertCell(4);
     const cell5 = row.insertCell(5);
+    const cell6 = row.insertCell(6);
 
     cell0.className = "text-center";
     cell1.className = "text-center";
@@ -94,21 +95,24 @@ class AlertView {
     cell3.className = "text-center";
     cell4.className = "text-center";
     cell5.className = "text-center";
+    cell6.className = "text-center";
 
     cell0.innerHTML = alert.unit_name;
     cell1.innerHTML = alert.unit_description;
     cell2.innerHTML = alert.datetime;
     cell3.innerHTML = alert.alert_description;
+    cell4.innerHTML = alert.address;
+    cell5.innerHTML = alert.alert_priority;
     if(alert.alert_priority === "L"){
-      cell4.innerHTML = "BAJO";
+      cell5.innerHTML = "BAJO";
     } else if (alert.alert_priority === "M"){
-      cell4.innerHTML = "MEDIO"
+      cell5.innerHTML = "MEDIO"
     } else if (alert.alert_priority === "H"){
-      cell4.innerHTML = "ALTA"
+      cell5.innerHTML = "ALTA"
     } else {
-      cell4.innerHTML = "MUY ALTA"
+      cell5.innerHTML = "MUY ALTA"
     }
-    cell5.innerHTML = `
+    cell6.innerHTML = `
       <div class="btn-group">
         <button type="button" onclick="alertView.checkAlert(${alert.alert_id})" class="btn btn-dark btn-sm"><i class="fas fa-eye"></i></button>
       </div>
