@@ -154,7 +154,7 @@
         height: "100%",
         orientation: "horizontal",
         theme: 'summer',
-        panels: [{ size: '48%' }, { size: '52%' }]
+        panels: [{ size: '40%' }, { size: '60%' }]
       });
     });
   </script>
@@ -241,7 +241,8 @@
             newLocation['latitude'],
             newLocation['longitude']
           ],
-          newLocation['angle']
+          newLocation['angle'],
+          newLocation['speed']
         );
         mapView.updateBottomBar(newLocation['unit_name']);
       }
