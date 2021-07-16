@@ -104,15 +104,15 @@ class AlertView {
     cell2.innerHTML = alert.datetime;
     cell3.innerHTML = alert.alert_description;
     cell4.innerHTML = alert.address;
-    cell5.innerHTML = alert.alert_priority;
-    if(alert.alert_priority === "L"){
-      cell5.innerHTML = "BAJO";
-    } else if (alert.alert_priority === "M"){
-      cell5.innerHTML = "MEDIO"
-    } else if (alert.alert_priority === "H"){
-      cell5.innerHTML = "ALTA"
+
+    if (alert.alert_priority === "V") {
+      cell5.innerHTML = alert.alert_priority = `<span class="badge badge-danger"> Muy alta </span>`;
+    } else if (alert.alert_priority === "H") {
+      cell5.innerHTML = alert.alert_priority = `<span class="badge badge-warning"> Alta </span>`;
+    } else if (alert.alert_priority === "M") {
+      cell5.innerHTML = alert.alert_priority = `<span class="badge badge-info"> Media </span>`;
     } else {
-      cell5.innerHTML = "MUY ALTA"
+      cell5.innerHTML = alert.alert_priority = `<span class="badge badge-success"> Baja </span>`;
     }
     cell6.innerHTML = `
       <div class="btn-group">
