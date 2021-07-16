@@ -43,9 +43,22 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-sm-6 pb-3 responsive-header-menu">
           <div class="d-flex flex-row-reverse bd-highlight">
-            <button class="btn btn-primary btn-rounded">
+            <!-- <a onclick="changeSoundControlSwitchState()" class="btn btn-primary btn-rounded">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-            </button>
+            </a> -->
+            <a class="btn btn-primary" onclick="changeSoundControlSwitchState()">
+              <!-- <i id="soundControl" class="fas fa-volume-up"></i> -->
+              <i id="soundControlSwitch" class=""></i>
+            </a>
+            <a class="btn btn-primary mr-2">
+              <!-- <i id="soundControl" class="fas fa-volume-up"></i> -->
+              <i class="fas fa-broom"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
+          <div class="widget-content widget-content-area br-6">
+            <h4 style="text-align: center; margin: 0px">Monitoreo activo <i class="fas fa-bell"></i></h4>
           </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
@@ -66,7 +79,7 @@
                     <th class="text-center">Acciones</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="eslim">
 
                 </tbody>
               </table>
@@ -81,6 +94,9 @@
 {% endblock %}
 {% block script_content %}
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
+  <script>function myFunction() {
+      document.getElementById("eslim").deleteRow(0);
+    }</script>
   <script src="{% static 'assets/js/pages/alerts/alert-view.js' %}"></script>
   <script>
     const alertView = new AlertView();
@@ -95,5 +111,51 @@
       }
       // fin websocket alertas
     };
+    let soundControlSwitch = document.getElementById("soundControlSwitch");
+      if (localStorage.getItem('enableSoundNotification') == 'true') {
+        soundControlSwitch.className = "fa fa-volume-up";
+      } else {
+        localStorage.setItem('enableSoundNotification', false);
+        soundControlSwitch.className = "fas fa-volume-mute";
+      }
+      function changeSoundControlSwitchState() {
+        if (localStorage.getItem('enableSoundNotification') == 'true') {
+          soundControlSwitch.className = "fas fa-volume-mute";
+          localStorage.setItem('enableSoundNotification', false);
+          localStorage.getItem('enableSoundNotification');
+          //Mute
+          $.notify({
+            // options
+            icon: 'glyphicon glyphicon-warning-sign',
+            title: `Sonido `,
+             message: `Desactivado`,
+          }, {
+            position: null, type: "danger",
+            offset: {
+              x: 20,
+              y: 70
+            },
+            delay: 5000
+          });
+        } else {
+          soundControlSwitch.className = "fa fa-volume-up";
+          localStorage.setItem('enableSoundNotification', true);
+          localStorage.getItem('enableSoundNotification');
+          //Up
+          $.notify({
+            // options
+            icon: 'glyphicon glyphicon-warning-sign',
+            title: `Sonido `,
+            message: `Activado`,
+          }, {
+            position: null, type: "success",
+            offset: {
+              x: 20,
+              y: 70
+            },
+            delay: 5000
+          });
+        }
+      }
   </script>
 {% endblock%}
