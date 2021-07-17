@@ -182,7 +182,7 @@
       }
     }
     function copiarTexto(THIS,element){
-      var $temp = $("<input>");
+       var $temp = $("<input>");
        $("body").append($temp);
        $temp.val($(element).html()).select();
        document.execCommand("copy");
@@ -208,21 +208,7 @@
         return rex.test($(this).text());
       }).show();
     });
-    /*Demo.prototype.addSearchFilter = function () {
-      document.querySelector('.js-shuffle-search').addEventListener('keyup', this._handleSearchKeyup.bind(this));
-    };
-
-    // Filter the shuffle instance by items with a title that matches the search input.
-    Demo.prototype._handleSearchKeyup = function (evt) {
-      var searchText = evt.target.value.toLowerCase();
-
-      this.shuffle.filter(function (element, shuffle) {
-        var titleElement = element.querySelector('.picture-item__title');
-        var titleText = titleElement.textContent.toLowerCase().trim();
-
-        return titleText.indexOf(searchText) !== -1;
-      });
-    };*/
+    
   </script>
   <script>
     const mapView = new MapView();
@@ -261,7 +247,7 @@
             x: 40,
             y: 70
           },
-          delay: 15000
+          delay: 10000
         });
       }
       // fin websocket notificaciones
@@ -340,13 +326,8 @@
         }
       }
   </script>
-  <script type="text/javascript">
-    $(document).on("click", ".searchable-container .items", function () {
-      $(this).addClass("active").siblings().removeClass("active")
-    })
-  </script>
   <script>
-    const acticateTracking = () => {
+    const activateTracking = () => {
       const check = document.getElementById("activateTrackingCheckbox");
       if (check.checked) {
         console.log("Checked");

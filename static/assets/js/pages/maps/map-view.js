@@ -122,7 +122,7 @@ class MapView {
           html:`
           <div class="map-label">
             <div class="map-label-content">
-              <img src="/static/assets/img/markers/green.png" width="20" height="40"/>
+              <img onclick="mapView.unitSelect2('${units[i].name}');" src="/static/assets/img/markers/green.png" width="20" height="40"/>
             </div>
           </div>
           `
@@ -134,7 +134,7 @@ class MapView {
           html:`
           <div class="map-label">
             <div class="map-label-content">
-              <img src="/static/assets/img/markers/red.png" width="20" height="40"/>
+              <img onclick="mapView.unitSelect2('${units[i].name}');" src="/static/assets/img/markers/red.png" width="20" height="40"/>
             </div>
           </div>
           `
@@ -228,7 +228,7 @@ class MapView {
         html:`
         <div class="map-label">
           <div class="map-label-content">
-            <img src="/static/assets/img/markers/green.png" width="20" height="40"/>
+            <img onclick="mapView.unitSelect2('${title}');" src="/static/assets/img/markers/green.png" width="20" height="40"/>
           </div>
         </div>
         `
@@ -240,7 +240,7 @@ class MapView {
         html:`
         <div class="map-label">
           <div class="map-label-content">
-            <img src="/static/assets/img/markers/red.png" width="20" height="40"/>
+            <img onclick="mapView.unitSelect2('${title}');" src="/static/assets/img/markers/red.png" width="20" height="40"/>
           </div>
         </div>
         `
@@ -315,6 +315,115 @@ class MapView {
     document.getElementById("waze").innerHTML = `<a href="#" onclick="$('#waze-modal').modal('show');">Abrir mapa</a>`;
   }
 
+  unitSelect2 = async (unitName) => {
+    runLoaderSidebar();
+    $("#copiar_placa").show();
+    const index = this.searchUnitMarker(unitName);
+    const lat = this.markers[index].getLatLng().lat;
+    const lng = this.markers[index].getLatLng().lng;
+    const angle = this.markers[index].options.rotationAngle;
+    const speed = this.markers[index].options.speed;
+    const title = mapView.markers[index].options.title
+    const description = mapView.markers[index].options.description
+
+    for (let i=0;i<this.markers.length;i++) {
+      this.markers[i].setForceZIndex(null);
+    }
+    this.map.removeLayer(this.markers[index])
+
+    let icon;
+    if ( speed > 0 ) {
+      icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img onclick="mapView.unitSelect2('${title}');" src="/static/assets/img/markers/green.png" width="20" height="40"/>
+          </div>
+        </div>
+        `
+      });
+    }
+    else {
+      icon = L.divIcon({
+        iconSize:null,
+        html:`
+        <div class="map-label">
+          <div class="map-label-content">
+            <img onclick="mapView.unitSelect2('${title}');" src="/static/assets/img/markers/red.png" width="20" height="40"/>
+          </div>
+        </div>
+        `
+      });
+    }
+
+    const marker = new L.marker(
+      [lat,lng],
+      {
+        icon: icon,
+        title: title,
+        description : description,
+        rotationAngle: angle,
+        speed: speed,
+        forceZIndex: 1000
+      }
+    ).bindTooltip(`<div class="text-center font-weight-bold" style="font-size: 11px;">${title}</div><div class="text-center" style="font-size: 11px;">${description}</div>`, {
+      permanent: true,
+      direction : "top",
+      className: "leaflet-tooltip-own",
+      offset: L.point({x: 0, y: -20})
+    }).addTo(this.map);
+    this.markers[index] = marker;
+
+
+    const streetViewURL = `http://maps.google.com/maps?q=&amp;layer=c&amp;cbll=${lat},${lng}&amp;cbp=11,96,0,0,0`;
+    //almacenar en el local storage la unidad seleccionada
+    localStorage.setItem("selectedUnit", unitName);
+    //llamar a get unit
+    const unit = await api.getUnit(unitName);
+    /* console.log(unit); */
+    clearRunLoaderSidebar()
+    document.getElementById("unitNameSelect").innerHTML = `${unit.name}`;
+    if(unit.description.length > 0){
+      document.getElementById("description").innerHTML = `${unit.description}`;
+    }else{
+      document.getElementById("description").innerHTML = `Sin descripción`;
+    }
+    document.getElementById("speed").innerHTML = `${unit.last_speed} km/h`;
+    document.getElementById("rssi").innerHTML = `${unit.last_attributes.rssi} %`;
+    if (unit.last_attributes.out1){
+      document.getElementById("blocking").innerHTML = `<span class="badge badge-danger"> Bloqueado </span>`;
+    }else{
+      document.getElementById("blocking").innerHTML = `<span class="badge badge-success"> Sin bloqueo </span>`;
+    }
+    document.getElementById("battery").innerHTML = `${unit.last_attributes.battery} %`;
+    /* document.getElementById("address_link").innerHTML = `<a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
+      <i class="fas fa-eye"></i>
+    </a>` */
+    document.getElementById("address").innerHTML = `${unit.last_address} <div class="d-flex"> <a href='https://www.google.com/maps?q=${lat},${lng}&t=m&hl=en' target="_blank" class="btn btn-xs btn-default">
+      (<i class="fas fa-eye"></i>)
+    </a><p id="streetView"></p></div>`;
+    document.getElementById("streetView").innerHTML = `<a href='${streetViewURL}' class="btn btn-xs btn-default" target="_blank"><i class="fas fa-street-view"></i></a>`;
+    /* Begin add for Eslim*/
+    /* if (unit.last_speed > 0) {
+      document.getElementById("status").innerHTML = `<span data-device="status" style="background-color: green" title="Online">Online</span><span data-device="status-text"> Online</span>`;
+    }else{
+      document.getElementById("status").innerHTML = `<span data-device="status" style="background-color: red" title="ACK">ACK</span><span data-device="status-text"> ACK</span>`;
+    } */
+
+    if (unit.last_attributes.ignition) {
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-success"> Encendido </span>`;
+    }else{
+      document.getElementById("ignition").innerHTML = `<span class="badge badge-danger"> Apagado </span>`;
+    }
+    document.getElementById("satellites").innerHTML = `${unit.last_attributes.sat}`;
+    document.getElementById("last_report").innerHTML = `${unit.last_report}`;
+    /* End add for Eslim*/
+    document.getElementById('waze-modal-body').innerHTML = `<iframe id="Waze-Map" src="https://embed.waze.com/iframe?zoom=15&lat=${unit.last_latitude}&lon=${unit.last_longitude}&pin=1" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px"></iframe>`
+    document.getElementById("waze").innerHTML = `<a href="#" onclick="$('#waze-modal').modal('show');">Abrir mapa</a>`;
+  }
+
+
   updateMarkerPosition = (unitName,latLng,angle,speed) => {
     const index = this.searchUnitMarker(unitName);
     this.markers[index].setLatLng(latLng);
@@ -327,7 +436,7 @@ class MapView {
         html:`
         <div class="map-label">
           <div class="map-label-content">
-            <img src="/static/assets/img/markers/green.png" width="20" height="40"/>
+            <img onclick="mapView.unitSelect2('${this.markers[index].options.title}');" src="/static/assets/img/markers/green.png" width="20" height="40"/>
           </div>
         </div>
         `
@@ -339,7 +448,7 @@ class MapView {
         html:`
         <div class="map-label">
           <div class="map-label-content">
-            <img src="/static/assets/img/markers/red.png" width="20" height="40"/>
+            <img onclick="mapView.unitSelect2('${this.markers[index].options.title}');" src="/static/assets/img/markers/red.png" width="20" height="40"/>
           </div>
         </div>
         `
