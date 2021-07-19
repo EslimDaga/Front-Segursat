@@ -50,7 +50,7 @@
               <!-- <i id="soundControl" class="fas fa-volume-up"></i> -->
               <i id="soundControlSwitch" class=""></i>
             </a>
-            <a class="btn btn-primary mr-2">
+            <a class="btn btn-primary mr-2" onclick="$('#eslim').empty();">
               <!-- <i id="soundControl" class="fas fa-volume-up"></i> -->
               <i class="fas fa-broom"></i>
             </a>
@@ -94,9 +94,13 @@
 {% endblock %}
 {% block script_content %}
   <script src="{% static 'plugins/table/datatable/button-ext/jszip.min.js' %}"></script>
-  <script>function myFunction() {
+  <script>
+    function myFunction() {
       document.getElementById("eslim").deleteRow(0);
-    }</script>
+    }
+
+
+  </script>
   <script src="{% static 'assets/js/pages/alerts/alert-view.js' %}"></script>
   <script>
     const alertView = new AlertView();
