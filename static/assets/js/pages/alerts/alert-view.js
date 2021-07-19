@@ -6,6 +6,7 @@ class AlertView {
     const url = `/web/api/alerts/get-alert/${id}`;
     const response = await fetch(url);
     const alert = await response.json();
+    console.log(alert);
     $("#checkAlert").modal("show");
     document.getElementById("map-container").innerHTML = `<div id="map" style="height:430px;width:100%;"></div>`;
     setTimeout(() => {
@@ -64,7 +65,7 @@ class AlertView {
       map.panTo([alert.latitude, alert.longitude]);
     }, 500);
     document.getElementById("unit_name").innerHTML = `${alert.unit_name}`;
-    document.getElementById("description").innerHTML = `${alert.description}`;
+    document.getElementById("description").innerHTML = `${alert.unit_description}`;
     document.getElementById("speed").innerHTML = `${alert.speed} km/h`;
     document.getElementById("alert_description").innerHTML = `${alert.alert_description}`;
     if (alert.alert_priority === "V") {
@@ -122,10 +123,6 @@ class AlertView {
         <a onclick="myFunction();" class="btn btn-dark btn-sm"><i class="fas fa-trash-alt"></i></a>
       </div>
     `;
-  }
-
-  loadAudio = async (path) => {
-    this.audio = new Audio('/static/sounds/medium.mp3');
   }
 
 }
